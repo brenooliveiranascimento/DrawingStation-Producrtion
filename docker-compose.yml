@@ -1,21 +1,62 @@
+# version: '3'
+# services:
+#   back:
+#     build: ./backEnd
+#     restart: always
+#     ports:
+#       - 8000:8000
+#     volumes:
+#       - ./backEnd:/app/drawingstationbeta-back
+#     depends_on:
+#       - db
+#     environment:
+#       DB_USER: root
+#       DB_PASS: password
+#       DB_NAME: drawing_station
+#       DB_HOST: localhost
+#       DB_PORT: 3306
+#       BD_PORT: 8000
+#       JWT_SECRET: secret
+#   db:
+#     container_name: drawing_station_db
+#     image: mysql:8.0.23
+#     environment:
+#       MYSQL_ROOT_PASSWORD: 'password'
+#     ports:
+#       - 3306:3306
+# networks:
+#   drawing_station_net:
+#     driver: bridge
+
 version: '3'
-services:
-  back:
-    build: ./backEnd
+
+services: 
+  db:
+    image: mysql:8.0.23
     restart: always
-    ports:
-      - 8000:8000
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
     volumes:
+      - db:/var/lib/mysql
+    ports: 
+      - '3306:3306'
+  backend: 
+    build: ./backEnd
+    command: bash -c 'while !</dev/tcp/db/3306; do sleep 1; done; npm run dev'
+    ports: 
+      - '8000:8000'
+    volumes: 
       - ./backEnd:/app/drawingstationbeta-back
     depends_on:
       - db
+    # environment:
+    #   DB_USER: root
+    #   DB_PASS: password
+    #   DB_NAME: drawing_station
+    #   DB_HOST: localhost
+    #   DB_PORT: 3306
+    #   JWT_SECRET: secret
+
+volumes:
   db:
-    image: mysql:8.0.23
-    container_name: drawing_station_beta_db
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: 'password'
-    ports:
-      - 3306:3306
-    volumes:
-      - /app/drawingstationbeta-db
