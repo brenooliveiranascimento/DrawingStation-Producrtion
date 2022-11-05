@@ -1,0 +1,21 @@
+version: '3'
+services:
+  back:
+    build: ./backEnd
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backEnd:/app/drawingstationbeta-back
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0.23
+    container_name: drawing_station_beta_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - 3306:3306
+    volumes:
+      - /app/drawingstationbeta-db
