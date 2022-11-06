@@ -15,7 +15,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(200),
       },
-      referenceImage: {
+      drawing: {
         allowNull: false,
         type: Sequelize.STRING(150),
       },
@@ -38,7 +38,6 @@ module.exports = {
           model: 'sub_modules',
           key: 'id',
         },
-        field: 'sub_module_id',
       }
     });
   },
