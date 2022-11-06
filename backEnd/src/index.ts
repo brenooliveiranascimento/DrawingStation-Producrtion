@@ -1,3 +1,4 @@
+import cors from 'cors'
 import 'express-async-errors';
 import express from 'express';
 import { errorMiddleware } from './middlewares/error.middleware';
@@ -5,6 +6,7 @@ import moduleRouter from './routes/module.routes';
 
 import 'dotenv/config';
 const app = express();
+app.use(cors())
 
 app.use(express.json());
 
