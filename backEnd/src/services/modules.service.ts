@@ -10,13 +10,13 @@ class ModuleService {
         {
           model: ClassroomModel,
           as: 'classrooms',
-          include: [
-            {
-              model: ClassRoomDataModel,
-              as: 'classrooms_data',
-              // attributes: { exclude: ['classrooms_data'] }
-            },
-          ]
+          // include: [
+          //   {
+          //     model: ClassRoomDataModel,
+          //     as: 'classrooms_data',
+          //     // attributes: { exclude: ['classrooms_data'] }
+          //   },
+          // ]
         },
       ],
       }
