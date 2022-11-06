@@ -9,26 +9,17 @@ module.exports = {
           video: 'link do video',
           image: 'link da imagem',
           drawing:'link da referencia',
-          premium: true,
-          sub_module_id:1
+          premium: false,
+          subModuleId:1
         },
         {
           name: 'circulo',
           description: 'Fundamentos do esbolo',
-          premium: true,
+          premium: false,
           image: 'link da imagem',
           drawing:'link da referencia',
           video: 'link do video',
-          sub_module_id:1
-        },
-        {
-          name: 'maçã',
-          description: 'Detalhes e recomendação de materiais',
-          drawing:'link da referencia',
-          image: 'link da imagem',
-          video: 'link do video',
-          premium: true,
-          sub_module_id:1,
+          subModuleId:1
         },
         {
           name: 'rosa',
@@ -36,8 +27,8 @@ module.exports = {
           drawing:'link da referencia',
           image: 'link da imagem',
           video: 'link do video',
-          premium: true,
-          sub_module_id:1,
+          premium: false,
+          subModuleId:1,
         },
         {
           name: 'Maçã',
@@ -45,8 +36,8 @@ module.exports = {
           image: 'link da imagem',
           drawing:'link da referencia',
           video: 'link do video',
-          premium: true,
-          sub_module_id:1,
+          premium: false,
+          subModuleId:1,
         },
         {
           name: 'Rosa Azul',
@@ -54,8 +45,8 @@ module.exports = {
           image: 'link da imagem',
           drawing:'link da referencia',
           video: 'link do video',
-          premium: true,
-          sub_module_id:1,
+          premium: false,
+          subModuleId:1,
         },
         {
           name: 'Principais cores de pele',
@@ -64,7 +55,7 @@ module.exports = {
           image: 'link da imagem',
           video: 'link do video',
           premium: true,
-          sub_module_id:2,
+          subModuleId:2,
         },
         {
           name: 'Principais tipos de textura e maçetes',
@@ -73,7 +64,7 @@ module.exports = {
           drawing:'link da referencia',
           video: 'link do video',
           premium: true,
-          sub_module_id:2,
+          subModuleId:2,
         },
         {
           name: 'Olho 1',
@@ -82,7 +73,7 @@ module.exports = {
           drawing:'link da referencia',
           video: 'link do video',
           premium: true,
-          sub_module_id:2,
+          subModuleId:2,
         },
       ],
       {},

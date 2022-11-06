@@ -10,7 +10,7 @@ class Classroom extends Model {
   declare image: string;
   declare premium: boolean
   declare description: string;
-  declare sub_module_id:string;
+  declare subModuleId:number;
 }
 
 Classroom.init({
@@ -40,7 +40,7 @@ Classroom.init({
     type: STRING(300),
     allowNull: false,
   },
-  sub_module_id: {
+  subModuleId: {
     type: INTEGER,
     allowNull: false,
     primaryKey: true,
@@ -52,7 +52,6 @@ Classroom.init({
 }, {
   sequelize: db,
   modelName: 'classrooms',
-  underscored: true,
   timestamps: false,
 });
 

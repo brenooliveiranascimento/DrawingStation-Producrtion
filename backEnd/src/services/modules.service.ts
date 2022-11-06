@@ -5,10 +5,13 @@ class ModuleService {
 
   public async getAll() {
     const allModules = await SubModuleModel.findAll(
-      {include: [
+      {
+      where: { premium: false },
+        include: [
         {
           model: ClassroomModel,
           as: 'classrooms',
+          order: ['id']
         },
       ],
       }

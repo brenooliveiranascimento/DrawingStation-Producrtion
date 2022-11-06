@@ -31,7 +31,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(300),
       },
-      sub_module_id: {
+      subModuleId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
