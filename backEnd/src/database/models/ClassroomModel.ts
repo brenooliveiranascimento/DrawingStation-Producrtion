@@ -5,11 +5,8 @@ import db from '.';
 class Classroom extends Model {
   declare id: number;
   declare name: string;
-  declare video: string;
-  declare drawing: string;
   declare image: string;
   declare premium: boolean
-  declare description: string;
   declare subModuleId:number;
 }
 
@@ -24,19 +21,7 @@ Classroom.init({
     type: STRING(30),
     allowNull: false,
   },
-  description: {
-    type: STRING(60),
-    allowNull: false,
-  },
   image: {
-    type: STRING(300),
-    allowNull: false,
-  },
-  video: {
-    type: STRING(300),
-    allowNull: false,
-  },
-  drawing: {
     type: STRING(300),
     allowNull: false,
   },
