@@ -1,6 +1,7 @@
 import ClassroomModel from '../database/models/ClassroomModel';
 import SubModuleModel from '../database/models/SubModuleModel';
 import ClassRoomDataModel from '../database/models/ClassRoomDataModel';
+import UserModel from '../database/models/UserModel';
 class ModuleService {
 
   public async getAll() {
