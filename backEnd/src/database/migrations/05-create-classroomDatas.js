@@ -34,7 +34,7 @@ module.exports = {
           model: 'classrooms',
           key: 'id',
         },
-      }
+      },
     });
   },
   down: async (queryInterface) => {

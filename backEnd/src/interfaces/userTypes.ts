@@ -4,6 +4,10 @@ export interface UserInterface {
   email: string;
   active: boolean;
   premium: boolean;
-  bri: string;
+  birthday: string;
   phoneNumber: string;
 }
+
+export interface UserCredentials extends UserInterface {
+  password: string;
+};
