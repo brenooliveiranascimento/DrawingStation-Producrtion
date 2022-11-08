@@ -17,7 +17,7 @@ module.exports = {
       },
       password: {
         allowNull: false,
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(300),
       },
       active: {
         allowNull: false,
@@ -28,7 +28,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
       },
       Birthday: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         allowNull: true,
       },
       phoneNumber: {

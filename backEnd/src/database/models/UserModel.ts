@@ -41,7 +41,7 @@ Users.init({
     allowNull: false,
   },
   birthday: {
-    type: DATE,
+    type: STRING,
     allowNull: true,
   },
   phoneNumber: {

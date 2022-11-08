@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { UserCredentials, UserInterface } from '../../interfaces/userTypes';
 import statusCodes from '../../statusCode';
-import Joi from 'joi';
+import Joi, { bool } from 'joi';
 const MIN_CHARACTERS = 6;
 const regex = /\S+@\S+\.\S+/;
 
@@ -20,6 +20,7 @@ function validateValues(User: UserInterface): [boolean, string | null] {
   const entries = Object.entries(User);
   for (let i = 0; i < entries.length; i += 1) {
     const [property, value] = entries[i];
+    if(property === 'premium') return [true, null];
     if (!value) {
       return [false, property];
     }
