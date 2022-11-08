@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import ModuleService from '../services/modules.service';
+import ModuleService from '../services/Modules.service';
 import statusCodes from '../statusCode';
 
 class ModuleController {

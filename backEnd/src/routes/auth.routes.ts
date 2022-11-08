@@ -1,7 +1,7 @@
 import express from 'express';
 import validationUser from '../controllers/authValidation/authValidation';
 import validationCredentials from '../controllers/authValidation/credentialValidation';
-import UserController from '../controllers/User.controller';
+import UserController from '../controllers/Autentication.controller';
 
 const routes = express.Router();
 

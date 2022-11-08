@@ -1,6 +1,6 @@
 import { Response, Request } from 'express';
 import { UserCredentials, UserInterface } from '../interfaces/userTypes';
-import AuthService from '../services/autentication.services';
+import AuthService from '../services/Autentication.services';
 import statusCodes from '../statusCode';
 import createToken from '../utils/jwt.utils';
 
