@@ -41,16 +41,20 @@ class AutenticationServices {
   }
 
   public async registerByGoogle(user: UserGoogleCredentials): Promise<LoginResponse> {
-    const { email, sub: password, picture } = user;
+    const { email, sub: password, picture, name } = user;
     const encriptedPassword = await hash(password, 8)
 
     const createNewUser = await UserModel.create({ 
+      email,
+      name,
       password: encriptedPassword,
       loginType: 'google',
-      profilePhoto: picture
+      profilePhoto: picture,
+      birthday: null,
+      phoneNumber: user.picture
      });
 
-     return { error: null, message: email }
+     return { error: null, message: 'Register' }
   };
 
   public async authByGoogle(user: UserGoogleCredentials): Promise<LoginResponse> {

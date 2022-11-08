@@ -1,5 +1,5 @@
 import { Response, Request } from 'express';
-import { UserCredentials, UserInterface } from '../interfaces/userTypes';
+import { UserCredentials, UserGoogleCredentials, UserInterface } from '../interfaces/userTypes';
 import AuthService from '../services/Autentication.services';
 import statusCodes from '../statusCode';
 import createToken from '../utils/jwt.utils';
@@ -27,6 +27,21 @@ class UserController {
       .json({message: error.message, token: null, error: true});
 
     const token = createToken({email: user.email})
+    return res.status(statusCodes.OK).json({message: 'Logado com sucesso', token, error: false});
+  }
+
+  public loginByGoogle = async (req: Request, res: Response) => {
+    const user: UserGoogleCredentials = req.body;
+    console.log(user)
+    const { error, message } = await this.authService.authByGoogle(user)
+
+    if(error) return res.status(statusCodes.NOT_FOUND)
+      .json({message: error.message, token: null, error: true});
+
+    const token = createToken({email: user.email})
+    if(message === 'Register') {
+      return res.status(statusCodes.OK).json({ message: 'Registrado com sucesso!', token, error: false });
+    }
     return res.status(statusCodes.OK).json({message: 'Logado com sucesso', token, error: false});
   }
 

@@ -16,7 +16,8 @@ export interface UserGoogleCredentials {
   email: string,
   sub: string,
   name: string,
-  picture: string
+  picture: string,
+  phoneNumber: string
 }
 
 export interface LoginResponse {

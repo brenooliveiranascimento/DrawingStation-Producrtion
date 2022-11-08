@@ -39,7 +39,7 @@ function App() {
       console.log(e.response.data)
     }
   }
-
+  
   // const getModules = async () => {
   //   const { data } = await apiConnection.get('/modules')
   //   console.log(data);
@@ -50,14 +50,23 @@ function App() {
   const loginGoogle = useGoogleLogin({
     onSuccess: async (response) => {
       try {
-        const data = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
+        const { data: userData } = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
           headers: {
             "Authorization": `Bearer ${response.access_token}`
           }
         })
-        console.log(data.data);
-      } catch(e) {
-        console.log(e);
+        console.log(userData)
+        const { data } = await apiConnection.post('/auth/google', {
+          email: userData.email,
+          sub: userData.sub,
+          picture: userData.picture,
+          name: userData.name
+        }
+        )
+        console.log(data)
+        return data
+      } catch(e: any) {
+        console.log(e.response.data)
       }
     },
   });

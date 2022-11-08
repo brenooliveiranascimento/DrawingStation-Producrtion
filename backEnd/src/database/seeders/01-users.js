@@ -9,6 +9,7 @@ module.exports = {
           password: 'djwi8u290ue9i8wj893qwjr093qjr',
           active: true,
           premium: true,
+          loginType: 'credential',
           birthday: '2002-02-23',
           phoneNumber: '77988439270'
         },
@@ -17,6 +18,7 @@ module.exports = {
           email: 'Eren@gmail.com',
           password: 'jawpjdiwa0idopawjcdfwaf',
           active: true,
+          loginType: 'credential',
           premium: true,
           birthday: '2002-02-23',
           phoneNumber: '8492384932409234'
@@ -26,6 +28,7 @@ module.exports = {
           email: 'Ewin@gmail.com',
           password: 'djwi8u290ue9i8wj893qwjr093qjr',
           active: true,
+          loginType: 'credential',
           premium: true,
           birthday: '2002-02-23',
           phoneNumber: '77988439270'

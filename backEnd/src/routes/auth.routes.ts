@@ -9,6 +9,6 @@ const userController = new UserController();
 
 routes.post('/register', validationUser, userController.create);
 routes.post('/login', validationCredentials, userController.login);
-routes.put('/login/google', validationCredentials, userController.login);
+routes.post('/google', userController.loginByGoogle);
 
 export default routes;
