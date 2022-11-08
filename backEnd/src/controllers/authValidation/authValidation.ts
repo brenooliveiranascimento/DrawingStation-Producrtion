@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 import { UserCredentials, UserInterface } from '../../interfaces/userTypes';
 import statusCodes from '../../statusCode';
-import Joi, { bool } from 'joi';
+import Joi, { any, bool } from 'joi';
 const MIN_CHARACTERS = 6;
 const regex = /\S+@\S+\.\S+/;
 
-const properties = ['name', 'email', 'password', 'birthday', 'phoneNumber'];
+const properties = ['name', 'email', 'password', 'phoneNumber'];
 
 function validateProperties(User: UserInterface): [boolean, string | null] {
   for (let i = 0; i < properties.length; i += 1) {
@@ -49,6 +49,7 @@ function validationUser(req: Request, res: Response, next: NextFunction) {
   if (!valid) {
     return res.status(statusCodes.BAD_REQUEST).json({
       message: `O campo ${property} é obrigatório.`,
+      error: true
     }
     );
   }
@@ -58,6 +59,7 @@ function validationUser(req: Request, res: Response, next: NextFunction) {
   if (!valid) {
     return res.status(statusCodes.BAD_REQUEST).json({
       message: `O campo ${property} não pode ser nulo ou vazio.`,
+      error: true
     }
     );
   }
@@ -67,6 +69,7 @@ function validationUser(req: Request, res: Response, next: NextFunction) {
   if (!validData) {
     return res.status(statusCodes.BAD_REQUEST).json({
       message: `${propertyData}.`,
+      error: true
     }
     );
   }

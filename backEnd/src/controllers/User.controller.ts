@@ -11,14 +11,23 @@ class UserController {
     const user: UserCredentials = req.body;
     const { error } = await this.authService.register(user);
 
-    if(error) return res.status(statusCodes.NOT_FOUND).json({message: error.message, token: null});
+    if(error) return res.status(statusCodes.NOT_FOUND)
+      .json({message: error.message, token: null, error: true});
 
     const token = createToken({email: user.email})
-    return res.status(statusCodes.NOT_FOUND).json({message: 'Usuário cirado com sucesso', token});
+    return res.status(statusCodes.NOT_FOUND)
+      .json({message: 'Usuário cirado com sucesso', token, error: false});
   }
 
   public login = async (req: Request, res: Response) => {
+    const user: UserCredentials = req.body;
+    const { error } = await this.authService.login(user)
 
+    if(error) return res.status(statusCodes.NOT_FOUND)
+      .json({message: error.message, token: null, error: true});
+
+    const token = createToken({email: user.email})
+    return res.status(statusCodes.OK).json({message: 'Logado com sucesso', token, error: false});
   }
 }
 

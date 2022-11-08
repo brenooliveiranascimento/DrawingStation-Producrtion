@@ -22,10 +22,12 @@ module.exports = {
       active: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
+        defaultValue: true,
       },
       premium: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       Birthday: {
         type: Sequelize.STRING,

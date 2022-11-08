@@ -35,10 +35,12 @@ Users.init({
   active: {
     type: BOOLEAN,
     allowNull: false,
+    defaultValue: true,
   },
   premium: {
     type: BOOLEAN,
     allowNull: false,
+    defaultValue: false,
   },
   birthday: {
     type: STRING,
