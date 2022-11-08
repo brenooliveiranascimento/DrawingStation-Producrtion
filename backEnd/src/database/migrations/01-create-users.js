@@ -43,7 +43,7 @@ module.exports = {
       },
       phoneNumber: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
     });
   },

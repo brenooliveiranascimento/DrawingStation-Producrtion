@@ -51,7 +51,7 @@ class AutenticationServices {
       loginType: 'google',
       profilePhoto: picture,
       birthday: null,
-      phoneNumber: user.picture
+      phoneNumber: null
      });
 
      return { error: null, message: 'Register' }

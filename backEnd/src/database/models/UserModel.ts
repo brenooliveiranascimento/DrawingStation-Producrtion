@@ -56,7 +56,7 @@ Users.init({
   },
   phoneNumber: {
     type: STRING,
-    allowNull: false,
+    allowNull: true,
   },
 }, {
   sequelize: db,
