@@ -11,3 +11,15 @@ export interface UserInterface {
 export interface UserCredentials extends UserInterface {
   password: string;
 };
+
+export interface UserGoogleCredentials {
+  email: string,
+  sub: string,
+  name: string,
+  picture: string
+}
+
+export interface LoginResponse {
+  error: null | { message: string },
+  message: null | string
+}

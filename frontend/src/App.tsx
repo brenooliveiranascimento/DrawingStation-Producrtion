@@ -1,12 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
-import { GoogleLogin } from '@react-oauth/google';
+import React, { useState } from 'react'
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
-
+import './App.css'
+import apiConnection from './services/api.connection';
 
 function App() {
+  const [email, setEmail] = useState<any>('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+
+  const sigin = async () => {
+    try {
+      const { data } = await apiConnection.post('/auth/login', {
+        email,
+        password
+      }
+      )
+      console.log(data)
+      return data
+    } catch(e: any) {
+      console.log(e.response.data)
+    }
+  }
+
+  const register = async () => {
+    try {
+      const { data } = await apiConnection.post('/auth/register', {
+        name,
+        email,
+        password,
+        phoneNumber: phone
+      }
+      )
+      console.log(data)
+      return data
+    } catch(e: any) {
+      console.log(e.response.data)
+    }
+  }
+
   // const getModules = async () => {
   //   const { data } = await apiConnection.get('/modules')
   //   console.log(data);
@@ -14,7 +47,7 @@ function App() {
   // useEffect(() => {
   //   getModules()
   // })
-  const login = useGoogleLogin({
+  const loginGoogle = useGoogleLogin({
     onSuccess: async (response) => {
       try {
         const data = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
@@ -32,28 +65,35 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <button onClick={() => login()}>
+        <input 
+          value={name}
+          onChange={({target}) => setName(target.value)} 
+          placeholder='name'
+        />
+        <input
+          onChange={({target}) => setEmail(target.value)} 
+          value={email}
+          placeholder='email'
+        />
+        <input
+          onChange={({target}) => setPassword(target.value)} 
+          value={password}
+          placeholder='password'
+        />
+        <input 
+          onChange={({target}) => setPhone(target.value)} 
+          value={phone}
+          placeholder='phone'
+          />
+        <button onClick={sigin}>
           logar
         </button>
-        <GoogleLogin
-            onSuccess={(credentialResponse: any) => {
-              const decoded = jwt_decode(credentialResponse.credential)
-              console.log(decoded);
-            }}
-            onError={() => {
-              console.log('Login Failed');
-            }}
-            useOneTap
-          />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={register}>
+          registrar
+        </button>
+        <button onClick={() => loginGoogle()}>
+          logarc com google
+        </button>
       </header>
     </div>
   );

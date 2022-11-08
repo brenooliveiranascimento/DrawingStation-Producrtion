@@ -33,6 +33,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      loginType: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      profilePhoto: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       phoneNumber: {
         type: Sequelize.STRING,
         allowNull: false,

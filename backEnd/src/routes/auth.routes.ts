@@ -7,7 +7,8 @@ const routes = express.Router();
 
 const userController = new UserController();
 
-routes.post('/', validationUser, userController.create);
-routes.get('/',validationCredentials, userController.login);
+routes.post('/register', validationUser, userController.create);
+routes.post('/login', validationCredentials, userController.login);
+routes.put('/login/google', validationCredentials, userController.login);
 
 export default routes;

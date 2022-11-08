@@ -15,7 +15,7 @@ class UserController {
       .json({message: error.message, token: null, error: true});
 
     const token = createToken({email: user.email})
-    return res.status(statusCodes.NOT_FOUND)
+    return res.status(statusCodes.OK)
       .json({message: 'Usuário cirado com sucesso', token, error: false});
   }
 
@@ -29,6 +29,7 @@ class UserController {
     const token = createToken({email: user.email})
     return res.status(statusCodes.OK).json({message: 'Logado com sucesso', token, error: false});
   }
+
 }
 
 export default UserController;

@@ -11,7 +11,7 @@ function validationCredentials(req: Request, res: Response, next: NextFunction) 
 
     if(!checkAllCredentials) {
       return res.status(statusCodes.BAD_REQUEST).json({
-        message: 'Necessario todas as credenciais',
+        message: 'Necessario preencher todas as credenciais',
         error: true
       })
     }
