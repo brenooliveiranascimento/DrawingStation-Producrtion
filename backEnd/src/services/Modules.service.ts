@@ -29,16 +29,27 @@ class ModuleService {
   }
 
   public async findFreeClassroom(): Promise<{ error: {mesage: string} | null, message: ClassroomDataInterface[] | null }> {
-    const freeClassRooms: ClassroomDataInterface[] = await ClassRoomDataModel.findAll({
-      where: { isPremium: false },
-    })
+    const freeClassRooms: ClassroomDataInterface[] = await ClassRoomDataModel
+      .findAll({ where: { isPremium: false } });
+
     if(!freeClassRooms) return { error: { mesage: errorMapTypes.CLASSROOM_REQUEST_ERROR }, message: null }
     return { error: null, message: freeClassRooms }
-  }
+  };
 
-  public findAllClassroom() {
+  public async findAllClassroom(): Promise<{ error: {mesage: string} | null, message: ClassroomDataInterface[] | null }> {
+    const allClassrooms: ClassroomDataInterface[] = await ClassRoomDataModel.findAll()
+    if(!allClassrooms) return { error: { mesage: errorMapTypes.CLASSROOM_REQUEST_ERROR }, message: null }
+    return { error: null, message: allClassrooms }
+  };
 
-  }
+  public async findClassrooms(premium: boolean): Promise<{ error: {mesage: string} | null, message: ClassroomDataInterface[] | null }> {
+    if(premium) {
+      const classrooms = await this.findAllClassroom();
+      return classrooms;
+    }
+    const classrooms = await this.findFreeClassroom();
+    return classrooms;
+  };
   
 }
 

@@ -9,6 +9,6 @@ const moduleController = new ModuleController();
 routes.use(validateToken);
 
 routes.get('/', moduleController.getAll);
-routes.get('/free', moduleController.getAllFree);
+routes.get('/classrooms', moduleController.getClassrooms);
 
 export default routes
