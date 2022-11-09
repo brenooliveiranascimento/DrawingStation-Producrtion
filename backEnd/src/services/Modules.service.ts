@@ -27,11 +27,13 @@ class ModuleService {
         ],
       },
     );
-    return allModules;
+    if(!allModules) return { error: { mesage: errorMapTypes.CLASSROOM_REQUEST_ERROR }, message: null }
+    return { error: null, message: allModules }
   }
 
   public async getAllModules():  Promise<{ error: {message: string} | null, message: ModuleInterface[] | null }> {
     const modules = await ModuleModel.findAll();
+    if(!modules) return { error: { message: errorMapTypes.REQUEST_ERROR }, message: null };
     return { error: null, message: modules };
   }
 
