@@ -1,11 +1,11 @@
 import Module from './ModuleModel';
-import { DATE, BOOLEAN } from 'sequelize';
-import { Model, INTEGER, STRING } from 'sequelize';
+import { Model, INTEGER, STRING, BOOLEAN } from 'sequelize';
 import db from '.';
 
 class SubModule extends Model {
   declare id: number;
   declare name: string;
+  declare image: string;
   declare description: string;
   declare moduleId: number;
   declare premium: boolean;
@@ -42,6 +42,7 @@ SubModule.init({
   sequelize: db,
   modelName: 'sub_modules',
   timestamps: false,
+  underscored: true
 });
 
 Module.hasMany(SubModule);

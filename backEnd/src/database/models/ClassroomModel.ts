@@ -1,15 +1,13 @@
-import subModule from './SubModuleModel';
-import { DATE, BOOLEAN } from 'sequelize';
-import { Model, INTEGER, STRING } from 'sequelize';
+import SubModule from './SubModuleModel';
+import { Model, INTEGER, STRING, BOOLEAN } from 'sequelize';
 import db from '.';
 
 class Classroom extends Model {
   declare id: number;
   declare name: string;
   declare image: string;
-  declare description: string;
-  declare sub_module_id: number;
-  declare premium: boolean;
+  declare premium: boolean
+  declare subModuleId:number;
 }
 
 Classroom.init({
@@ -20,28 +18,17 @@ Classroom.init({
     autoIncrement: true,
   },
   name: {
-    type: STRING(100),
+    type: STRING(30),
     allowNull: false,
   },
   image: {
-    allowNull: false,
-    type: STRING(150),
-  },
-  referenceImage: {
-    allowNull: false,
-    type: STRING(150),
-  },
-  video: {
-    allowNull: false,
-    type: STRING(200),
-  },
-  description: {
     type: STRING(300),
     allowNull: false,
   },
-  sub_module_id: {
+  subModuleId: {
     type: INTEGER,
     allowNull: false,
+    primaryKey: true,
   },
   premium: {
     type: BOOLEAN,
@@ -53,7 +40,7 @@ Classroom.init({
   timestamps: false,
 });
 
-subModule.hasMany(Classroom);
-subModule.belongsTo(subModule);
+SubModule.hasMany(Classroom);
+Classroom.belongsTo(SubModule);
 
 export default Classroom;

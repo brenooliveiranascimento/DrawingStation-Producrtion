@@ -7,7 +7,7 @@ module.exports = {
           name: 'Fundamentos',
           description: 'Hora de por a mão na massa!',
           image: 'link da imagem',
-          premium: true,
+          premium: false,
           module_id:1
         },
         {

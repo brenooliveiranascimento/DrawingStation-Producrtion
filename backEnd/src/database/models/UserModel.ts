@@ -29,24 +29,34 @@ Users.init({
     allowNull: false,
   },
   password: {
-    type: STRING(30),
+    type: STRING(300),
     allowNull: false,
+  },
+  loginType: {
+    type: STRING(100),
+    allowNull: false,
+  },
+  profilePhoto: {
+    type: STRING(300),
+    allowNull: true,
   },
   active: {
     type: BOOLEAN,
     allowNull: false,
+    defaultValue: true,
   },
   premium: {
     type: BOOLEAN,
     allowNull: false,
+    defaultValue: false,
   },
   birthday: {
-    type: DATE,
+    type: STRING,
     allowNull: true,
   },
   phoneNumber: {
     type: STRING,
-    allowNull: false,
+    allowNull: true,
   },
 }, {
   sequelize: db,

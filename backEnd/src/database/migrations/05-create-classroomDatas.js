@@ -1,32 +1,40 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('classrooms', {
+    await queryInterface.createTable('classrooms_datas', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
+      video: {
         allowNull: false,
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING(200),
       },
-      image: {
+      drawing: {
         allowNull: false,
         type: Sequelize.STRING(150),
       },
-      premium: {
+      image: {
+        allowNull: false,
+        type: Sequelize.STRING(300),
+      },
+      isPremium: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
       },
-      subModuleId: {
+      description: {
+        allowNull: false,
+        type: Sequelize.STRING(300),
+      },
+      classroomId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'sub_modules',
+          model: 'classrooms',
           key: 'id',
         },
-      }
+      },
     });
   },
   down: async (queryInterface) => {

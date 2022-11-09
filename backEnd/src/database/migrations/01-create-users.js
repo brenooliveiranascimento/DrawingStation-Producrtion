@@ -17,23 +17,33 @@ module.exports = {
       },
       password: {
         allowNull: false,
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(300),
       },
       active: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
+        defaultValue: true,
       },
       premium: {
         allowNull: false,
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       Birthday: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      loginType: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      profilePhoto: {
+        type: Sequelize.STRING,
         allowNull: true,
       },
       phoneNumber: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
     });
   },

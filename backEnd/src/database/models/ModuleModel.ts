@@ -1,4 +1,4 @@
-import { DATE, BOOLEAN } from 'sequelize';
+import { BOOLEAN } from 'sequelize';
 import { Model, INTEGER, STRING } from 'sequelize';
 import db from '.';
 
