@@ -17,6 +17,7 @@ function validateValues(newModule: ModuleInterface): [boolean, string | null] {
   const entries = Object.entries(newModule);
   for (let i = 0; i < entries.length; i += 1) {
     const [property, value] = entries[i];
+    if(property === 'premium') return [true, null];
     if (!value) {
       return [false, property];
     }

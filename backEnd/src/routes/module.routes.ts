@@ -11,9 +11,11 @@ const moduleController = new ModuleController();
 routes.use(validateToken);
 
 routes.get('/', moduleController.getAllModules);
-routes.post('/',validationModule, moduleController.addNewModule);
-routes.delete('/:id',validateAdm, moduleController.deleteModule);
 routes.get('/sub', moduleController.getAllSubModules);
 routes.get('/classrooms', moduleController.getClassrooms);
+
+routes.post('/',validateAdm, validationModule, moduleController.addNewModule);
+routes.delete('/:id',validateAdm,validationModule, moduleController.deleteModule);
+routes.put('/:id',validateAdm, validationModule, moduleController.updateModule);
 
 export default routes
