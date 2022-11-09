@@ -1,5 +1,5 @@
 import { Response, Request } from 'express';
-import { UserCredentials, UserGoogleCredentials, UserInterface } from '../interfaces/userTypes';
+import { UserCredentials, UserGoogleCredentials } from '../interfaces/userTypes';
 import AuthService from '../services/Autentication.services';
 import statusCodes from '../statusCode';
 import createToken from '../utils/jwt.utils';
@@ -32,7 +32,6 @@ class UserController {
 
   public loginByGoogle = async (req: Request, res: Response) => {
     const user: UserGoogleCredentials = req.body;
-    console.log(user)
     const { error, message } = await this.authService.authByGoogle(user)
 
     if(error) return res.status(statusCodes.NOT_FOUND)
