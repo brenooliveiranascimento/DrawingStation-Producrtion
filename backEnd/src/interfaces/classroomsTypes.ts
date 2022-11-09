@@ -10,7 +10,7 @@ export interface ClassroomDataInterface {
   id: number;
   video: string;
   drawing: string;
-  image: string;
+  image?: string;
   description: string;
   isPremium: boolean;
   classroomId: number;

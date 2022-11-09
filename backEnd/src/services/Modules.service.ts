@@ -1,6 +1,8 @@
 import ClassroomModel from '../database/models/ClassroomModel';
 import SubModuleModel from '../database/models/SubModuleModel';
 import ClassRoomDataModel from '../database/models/ClassRoomDataModel';
+import { ClassroomDataInterface } from '../interfaces/classroomsTypes';
+import { errorMapTypes } from '../utils/errorMap';
 
 class ModuleService {
   public async getAll() {
@@ -26,11 +28,12 @@ class ModuleService {
     return allModules;
   }
 
-  public async findFreeClassroom() {
-    const freeClassRooms = await ClassRoomDataModel.findAll({
+  public async findFreeClassroom(): Promise<{ error: {mesage: string} | null, message: ClassroomDataInterface[] | null }> {
+    const freeClassRooms: ClassroomDataInterface[] = await ClassRoomDataModel.findAll({
       where: { isPremium: false },
     })
-    return freeClassRooms
+    if(!freeClassRooms) return { error: { mesage: errorMapTypes.CLASSROOM_REQUEST_ERROR }, message: null }
+    return { error: null, message: freeClassRooms }
   }
 
   public findAllClassroom() {
