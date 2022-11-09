@@ -22,6 +22,8 @@ module.exports = {
       moduleId: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
+        onUpdate: 'cascade',
         references: {
           model: 'modules',
           key: 'id',

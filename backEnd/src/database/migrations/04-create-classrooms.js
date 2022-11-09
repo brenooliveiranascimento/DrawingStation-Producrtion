@@ -22,6 +22,8 @@ module.exports = {
       subModuleId: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
+        onUpdate: 'cascade',
         references: {
           model: 'sub_modules',
           key: 'id',
