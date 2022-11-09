@@ -21,8 +21,10 @@ class ClassroomService extends ModuleService {
     const addClassroomData = await this.addNewClassroomData({
       ...classroomData,
       classroomId: add.id
-    })}
+    })
 
+    return { error: null, message: newClassroom };
+  }
 }
 
-export default ClassroomModel
+export default ClassroomService
