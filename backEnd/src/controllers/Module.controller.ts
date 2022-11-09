@@ -40,7 +40,8 @@ class ModuleController{
 
   public updateModule = async (req: Request, res: Response) => {
     const { id } = req.params;
-    const {error, message} = await this.moduleService.deleteModule(Number(id));
+    const updatedModule: ModuleInterface = req.body
+    const {error, message} = await this.moduleService.updateModule(Number(id), updatedModule);
 
     if(error) return res.status(statusCodes.NOT_FOUND).json({ message: null, error: error.message });
 

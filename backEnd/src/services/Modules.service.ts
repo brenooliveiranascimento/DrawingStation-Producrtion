@@ -56,6 +56,21 @@ class ModuleService {
     return { error: null, message: 'Módulo deletado com sucesso!' };
   }
 
+  public async updateModule(id: number, newModule: ModuleInterface):  Promise<{ error: {message: string} | null, message: string | null }> {
+    const { image, name, premium, description } = newModule;
+    const {error} = await this.getModuleById(id);
+    if(error) return { error: { message: error.message }, message: null };
+
+    const update = await ModuleModel.update(
+      { image, name, premium, description },
+      { where: { id } },
+      )
+
+    if(!update) return { error: { message: errorMapTypes.ERROR_IN_DELETE_MODULE }, message: null };
+
+    return { error: null, message: 'Módulo Atualizado com sucesso!' };
+  }
+
   public async findFreeClassroom(): Promise<{ error: {mesage: string} | null, message: ClassroomDataInterface[] | null }> {
     const freeClassRooms: ClassroomDataInterface[] = await ClassRoomDataModel
       .findAll({ where: { isPremium: false } });
