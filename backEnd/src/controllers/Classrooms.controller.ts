@@ -15,6 +15,16 @@ class ClassroomsController {
 
     return res.status(statusCodes.OK).json({ message: "Classroom criada com sucesso!" })
   }
+
+  public updateClassroom = async (req: Request, res: Response) => {
+    const { id } = req.params
+    const { classroom, classroomData } = req.body;
+
+    const { error, message } = await this.classroomService.updateClassroom(classroom, classroomData, Number(id));
+    if(error) return res.status(statusCodes.NOT_FOUND).json({ message, error: error.message });
+
+    return res.status(statusCodes.OK).json({ message: "Classroom criada com sucesso!" })
+  }
 }
 
 export default ClassroomsController;
