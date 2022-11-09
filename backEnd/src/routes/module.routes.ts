@@ -22,6 +22,11 @@ routes.post('/classrooms',
   validationClassroom,
   validationClassroomData,
   classRoomController.addNewClassroom);
+  routes.put('/classrooms/:id',
+  validateAdm,
+  validationClassroom,
+  validationClassroomData,
+  classRoomController.updateClassroom);
 routes.post('/',validateAdm, validationModule, moduleController.addNewModule);
 routes.delete('/:id',validateAdm,validationModule, moduleController.deleteModule);
 routes.put('/:id',validateAdm, validationModule, moduleController.updateModule);

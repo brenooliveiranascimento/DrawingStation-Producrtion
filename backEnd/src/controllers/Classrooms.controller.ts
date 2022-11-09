@@ -13,7 +13,7 @@ class ClassroomsController {
     const { error, message } = await this.classroomService.addNewClassroom(classroom, classroomData);
     if(error) return res.status(statusCodes.NOT_FOUND).json({ message, error: error.message });
 
-    return res.status(statusCodes.OK).json({ message: "Classroom criada com sucesso!" })
+    return res.status(statusCodes.OK).json({ message: "Classroom criada com sucesso!", error: null })
   }
 
   public updateClassroom = async (req: Request, res: Response) => {
@@ -23,7 +23,7 @@ class ClassroomsController {
     const { error, message } = await this.classroomService.updateClassroom(classroom, classroomData, Number(id));
     if(error) return res.status(statusCodes.NOT_FOUND).json({ message, error: error.message });
 
-    return res.status(statusCodes.OK).json({ message: "Classroom criada com sucesso!" })
+    return res.status(statusCodes.OK).json({ message: "Classroom atualizada com sucesso!", error: null })
   }
 }
 

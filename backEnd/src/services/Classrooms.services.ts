@@ -49,7 +49,7 @@ class ClassroomService extends ModuleService {
   public async updateClassroomData(classroomData: ClassroomDataInterface, id: number) {
     try {
       const { description, drawing, isPremium, video, image } = classroomData
-      const updatedClassroomData = await ClassroomModel.update(
+      const updatedClassroomData = await ClassRoomDataModel.update(
         { image, description, drawing, isPremium, video },
         { where: { id } },
       )
