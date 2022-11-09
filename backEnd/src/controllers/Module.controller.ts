@@ -4,6 +4,7 @@ import statusCodes from '../statusCode';
 import jwt from 'jsonwebtoken'
 import UserService from '../services/User.services';
 import { errorMapTypes } from '../utils/errorMap';
+import { ModuleInterface } from '../interfaces/modulesTypes';
 
 class ModuleController{
   constructor(
@@ -16,6 +17,16 @@ class ModuleController{
     const { error, message } = await this.moduleService.getAllSubModules();
     if(error) return res.status(statusCodes.OK).json({ message: null, error: errorMapTypes.REQUEST_ERROR })
     return res.status(statusCodes.OK).json({ message, error: null });
+  }
+
+  public addNewModule = async (req: Request, res: Response) => {
+    const module: ModuleInterface = req.body;
+    const { error, message } = await this.moduleService.addNewModule(module);
+
+    if(error) return res.status(statusCodes.NO_CONTENT).json({ message: null, error: error.message });
+
+    return res.status(statusCodes.NO_CONTENT).json({ message, error: null });
+
   }
 
   public getAllModules = async (_req: Request, res: Response) => {
