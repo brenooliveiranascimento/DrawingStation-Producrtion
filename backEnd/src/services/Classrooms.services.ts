@@ -42,10 +42,6 @@ class ClassroomService extends ModuleService {
     }
   };
 
-  public async findClassroomDataById(id: number) {
-    
-  };
-
   public async updateClassroomData(classroomData: ClassroomDataInterface, id: number) {
     try {
       const { description, drawing, isPremium, video, image } = classroomData
