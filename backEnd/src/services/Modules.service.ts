@@ -14,15 +14,6 @@ class ModuleService {
           {
             model: ClassroomModel,
             as: 'classrooms',
-          //   order: ["id"],
-          // include: [
-          //   {
-          //     model: ClassRoomDataModel,
-          //     as: 'classrooms_data',
-          //     where: { isPremium: false }
-          //     // attributes: { exclude: ['classrooms_data'] }
-          //   },
-          // ]
           },
         ],
       },
@@ -37,12 +28,32 @@ class ModuleService {
     return { error: null, message: modules };
   }
 
+  public async getModuleById(id: number):  Promise<{ error: {message: string} | null, message: ModuleInterface | null }> {
+    const modules = await ModuleModel.findOne({ where: { id } });
+    if(!modules) return { error: { message: errorMapTypes.MODULE_NOT_FOUD }, message: null };
+    return { error: null, message: modules };
+  }
+
+
   public async addNewModule(module: ModuleInterface):  Promise<{ error: {message: string} | null, message: ModuleInterface | null }> {
     const add = await ModuleModel.create({
       ...module
     })
     if(!add) return { error: { message: errorMapTypes.REQUEST_ERROR }, message: null };
     return { error: null, message: add };
+  }
+
+  public async deleteModule(id: number):  Promise<{ error: {message: string} | null, message: string | null }> {
+    const {error} = await this.getModuleById(id);
+    if(error) return { error: { message: error.message }, message: null };
+
+    const removeModule = await ModuleModel.destroy({
+      where: { id }
+    })
+
+    if(!removeModule) return { error: { message: errorMapTypes.ERROR_IN_DELETE_MODULE }, message: null };
+
+    return { error: null, message: 'Módulo deletado com sucesso!' };
   }
 
   public async findFreeClassroom(): Promise<{ error: {mesage: string} | null, message: ClassroomDataInterface[] | null }> {

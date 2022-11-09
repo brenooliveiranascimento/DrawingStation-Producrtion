@@ -25,8 +25,16 @@ class ModuleController{
 
     if(error) return res.status(statusCodes.NO_CONTENT).json({ message: null, error: error.message });
 
-    return res.status(statusCodes.NO_CONTENT).json({ message, error: null });
+    return res.status(statusCodes.OK).json({ message: 'Módulo Adicionado com sucesso!', error: null });
+  }
 
+  public deleteModule = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const {error, message} = await this.moduleService.deleteModule(Number(id));
+
+    if(error) return res.status(statusCodes.NOT_FOUND).json({ message: null, error: error.message });
+
+    return res.status(statusCodes.NOT_FOUND).json({ message, error: null });
   }
 
   public getAllModules = async (_req: Request, res: Response) => {

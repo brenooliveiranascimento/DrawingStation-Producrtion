@@ -22,7 +22,7 @@ Module.init({
     allowNull: false,
   },
   description: {
-    type: STRING(60),
+    type: STRING(300),
     allowNull: false,
   },
   image: {
@@ -32,6 +32,7 @@ Module.init({
   premium: {
     type: BOOLEAN,
     allowNull: false,
+    defaultValue: false,
   },
 }, {
   sequelize: db,

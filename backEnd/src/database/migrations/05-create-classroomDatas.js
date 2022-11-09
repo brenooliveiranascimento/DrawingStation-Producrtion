@@ -30,6 +30,8 @@ module.exports = {
       classroomId: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
+        onUpdate: 'cascade',
         references: {
           model: 'classrooms',
           key: 'id',
