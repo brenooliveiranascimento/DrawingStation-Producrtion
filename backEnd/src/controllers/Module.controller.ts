@@ -36,6 +36,16 @@ class ModuleController{
 
     return res.status(statusCodes.NOT_FOUND).json({ message, error: null });
   }
+  
+
+  public updateModule = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const {error, message} = await this.moduleService.deleteModule(Number(id));
+
+    if(error) return res.status(statusCodes.NOT_FOUND).json({ message: null, error: error.message });
+
+    return res.status(statusCodes.NOT_FOUND).json({ message, error: null });
+  }
 
   public getAllModules = async (_req: Request, res: Response) => {
     const { error, message } = await this.moduleService.getAllModules();
