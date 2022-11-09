@@ -11,9 +11,16 @@ class ModuleController{
     ) {}
   private key = process.env.SECRET as string
 
-  public getAll = async (_req: Request, res: Response) => {
-    const modules = await this.moduleService.getAll();
+  public getAllSubModules = async (_req: Request, res: Response) => {
+    const modules = await this.moduleService.getAllSubModules();
     res.status(statusCodes.OK).json({ message: modules, status: 'Sucesso!' })
+  }
+
+  public getAllModules = async (_req: Request, res: Response) => {
+    const { error, message } = await this.moduleService.getAllModules();
+    if(error) return res.status(statusCodes.BAD_REQUEST)
+      .json({ message: 'Request modules error' })
+    res.status(statusCodes.OK).json({ message })
   }
 
   public getClassrooms = async (req: Request, res: Response) => {

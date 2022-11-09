@@ -1,7 +1,7 @@
 export interface ModuleInterface {
   id: number;
   name: string;
-  description: string;
+  description?: string;
   image: string;
   premium: boolean;
 }

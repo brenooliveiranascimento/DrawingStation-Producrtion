@@ -8,7 +8,8 @@ const moduleController = new ModuleController();
 
 routes.use(validateToken);
 
-routes.get('/', moduleController.getAll);
+routes.get('/', moduleController.getAllModules);
+routes.get('/sub', moduleController.getAllSubModules);
 routes.get('/classrooms', moduleController.getClassrooms);
 
 export default routes
