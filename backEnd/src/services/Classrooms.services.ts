@@ -8,22 +8,76 @@ import sequelize from 'sequelize';
 
 class ClassroomService extends ModuleService {
   public async addNewClassroomData(classroomData: ClassroomDataInterface) {
-    const add = await ClassRoomDataModel.create({...classroomData});
-    if(!add) return { error: { message: errorMapTypes.ERROR_ADD_NEW_CLASSROOM_DATA }, message: null }
+    try {
+      const add = await ClassRoomDataModel.create({...classroomData});
+      if(!add) return { error: { message: errorMapTypes.ERROR_ADD_NEW_CLASSROOM_DATA }, message: null }
+    } catch(e) {
+      return { error: { message: errorMapTypes.ERROR_ADD_NEW_CLASSROOM_DATA }, message: e }
+    }
+    
   }
 
   public async addNewClassroom(newClassroom: ClassroomInterface, classroomData: ClassroomDataInterface) {
+    try {
+      const add = await ClassroomModel.create({...newClassroom});
 
-    const add = await ClassroomModel.create({...newClassroom});
+      if(!add) return { error: { message: errorMapTypes.ERROR_ADD_NEW_CLASSROOM }, message: null }
+  
+      const addClassroomData = await this.addNewClassroomData({
+        ...classroomData,
+        classroomId: add.id
+      })
+      return { error: null, message: newClassroom };
+    } catch(e) {
+      return { error: { message: errorMapTypes.REQUEST_ERROR }, message: e };
+    }
+  }
 
-    if(!add) return { error: { message: errorMapTypes.ERROR_ADD_NEW_CLASSROOM }, message: null }
+  public async findClassroomById(id: number) {
+    try {
+      const classroom = await ClassroomModel.findOne({where: { id }});
+      return { error: null, message: classroom };
+    } catch(e) {
+      return { error: { message: errorMapTypes.CLASSROOM_DONT_EXIST }, message: e };
+    }
+  };
 
-    const addClassroomData = await this.addNewClassroomData({
-      ...classroomData,
-      classroomId: add.id
-    })
+  public async findClassroomDataById(id: number) {
+    
+  };
 
-    return { error: null, message: newClassroom };
+  public async updateClassroomData(classroomData: ClassroomDataInterface, id: number) {
+    try {
+      const { description, drawing, isPremium, video, image } = classroomData
+      const updatedClassroomData = await ClassroomModel.update(
+        { image, description, drawing, isPremium, video },
+        { where: { id } },
+      )
+      return { error: null, message: updatedClassroomData }
+    } catch(e) {
+      return { error: { message: errorMapTypes.CLASSROOM_DONT_EXIST }, message: e };
+    }
+  };
+
+  public async updateClassroom(
+    newClassroom: ClassroomInterface, classroomData: ClassroomDataInterface, id: number
+    ) {
+    try {
+      const classroomExist = await this.findClassroomById(id);
+      const {image, name, premium} = newClassroom
+
+      if(!classroomExist) return { error: { message: errorMapTypes.CLASSROOM_DONT_EXIST }, message: null }
+  
+      const { error, message } = await this.updateClassroomData(classroomData, id);
+
+      const updatedClassroomData = await ClassroomModel.update(
+        { image, name, premium },
+        { where: { id } },
+      )
+      return { error: null, message: newClassroom };
+    } catch(e) {
+      return { error: { message: errorMapTypes.REQUEST_ERROR }, message: e };
+    }
   }
 }
 

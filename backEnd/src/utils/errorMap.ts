@@ -8,4 +8,5 @@ export const errorMapTypes = {
   ERROR_IN_DELETE_MODULE: 'Error in module delete',
   ERROR_ADD_NEW_CLASSROOM: 'Add new classroom error',
   ERROR_ADD_NEW_CLASSROOM_DATA: 'Add new classroom data error',
+  CLASSROOM_DONT_EXIST:'Classroom dont exist',
 }
