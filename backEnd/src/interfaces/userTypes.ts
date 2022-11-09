@@ -24,3 +24,8 @@ export interface LoginResponse {
   error: null | { message: string },
   message: string | number | null
 }
+
+export interface GetUserInterface {
+  error: null | { message: string  | null },
+  message: null | any
+}
