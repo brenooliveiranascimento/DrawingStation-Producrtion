@@ -37,6 +37,14 @@ class ModuleService {
     return { error: null, message: modules };
   }
 
+  public async addNewModule(module: ModuleInterface):  Promise<{ error: {message: string} | null, message: ModuleInterface | null }> {
+    const add = await ModuleModel.create({
+      ...module
+    })
+    if(!add) return { error: { message: errorMapTypes.REQUEST_ERROR }, message: null };
+    return { error: null, message: add };
+  }
+
   public async findFreeClassroom(): Promise<{ error: {mesage: string} | null, message: ClassroomDataInterface[] | null }> {
     const freeClassRooms: ClassroomDataInterface[] = await ClassRoomDataModel
       .findAll({ where: { isPremium: false } });
