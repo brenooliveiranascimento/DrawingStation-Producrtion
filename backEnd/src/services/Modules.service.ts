@@ -12,15 +12,15 @@ class ModuleService {
           {
             model: ClassroomModel,
             as: 'classrooms',
-            order: ["id"],
-          include: [
-            {
-              model: ClassRoomDataModel,
-              as: 'classrooms_data',
-              where: { isPremium: false }
-              // attributes: { exclude: ['classrooms_data'] }
-            },
-          ]
+          //   order: ["id"],
+          // include: [
+          //   {
+          //     model: ClassRoomDataModel,
+          //     as: 'classrooms_data',
+          //     where: { isPremium: false }
+          //     // attributes: { exclude: ['classrooms_data'] }
+          //   },
+          // ]
           },
         ],
       },

@@ -9,24 +9,24 @@ class UserController {
 
   public create = async (req: Request, res: Response) => {
     const user: UserCredentials = req.body;
-    const { error } = await this.authService.register(user);
+    const { error, message } = await this.authService.register(user);
 
     if(error) return res.status(statusCodes.NOT_FOUND)
       .json({message: error.message, token: null, error: true});
 
-    const token = createToken({email: user.email})
+    const token = createToken({email: user.email, id: message})
     return res.status(statusCodes.OK)
       .json({message: 'Usuário cirado com sucesso', token, error: false});
   }
 
   public login = async (req: Request, res: Response) => {
     const user: UserCredentials = req.body;
-    const { error } = await this.authService.login(user)
+    const { error, message } = await this.authService.login(user)
 
     if(error) return res.status(statusCodes.NOT_FOUND)
       .json({message: error.message, token: null, error: true});
 
-    const token = createToken({email: user.email})
+    const token = createToken({email: user.email, id: message})
     return res.status(statusCodes.OK).json({message: 'Logado com sucesso', token, error: false});
   }
 
@@ -37,7 +37,7 @@ class UserController {
     if(error) return res.status(statusCodes.NOT_FOUND)
       .json({message: error.message, token: null, error: true});
 
-    const token = createToken({email: user.email})
+    const token = createToken({email: user.email, id: message})
     if(message === 'Register') {
       return res.status(statusCodes.OK).json({ message: 'Registrado com sucesso!', token, error: false });
     }
