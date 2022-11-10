@@ -22,6 +22,16 @@ class ModuleService {
     return { error: null, message: allModules }
   }
 
+  public async findASubModule(id: number) {
+    try {
+      const allModules = await SubModuleModel.findByPk(id)
+      if(!allModules) return { error: { mesage: errorMapTypes.CLASSROOM_REQUEST_ERROR }, message: null }
+      return { error: null, message: allModules }
+    } catch(e) {
+      return { error: errorMapTypes.CLASSROOM_REQUEST_ERROR, message: e }
+    }
+  }
+
   public async getAllModules():  Promise<{ error: {message: string} | null, message: ModuleInterface[] | null | string }> {
     try {
       const modules = await ModuleModel.findAll();
