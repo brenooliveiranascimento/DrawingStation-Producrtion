@@ -9,19 +9,19 @@ module.exports = {
       },
       transactionData: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE()
       },
       expirationData: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE()
       },
       subscriptionType: {
         allowNull: false,
-        type: Sequelize.String(50)
+        type: Sequelize.STRING(50)
       },
       value: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       active: {
         allowNull: false,

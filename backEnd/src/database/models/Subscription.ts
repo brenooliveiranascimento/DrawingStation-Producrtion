@@ -7,7 +7,7 @@ class Subscription extends Model {
   declare transactionData: Date;
   declare expirationData: Date;
   declare subscriptionType: string;
-  declare value:number;
+  declare value: number;
   declare active: boolean;
   declare userId: number
 }
@@ -20,15 +20,15 @@ Subscription.init({
     autoIncrement: true,
   },
   transactionData: {
-    type: DATE,
+    type: DATE(),
     allowNull: false,
   },
   expirationData: {
-    type: DATE,
+    type: DATE(),
     allowNull: false,
   },
   subscriptionType: {
-    type: STRING(300),
+    type: STRING(50),
     allowNull: false,
   },
   value: {
@@ -38,7 +38,6 @@ Subscription.init({
   active: {
     type: BOOLEAN,
     allowNull: false,
-    primaryKey: true,
   },
   userId: {
     type: INTEGER,
@@ -46,8 +45,7 @@ Subscription.init({
   },
 }, {
   sequelize: db,
-  modelName: 'subscriptions',
-  timestamps: false,
+  modelName: 'subscription',
 });
 
 UserModel.hasOne(Subscription);
