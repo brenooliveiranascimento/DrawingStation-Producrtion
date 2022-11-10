@@ -3,7 +3,7 @@ import SubModuleModel from '../database/models/SubModuleModel';
 import ModuleModel from '../database/models/ModuleModel';
 import ClassRoomDataModel from '../database/models/ClassRoomDataModel';
 import { ClassroomDataInterface } from '../interfaces/classroomsTypes';
-import { ModuleInterface } from '../interfaces/modulesTypes';
+import { ModuleInterface, SubModulesInterface } from '../interfaces/modulesTypes';
 import { errorMapTypes } from '../utils/errorMap';
 
 class ModuleService {
@@ -24,17 +24,25 @@ class ModuleService {
 
   public async findASubModule(id: number) {
     try {
-      const allModules = await SubModuleModel.findOne({
-        where: { id },
-        include: [
-          {
-            model: ClassroomModel,
-            as: 'classrooms',
-          },
-        ],
-      },)
-      if(!allModules) return { error: { mesage: errorMapTypes.CLASSROOM_REQUEST_ERROR }, message: null }
+      const allModules = await SubModuleModel.findByPk(id)
+      if(!allModules) return { error: { mesage: errorMapTypes.CLASSROOM_REQUEST_ERROR }, message: errorMapTypes.SUBMODULE_DONT_EXIST }
       return { error: null, message: allModules }
+    } catch(e) {
+      return { error: errorMapTypes.CLASSROOM_REQUEST_ERROR, message: e }
+    }
+  }
+
+  public async updateSubModule(id: number, subModuleData: SubModulesInterface) {
+    try {
+      const { description, image, name, premium } = subModuleData;
+      const { error, message } = await this.findASubModule(id);
+      if(error) return message
+      const updatedSubModule = await SubModuleModel.update(
+        { description, image, premium, name },
+        { where: { id } }
+      )
+      if(!updatedSubModule) return { error: { mesage: errorMapTypes.UPDATE_SUBMODULE_ERROR }, message: null }
+      return { error: null, message: updatedSubModule }
     } catch(e) {
       return { error: errorMapTypes.CLASSROOM_REQUEST_ERROR, message: e }
     }

@@ -23,7 +23,7 @@ class ModuleController{
     const { id } = req.params
     const { error, message } = await this.moduleService.getModuleById(Number(id));
 
-    if(error) return res.status(statusCodes.NOT_FOUND).json({ message: message, error: errorMapTypes.SUBMODULE_DONT_EXIST })
+    if(error) return res.status(statusCodes.NOT_FOUND).json({ message: message, error: error.message })
     return res.status(statusCodes.OK).json({ message, error: null });
   }
 
