@@ -37,7 +37,7 @@ class AutenticationServices {
     if(!checkPassword) {
       return {error: { message: errorMapTypes.INCORRECT_PASSWORD },  message: null};
     }
-    return { error: null, message: userData.id }
+    return { error: null, message: userData.id, type: 'Login' }
   }
 
   public async registerByGoogle(user: UserGoogleCredentials): Promise<LoginResponse> {
@@ -54,7 +54,7 @@ class AutenticationServices {
       phoneNumber: null
      });
 
-     return { error: null, message: createNewUser.id }
+     return { error: null, message: createNewUser.id, type: 'Register' }
   };
 
   public async authByGoogle(user: UserGoogleCredentials): Promise<LoginResponse> {
@@ -69,7 +69,7 @@ class AutenticationServices {
     if(!checkPassword) {
       return {error: { message: errorMapTypes.INCORRECT_PASSWORD },  message: null};
     }
-    return { error: null, message: userData.id }
+    return { error: null, message: userData.id, type: 'Login' }
   }
 };
 

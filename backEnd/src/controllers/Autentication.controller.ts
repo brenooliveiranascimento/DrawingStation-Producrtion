@@ -32,13 +32,13 @@ class UserController {
 
   public loginByGoogle = async (req: Request, res: Response) => {
     const user: UserGoogleCredentials = req.body;
-    const { error, message } = await this.authService.authByGoogle(user)
+    const { error, message, type } = await this.authService.authByGoogle(user)
 
     if(error) return res.status(statusCodes.NOT_FOUND)
       .json({message: error.message, token: null, error: true});
 
     const token = createToken({email: user.email, id: message})
-    if(message === 'Register') {
+    if(type === 'Register') {
       return res.status(statusCodes.OK).json({ message: 'Registrado com sucesso!', token, error: false });
     }
     return res.status(statusCodes.OK).json({message: 'Logado com sucesso', token, error: false});

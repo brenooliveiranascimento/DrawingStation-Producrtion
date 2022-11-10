@@ -57,7 +57,6 @@ class ModuleController{
   public getClassrooms = async (req: Request, res: Response) => {
     const token = req.header('Authorization') as string;
     const user: any = await jwt.verify(token, this.key);
-    console.log(user)
 
     const { error: userErr, message: userMess } = await this.userService
       .findUserById(user.id);

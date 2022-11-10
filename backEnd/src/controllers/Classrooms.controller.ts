@@ -25,6 +25,15 @@ class ClassroomsController {
 
     return res.status(statusCodes.OK).json({ message: "Classroom atualizada com sucesso!", error: null })
   }
+
+  public deleteClassroom = async (req: Request, res: Response) => {
+    const { id } = req.params
+
+    const { error, message } = await this.classroomService.deleteClassroom(Number(id));
+    if(error) return res.status(statusCodes.NOT_FOUND).json({ message, error: error.message });
+
+    return res.status(statusCodes.OK).json({ message: "Classroom deletada com sucesso!", error: null })
+  }
 }
 
 export default ClassroomsController;
