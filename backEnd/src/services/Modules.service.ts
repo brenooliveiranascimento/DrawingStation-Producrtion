@@ -45,7 +45,7 @@ class ModuleService {
   public async getModuleById(id: number):  Promise<{ error: {message: string} | null, message: ModuleInterface | null | string }> {
     try {
       const modules = await ModuleModel.findOne({ where: { id } });
-      if(!modules) return { error: { message: errorMapTypes.MODULE_NOT_FOUD }, message: null };
+      if(!modules) return { error: { message: errorMapTypes.SUBMODULE_DONT_EXIST }, message: errorMapTypes.SUBMODULE_DONT_EXIST };
       return { error: null, message: modules };
     } catch(e: any) {
       return { error: {message: errorMapTypes.REQUEST_ERROR}, message: e };

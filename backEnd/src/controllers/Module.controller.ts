@@ -19,6 +19,14 @@ class ModuleController{
     return res.status(statusCodes.OK).json({ message, error: null });
   }
 
+  public getSubModuleById = async (req: Request, res: Response) => {
+    const { id } = req.params
+    const { error, message } = await this.moduleService.getModuleById(Number(id));
+
+    if(error) return res.status(statusCodes.NOT_FOUND).json({ message: message, error: errorMapTypes.SUBMODULE_DONT_EXIST })
+    return res.status(statusCodes.OK).json({ message, error: null });
+  }
+
   public addNewModule = async (req: Request, res: Response) => {
     const module: ModuleInterface = req.body;
     const { error, message } = await this.moduleService.addNewModule(module);

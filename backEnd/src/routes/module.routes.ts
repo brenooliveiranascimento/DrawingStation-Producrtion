@@ -15,6 +15,7 @@ routes.use(validateToken);
 
 routes.get('/', moduleController.getAllModules);
 routes.get('/sub', moduleController.getAllSubModules);
+routes.get('/sub/:id', moduleController.getSubModuleById);
 routes.get('/classrooms', moduleController.getClassrooms);
 
 routes.post('/classrooms',
@@ -28,6 +29,7 @@ routes.put('/classrooms/:id',
   validationClassroomData,
   classRoomController.updateClassroom);
 routes.delete('/classrooms/:id',validateAdm, classRoomController.deleteClassroom);
+
 routes.post('/',validateAdm, validationModule, moduleController.addNewModule);
 routes.delete('/:id',validateAdm,validationModule, moduleController.deleteModule);
 routes.put('/:id',validateAdm, validationModule, moduleController.updateModule);
