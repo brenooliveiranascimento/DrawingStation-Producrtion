@@ -24,7 +24,15 @@ class ModuleService {
 
   public async findASubModule(id: number) {
     try {
-      const allModules = await SubModuleModel.findByPk(id)
+      const allModules = await SubModuleModel.findOne({
+        where: { id },
+        include: [
+          {
+            model: ClassroomModel,
+            as: 'classrooms',
+          },
+        ],
+      },)
       if(!allModules) return { error: { mesage: errorMapTypes.CLASSROOM_REQUEST_ERROR }, message: null }
       return { error: null, message: allModules }
     } catch(e) {
