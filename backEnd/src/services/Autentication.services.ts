@@ -18,9 +18,9 @@ class AutenticationServices {
 
   public async register(user: UserCredentials): Promise<LoginResponse> {
     try {
-      const { error, message } = await this.findAUser(user.email);
-      console.log(error)
-      if(message) return { error: { message: errorMapTypes.USER_ALREDY_EXISTS }, message: null };
+      const { error, message: userExist } = await this.findAUser(user.email);
+      
+      if(userExist) return { error: { message: errorMapTypes.USER_ALREDY_EXISTS }, message: null };
       if(error && error.message !== errorMapTypes.USER_DONT_EXIST) return { error: { message: errorMapTypes.REQUEST_ERROR }, message: null };
       const encriptedPassword = await hash(user.password, 8)
   
@@ -30,7 +30,7 @@ class AutenticationServices {
         loginType: 'credential',
         profilePhoto: null,
       });
-      return { error: null, message: createNewUser.id }
+      return { error: null, message: createNewUser }
     } catch(e) {
       return { error: { message: errorMapTypes.REQUEST_ERROR }, message: errorMapTypes.REQUEST_ERROR }
     }
@@ -49,7 +49,7 @@ class AutenticationServices {
     if(!checkPassword) {
       return {error: { message: errorMapTypes.INCORRECT_PASSWORD },  message: null};
     }
-    return { error: null, message: userData.id, type: 'Login' }
+    return { error: null, message: userData, type: 'Login' }
   }
 
   public async registerByGoogle(user: UserGoogleCredentials): Promise<LoginResponse> {

@@ -23,7 +23,7 @@ class UserController {
     const token = createToken({email: user.email, id: message})
     return res.status(statusCodes.OK)
       .json({
-        message: 'Usuário cirado com sucesso', token, error: false, email: user.email, id: message
+        message: 'Usuário cirado com sucesso', token, error: false, email: user.email, id: message.id, name: message.name
       });
   }
 
@@ -36,13 +36,12 @@ class UserController {
 
     const token = createToken({email: user.email, id: message})
     return res.status(statusCodes.OK).json({
-      message: 'Logado com sucesso', token, error: false, email: user.email, id: message
+      message: 'Logado com sucesso', token, error: false, email: user.email, id: message.id, name: message.name
     });
   }
 
   public loginByGoogle = async (req: Request, res: Response) => {
     const user: UserGoogleCredentials = req.body;
-    console.log(user)
     const { error, message, type } = await this.authService.authByGoogle(user)
 
     if(error) return res.status(statusCodes.NOT_FOUND)

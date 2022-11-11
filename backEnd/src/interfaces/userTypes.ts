@@ -22,7 +22,7 @@ export interface UserGoogleCredentials {
 
 export interface LoginResponse {
   error: null | { message: string };
-  message: string | number | null;
+  message: any;
   type?: string
 }
 

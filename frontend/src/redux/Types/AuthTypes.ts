@@ -1,0 +1,6 @@
+export const AuthTypes = {
+  INIT_LOGIN: 'INIT_LOGIN',
+  LOGIN_FAIL: 'LOGIN_FAIL',
+  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+  SIGOUT: 'SIGOUT'
+};

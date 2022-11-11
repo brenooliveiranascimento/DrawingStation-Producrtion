@@ -5,6 +5,8 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
   const token = req.header('Authorization');
   const key = process.env.SECRET as string
 
+  let numero = 3;
+
   if (!token) {
     return res.status(401).json({ message: 'Token not found' });
   }
