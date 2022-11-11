@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch } from 'react';
-import { registerUserCredentials, RequestUserLoginResponse, UserCredentials } from '../../../interfaces/UserInterfaces';
+import { registerUserCredentials, UserCredentials } from '../../../interfaces/UserInterfaces';
 import apiConnection from '../../../services/api.connection';
 import { globalTypes } from '../../../utils/globalTypes';
 import { setLocalStorage } from '../../../utils/localStorageManeger';
-import { AutenticationSuccess, initAutentication } from './autenticationGenericActions';
+import { AutenticationFailure, AutenticationSuccess, initAutentication } from './autenticationGenericActions';
+import { toast } from 'react-toastify';
 
-export const siginUser = (userCredentials: UserCredentials): any => {
+export const siginUser = (userCredentials: UserCredentials, redirect: any): any => {
   return  async (dispatch: Dispatch<any>) => {
     dispatch(initAutentication());
     try {
@@ -15,18 +16,22 @@ export const siginUser = (userCredentials: UserCredentials): any => {
         email,
         password
       });
-      const { name, id, token } = data;
-      const userData = {name, email, id};
+      const { name, id, token, profilePhoto } = data;
+      const userData = {name, email, id, profilePhoto};
 
       setLocalStorage(globalTypes.DRAWING_USER_DATA, {...userData, token});
       dispatch(AutenticationSuccess(userData));
+      toast.success(`Seja bem vindo ${name}`);
+      redirect();
     } catch(e: any) {
       console.log(e.response.data);
+      toast.error(`${e.response.data.message}`);
+      dispatch(AutenticationFailure());
     }
   };
 };
 
-export const registerUser = (userCredentials: registerUserCredentials): any => {
+export const registerUser = (userCredentials: registerUserCredentials, redirect: any): any => {
   return  async (dispatch: Dispatch<any>) => {
     dispatch(initAutentication());
     try {
@@ -37,12 +42,32 @@ export const registerUser = (userCredentials: registerUserCredentials): any => {
         email,
         password
       });
-      const { name, id, token } = data;
-      const userData = {name, email, id};
+      const { name, id, token, profilePhoto } = data;
+      const userData = {name, email, id, profilePhoto};
       setLocalStorage(globalTypes.DRAWING_USER_DATA, {...userData, token});
       dispatch(AutenticationSuccess(userData));
+      redirect();
+      toast.success(`Seja bem vindo ${name}`);
     } catch(e: any) {
       console.log(e.response.data);
+      dispatch(AutenticationFailure());
+      toast.error(`${e.response.data.message}`);
+    }
+  };
+};
+
+export const loginWithGoogle = (userCredentials: any): any => {
+  return  async (dispatch: Dispatch<any>) => {
+    dispatch(initAutentication());
+    try {
+      const { name, id, token, email, profilePhoto } = userCredentials;
+      const userData = {name, email, id, profilePhoto};
+      dispatch(AutenticationSuccess(userData));
+      setLocalStorage(globalTypes.DRAWING_USER_DATA, {...userData, token});
+    } catch(e: any) {
+      console.log(e.response.data);
+      dispatch(AutenticationFailure());
+      toast.error(`${e.response.data.message}`);
     }
   };
 };

@@ -90,7 +90,7 @@ class AutenticationServices {
    if(!checkPassword) {
      return {error: { message: errorMapTypes.INCORRECT_PASSWORD },  message: null};
    }
-   return { error: null, message: userData.id, type: 'Login' }
+   return { error: null, message: userData, type: 'Login' }
   }
 };
 

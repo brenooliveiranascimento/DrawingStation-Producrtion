@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { FormEvent, useEffect, useState } from 'react';
 import type { NextPage } from 'next';
@@ -9,8 +10,13 @@ import Logo from '../../public/logo1.png';
 import Image from 'next/image';
 import { FaGoogle } from 'react-icons/fa';
 import { creadentialRegisterValidation, creadentialSiginValidation } from '../utils/credentialValidation';
-import { useDispatch, useSelector } from 'react-redux';
-import { registerUser, siginUser } from '../redux/actions/autenticationActions/autenticationActions';
+import { useDispatch } from 'react-redux';
+import { loginWithGoogle, registerUser, siginUser } from '../redux/actions/autenticationActions/autenticationActions';
+import axios from 'axios';
+import apiConnection from '../services/api.connection';
+import { useGoogleLogin } from '@react-oauth/google';
+import { toast } from 'react-toastify';
+import Router from 'next/router';
 
 const Home: NextPage = () => {
 
@@ -75,13 +81,39 @@ const Home: NextPage = () => {
     setRegister(!register);
   };
 
+  const loginGoogle = useGoogleLogin({
+    onSuccess: async (response) => {
+      try {
+        const { data: userData } = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: {
+            'Authorization': `Bearer ${response.access_token}`
+          }
+        });
+        const { data } = await apiConnection.post('/auth/google', {
+          email: userData.email,
+          sub: userData.sub,
+          picture: userData.picture,
+          name: userData.name
+        });
+        toast.success(`Seja bem vindo ${userData.name}`);
+        Router.push('/dashboard');
+        dispatch(loginWithGoogle(data));
+      } catch(e: any) {
+        toast.dismiss('Algo de errado! :(');
+        console.log(e.response.data);
+      }
+    },
+  });
+
+  const redirect = () => Router.push('/dashboard');
+
   const sigin = () => {
     const { email, password } = credentials;
-    dispatch(siginUser({ email, password }));
+    dispatch(siginUser({ email, password }, redirect));
   };
 
   const userRegister = () => {
-    dispatch(registerUser(credentials));
+    dispatch(registerUser(credentials, redirect));
   };
 
   const handleAutentication = (e: FormEvent) => {
@@ -153,9 +185,16 @@ const Home: NextPage = () => {
               loading={false}
               disabled={disabled}
             >
-            Entrar
+              {
+                register ? (
+                  'Registrar'
+                ) : (
+                  'Entrar'
+                )
+              }
             </Button>
             <Button
+              onClick={() => loginGoogle()}
               type='button'
             >
               Entrar com Google <FaGoogle style={{
