@@ -10,11 +10,12 @@ import Logo from '../../public/logo1.png';
 import Image from 'next/image';
 import { FaGoogle } from 'react-icons/fa';
 import { creadentialRegisterValidation, creadentialSiginValidation } from '../utils/credentialValidation';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loginWithGoogle, registerUser, siginUser } from '../redux/actions/autenticationActions/autenticationActions';
 import axios from 'axios';
 import apiConnection from '../services/api.connection';
 import { useGoogleLogin } from '@react-oauth/google';
+import { toast } from 'react-toastify';
 
 const Home: NextPage = () => {
 
@@ -93,8 +94,10 @@ const Home: NextPage = () => {
           picture: userData.picture,
           name: userData.name
         });
+        toast.success(`Seja bem vindo ${userData.name}`);
         dispatch(loginWithGoogle(data));
       } catch(e: any) {
+        toast.dismiss('Algo de errado! :(');
         console.log(e.response.data);
       }
     },
