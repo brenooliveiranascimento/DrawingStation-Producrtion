@@ -9,11 +9,6 @@ export const passwordVerification = (password: string) => password.length >= MIN
 
 
 export const creadentialSiginValidation = (credentials: SiginCredentialInterface | any) => {
-  // if(emailVerification(creadentials.email) && passwordVerification(creadentials.password)) {
-  //   return true;
-  // }
-  // return false;
-
   const credentialsKeys = Object.keys(credentials);
   let unknowCredential = '';
 

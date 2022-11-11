@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import styles from '../../styles/Home.module.scss';
 import Head from 'next/head';
@@ -16,15 +16,7 @@ const Home: NextPage = () => {
   const [disabled, setDisabled] = useState(true);
   const [unknowField, setUnknowField] = useState('');
 
-  interface CredentialInterface {
-    name: string;
-    phoneNumber?: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-  }
-
-  const [credentials, setCredentials] = useState<CredentialInterface>({
+  const [credentials, setCredentials] = useState({
     name: '',
     phoneNumber: '',
     email: '',
@@ -65,8 +57,19 @@ const Home: NextPage = () => {
   };
 
   const handleRegister = () => {
+    setCredentials({
+      name: '',
+      phoneNumber: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    });
     setUnknowField('');
     setRegister(!register);
+  };
+
+  const sigin = (e: FormEvent) => {
+    e.preventDefault();
   };
 
   useEffect(() => {
@@ -85,16 +88,18 @@ const Home: NextPage = () => {
             alt='logo'
             src={Logo}
           />
-          <form>
+          <form onSubmit={sigin}>
             {
               register && (
                 <>
                   <Input
+                    value={credentials.name}
                     onChange={({target}) => handleUserCredentials(target)}
                     name='name'
                     placeholder='Name'
                   />
                   <Input
+                    value={credentials.phoneNumber}
                     onChange={({target}) => handleUserCredentials(target)}
                     name='phoneNumber'
                     placeholder='PhoneNumber'
@@ -103,16 +108,19 @@ const Home: NextPage = () => {
               )
             }
             <Input
+              value={credentials.email}
               onChange={({target}) => handleUserCredentials(target)}
               name='email'
               placeholder='Email'
             />
             <Input
+              value={credentials.password}
               onChange={({target}) => handleUserCredentials(target)}
               name='password'
               placeholder='Password'
             />
             {register && (<Input
+              value={credentials.confirmPassword}
               onChange={({target}) => handleUserCredentials(target)}
               placeholder='Confirm password'
               name='confirmPassword'
@@ -124,7 +132,9 @@ const Home: NextPage = () => {
             >
             Entrar
             </Button>
-            <Button>
+            <Button
+              type='button'
+            >
               Entrar com Google <FaGoogle style={{
                 position: 'absolute', marginTop:'0.1rem', marginLeft:'0.4rem'
               }}/>
