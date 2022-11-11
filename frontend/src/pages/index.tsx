@@ -1,28 +1,42 @@
 import React from 'react';
 import type { NextPage } from 'next';
+import styles from '../../styles/Home.module.scss';
 import Head from 'next/head';
 import { Input } from '../Components/ui/Inputs/Inputs';
 import { Button } from '../Components/ui/buttons/Buttons';
+import BackgroundSide from '../../public/blueRose.jpg';
+import Logo from '../../public/logo1.png';
+import Image from 'next/image';
 
 const Home: NextPage = () => {
   return (
-    <section>
+    <>
       <Head>
         <title>Login</title>
       </Head>
-      <section>
-        <form>
-          <Input placeholder='Email'/>
-          <Input placeholder='Password'/>
-          <Button
-            type='submit'
-            loading={false}
-          >
+      <section className={styles.home_container}>
+        <aside className={styles.login}>
+          <Image
+            alt='lgo'
+            src={Logo}
+            width={440}
+          />
+          <form>
+            <Input placeholder='Email'/>
+            <Input placeholder='Password'/>
+            <Button
+              type='submit'
+              loading={false}
+            >
             Entrar
-          </Button>
-        </form>
+            </Button>
+          </form>
+          <a className={styles.handle_form}>
+            Não possui conta? <strong>Registrar se</strong>
+          </a>
+        </aside>
       </section>
-    </section>
+    </>
   );
 };
 

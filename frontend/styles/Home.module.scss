@@ -1,0 +1,48 @@
+.home_container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .handle_form {
+    color: var(--white);
+    margin: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(80%);
+    }
+  }
+}
+
+.sideImage {
+  filter: brightness(60%);
+  height: 100vh;
+  width: 50%;
+  background-color: black;
+}
+
+.login {
+  margin-top: -4rem;
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+
+  form {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  form button {
+    height: 40px;
+    font-size: 1.2rem;
+    &:hover {
+      filter: brightness(90%);
+    }
+  }
+
+}
