@@ -7,7 +7,7 @@ import { setLocalStorage } from '../../../utils/localStorageManeger';
 import { AutenticationFailure, AutenticationSuccess, initAutentication } from './autenticationGenericActions';
 import { toast } from 'react-toastify';
 
-export const siginUser = (userCredentials: UserCredentials): any => {
+export const siginUser = (userCredentials: UserCredentials, redirect: any): any => {
   return  async (dispatch: Dispatch<any>) => {
     dispatch(initAutentication());
     try {
@@ -22,6 +22,7 @@ export const siginUser = (userCredentials: UserCredentials): any => {
       setLocalStorage(globalTypes.DRAWING_USER_DATA, {...userData, token});
       dispatch(AutenticationSuccess(userData));
       toast.success(`Seja bem vindo ${name}`);
+      redirect();
     } catch(e: any) {
       console.log(e.response.data);
       toast.error(`${e.response.data.message}`);
@@ -30,7 +31,7 @@ export const siginUser = (userCredentials: UserCredentials): any => {
   };
 };
 
-export const registerUser = (userCredentials: registerUserCredentials): any => {
+export const registerUser = (userCredentials: registerUserCredentials, redirect: any): any => {
   return  async (dispatch: Dispatch<any>) => {
     dispatch(initAutentication());
     try {
@@ -45,6 +46,7 @@ export const registerUser = (userCredentials: registerUserCredentials): any => {
       const userData = {name, email, id, profilePhoto};
       setLocalStorage(globalTypes.DRAWING_USER_DATA, {...userData, token});
       dispatch(AutenticationSuccess(userData));
+      redirect();
       toast.success(`Seja bem vindo ${name}`);
     } catch(e: any) {
       console.log(e.response.data);

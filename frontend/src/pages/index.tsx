@@ -16,6 +16,7 @@ import axios from 'axios';
 import apiConnection from '../services/api.connection';
 import { useGoogleLogin } from '@react-oauth/google';
 import { toast } from 'react-toastify';
+import Router from 'next/router';
 
 const Home: NextPage = () => {
 
@@ -95,6 +96,7 @@ const Home: NextPage = () => {
           name: userData.name
         });
         toast.success(`Seja bem vindo ${userData.name}`);
+        Router.push('/dashboard');
         dispatch(loginWithGoogle(data));
       } catch(e: any) {
         toast.dismiss('Algo de errado! :(');
@@ -103,13 +105,15 @@ const Home: NextPage = () => {
     },
   });
 
+  const redirect = () => Router.push('/dashboard');
+
   const sigin = () => {
     const { email, password } = credentials;
-    dispatch(siginUser({ email, password }));
+    dispatch(siginUser({ email, password }, redirect));
   };
 
   const userRegister = () => {
-    dispatch(registerUser(credentials));
+    dispatch(registerUser(credentials, redirect));
   };
 
   const handleAutentication = (e: FormEvent) => {
