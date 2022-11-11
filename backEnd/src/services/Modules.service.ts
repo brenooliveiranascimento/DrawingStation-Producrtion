@@ -9,16 +9,10 @@ import { errorMapTypes } from '../utils/errorMap';
 class ModuleService {
   public async getAllSubModules() {
     const allModules = await SubModuleModel.findAll(
-      {
-        include: [
-          {
-            model: ClassroomModel,
-            as: 'classrooms',
-          },
-        ],
-      },
+      { include: [{ model: ClassroomModel, as: 'classrooms' }] },
     );
     if(!allModules) return { error: { mesage: errorMapTypes.CLASSROOM_REQUEST_ERROR }, message: null }
+
     return { error: null, message: allModules }
   }
 

@@ -30,3 +30,8 @@ export interface GetUserInterface {
   error: null | { message: string  | null },
   message: null | any
 }
+
+export interface UserVerifyInterface {
+  error: any | { message: string  | null },
+  message: UserCredentials | any
+}

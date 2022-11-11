@@ -1,37 +1,49 @@
 import UserModel from '../database/models/UserModel';
-import { LoginResponse, UserCredentials, UserGoogleCredentials, UserInterface } from '../interfaces/userTypes';
+import { LoginResponse, UserCredentials, UserGoogleCredentials, UserInterface, UserVerifyInterface } from '../interfaces/userTypes';
 import { hash, compare } from 'bcryptjs'
 import { errorMapTypes } from '../utils/errorMap';
 class AutenticationServices {
 
   async findAUser(email: string) {
-    const findUser = await UserModel.findOne({
-      where: { email }
-    })
-    return findUser;
+    try {
+      const findUser = await UserModel.findOne({
+        where: { email }
+      })
+      if(!findUser) return { error: { message: errorMapTypes.USER_DONT_EXIST }, message: null }
+      return { error: null, message: findUser }
+    } catch(e) {
+      return { error: { message: errorMapTypes.REQUEST_ERROR }, message: null }
+    }
   }
 
   public async register(user: UserCredentials): Promise<LoginResponse> {
-    const checkUserExist = await this.findAUser(user.email);
-    if(checkUserExist) return { error: { message: errorMapTypes.USER_ALREDY_EXISTS }, message: null };
-    const encriptedPassword = await hash(user.password, 8)
-
-    const createNewUser = await UserModel.create({
-      ...user,
-      password: encriptedPassword,
-      loginType: 'credential',
-      profilePhoto: null,
-    });
-    return { error: null, message: createNewUser.id }
+    try {
+      const { error, message } = await this.findAUser(user.email);
+      console.log(error)
+      if(message) return { error: { message: errorMapTypes.USER_ALREDY_EXISTS }, message: null };
+      if(error && error.message !== errorMapTypes.USER_DONT_EXIST) return { error: { message: errorMapTypes.REQUEST_ERROR }, message: null };
+      const encriptedPassword = await hash(user.password, 8)
+  
+      const createNewUser = await UserModel.create({
+        ...user,
+        password: encriptedPassword,
+        loginType: 'credential',
+        profilePhoto: null,
+      });
+      return { error: null, message: createNewUser.id }
+    } catch(e) {
+      return { error: { message: errorMapTypes.REQUEST_ERROR }, message: errorMapTypes.REQUEST_ERROR }
+    }
   }
 
   public async login(userCredential: UserCredentials): Promise<LoginResponse> {
     const { email, password } = userCredential;
-    const userData = await this.findAUser(email);
+    const { error, message: userData } = await this.findAUser(email);
 
-    if(!userData) {
-       return { error: { message: errorMapTypes.USER_DONT_EXIST }, message: null };
-    } 
+    if(error) {
+       return { error: { message: error.message }, message: null };
+    }
+
     const checkPassword = await compare(password, userData.password)
 
     if(!checkPassword) {
@@ -59,17 +71,22 @@ class AutenticationServices {
 
   public async authByGoogle(user: UserGoogleCredentials): Promise<LoginResponse> {
     const { email, sub: password } = user;
-    const userData = await this.findAUser(email);
+    const { error, message: userData } = await this.findAUser(email);
 
-    if(!userData) {
+    if(!userData && error.message !== errorMapTypes.REQUEST_ERROR) {
        return this.registerByGoogle(user)
-    } 
-    const checkPassword = await compare(password, userData.password)
-
-    if(!checkPassword) {
-      return {error: { message: errorMapTypes.INCORRECT_PASSWORD },  message: null};
     }
-    return { error: null, message: userData.id, type: 'Login' }
+
+    if(error) {
+      return { error: { message: error.message }, message: null };
+   }
+
+   const checkPassword = await compare(password, userData.password)
+
+   if(!checkPassword) {
+     return {error: { message: errorMapTypes.INCORRECT_PASSWORD },  message: null};
+   }
+   return { error: null, message: userData.id, type: 'Login' }
   }
 };
 

@@ -32,6 +32,7 @@ class UserController {
 
   public loginByGoogle = async (req: Request, res: Response) => {
     const user: UserGoogleCredentials = req.body;
+    console.log(user)
     const { error, message, type } = await this.authService.authByGoogle(user)
 
     if(error) return res.status(statusCodes.NOT_FOUND)
