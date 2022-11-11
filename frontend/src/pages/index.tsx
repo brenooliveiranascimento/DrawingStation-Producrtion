@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { FormEvent, useEffect, useState } from 'react';
 import type { NextPage } from 'next';
@@ -10,7 +11,10 @@ import Image from 'next/image';
 import { FaGoogle } from 'react-icons/fa';
 import { creadentialRegisterValidation, creadentialSiginValidation } from '../utils/credentialValidation';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser, siginUser } from '../redux/actions/autenticationActions/autenticationActions';
+import { loginWithGoogle, registerUser, siginUser } from '../redux/actions/autenticationActions/autenticationActions';
+import axios from 'axios';
+import apiConnection from '../services/api.connection';
+import { useGoogleLogin } from '@react-oauth/google';
 
 const Home: NextPage = () => {
 
@@ -74,6 +78,27 @@ const Home: NextPage = () => {
     setUnknowField('');
     setRegister(!register);
   };
+
+  const loginGoogle = useGoogleLogin({
+    onSuccess: async (response) => {
+      try {
+        const { data: userData } = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: {
+            'Authorization': `Bearer ${response.access_token}`
+          }
+        });
+        const { data } = await apiConnection.post('/auth/google', {
+          email: userData.email,
+          sub: userData.sub,
+          picture: userData.picture,
+          name: userData.name
+        });
+        dispatch(loginWithGoogle(data));
+      } catch(e: any) {
+        console.log(e.response.data);
+      }
+    },
+  });
 
   const sigin = () => {
     const { email, password } = credentials;
@@ -156,6 +181,7 @@ const Home: NextPage = () => {
             Entrar
             </Button>
             <Button
+              onClick={() => loginGoogle()}
               type='button'
             >
               Entrar com Google <FaGoogle style={{

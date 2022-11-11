@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch } from 'react';
-import { registerUserCredentials, RequestUserLoginResponse, UserCredentials } from '../../../interfaces/UserInterfaces';
+import { registerUserCredentials, UserCredentials } from '../../../interfaces/UserInterfaces';
 import apiConnection from '../../../services/api.connection';
 import { globalTypes } from '../../../utils/globalTypes';
 import { setLocalStorage } from '../../../utils/localStorageManeger';
@@ -15,8 +15,8 @@ export const siginUser = (userCredentials: UserCredentials): any => {
         email,
         password
       });
-      const { name, id, token } = data;
-      const userData = {name, email, id};
+      const { name, id, token, profilePhoto } = data;
+      const userData = {name, email, id, profilePhoto};
 
       setLocalStorage(globalTypes.DRAWING_USER_DATA, {...userData, token});
       dispatch(AutenticationSuccess(userData));
@@ -37,8 +37,22 @@ export const registerUser = (userCredentials: registerUserCredentials): any => {
         email,
         password
       });
-      const { name, id, token } = data;
-      const userData = {name, email, id};
+      const { name, id, token, profilePhoto } = data;
+      const userData = {name, email, id, profilePhoto};
+      setLocalStorage(globalTypes.DRAWING_USER_DATA, {...userData, token});
+      dispatch(AutenticationSuccess(userData));
+    } catch(e: any) {
+      console.log(e.response.data);
+    }
+  };
+};
+
+export const loginWithGoogle = (userCredentials: any): any => {
+  return  async (dispatch: Dispatch<any>) => {
+    dispatch(initAutentication());
+    try {
+      const { name, id, token, email, profilePhoto } = userCredentials;
+      const userData = {name, email, id, profilePhoto};
       setLocalStorage(globalTypes.DRAWING_USER_DATA, {...userData, token});
       dispatch(AutenticationSuccess(userData));
     } catch(e: any) {

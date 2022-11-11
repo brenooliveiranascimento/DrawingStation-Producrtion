@@ -34,9 +34,9 @@ class UserController {
     if(error) return res.status(statusCodes.NOT_FOUND)
       .json({message: error.message, token: null, error: true});
 
-    const token = createToken({email: user.email, id: message})
+    const token = createToken({email: user.email, id: message.id})
     return res.status(statusCodes.OK).json({
-      message: 'Logado com sucesso', token, error: false, email: user.email, id: message.id, name: message.name
+      message: 'Logado com sucesso', token, error: false, email: user.email, id: message.id, name: message.name, profilePhoto: message.profilePhoto
     });
   }
 
@@ -47,17 +47,16 @@ class UserController {
     if(error) return res.status(statusCodes.NOT_FOUND)
       .json({message: error.message, token: null, error: true});
 
-    const token = createToken({email: user.email, id: message})
+    const token = createToken({email: user.email, id: message.id})
     if(type === 'Register') {
       return res.status(statusCodes.OK).json({
-        message: 'Registrado com sucesso!', token, error: false, email: user.email, id: message
+        message: 'Registrado com sucesso!', token, error: false, email: user.email, id: message, profilePhoto: message.profilePhoto
     });
     }
     return res.status(statusCodes.OK).json({
-      message: 'Logado com sucesso', token, error: false, email: user.email, id: message
+      message: 'Logado com sucesso', token, error: false, email: user.email, id: message.id, name: message.name, profilePhoto: message.profilePhoto
     });
   }
-
 }
 
 export default UserController;
