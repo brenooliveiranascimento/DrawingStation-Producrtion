@@ -60,6 +60,7 @@ export const loginWithGoogle = (userCredentials: any): any => {
     try {
       const { name, id, token, email, profilePhoto } = userCredentials;
       const userData = {name, email, id, profilePhoto};
+      dispatch(AutenticationSuccess(userData));
       setLocalStorage(globalTypes.DRAWING_USER_DATA, {...userData, token});
     } catch(e: any) {
       console.log(e.response.data);

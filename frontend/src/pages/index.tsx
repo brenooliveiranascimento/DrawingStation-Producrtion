@@ -181,7 +181,13 @@ const Home: NextPage = () => {
               loading={false}
               disabled={disabled}
             >
-            Entrar
+              {
+                register ? (
+                  'Registrar'
+                ) : (
+                  'Entrar'
+                )
+              }
             </Button>
             <Button
               onClick={() => loginGoogle()}

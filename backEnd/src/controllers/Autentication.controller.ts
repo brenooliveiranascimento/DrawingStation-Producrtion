@@ -23,7 +23,7 @@ class UserController {
     const token = createToken({email: user.email, id: message})
     return res.status(statusCodes.OK)
       .json({
-        message: 'Usuário cirado com sucesso', token, error: false, email: user.email, id: message.id, name: message.name
+        message: 'Usuário cirado com sucesso', token, error: false, email: user.email, id: message.id, name: message.name, profilePhoto: message.profilePhoto
       });
   }
 
