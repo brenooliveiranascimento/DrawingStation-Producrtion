@@ -14,6 +14,7 @@ const Home: NextPage = () => {
   
   const [register, setRegister] = useState(false);
   const [disabled, setDisabled] = useState(true);
+  const [firstLoad, setFIstLoad] = useState(true);
   const [unknowField, setUnknowField] = useState('');
 
   const [credentials, setCredentials] = useState({
@@ -35,9 +36,10 @@ const Home: NextPage = () => {
   };
 
   const checkUserCredentials = () => {
+    if(firstLoad) return setFIstLoad(false);
+    
     if(register) {
       const { check, unknowCredential } = creadentialRegisterValidation(credentials);
-      console.log(check, unknowCredential);
       if(!check) {
         setUnknowField(unknowCredential);
         return setDisabled(true);
@@ -64,6 +66,7 @@ const Home: NextPage = () => {
       password: '',
       confirmPassword: '',
     });
+    setFIstLoad(true);
     setUnknowField('');
     setRegister(!register);
   };
@@ -93,12 +96,14 @@ const Home: NextPage = () => {
               register && (
                 <>
                   <Input
+                    style={{borderBottomColor: unknowField === 'name' ? 'red' : 'white'}}
                     value={credentials.name}
                     onChange={({target}) => handleUserCredentials(target)}
                     name='name'
                     placeholder='Name'
                   />
                   <Input
+                    style={{borderBottomColor: unknowField === 'PhoneNumber' ? 'red' : 'white'}}
                     value={credentials.phoneNumber}
                     onChange={({target}) => handleUserCredentials(target)}
                     name='phoneNumber'
@@ -108,6 +113,7 @@ const Home: NextPage = () => {
               )
             }
             <Input
+              style={{borderBottomColor: unknowField === 'email' ? 'red' : 'white'}}
               value={credentials.email}
               onChange={({target}) => handleUserCredentials(target)}
               name='email'
@@ -115,12 +121,14 @@ const Home: NextPage = () => {
             />
             <Input
               value={credentials.password}
+              style={{borderBottomColor: unknowField === 'password' ? 'red' : 'white'}}
               onChange={({target}) => handleUserCredentials(target)}
               name='password'
               placeholder='Password'
             />
             {register && (<Input
               value={credentials.confirmPassword}
+              style={{borderBottomColor: unknowField === 'confirmPassword' ? 'red' : 'white'}}
               onChange={({target}) => handleUserCredentials(target)}
               placeholder='Confirm password'
               name='confirmPassword'
