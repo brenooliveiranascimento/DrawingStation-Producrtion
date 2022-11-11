@@ -20,15 +20,16 @@ routes.get('/classrooms', moduleController.getClassrooms);
 
 routes.use(validateAdm);
 
+routes.put('/sub/:id',validationModule ,moduleController.updateSubModule);
 routes.post('/classrooms',
-  validationClassroom,
-  validationClassroomData,
-  classRoomController.addNewClassroom);
+validationClassroom,
+validationClassroomData,
+classRoomController.addNewClassroom);
 
 routes.put('/classrooms/:id',
-  validationClassroom,
-  validationClassroomData,
-  classRoomController.updateClassroom);
+validationClassroom,
+validationClassroomData,
+classRoomController.updateClassroom);
 routes.delete('/classrooms/:id', classRoomController.deleteClassroom);
 
 routes.post('/', validationModule, moduleController.addNewModule);

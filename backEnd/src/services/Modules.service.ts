@@ -28,23 +28,44 @@ class ModuleService {
       if(!allModules) return { error: { mesage: errorMapTypes.CLASSROOM_REQUEST_ERROR }, message: errorMapTypes.SUBMODULE_DONT_EXIST }
       return { error: null, message: allModules }
     } catch(e) {
-      return { error: errorMapTypes.CLASSROOM_REQUEST_ERROR, message: e }
+      return { error: { message: errorMapTypes.CLASSROOM_REQUEST_ERROR }, message: e }
     }
   }
 
   public async updateSubModule(id: number, subModuleData: SubModulesInterface) {
     try {
       const { description, image, name, premium } = subModuleData;
-      const { error, message } = await this.findASubModule(id);
-      if(error) return message
+      const { error } = await this.findASubModule(id);
+      if(error) return { error: { message: error.message }, message: null };
+
       const updatedSubModule = await SubModuleModel.update(
         { description, image, premium, name },
         { where: { id } }
       )
-      if(!updatedSubModule) return { error: { mesage: errorMapTypes.UPDATE_SUBMODULE_ERROR }, message: null }
-      return { error: null, message: updatedSubModule }
+      if(!updatedSubModule) return { error: { mesage: errorMapTypes.ERROR_IN_UPDATE_SUBMODULE }, message: null }
+
+      return { error: null, message: 'SubModule updated success' }
     } catch(e) {
       return { error: errorMapTypes.CLASSROOM_REQUEST_ERROR, message: e }
+    }
+  }
+
+  public async updateModule(id: number, newModule: ModuleInterface):  Promise<{ error: {message: string} | null, message: string | null | any }> {
+    try {
+      const { image, name, premium, description } = newModule;
+      const {error} = await this.getModuleById(id);
+      if(error) return { error: { message: error.message }, message: null };
+  
+      const update = await ModuleModel.update(
+        { image, name, premium, description },
+        { where: { id } },
+        )
+  
+      if(!update) return { error: { message: errorMapTypes.ERROR_IN_UPDATE_MODULE }, message: null };
+  
+      return { error: null, message: 'Módulo Atualizado com sucesso!' };
+    } catch(e) {
+      return { error: { message: errorMapTypes.REQUEST_ERROR }, message: e };
     }
   }
 
@@ -89,25 +110,6 @@ class ModuleService {
       if(!removeModule) return { error: { message: errorMapTypes.ERROR_IN_DELETE_MODULE }, message: null };
   
       return { error: null, message: 'Módulo deletado com sucesso!' };
-    } catch(e) {
-      return { error: { message: errorMapTypes.ERROR_IN_DELETE_MODULE }, message: e };
-    }
-  }
-
-  public async updateModule(id: number, newModule: ModuleInterface):  Promise<{ error: {message: string} | null, message: string | null | any }> {
-    try {
-      const { image, name, premium, description } = newModule;
-      const {error} = await this.getModuleById(id);
-      if(error) return { error: { message: error.message }, message: null };
-  
-      const update = await ModuleModel.update(
-        { image, name, premium, description },
-        { where: { id } },
-        )
-  
-      if(!update) return { error: { message: errorMapTypes.ERROR_IN_DELETE_MODULE }, message: null };
-  
-      return { error: null, message: 'Módulo Atualizado com sucesso!' };
     } catch(e) {
       return { error: { message: errorMapTypes.ERROR_IN_DELETE_MODULE }, message: e };
     }
