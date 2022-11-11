@@ -53,20 +53,24 @@ class AutenticationServices {
   }
 
   public async registerByGoogle(user: UserGoogleCredentials): Promise<LoginResponse> {
-    const { email, sub: password, picture, name } = user;
-    const encriptedPassword = await hash(password, 8)
-
-    const createNewUser = await UserModel.create({ 
-      email,
-      name,
-      password: encriptedPassword,
-      loginType: 'google',
-      profilePhoto: picture,
-      birthday: null,
-      phoneNumber: null
-     });
-
-     return { error: null, message: createNewUser.id, type: 'Register' }
+    try {
+      const { email, sub: password, picture, name } = user;
+      const encriptedPassword = await hash(password, 8)
+  
+      const createNewUser = await UserModel.create({ 
+        email,
+        name,
+        password: encriptedPassword,
+        loginType: 'google',
+        profilePhoto: picture,
+        birthday: null,
+        phoneNumber: null
+       });
+  
+       return { error: null, message: createNewUser.id, type: 'Register' }
+    } catch(e) {
+      return { error: { message: errorMapTypes.REQUEST_ERROR }, message: errorMapTypes.REQUEST_ERROR }
+    }
   };
 
   public async authByGoogle(user: UserGoogleCredentials): Promise<LoginResponse> {
