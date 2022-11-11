@@ -10,6 +10,7 @@ export interface UserInterface {
 }
 
 export interface UserCredentials {
+  id?: number;
   email: string;
   password: string;
 }
@@ -17,6 +18,12 @@ export interface UserCredentials {
 export interface registerUserCredentials extends UserCredentials {
   name: string;
   phoneNumber?: string
+}
+
+export interface UserState {
+  name: string;
+  id: number;
+  email: string;
 }
 
 export interface UserGoogleCredentials {
