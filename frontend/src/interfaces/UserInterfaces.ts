@@ -14,6 +14,11 @@ export interface UserCredentials {
   password: string;
 }
 
+export interface registerUserCredentials extends UserCredentials {
+  name: string;
+  phoneNumber?: string
+}
+
 export interface UserGoogleCredentials {
   email: string,
   sub: string,

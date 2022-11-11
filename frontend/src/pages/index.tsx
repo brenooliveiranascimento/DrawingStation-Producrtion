@@ -10,7 +10,7 @@ import Image from 'next/image';
 import { FaGoogle } from 'react-icons/fa';
 import { creadentialRegisterValidation, creadentialSiginValidation } from '../utils/credentialValidation';
 import { useDispatch, useSelector } from 'react-redux';
-import { siginUser } from '../redux/actions/autenticationActions/autenticationActions';
+import { registerUser, siginUser } from '../redux/actions/autenticationActions/autenticationActions';
 
 const Home: NextPage = () => {
 
@@ -80,12 +80,13 @@ const Home: NextPage = () => {
     dispatch(siginUser({ email, password }));
   };
 
-  const registerUser = () => {
+  const userRegister = () => {
+    dispatch(registerUser(credentials));
   };
 
-  const handleLogin = (e: FormEvent) => {
+  const handleAutentication = (e: FormEvent) => {
     e.preventDefault();
-    if(register) return registerUser();
+    if(register) return userRegister();
     sigin();
   };
 
@@ -105,7 +106,7 @@ const Home: NextPage = () => {
             alt='logo'
             src={Logo}
           />
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleAutentication}>
             {
               register && (
                 <>
