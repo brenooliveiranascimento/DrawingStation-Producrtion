@@ -1,13 +1,20 @@
 .button {
+  margin-top: 1rem;
   &[disabled] {
     svg {
       animation: animate 1s infinite;
     }
   }
+
 }
 
 .buttonText {
-
+  span {
+    margin-top: 2rem;
+  }
+  svg {
+    margin-top: -1rem;
+  }
 }
 
 @keyframes animate {

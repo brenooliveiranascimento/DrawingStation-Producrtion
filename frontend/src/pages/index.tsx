@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { NextPage } from 'next';
 import styles from '../../styles/Home.module.scss';
 import Head from 'next/head';
 import { Input } from '../Components/ui/Inputs/Inputs';
 import { Button } from '../Components/ui/buttons/Buttons';
-import BackgroundSide from '../../public/blueRose.jpg';
 import Logo from '../../public/logo1.png';
 import Image from 'next/image';
+import { FaGoogle } from 'react-icons/fa';
 
 const Home: NextPage = () => {
   return (
@@ -29,6 +29,11 @@ const Home: NextPage = () => {
               loading={false}
             >
             Entrar
+            </Button>
+            <Button>
+              Entrar com Google <FaGoogle style={{
+                position: 'absolute', marginTop:'0.1rem', marginLeft:'0.4rem'
+              }}/>
             </Button>
           </form>
           <a className={styles.handle_form}>
