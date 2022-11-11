@@ -17,9 +17,9 @@ const Home: NextPage = () => {
       <section className={styles.home_container}>
         <aside className={styles.login}>
           <Image
+            width={350}
             alt='lgo'
             src={Logo}
-            width={440}
           />
           <form>
             <Input placeholder='Email'/>

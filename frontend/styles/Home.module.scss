@@ -15,6 +15,14 @@
   }
 }
 
+.logo_area {
+  width: 100px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .sideImage {
   filter: brightness(60%);
   height: 100vh;
