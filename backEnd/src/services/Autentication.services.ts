@@ -18,9 +18,9 @@ class AutenticationServices {
 
   public async register(user: UserCredentials): Promise<LoginResponse> {
     try {
-      const { error, message } = await this.findAUser(user.email);
-      console.log(error)
-      if(message) return { error: { message: errorMapTypes.USER_ALREDY_EXISTS }, message: null };
+      const { error, message: userExist } = await this.findAUser(user.email);
+      
+      if(userExist) return { error: { message: errorMapTypes.USER_ALREDY_EXISTS }, message: null };
       if(error && error.message !== errorMapTypes.USER_DONT_EXIST) return { error: { message: errorMapTypes.REQUEST_ERROR }, message: null };
       const encriptedPassword = await hash(user.password, 8)
   

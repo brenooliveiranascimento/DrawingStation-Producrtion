@@ -9,7 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export function Button({ loading, children, ...rest }: ButtonProps) {
   return (
-    <button className={styles.button} {...rest} disabled={loading} >
+    <button className={styles.button} {...rest} >
       { loading ? (
         <FaSpinner/>
       ): (
