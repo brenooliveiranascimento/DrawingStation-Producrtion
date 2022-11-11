@@ -24,7 +24,7 @@ class ClassroomService extends ModuleService {
         ...classroomData,
         classroomId: add.id
       })
-      return { error: null, message: newClassroom };
+      return { error: null, message: addClassroomData };
     } catch(e) {
       return { error: { message: errorMapTypes.REQUEST_ERROR }, message: e };
     }

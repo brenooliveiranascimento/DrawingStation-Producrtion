@@ -15,7 +15,24 @@ class ModuleController{
 
   public getAllSubModules = async (_req: Request, res: Response) => {
     const { error, message } = await this.moduleService.getAllSubModules();
-    if(error) return res.status(statusCodes.OK).json({ message: message, error: errorMapTypes.REQUEST_ERROR })
+    if(error) return res.status(statusCodes.BAD_REQUEST).json({ message: message, error: errorMapTypes.REQUEST_ERROR })
+    return res.status(statusCodes.OK).json({ message, error: null });
+  }
+
+  public getSubModuleById = async (req: Request, res: Response) => {
+    const { id } = req.params
+    const { error, message } = await this.moduleService.getModuleById(Number(id));
+
+    if(error) return res.status(statusCodes.NOT_FOUND).json({ message: message, error: error.message })
+    return res.status(statusCodes.OK).json({ message, error: null });
+  }
+
+  public updateSubModule = async (req: Request, res: Response) => {
+    const { id } = req.params
+    const subModule = req.body
+    const { error, message }: any = await this.moduleService.updateSubModule(Number(id), subModule);
+
+    if(error) return res.status(statusCodes.NOT_FOUND).json({ message, error: error.message })
     return res.status(statusCodes.OK).json({ message, error: null });
   }
 

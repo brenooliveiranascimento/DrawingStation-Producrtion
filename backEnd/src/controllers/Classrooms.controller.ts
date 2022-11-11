@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import ClassroomService from '../services/Classrooms.services';
 import statusCodes from '../statusCode';
+import { messageMap } from '../utils/messageMap';
 
 class ClassroomsController {
   constructor(
@@ -13,7 +14,7 @@ class ClassroomsController {
     const { error, message } = await this.classroomService.addNewClassroom(classroom, classroomData);
     if(error) return res.status(statusCodes.NOT_FOUND).json({ message, error: error.message });
 
-    return res.status(statusCodes.OK).json({ message: "Classroom criada com sucesso!", error: null })
+    return res.status(statusCodes.OK).json({ message: messageMap.CLASSROOM_CREATED, error: null })
   }
 
   public updateClassroom = async (req: Request, res: Response) => {
@@ -23,7 +24,7 @@ class ClassroomsController {
     const { error, message } = await this.classroomService.updateClassroom(classroom, classroomData, Number(id));
     if(error) return res.status(statusCodes.NOT_FOUND).json({ message, error: error.message });
 
-    return res.status(statusCodes.OK).json({ message: "Classroom atualizada com sucesso!", error: null })
+    return res.status(statusCodes.OK).json({ message: messageMap.CLASSROM_UPDATED_SUCCESSFULLY, error: null })
   }
 
   public deleteClassroom = async (req: Request, res: Response) => {
@@ -32,7 +33,7 @@ class ClassroomsController {
     const { error, message } = await this.classroomService.deleteClassroom(Number(id));
     if(error) return res.status(statusCodes.NOT_FOUND).json({ message, error: error.message });
 
-    return res.status(statusCodes.OK).json({ message: "Classroom deletada com sucesso!", error: null })
+    return res.status(statusCodes.OK).json({ message: messageMap.CLASSROM_DELETED_SUCCESSFULLY, error: null })
   }
 }
 
