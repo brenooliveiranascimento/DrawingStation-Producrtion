@@ -9,8 +9,12 @@ import Logo from '../../public/logo1.png';
 import Image from 'next/image';
 import { FaGoogle } from 'react-icons/fa';
 import { creadentialRegisterValidation, creadentialSiginValidation } from '../utils/credentialValidation';
+import { useDispatch, useSelector } from 'react-redux';
+import { siginUser } from '../redux/actions/autenticationActions/autenticationActions';
 
 const Home: NextPage = () => {
+
+  const dispatch = useDispatch();
   
   const [register, setRegister] = useState(false);
   const [disabled, setDisabled] = useState(true);
@@ -71,8 +75,18 @@ const Home: NextPage = () => {
     setRegister(!register);
   };
 
-  const sigin = (e: FormEvent) => {
+  const sigin = () => {
+    const { email, password } = credentials;
+    dispatch(siginUser({ email, password }));
+  };
+
+  const registerUser = () => {
+  };
+
+  const handleLogin = (e: FormEvent) => {
     e.preventDefault();
+    if(register) return registerUser();
+    sigin();
   };
 
   useEffect(() => {
@@ -91,7 +105,7 @@ const Home: NextPage = () => {
             alt='logo'
             src={Logo}
           />
-          <form onSubmit={sigin}>
+          <form onSubmit={handleLogin}>
             {
               register && (
                 <>

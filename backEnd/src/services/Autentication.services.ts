@@ -30,7 +30,7 @@ class AutenticationServices {
         loginType: 'credential',
         profilePhoto: null,
       });
-      return { error: null, message: createNewUser.id }
+      return { error: null, message: createNewUser }
     } catch(e) {
       return { error: { message: errorMapTypes.REQUEST_ERROR }, message: errorMapTypes.REQUEST_ERROR }
     }
@@ -49,7 +49,7 @@ class AutenticationServices {
     if(!checkPassword) {
       return {error: { message: errorMapTypes.INCORRECT_PASSWORD },  message: null};
     }
-    return { error: null, message: userData.id, type: 'Login' }
+    return { error: null, message: userData, type: 'Login' }
   }
 
   public async registerByGoogle(user: UserGoogleCredentials): Promise<LoginResponse> {

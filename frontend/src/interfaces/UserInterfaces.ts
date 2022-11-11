@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface UserInterface {
   id: number;
   name: string
@@ -8,7 +9,8 @@ export interface UserInterface {
   phoneNumber: string;
 }
 
-export interface UserCredentials extends UserInterface {
+export interface UserCredentials {
+  email: string;
   password: string;
 }
 
@@ -31,6 +33,13 @@ export interface GetUserInterface {
   message: null | any
 }
 
+export interface RequestUserLoginResponse {
+ message: string | null;
+ token: string | null;
+ error: { message: any } | null;
+ email: string
+}
+
 export interface UserVerifyInterface {
   error: any | { message: string  | null },
   message: UserCredentials | any
@@ -40,6 +49,8 @@ export interface InitialValueState {
   userData: {
     name: string,
     uid: number | null,
+    email: string,
+    profilePhoto: string | null,
   };
   logged: boolean
   error: boolean;

@@ -5,6 +5,8 @@ const INITIAL_VALUE: InitialValueState = {
   userData: {
     name: '',
     uid: null,
+    email: '',
+    profilePhoto: '',
   },
   logged: false,
   error: false,
