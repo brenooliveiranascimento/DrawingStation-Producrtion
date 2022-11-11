@@ -1,11 +1,17 @@
 import { Response, Request } from 'express';
-import { UserCredentials, UserGoogleCredentials } from '../interfaces/userTypes';
+import { UserCredentials, UserGoogleCredentials, UserInterface } from '../interfaces/userTypes';
 import AuthService from '../services/Autentication.services';
 import statusCodes from '../statusCode';
 import createToken from '../utils/jwt.utils';
 
 class UserController {
-  constructor(private authService = new AuthService()) {}
+  declare userData: Function
+  constructor(private authService = new AuthService()) {
+    this.userData = (userData: UserInterface) => ({
+      email: userData.email,
+      id: userData.id
+    });
+  }
 
   public create = async (req: Request, res: Response) => {
     const user: UserCredentials = req.body;
@@ -40,9 +46,13 @@ class UserController {
 
     const token = createToken({email: user.email, id: message})
     if(type === 'Register') {
-      return res.status(statusCodes.OK).json({ message: 'Registrado com sucesso!', token, error: false });
+      return res.status(statusCodes.OK).json({
+        message: 'Registrado com sucesso!', token, error: false, email: user.email, id: message
+    });
     }
-    return res.status(statusCodes.OK).json({message: 'Logado com sucesso', token, error: false});
+    return res.status(statusCodes.OK).json({
+      message: 'Logado com sucesso', token, error: false, email: user.email, id: message
+    });
   }
 
 }
