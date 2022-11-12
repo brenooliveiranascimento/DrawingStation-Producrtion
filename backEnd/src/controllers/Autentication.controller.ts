@@ -3,15 +3,20 @@ import { UserCredentials, UserGoogleCredentials, UserInterface } from '../interf
 import AuthService from '../services/Autentication.services';
 import statusCodes from '../statusCode';
 import createToken from '../utils/jwt.utils';
+import jwt from 'jsonwebtoken'
+import UserService from '../services/User.services';
 
 class UserController {
   declare userData: Function
-  constructor(private authService = new AuthService()) {
+  constructor(private authService = new AuthService(), 
+  private userService = new UserService()
+  ) {
     this.userData = (userData: UserInterface) => ({
       email: userData.email,
       id: userData.id
     });
   }
+  private key = process.env.SECRET as string
 
   public create = async (req: Request, res: Response) => {
     const user: UserCredentials = req.body;
@@ -30,7 +35,9 @@ class UserController {
         email: user.email,
         id: message.id,
         name: message.name,
-        profilePhoto: message.profilePhoto
+        profilePhoto: message.profilePhoto,
+        birthday: message.birthday,
+        phoneNumber: message.phoneNumber,
       });
   }
 
@@ -43,7 +50,15 @@ class UserController {
       
     const token = createToken({email: user.email, id: message.id, profilePhoto: message.profilePhoto, name: message.name})
     return res.status(statusCodes.OK).json({
-      message: 'Logado com sucesso', token, error: false, email: user.email, id: message.id, name: message.name, profilePhoto: message.profilePhoto
+      message: 'Logado com sucesso',
+      token,
+      error: false,
+      email: user.email,
+      id: message.id,
+      name: message.name,
+      profilePhoto: message.profilePhoto,
+      birthday: message.birthday,
+      phoneNumber: message.phoneNumber,
     });
   }
 
@@ -57,13 +72,55 @@ class UserController {
     const token = createToken({email: user.email, id: message.id, profilePhoto: message.profilePhoto, name: message.name})
     if(type === 'Register') {
       return res.status(statusCodes.OK).json({
-        message: 'Registrado com sucesso!', token, error: false, email: user.email, id: message, profilePhoto: message.profilePhoto
+        message: 'Registrado com sucesso!',
+        token,
+        error: false,
+        email: user.email,
+        id: message.id,
+        name: message.name,
+        profilePhoto: message.profilePhoto,
+        birthday: message.birthday,
+        phoneNumber: message.phoneNumber,
     });
     }
     return res.status(statusCodes.OK).json({
-      message: 'Logado com sucesso', token, error: false, email: user.email, id: message.id, name: message.name, profilePhoto: message.profilePhoto
+      message: 'Logado com sucesso',
+      token,
+      error: false,
+      email: user.email,
+      id: message.id,
+      name: message.name,
+      profilePhoto: message.profilePhoto,
+      birthday: message.birthday,
+      phoneNumber: message.phoneNumber,
     });
   }
+
+  public getUserData = async (req: Request, res: Response) => {
+    const token = req.header('Authorization') as string;
+    const user: any = await jwt.verify(token, this.key);
+
+    const { error: userErr, message: userMess } = await this.userService
+      .findUserById(user.id);
+
+      if(userErr) return res.status(statusCodes.BAD_REQUEST)
+      .json({ message: userErr.message, error: userMess });
+    console.log(userMess)
+    return res.status(statusCodes.OK).json({ message: userMess });
+  }
+
+  public getAdm = async (req: Request, res: Response) => {
+    const { email } = req.body
+    
+    const { error: userErr, message: userMess } = await this.userService
+      .findAdm(email);
+
+      if(userErr) return res.status(statusCodes.BAD_REQUEST)
+      .json({ message: null, error: userErr.message });
+
+    return res.status(statusCodes.OK).json({ message: userMess, error: null });
+  }  
+
 }
 
 export default UserController;

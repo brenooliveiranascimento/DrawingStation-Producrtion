@@ -4,9 +4,11 @@ import { AuthTypes } from '../../Types/AuthTypes';
 const INITIAL_VALUE: InitialValueState = {
   userData: {
     name: '',
-    uid: null,
+    id: null,
     email: '',
     profilePhoto: '',
+    birthday: null,
+    phoneNumber: null
   },
   logged: false,
   error: false,

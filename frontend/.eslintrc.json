@@ -57,6 +57,7 @@
         "import/prefer-default-export": "off",
         "arrow-body-style":"off",
         "no-console":"off",
+        "react-hooks/exhaustive-deps":"off",
         "no-alert": "off",
         "func-names": "off",
         "consistent-return": "off",

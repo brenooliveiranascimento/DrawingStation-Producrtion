@@ -3,11 +3,11 @@ import { Dispatch } from 'react';
 import { registerUserCredentials, UserCredentials } from '../../../interfaces/UserInterfaces';
 import apiConnection from '../../../services/api.connection';
 import { globalTypes } from '../../../utils/globalTypes';
-import { setLocalStorage } from '../../../utils/localStorageManeger';
 import { AutenticationFailure, AutenticationSuccess, initAutentication, Sigout } from './autenticationGenericActions';
 import { toast } from 'react-toastify';
+import nookies from 'nookies';
 
-export const siginUser = (userCredentials: UserCredentials, redirect: any): any => {
+export const siginUser = (userCredentials: UserCredentials, redirect: any, path: string): any => {
   return  async (dispatch: Dispatch<any>) => {
     dispatch(initAutentication());
     try {
@@ -16,13 +16,17 @@ export const siginUser = (userCredentials: UserCredentials, redirect: any): any 
         email,
         password
       });
-      const { name, id, token, profilePhoto } = data;
-      const userData = {name, email, id, profilePhoto};
+      const { name, id, token, profilePhoto, birthday, phoneNumber } = data;
+      const userData = {name, email, id, profilePhoto, birthday, phoneNumber};
 
-      setLocalStorage(globalTypes.DRAWING_USER_DATA, {...userData, token});
       dispatch(AutenticationSuccess(userData));
       toast.success(`Seja bem vindo ${name}`);
-      redirect();
+      nookies.set(null, globalTypes.DRAWING_USER_DATA, token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      });
+
+      redirect(path);
     } catch(e: any) {
       console.log(e.response.data);
       toast.error(`${e.response.data.message}`);
@@ -31,7 +35,7 @@ export const siginUser = (userCredentials: UserCredentials, redirect: any): any 
   };
 };
 
-export const registerUser = (userCredentials: registerUserCredentials, redirect: any): any => {
+export const registerUser = (userCredentials: registerUserCredentials, redirect: any, path: string): any => {
   return  async (dispatch: Dispatch<any>) => {
     dispatch(initAutentication());
     try {
@@ -42,11 +46,14 @@ export const registerUser = (userCredentials: registerUserCredentials, redirect:
         email,
         password
       });
-      const { name, id, token, profilePhoto } = data;
-      const userData = {name, email, id, profilePhoto};
-      setLocalStorage(globalTypes.DRAWING_USER_DATA, {...userData, token});
+      const { name, id, token, profilePhoto, birthday } = data;
+      const userData = {name: userName, email, id, profilePhoto, birthday, phoneNumber};
+      nookies.set(null, globalTypes.DRAWING_USER_DATA, token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      });
       dispatch(AutenticationSuccess(userData));
-      redirect();
+      redirect(path);
       toast.success(`Seja bem vindo ${name}`);
     } catch(e: any) {
       console.log(e.response.data);
@@ -60,10 +67,13 @@ export const loginWithGoogle = (userCredentials: any): any => {
   return  async (dispatch: Dispatch<any>) => {
     dispatch(initAutentication());
     try {
-      const { name, id, token, email, profilePhoto } = userCredentials;
-      const userData = {name, email, id, profilePhoto};
+      const { name, id, token, email, profilePhoto, birthday, phoneNumber } = userCredentials;
+      const userData = {name, email, id, profilePhoto, birthday, phoneNumber};
       dispatch(AutenticationSuccess(userData));
-      setLocalStorage(globalTypes.DRAWING_USER_DATA, {...userData, token});
+      nookies.set(null, globalTypes.DRAWING_USER_DATA, token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      });
     } catch(e: any) {
       console.log(e.response.data);
       dispatch(AutenticationFailure());
@@ -72,10 +82,36 @@ export const loginWithGoogle = (userCredentials: any): any => {
   };
 };
 
-export const logout = (): any => {
+export const validateUser = (redirect: any): any => {
   return  async (dispatch: Dispatch<any>) => {
-    localStorage.removeItem(globalTypes.DRAWING_USER_DATA);
+    const token = JSON.stringify(nookies.get(null, globalTypes.DRAWING_USER_DATA));
+    console.log(token);
+    if(!token) return;
+    try {
+      const { data } = await apiConnection.post('/auth/me', null, {
+        headers: {
+          'Authorization': token
+        }
+      });
+      console.log(data);
+      const {name, email, id, profilePhoto, birthday, phoneNumber} = data.message;
+
+      const userData = {name, email, id, profilePhoto, birthday, phoneNumber};
+      dispatch(AutenticationSuccess(userData));
+      redirect('/dashboard');
+    } catch(e: any) {
+      console.log(e);
+      dispatch(logout(redirect));
+      dispatch(AutenticationFailure());
+    }
+  };
+};
+
+export const logout = (redirect: any): any => {
+  return  async (dispatch: Dispatch<any>) => {
+    nookies.destroy(null, globalTypes.DRAWING_USER_DATA);
     dispatch(Sigout());
+    redirect('/');
     toast.info('Deslogado com sucesso!');
   };
 };

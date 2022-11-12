@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { FormEvent, useEffect, useState } from 'react';
@@ -12,6 +13,7 @@ import { creadentialSiginValidation } from '../../utils/credentialValidation';
 import { useDispatch } from 'react-redux';
 import { siginUser } from '../../redux/actions/autenticationActions/autenticationActions';
 import Router from 'next/router';
+import { canSSRGuest } from '../../utils/canSSrguest';
 
 const Home: NextPage = () => {
 
@@ -48,11 +50,11 @@ const Home: NextPage = () => {
     setDisabled(false);
   };
 
-  const redirect = () => Router.push('/central-controler');
+  const redirect = (path: string) => Router.push(path);
 
   const sigin = () => {
     const { email, password } = credentials;
-    dispatch(siginUser({ email, password }, redirect));
+    dispatch(siginUser({ email, password }, redirect, '/centralController'));
   };
 
   const handleAutentication = (e: FormEvent) => {
@@ -107,3 +109,11 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getServerSideProps = canSSRGuest(async (ctx) => {
+  
+  return {
+    props: {}
+  };
+});
+

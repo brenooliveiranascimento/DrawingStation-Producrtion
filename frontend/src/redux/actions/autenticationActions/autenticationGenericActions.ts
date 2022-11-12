@@ -1,11 +1,11 @@
-import { UserState } from '../../../interfaces/UserInterfaces';
+import { UserInterface } from '../../../interfaces/UserInterfaces';
 import { AuthTypes } from '../../Types/AuthTypes';
 
 export const initAutentication = () => ({
   type: AuthTypes.INIT_LOGIN,
 });
 
-export const AutenticationSuccess = (userData: UserState) => ({
+export const AutenticationSuccess = (userData: UserInterface) => ({
   type: AuthTypes.LOGIN_SUCCESS,
   payload: userData,
 });

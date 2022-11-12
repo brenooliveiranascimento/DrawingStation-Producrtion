@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface UserInterface {
-  id: number;
+  id?: number;
   name: string
   email: string;
-  active: boolean;
-  premium: boolean;
+  active?: boolean;
+  premium?: boolean;
   birthday: string;
-  phoneNumber: string;
+  profilePhoto?: string;
+  phoneNumber: any;
 }
 
 export interface UserCredentials {
@@ -60,9 +61,11 @@ export interface UserVerifyInterface {
 export interface InitialValueState {
   userData: {
     name: string,
-    uid: number | null,
+    id: number | null,
     email: string,
     profilePhoto: string | null,
+    birthday: null,
+    phoneNumber: null,
   };
   logged: boolean
   error: boolean;
