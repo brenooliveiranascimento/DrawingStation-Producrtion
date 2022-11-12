@@ -1,6 +1,7 @@
+import { ModuleStateInterface } from '../../../interfaces/modules/ModulesInterface';
 import { ModulesTypes } from '../../Types/AuthTypes';
 
-const STATE_INITIAL_STATE = {
+const STATE_INITIAL_STATE: ModuleStateInterface = {
   modules: {
   },
   load: true,
