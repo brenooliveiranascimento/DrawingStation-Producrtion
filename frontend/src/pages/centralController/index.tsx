@@ -9,6 +9,7 @@ import { UserInterface } from '../../interfaces/UserInterfaces';
 import { useDispatch } from 'react-redux';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import Head from 'next/head';
+import styles from './styles.module.scss';
 
 interface DashboardPropTypes {
   userData: UserInterface,
@@ -30,7 +31,7 @@ function CentralController({userData}: DashboardPropTypes) {
       <Head>
         <title>Central-Controller</title>
       </Head>
-      <section>
+      <section className={styles.central_controller_container}>
         <h1>Central Controller!!</h1>
       </section>
     </>
