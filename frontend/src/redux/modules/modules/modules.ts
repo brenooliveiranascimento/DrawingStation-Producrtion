@@ -2,14 +2,14 @@ import { ModuleActionInterface, ModulesInterface, ModuleStateInterface } from '.
 import { ModulesTypes } from '../../Types/AuthTypes';
 
 const STATE_INITIAL_STATE: ModuleStateInterface = {
-  modules: null,
+  modules: [],
   load: true,
   error: false
 };
 
 const ACTION_INITIAL_VALUE: ModuleActionInterface = {
   type: '',
-  payload: {}
+  payload: null
 };
 
 function modules(state = STATE_INITIAL_STATE, action = ACTION_INITIAL_VALUE) {
@@ -21,14 +21,15 @@ function modules(state = STATE_INITIAL_STATE, action = ACTION_INITIAL_VALUE) {
   case ModulesTypes.REQUEST_FAIL:
     return { ...state, load: false, error: true };
   case ModulesTypes.EDIT_MODULE_MODULE:
-    return {
-      ...state,
-      load: false,
+    return { ...state, load: false,
       modules: state.modules?.map((currModule: ModulesInterface) => {
         if(currModule.id === action.payload.id) return action.payload;
-        return currModule;
-      })
-    };
+        return currModule;})};
+  case ModulesTypes.DELETE_MODULE:
+    return { ...state, load: false,
+      modules: state.modules?.filter((currModule: ModulesInterface) => currModule.id !== action.payload.id )};
+  case ModulesTypes.ADD_NEW_MODULE:
+    return { ...state, load: false, modules: [ ...state.modules, action.payload ]};
   default :
     return state;
   }

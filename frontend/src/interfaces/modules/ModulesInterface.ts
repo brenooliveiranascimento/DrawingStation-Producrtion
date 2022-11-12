@@ -7,12 +7,12 @@ export interface ModulesInterface {
 }
 
 export interface ModuleStateInterface {
-  modules: ModulesInterface[] | null;
+  modules: ModulesInterface[] | any;
   load: boolean;
   error: boolean;
 }
 
 export interface ModuleActionInterface {
   type: string;
-  payload: ModulesInterface;
+  payload?: ModulesInterface[] | ModulesInterface | any
 }
