@@ -2,7 +2,6 @@ import { ModulesTypes } from '../../Types/AuthTypes';
 
 const STATE_INITIAL_STATE = {
   modules: {
-
   },
   load: true,
   error: false
