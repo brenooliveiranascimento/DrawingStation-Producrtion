@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { FormEvent, useEffect, useState } from 'react';
@@ -11,12 +12,13 @@ import Image from 'next/image';
 import { FaGoogle } from 'react-icons/fa';
 import { creadentialRegisterValidation, creadentialSiginValidation } from '../utils/credentialValidation';
 import { useDispatch } from 'react-redux';
-import { loginWithGoogle, registerUser, siginUser } from '../redux/actions/autenticationActions/autenticationActions';
+import { loginWithGoogle, registerUser, siginUser, validateUser } from '../redux/actions/autenticationActions/autenticationActions';
 import axios from 'axios';
 import apiConnection from '../services/api.connection';
 import { useGoogleLogin } from '@react-oauth/google';
 import { toast } from 'react-toastify';
 import Router from 'next/router';
+import { canSSRGuest } from '../utils/canSSrguest';
 
 const Home: NextPage = () => {
 
@@ -105,15 +107,15 @@ const Home: NextPage = () => {
     },
   });
 
-  const redirect = () => Router.push('/dashboard');
+  const redirect = (path: string) => Router.push(path);
 
   const sigin = () => {
     const { email, password } = credentials;
-    dispatch(siginUser({ email, password }, redirect));
+    dispatch(siginUser({ email, password }, redirect, '/dashboard'));
   };
 
   const userRegister = () => {
-    dispatch(registerUser(credentials, redirect));
+    dispatch(registerUser(credentials, redirect, 'dashboard'));
   };
 
   const handleAutentication = (e: FormEvent) => {
@@ -167,6 +169,7 @@ const Home: NextPage = () => {
               placeholder='Email'
             />
             <Input
+              type={'password'}
               value={credentials.password}
               style={{borderBottomColor: unknowField === 'password' ? 'red' : 'white'}}
               onChange={({target}) => handleUserCredentials(target)}
@@ -218,3 +221,10 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getServerSideProps = canSSRGuest(async (ctx) => {
+  
+  return {
+    props: {}
+  };
+});

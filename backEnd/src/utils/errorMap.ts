@@ -13,4 +13,6 @@ export const errorMapTypes = {
   ERROR_ADD_NEW_CLASSROOM: 'Add new classroom error',
   ERROR_ADD_NEW_CLASSROOM_DATA: 'Add new classroom data error',
   CLASSROOM_DONT_EXIST:'Classroom dont exist',
+  TOKEN_NOT_FOUND: 'Token not found',
+  ADM_NOT_DOUND: 'Adm not found'
 }

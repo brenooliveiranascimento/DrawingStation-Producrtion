@@ -85,7 +85,7 @@ class ModuleController{
     if(error) return res.status(statusCodes.BAD_REQUEST)
       .json({ message: null, error: error.mesage });
 
-    return res.status(statusCodes.OK).json({ message });
+    return res.status(statusCodes.OK).json({ message, error: null });
   }
 }
 
