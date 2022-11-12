@@ -167,6 +167,7 @@ const Home: NextPage = () => {
               placeholder='Email'
             />
             <Input
+              type={'password'}
               value={credentials.password}
               style={{borderBottomColor: unknowField === 'password' ? 'red' : 'white'}}
               onChange={({target}) => handleUserCredentials(target)}

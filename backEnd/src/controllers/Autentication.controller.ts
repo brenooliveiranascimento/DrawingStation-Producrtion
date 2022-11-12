@@ -20,10 +20,17 @@ class UserController {
     if(error) return res.status(statusCodes.NOT_FOUND)
       .json({message: error.message, token: null, error: true});
 
-    const token = createToken({email: user.email, id: message})
+    const token = createToken({email: user.email, id: message.id, profilePhoto: message.profilePhoto, name: message.name})
+    console.log(message.id, 'djawiodjwiaojdo')
     return res.status(statusCodes.OK)
       .json({
-        message: 'Usuário cirado com sucesso', token, error: false, email: user.email, id: message.id, name: message.name, profilePhoto: message.profilePhoto
+        message: 'Usuário cirado com sucesso',
+        token,
+        error: false,
+        email: user.email,
+        id: message.id,
+        name: message.name,
+        profilePhoto: message.profilePhoto
       });
   }
 
@@ -33,8 +40,8 @@ class UserController {
 
     if(error) return res.status(statusCodes.NOT_FOUND)
       .json({message: error.message, token: null, error: true});
-
-    const token = createToken({email: user.email, id: message.id})
+      
+    const token = createToken({email: user.email, id: message.id, profilePhoto: message.profilePhoto, name: message.name})
     return res.status(statusCodes.OK).json({
       message: 'Logado com sucesso', token, error: false, email: user.email, id: message.id, name: message.name, profilePhoto: message.profilePhoto
     });
@@ -47,7 +54,7 @@ class UserController {
     if(error) return res.status(statusCodes.NOT_FOUND)
       .json({message: error.message, token: null, error: true});
 
-    const token = createToken({email: user.email, id: message.id})
+    const token = createToken({email: user.email, id: message.id, profilePhoto: message.profilePhoto, name: message.name})
     if(type === 'Register') {
       return res.status(statusCodes.OK).json({
         message: 'Registrado com sucesso!', token, error: false, email: user.email, id: message, profilePhoto: message.profilePhoto
