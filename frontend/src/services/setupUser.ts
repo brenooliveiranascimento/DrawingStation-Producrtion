@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { parseCookies } from 'nookies';
 import axios from 'axios';
 

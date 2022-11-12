@@ -3,11 +3,12 @@ import React, { useEffect } from 'react';
 import { setupUser } from '../../services/setupUser';
 import { canSSRAdm } from '../../utils/canSSRAdm';
 import jwtDecode from 'jwt-decode';
-import { destroyCookie, parseCookies } from 'nookies';
+import { parseCookies } from 'nookies';
 import apiConnection from '../../services/api.connection';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { useDispatch } from 'react-redux';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
+import Head from 'next/head';
 
 interface DashboardPropTypes {
   userData: UserInterface,
@@ -25,7 +26,14 @@ function CentralController({userData}: DashboardPropTypes) {
   }, []);
 
   return (
-    <div>index</div>
+    <>
+      <Head>
+        <title>Central-Controller</title>
+      </Head>
+      <section>
+        <h1>Central Controller!!</h1>
+      </section>
+    </>
   );
 }
 
