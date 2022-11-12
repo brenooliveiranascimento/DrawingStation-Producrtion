@@ -4,7 +4,7 @@ import { registerUserCredentials, UserCredentials } from '../../../interfaces/Us
 import apiConnection from '../../../services/api.connection';
 import { globalTypes } from '../../../utils/globalTypes';
 import { setLocalStorage } from '../../../utils/localStorageManeger';
-import { AutenticationFailure, AutenticationSuccess, initAutentication } from './autenticationGenericActions';
+import { AutenticationFailure, AutenticationSuccess, initAutentication, Sigout } from './autenticationGenericActions';
 import { toast } from 'react-toastify';
 
 export const siginUser = (userCredentials: UserCredentials, redirect: any): any => {
@@ -69,5 +69,13 @@ export const loginWithGoogle = (userCredentials: any): any => {
       dispatch(AutenticationFailure());
       toast.error(`${e.response.data.message}`);
     }
+  };
+};
+
+export const logout = (): any => {
+  return  async (dispatch: Dispatch<any>) => {
+    localStorage.removeItem(globalTypes.DRAWING_USER_DATA);
+    dispatch(Sigout());
+    toast.info('Deslogado com sucesso!');
   };
 };
