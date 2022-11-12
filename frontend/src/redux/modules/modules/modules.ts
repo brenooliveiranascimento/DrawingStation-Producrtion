@@ -3,6 +3,7 @@ import { ModulesTypes } from '../../Types/AuthTypes';
 
 const STATE_INITIAL_STATE: ModuleStateInterface = {
   modules: [],
+  currModule: null,
   load: true,
   error: false
 };
@@ -14,6 +15,8 @@ const ACTION_INITIAL_VALUE: ModuleActionInterface = {
 
 function modules(state = STATE_INITIAL_STATE, action = ACTION_INITIAL_VALUE) {
   switch(action.type) {
+  case ModulesTypes.SELECT_MODULE:
+    return { ...state, currModule: action.payload };
   case ModulesTypes.INIT_REQUEST:
     return { ...state, load: true };
   case ModulesTypes.REQUEST_SUCCESS:

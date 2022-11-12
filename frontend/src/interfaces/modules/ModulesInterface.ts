@@ -10,6 +10,7 @@ export interface ModuleStateInterface {
   modules: ModulesInterface[] | any;
   load: boolean;
   error: boolean;
+  currModule: number | null
 }
 
 export interface ModuleActionInterface {
