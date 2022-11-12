@@ -5,7 +5,7 @@ export const initReques = () => ({
   type: ModulesTypes.INIT_REQUEST
 });
 
-export const requestSuccess = (modulesData: ModulesInterface) => ({
+export const requestSuccess = (modulesData: ModulesInterface[]) => ({
   type: ModulesTypes.REQUEST_SUCCESS,
   payload: modulesData
 });

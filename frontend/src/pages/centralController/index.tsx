@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import Head from 'next/head';
 import styles from './styles.module.scss';
+import { requestModulesAction } from '../../redux/actions/moduleActions/moduleActions';
 
 interface DashboardPropTypes {
   userData: UserInterface,
@@ -22,7 +23,12 @@ function CentralController({userData}: DashboardPropTypes) {
     dispatch(AutenticationSuccess(userData));
   };
 
+  const setModules = () => {
+    dispatch(requestModulesAction());
+  };
+
   useEffect(() => {
+    setModules();
     setUser();
   }, []);
 
@@ -47,13 +53,9 @@ export const getServerSideProps = canSSRAdm(async (ctx) => {
   const token = cookies['DRAWING_USER_DATA'];
   const decodedEmail: any = jwtDecode(token);
 
-  const { data: validateEmail } = await apiConnection.post('/auth/adm', {
-    'email': decodedEmail.email
-  }, {
-    headers: {
-      'Authorization': token
-    }
-  });
+  const { data: validateEmail } = await apiConnection.post('/auth/adm',
+    { 'email': decodedEmail.email },
+    { headers: {'Authorization': token }});
 
   if(validateEmail.error) {
     return {
@@ -68,7 +70,7 @@ export const getServerSideProps = canSSRAdm(async (ctx) => {
   const { id, name, email, profilePhoto, birthday, phoneNumber } = data.message;
   return {
     props: {
-      userData: { id, name, email, profilePhoto, birthday, phoneNumber }
+      userData: { id, name, email, profilePhoto, birthday, phoneNumber },
     }
   };
 
