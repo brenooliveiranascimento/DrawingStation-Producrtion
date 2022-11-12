@@ -8,16 +8,15 @@ import { Input } from '../../Components/ui/Inputs/Inputs';
 import { Button } from '../../Components/ui/buttons/Buttons';
 import Logo from '../../../public/logo1.png';
 import Image from 'next/image';
-import { creadentialRegisterValidation, creadentialSiginValidation } from '../../utils/credentialValidation';
+import { creadentialSiginValidation } from '../../utils/credentialValidation';
 import { useDispatch } from 'react-redux';
-import { registerUser, siginUser } from '../../redux/actions/autenticationActions/autenticationActions';
+import { siginUser } from '../../redux/actions/autenticationActions/autenticationActions';
 import Router from 'next/router';
 
 const Home: NextPage = () => {
 
   const dispatch = useDispatch();
   
-  const [register, setRegister] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [firstLoad, setFIstLoad] = useState(true);
   const [unknowField, setUnknowField] = useState('');
@@ -98,13 +97,7 @@ const Home: NextPage = () => {
               loading={false}
               disabled={disabled}
             >
-              {
-                register ? (
-                  'Registrar'
-                ) : (
-                  'Entrar'
-                )
-              }
+              Entrar
             </Button>
           </form>
         </aside>
