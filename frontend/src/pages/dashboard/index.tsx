@@ -9,6 +9,10 @@ import { UserInterface } from '../../interfaces/UserInterfaces';
 import Navbar from '../../Components/ui/SideBar/Navbar';
 import ModulesController from '../../Components/AdmComponents/ModuleController/ModulesController';
 import AdmHeader from '../../Components/AdmComponents/AdmHeader/AdmHeader';
+import { canSSRAdm } from '../../utils/canSSRAdm';
+import { parseCookies } from 'nookies';
+import jwtDecode from 'jwt-decode';
+import apiConnection from '../../services/api.connection';
 
 interface DashboardPropTypes {
   userData: UserInterface,
@@ -59,14 +63,33 @@ function Dashboad({ userData }: DashboardPropTypes) {
 
 export default Dashboad;
 
-export const getServerSideProps = canSSRAuth(async (ctx) => {
+
+export const getServerSideProps = canSSRAdm(async (ctx) => {
   const userConncetion = setupUser(ctx);
+  const cookies = parseCookies(ctx);  
+
+  const token = cookies['DRAWING_USER_DATA'];
+  const decodedEmail: any = jwtDecode(token);
+
+  const { data: validateEmail } = await apiConnection.post('/auth/adm',
+    { 'email': decodedEmail.email },
+    { headers: {'Authorization': token }});
+
+  if(validateEmail.error) {
+    return {
+      redirect:{
+        destination: '/dashboard',
+        permanent: false,
+      }
+    };
+  }
 
   const {data} = await userConncetion.post('/auth/me');
   const { id, name, email, profilePhoto, birthday, phoneNumber } = data.message;
   return {
     props: {
-      userData: { id, name, email, profilePhoto, birthday, phoneNumber }
+      userData: { id, name, email, profilePhoto, birthday, phoneNumber },
     }
   };
+
 });

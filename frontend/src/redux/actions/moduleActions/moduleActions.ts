@@ -8,7 +8,7 @@ import { initReques, requestSuccess } from './moduleGenericActions';
 export const requestModulesAction = (): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
     const { modules } = state();
-    if(!modules.modules) return;
+    if(modules.modules.length) return;
     dispatch(initReques());
     const cookies = parseCookies();
     const token = cookies['DRAWING_USER_DATA'];

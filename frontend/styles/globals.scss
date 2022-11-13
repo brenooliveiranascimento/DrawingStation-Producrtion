@@ -42,6 +42,11 @@ body {
   background-color: var(--black-900);
 }
 
+body::-webkit-scrollbar {
+  width: 5px;
+  background-color: red;
+}
+
 @media (max-width: 720px) {
     html {
       font-size: 87,5%;
