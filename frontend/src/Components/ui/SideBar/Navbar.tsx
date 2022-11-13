@@ -72,15 +72,15 @@ const Navbar = ({setCurrScreen, currScreen}: NavPropsInterface) => {
           </span>
 
           <NavUrl
-            url="/"
+            url="Dashboard"
             icon={<MdOutlineDashboard />}
             description="Dashboard"
           />
 
           <NavUrl
-            url="users"
+            url="Users"
             icon={<FaUserAlt />}
-            description="Campaings"
+            description="Users"
           />
 
           <span

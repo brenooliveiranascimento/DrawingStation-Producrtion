@@ -3,11 +3,12 @@ import Head from 'next/head';
 import styles from './styles.module.scss';
 import { canSSRAuth } from '../../utils/canSSRAuth';
 import { setupUser } from '../../services/setupUser';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import Navbar from '../../Components/ui/SideBar/Navbar';
-import ModulesController from '../../Components/AdmComponents/ModulesController';
+import ModulesController from '../../Components/AdmComponents/ModuleController/ModulesController';
+import AdmHeader from '../../Components/AdmComponents/AdmHeader/AdmHeader';
 
 interface DashboardPropTypes {
   userData: UserInterface,
@@ -15,7 +16,7 @@ interface DashboardPropTypes {
 
 function Dashboad({ userData }: DashboardPropTypes) {
   const dispatch = useDispatch();
-  const [currScreen, setCurrScreen] = useState('users');
+  const [currScreen, setCurrScreen] = useState('dashboard');
 
   const setUser = () => {
     dispatch(AutenticationSuccess(userData));
@@ -31,10 +32,12 @@ function Dashboad({ userData }: DashboardPropTypes) {
 
   const Main = () => {
     switch(currScreen) {
-    case 'users':
+    case 'Users':
       return (<h1>Users</h1>);
-    default:
+    case 'Dashboard':
       return <ModulesController/>;
+    default:
+      return <ModulesController />;
     }
   };
 
@@ -46,6 +49,7 @@ function Dashboad({ userData }: DashboardPropTypes) {
       <section className={styles.dashboard_container}>
         <Navbar setCurrScreen={(screen: string) => handleScreen(screen)} currScreen={currScreen} />
         <section className={styles.main_container}>
+          <AdmHeader currPage={currScreen}/>
           <Main />
         </section>
       </section>
