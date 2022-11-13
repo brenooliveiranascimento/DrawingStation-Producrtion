@@ -20,12 +20,14 @@ function ModuleCard({ module }: ModuleCardProps) {
           alt={`${module.name}`}
         />
       </section>
-      <article>
-        <h1>{module.name}</h1>
-        <span>
-          {module.description}
-        </span>
-      </article>
+      <section className={styles.inf_area}>
+        <article>
+          <h1>{module.name}</h1>
+          <span>
+            {module.description}
+          </span>
+        </article>
+      </section>
     </button>
   );
 }

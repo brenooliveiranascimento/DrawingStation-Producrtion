@@ -26,3 +26,14 @@
     width: 100%
   }
 };
+
+.inf_area {
+  display: flex;
+  width: 100%;
+  height: auto;
+
+  button {
+    position: absolute;
+    margin-right: 10px;
+  }
+}

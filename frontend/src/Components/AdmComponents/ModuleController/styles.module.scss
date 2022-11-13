@@ -37,14 +37,19 @@
   background: #555;
 }
 
-
 .Modules_area {
   margin-top: 1rem;
   width: 100%;
   height: auto;
   align-items: center;
-  justify-content: center;
   display: flex;
   flex-wrap: wrap;
   background-color: var(--black-900);
 }
+
+@media screen and (max-width:732px) {
+  .Modules_area {
+    justify-content: center;
+  }
+}
+

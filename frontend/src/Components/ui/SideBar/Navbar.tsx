@@ -3,18 +3,16 @@ import styles from './Navbar.module.scss';
 //ICONS FROM REACT-ICONS PACKAGE
 import {
   MdOutlineDashboard,
-  MdOutlineAnalytics,
-  MdVerifiedUser,
-  MdOutlineMessage,
   MdOutlineLogout,
-  MdOutlineFlag,
 } from 'react-icons/md';
 
 import {
-  FaUserAlt
+  FaUserAlt,
+  FaPencilAlt,
 } from 'react-icons/fa';
+import { FiLayout } from 'react-icons/fi';
 import { IoMdLogIn } from 'react-icons/io';
-import { FaReact, FaTimes } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 import { BsThreeDots } from 'react-icons/bs';
 import { VscDashboard } from 'react-icons/vsc';
 import { useState } from 'react';
@@ -72,9 +70,21 @@ const Navbar = ({setCurrScreen, currScreen}: NavPropsInterface) => {
           </span>
 
           <NavUrl
-            url="Dashboard"
+            url="Modules"
             icon={<MdOutlineDashboard />}
-            description="Dashboard"
+            description="Modules"
+          />
+
+          <NavUrl
+            url="SubModules"
+            icon={<FiLayout />}
+            description="SubModules"
+          />
+
+          <NavUrl
+            url="Classrooms"
+            icon={<FaPencilAlt />}
+            description="Classrooms"
           />
 
           <NavUrl
