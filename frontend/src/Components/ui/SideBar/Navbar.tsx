@@ -35,6 +35,9 @@ const Navbar = ({setCurrScreen, currScreen}: NavPropsInterface) => {
     return (
       <li className={styles.li_navlink}>
         <Link
+          style={{
+            backgroundColor: currScreen === url ? 'black' : 'none'
+          }}
           href={'/dashboard'}
           onClick={() => {
             setCurrScreen(url);

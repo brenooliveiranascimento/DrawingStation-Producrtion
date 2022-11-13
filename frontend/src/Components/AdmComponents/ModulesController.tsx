@@ -1,88 +1,14 @@
 import React from 'react';
 import styles from './styles.module.scss';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 function ModulesController() {
   return (
-    <section className={styles.modules_controller_container}>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-      <h1>wajidjwaiodjwd</h1>
-    </section>
+    <Scrollbars className={styles.modules_controller_container}>
+      <section className={styles.modules_controller_container}>
+        
+      </section>
+    </Scrollbars>
   );
 }
 

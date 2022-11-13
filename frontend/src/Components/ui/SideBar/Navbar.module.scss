@@ -2,20 +2,17 @@
     --color_nav_bg: rgb(30, 41, 59);
     --color_nav_txt: rgb(100, 116, 139);
     --color_nav_ctg: rgb(226, 232, 240);
-    --color_nav_active: rgb(85, 79, 232);
+    --color_nav_active: rgb(161, 66, 82);
     --color_nav_not_active: rgb(61, 74, 94);
     --color_nav_active_bg: rgb(15, 23, 42);
     --nav-width: 16rem;
 
-    background: var(--color_nav_bg);
+    background: var(--dark-900);
     height: 100vh;
-    position: fixed;
 
     padding: var(--padding-md) var(--padding-sm); //1rem 0.8rem
     transition: transform 300ms ease-in-out;
     transition: transform 300ms ease-in;
-
-    //MOBILE
 
     @media screen and (max-width: 1024px) {
         transform: translateX((-100%));
