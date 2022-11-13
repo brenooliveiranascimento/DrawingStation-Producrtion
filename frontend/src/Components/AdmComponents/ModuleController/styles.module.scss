@@ -40,9 +40,10 @@
 
 .Modules_area {
   margin-top: 1rem;
-  padding-bottom: 1rem;
   width: 100%;
   height: auto;
+  align-items: center;
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
   background-color: var(--black-900);
