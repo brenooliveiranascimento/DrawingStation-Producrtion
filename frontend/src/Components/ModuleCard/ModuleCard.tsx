@@ -5,12 +5,19 @@ import { ModulesInterface } from '../../interfaces/modules/ModulesInterface';
 import styles from './styles.module.scss';
 
 interface ModuleCardProps {
-  module: ModulesInterface
+  module: ModulesInterface;
+  handleModal: () => void;
+  handleModule: (module: ModulesInterface) => void
 }
 
-function ModuleCard({ module }: ModuleCardProps) {
+function ModuleCard({ module, handleModal, handleModule }: ModuleCardProps) {
+  const selectModule = () => {
+    handleModule(module);
+    handleModal();
+  };
+
   return (
-    <button className={styles.card_container}>
+    <button onClick={selectModule} className={styles.card_container}>
       <section>
         <Image  
           width={300}
