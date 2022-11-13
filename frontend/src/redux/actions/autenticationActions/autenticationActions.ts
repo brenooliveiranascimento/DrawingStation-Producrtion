@@ -94,7 +94,6 @@ export const validateUser = (redirect: any): any => {
           'Authorization': token
         }
       });
-      console.log(data);
       const {name, email, id, profilePhoto, birthday, phoneNumber} = data.message;
 
       const userData = {name, email, id, profilePhoto, birthday, phoneNumber};
