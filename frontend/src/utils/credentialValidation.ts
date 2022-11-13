@@ -45,7 +45,6 @@ export const creadentialRegisterValidation = (credentials: RegisterCredentialInt
     unknowCredential = credentialKey;
     return false;
   });
-  console.log(credentials);
   if(credentials.password === credentials.confirmPassword && checkAllCredentials) {
     return { check: true, unknowCredential };
   }

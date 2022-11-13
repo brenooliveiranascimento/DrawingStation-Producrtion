@@ -82,6 +82,7 @@ const Home: NextPage = () => {
     setUnknowField('');
     setRegister(!register);
   };
+  const redirect = (path: string) => Router.push(path);
 
   const loginGoogle = useGoogleLogin({
     onSuccess: async (response) => {
@@ -97,17 +98,13 @@ const Home: NextPage = () => {
           picture: userData.picture,
           name: userData.name
         });
-        toast.success(`Seja bem vindo ${userData.name}`);
-        Router.push('/dashboard');
-        dispatch(loginWithGoogle(data));
+        dispatch(loginWithGoogle(data, redirect, '/dashboard'));
       } catch(e: any) {
         toast.dismiss('Algo de errado! :(');
         console.log(e.response.data);
       }
     },
   });
-
-  const redirect = (path: string) => Router.push(path);
 
   const sigin = () => {
     const { email, password } = credentials;

@@ -18,7 +18,6 @@ class UserService {
   }
 
   public async findAdm(email: string):Promise<GetUserInterface> {
-    console.log('dniowajdiwoadjiowajdioawjdiowajdiwd')
     try {
       const user = await AdmModel.findOne({ where: { email }});
       if(!user) return { error: { message: errorMapTypes.ADM_NOT_DOUND }, message: errorMapTypes.ADM_NOT_DOUND };
