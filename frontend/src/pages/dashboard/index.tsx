@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import Navbar from '../../Components/ui/SideBar/Navbar';
+import ModulesController from '../../Components/AdmComponents/ModulesController';
 
 interface DashboardPropTypes {
   userData: UserInterface,
@@ -33,7 +34,7 @@ function Dashboad({ userData }: DashboardPropTypes) {
     case 'users':
       return (<h1>Users</h1>);
     default:
-      return (<h1>Dashboard</h1>);
+      return <ModulesController/>;
     }
   };
 
@@ -44,7 +45,7 @@ function Dashboad({ userData }: DashboardPropTypes) {
       </Head>
       <section className={styles.dashboard_container}>
         <Navbar setCurrScreen={(screen: string) => handleScreen(screen)} currScreen={currScreen} />
-        <section>
+        <section className={styles.main_container}>
           <Main />
         </section>
       </section>

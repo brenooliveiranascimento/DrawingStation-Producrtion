@@ -5,3 +5,12 @@
     color: var(--white);
   }
 }
+
+.main_container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
