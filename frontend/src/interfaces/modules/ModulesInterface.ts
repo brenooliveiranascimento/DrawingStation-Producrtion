@@ -6,6 +6,15 @@ export interface ModulesInterface {
   premium?: boolean
 }
 
+export interface EditModule {
+  admPassword?: string,
+  id?: number;
+  name?:string;
+  description?: string;
+  image?: string;
+  premium?: boolean
+}
+
 export interface ModuleStateInterface {
   modules: ModulesInterface[] | any;
   load: boolean;

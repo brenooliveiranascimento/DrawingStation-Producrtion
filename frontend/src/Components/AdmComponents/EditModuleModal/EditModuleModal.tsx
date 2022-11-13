@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { OnChangeCallback } from 'react-toastify/dist/core';
-import { ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
+import React, { FormEvent, useEffect, useState } from 'react';
+import { EditModule, ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
 import { Input } from '../../ui/Inputs/Inputs';
 
 interface EditModuleInterface {
   handleModal: () => void;
-  moduleEditing: ModulesInterface
+  moduleEditing: EditModule
 }
 
 function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
-  const [editingModule, setEditingModule] = useState<ModulesInterface>({
+  const [editingModule, setEditingModule] = useState<EditModule>({
     name: '',
     description: '',
     image: '',
-    premium: true
+    premium: true,
+    admPassword: '',
   });
+
+  const [confirm, setConfirm] = useState(false);
 
   useEffect(() => {
     setEditingModule(moduleEditing);
@@ -27,7 +29,10 @@ function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
       return; 
     }
     setEditingModule({...editingModule, [name]: value});
+  };
 
+  const updateModule = () => {
+    alert('atualizado!!!');
   };
 
   return (
@@ -56,6 +61,16 @@ function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
           name='image'
           value={editingModule.image}
         />
+        <button type='button' onClick={(e: FormEvent) => {
+          e.preventDefault();
+          if(!confirm) return setConfirm(!confirm);
+          updateModule();
+        }}>
+          {confirm ? 'Confirmar!' : 'Atualizar'}
+        </button>
+        <button onClick={handleModal}>
+          Cancelar
+        </button>
       </form>
       {moduleEditing.description}
     </section>
