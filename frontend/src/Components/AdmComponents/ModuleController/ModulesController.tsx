@@ -13,7 +13,13 @@ function ModulesController() {
   const dispatch = useDispatch();
 
   const [editing, setEditing] = useState(false);
-  const [moduleEditing, setModuleEditing] = useState<ModulesInterface | null>(null);
+  const [moduleEditing, setModuleEditing] = useState<ModulesInterface>({
+    name: '',
+    description: '',
+    image: '',
+    premium: true
+  });
+  const [firstLoad, setFirstLoad] = useState(true);
 
   const setModules = () => {
     dispatch(requestModulesAction());
@@ -26,9 +32,11 @@ function ModulesController() {
   const handleModal = () => setEditing(!editing);
 
   useEffect(() => {
-    setModules();
+    if(firstLoad) {
+      setModules();
+      setFirstLoad(false);
+    }
   }, []);
-
   return (
     <section className={styles.modules_controller_container}>
       <h1>Modulos existentes</h1>
