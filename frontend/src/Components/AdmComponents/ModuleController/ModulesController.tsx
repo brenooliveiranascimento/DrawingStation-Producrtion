@@ -22,7 +22,8 @@ function ModulesController() {
     <section className={styles.modules_controller_container}>
       <h1>Modulos existentes</h1>
       <section className={styles.Modules_area}>
-        {modules.map((currModule: ModulesInterface) => <ModuleCard module={currModule} />)}
+        {modules.map((currModule: ModulesInterface) => <ModuleCard
+          key={currModule.id} module={currModule} />)}
       </section>
     </section>
   );

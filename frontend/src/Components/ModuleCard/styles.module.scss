@@ -1,0 +1,29 @@
+.card_container {
+  width: auto;
+  min-height: auto;
+  padding-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: rgba(0,0,0);
+  margin: 1rem;
+  margin-bottom: 3rem;
+  border: none;
+
+  h1 {
+    color: var(--white);
+  }
+
+  span {
+    color: var(--white);
+  }
+
+  article {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%
+  }
+};
