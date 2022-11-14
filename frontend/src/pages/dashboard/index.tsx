@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import styles from './styles.module.scss';
-import { canSSRAuth } from '../../utils/canSSRAuth';
 import { setupUser } from '../../services/setupUser';
 import { useDispatch } from 'react-redux';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import Navbar from '../../Components/ui/SideBar/Navbar';
-import ModulesController from '../../Components/AdmComponents/ModuleController/ModulesController';
+import ModulesController from '../../Components/AdmComponents/ModuleControllers/ModulesController';
 import AdmHeader from '../../Components/AdmComponents/AdmHeader/AdmHeader';
 import { canSSRAdm } from '../../utils/canSSRAdm';
 import { parseCookies } from 'nookies';
 import jwtDecode from 'jwt-decode';
 import apiConnection from '../../services/api.connection';
+import SubModuleController from '../../Components/AdmComponents/SubModuleController/SubModuleController';
 
 interface DashboardPropTypes {
   userData: UserInterface,
@@ -40,6 +40,8 @@ function Dashboad({ userData }: DashboardPropTypes) {
       return (<h1>Users</h1>);
     case 'Dashboard':
       return <ModulesController/>;
+    case 'SubModules':
+      return <SubModuleController />;
     default:
       return <ModulesController />;
     }

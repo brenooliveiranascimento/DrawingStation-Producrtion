@@ -22,6 +22,8 @@ routes.get('/classrooms', moduleController.getClassrooms);
 routes.use(validateAdm, checkAdm);
 
 routes.put('/sub/:id',validationModule ,moduleController.updateSubModule);
+routes.post('/sub',validationModule ,moduleController.addNewSubModule);
+
 routes.post('/classrooms',
 validationClassroom,
 validationClassroomData,

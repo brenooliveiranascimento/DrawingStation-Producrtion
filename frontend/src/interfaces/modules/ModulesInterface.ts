@@ -6,13 +6,34 @@ export interface ModulesInterface {
   premium?: boolean
 }
 
+export interface ClassroomInterface {
+  id: number;
+  name: string;
+  image: string;
+  subModuleId: number;
+  premium: boolean
+}
+
+export interface SubModuleInterface {
+  id?: number;
+  name:string;
+  description: string;
+  image: string;
+  premium: boolean;
+  moduleId: number;
+  classrooms?: ClassroomInterface[],
+  identity?: string;
+  admPassword?: string
+}
+
 export interface EditModule {
   admPassword?: string,
   id?: number;
   name?:string;
   description?: string;
   image?: string;
-  premium?: boolean
+  premium?: boolean;
+  moduleId?: number
 }
 
 export interface ModuleStateInterface {
@@ -22,7 +43,20 @@ export interface ModuleStateInterface {
   currModule: number | null
 }
 
+export interface SubModuleStateInterface {
+  subModules: SubModuleInterface[] | any;
+  load: boolean;
+  error: boolean;
+  currSubModule: number | null
+}
+
 export interface ModuleActionInterface {
   type: string;
   payload?: ModulesInterface[] | ModulesInterface | any
 }
+
+export interface SubModuleActionInterface {
+  type: string;
+  payload?: SubModuleInterface[] | SubModuleInterface | any
+}
+

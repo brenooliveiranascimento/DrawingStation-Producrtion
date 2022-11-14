@@ -1,26 +1,28 @@
+import Image from 'next/image';
 import React, { FormEvent, useEffect, useState } from 'react';
-import { EditModule, ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
-import { Input } from '../../ui/Inputs/Inputs';
+import { useDispatch } from 'react-redux';
+import { EditModule, SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
+import { editModule } from '../../../../redux/actions/moduleActions/moduleActions';
+import { updateSubModuleAction } from '../../../../redux/actions/subModuleActions/subModuleActions';
+import { Input } from '../../../ui/Inputs/Inputs';
 
 interface EditModuleInterface {
   handleModal: () => void;
-  moduleEditing: EditModule
+  subModuleEditing: any
 }
 
-function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
-  const [editingModule, setEditingModule] = useState<EditModule>({
+function EditSubModuleModal({ handleModal, subModuleEditing }: EditModuleInterface) {
+  const [editingModule, setEditingModule] = useState<SubModuleInterface>({
     name: '',
     description: '',
     image: '',
     premium: true,
     admPassword: '',
+    moduleId: 0,
+    identity: '',
   });
-
+  const dispatch = useDispatch();
   const [confirm, setConfirm] = useState(false);
-
-  useEffect(() => {
-    setEditingModule(moduleEditing);
-  }, []);
 
   const handleChange = (target: any) => {
     const { name, value, type, checked } = target;
@@ -31,9 +33,18 @@ function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
     setEditingModule({...editingModule, [name]: value});
   };
 
-  const updateModule = () => {
-    alert('atualizado!!!');
+  const updateSubModule = () => {
+    dispatch(updateSubModuleAction(editingModule, handleModal));
   };
+
+
+  useEffect(() => {
+    setEditingModule(subModuleEditing);
+  }, []);
+
+  useEffect(() => {
+    console.log(editingModule);
+  }, [editingModule]);
 
   return (
     <section>
@@ -41,10 +52,12 @@ function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
         <Input
           onChange={({target}) => handleChange(target)}
           name='name'
+          placeholder='name'
           value={editingModule.name}
         />
         <Input
           onChange={({target}) => handleChange(target)}
+          placeholder='description'
           name='description'
           value={editingModule.description}
         />
@@ -58,13 +71,21 @@ function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
 
         <Input
           onChange={({target}) => handleChange(target)}
+          placeholder='image'
           name='image'
           value={editingModule.image}
+        />
+
+        <Input
+          onChange={({target}) => handleChange(target)}
+          name='identity'
+          placeholder='identity'
+          value={editingModule.identity}
         />
         <button type='button' onClick={(e: FormEvent) => {
           e.preventDefault();
           if(!confirm) return setConfirm(!confirm);
-          updateModule();
+          updateSubModule();
         }}>
           {confirm ? 'Confirmar!' : 'Atualizar'}
         </button>
@@ -72,9 +93,15 @@ function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
           Cancelar
         </button>
       </form>
-      {moduleEditing.description}
+      <Image
+        width={200}
+        height={300}
+        src={`${editingModule.image}`}
+        alt={`${editingModule.name}`}
+      />
+      {subModuleEditing.description}
     </section>
   );
 }
 
-export default EditModuleModal;
+export default EditSubModuleModal;

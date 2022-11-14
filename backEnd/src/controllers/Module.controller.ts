@@ -4,7 +4,7 @@ import statusCodes from '../statusCode';
 import jwt from 'jsonwebtoken'
 import UserService from '../services/User.services';
 import { errorMapTypes } from '../utils/errorMap';
-import { ModuleInterface } from '../interfaces/modulesTypes';
+import { ModuleInterface, SubModulesInterface } from '../interfaces/modulesTypes';
 
 class ModuleController{
   constructor(
@@ -30,6 +30,7 @@ class ModuleController{
   public updateSubModule = async (req: Request, res: Response) => {
     const { id } = req.params
     const subModule = req.body
+    console.log(subModule)
     const { error, message }: any = await this.moduleService.updateSubModule(Number(id), subModule);
 
     if(error) return res.status(statusCodes.NOT_FOUND).json({ message, error: error.message })
@@ -43,6 +44,16 @@ class ModuleController{
     if(error) return res.status(statusCodes.NO_CONTENT).json({ message: message, error: error.message });
 
     return res.status(statusCodes.OK).json({ message: 'Módulo Adicionado com sucesso!', error: null });
+  }
+
+  public addNewSubModule = async (req: Request, res: Response) => {
+    const subModule: SubModulesInterface = req.body;
+    console.log(subModule)
+    const { error, message } = await this.moduleService.addNewSubModule(subModule);
+
+    if(error) return res.status(statusCodes.NO_CONTENT).json({ message: message, error: error.message });
+
+    return res.status(statusCodes.OK).json({ message: 'SubMódulo Adicionado com sucesso!', error: null });
   }
 
   public deleteModule = async (req: Request, res: Response) => {
@@ -61,7 +72,7 @@ class ModuleController{
 
     if(error) return res.status(statusCodes.NOT_FOUND).json({ message, error: error.message });
 
-    return res.status(statusCodes.NOT_FOUND).json({ message, error: null });
+    return res.status(statusCodes.OK).json({ message, error: null });
   }
 
   public getAllModules = async (_req: Request, res: Response) => {

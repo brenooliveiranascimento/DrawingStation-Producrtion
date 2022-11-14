@@ -28,8 +28,13 @@ export const siginUser = (userCredentials: UserCredentials, redirect: any, path:
 
       redirect(path);
     } catch(e: any) {
-      console.log(e.response.data);
-      toast.error(`${e.response.data.message}`);
+      if(e) {
+        console.log(e.response.data);
+        toast.error(`${e.response.data.message}`);
+      } else {
+        console.log('Server Connectionn error');
+        toast.error('Server Connectionn error');
+      }
       dispatch(AutenticationFailure());
     }
   };
@@ -56,9 +61,14 @@ export const registerUser = (userCredentials: registerUserCredentials, redirect:
       redirect(path);
       toast.success(`Seja bem vindo ${name}`);
     } catch(e: any) {
-      console.log(e.response.data);
+      if(e) {
+        console.log(e.response.data);
+        toast.error(`${e.response.data.message}`);
+      } else {
+        console.log('Server Connectionn error');
+        toast.error('Server Connectionn error');
+      }
       dispatch(AutenticationFailure());
-      toast.error(`${e.response.data.message}`);
     }
   };
 };
@@ -77,9 +87,14 @@ export const loginWithGoogle = (userCredentials: any, redirect: any, path: strin
       redirect(path);
       toast.success(`Seja bem vindo ${name}`);
     } catch(e: any) {
-      console.log(e.response.data);
+      if(e) {
+        console.log(e.response.data);
+        toast.error(`${e.response.data.message}`);
+      } else {
+        console.log('Server Connectionn error');
+        toast.error('Server Connectionn error');
+      }
       dispatch(AutenticationFailure());
-      toast.error(`${e.response.data.message}`);
     }
   };
 };
@@ -100,7 +115,13 @@ export const validateUser = (redirect: any): any => {
       dispatch(AutenticationSuccess(userData));
       redirect('/dashboard');
     } catch(e: any) {
-      console.log(e);
+      if(e) {
+        console.log(e.response.data);
+        toast.error(`${e.response.data.message}`);
+      } else {
+        console.log('Server Connectionn error');
+        toast.error('Server Connectionn error');
+      }
       dispatch(logout(redirect));
       dispatch(AutenticationFailure());
     }

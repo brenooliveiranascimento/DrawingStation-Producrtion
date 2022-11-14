@@ -54,7 +54,7 @@ const Home: NextPage = () => {
 
   const sigin = () => {
     const { email, password } = credentials;
-    dispatch(siginUser({ email, password }, redirect, '/centralController'));
+    dispatch(siginUser({ email, password }, redirect, '/dashboard'));
   };
 
   const handleAutentication = (e: FormEvent) => {

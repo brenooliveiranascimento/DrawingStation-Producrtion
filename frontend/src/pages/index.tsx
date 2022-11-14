@@ -98,7 +98,7 @@ const Home: NextPage = () => {
           picture: userData.picture,
           name: userData.name
         });
-        dispatch(loginWithGoogle(data, redirect, '/dashboard'));
+        dispatch(loginWithGoogle(data, redirect, '/HomePage'));
       } catch(e: any) {
         toast.dismiss('Algo de errado! :(');
         console.log(e.response.data);
@@ -108,11 +108,11 @@ const Home: NextPage = () => {
 
   const sigin = () => {
     const { email, password } = credentials;
-    dispatch(siginUser({ email, password }, redirect, '/dashboard'));
+    dispatch(siginUser({ email, password }, redirect, '/HomePage'));
   };
 
   const userRegister = () => {
-    dispatch(registerUser(credentials, redirect, 'dashboard'));
+    dispatch(registerUser(credentials, redirect, '/HomePage'));
   };
 
   const handleAutentication = (e: FormEvent) => {

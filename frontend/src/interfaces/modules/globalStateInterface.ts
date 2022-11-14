@@ -1,7 +1,8 @@
-import { UserInitialInterface } from '../UserInterfaces';
-import { ModuleStateInterface } from './ModulesInterface';
+import { InitialValueState } from '../UserInterfaces';
+import { ModuleStateInterface, SubModuleStateInterface } from './ModulesInterface';
 
 export interface globalState {
-  user: UserInitialInterface,
+  user: InitialValueState,
   modules: ModuleStateInterface
+  subModules: SubModuleStateInterface;
 }

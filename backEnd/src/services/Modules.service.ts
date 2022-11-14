@@ -92,6 +92,15 @@ class ModuleService {
     return { error: null, message: add };
   }
 
+  public async addNewSubModule(subModule: SubModulesInterface):  Promise<{ error: {message: string} | null, message: SubModulesInterface | null }> {
+    const { description, id, image, moduleId, name, premium } = subModule;
+    const add = await SubModuleModel.create({
+      description, id, image, moduleId, name, premium
+    })
+    if(!add) return { error: { message: errorMapTypes.REQUEST_ERROR }, message: null };
+    return { error: null, message: add };
+  }
+
   public async deleteModule(id: number):  Promise<{ error: {message: string} | null, message: string | null | ModuleInterface | any}> {
     try {
       const { error, message } = await this.getModuleById(id);

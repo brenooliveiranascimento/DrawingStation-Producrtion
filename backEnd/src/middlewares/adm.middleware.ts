@@ -4,7 +4,7 @@ const validateAdm = (req: Request, res: Response, next: NextFunction) => {
   const { identity } = req.body
   const key = process.env.UPDATE_DELETE_CREDENTIAL as string
   if (identity !== key) {
-    return res.status(401).json({ message: 'AdmEmail No Validation' });
+    return res.status(401).json({ message: 'identity No Validation' });
   }
 
   next();
