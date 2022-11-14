@@ -61,6 +61,7 @@
         "no-alert": "off",
         "func-names": "off",
         "consistent-return": "off",
-        "no-unused-vars": "off"
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-explicit-any": "off"
     }
 }

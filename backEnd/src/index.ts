@@ -11,7 +11,7 @@ app.use(cors())
 
 app.use(express.json());
 
-const PORT = process.env.BD_PORT;
+const PORT = process.env.PORT;
 app.use('/modules', moduleRoutes)
 app.use('/auth', authRoutes);
 app.use(errorMiddleware)

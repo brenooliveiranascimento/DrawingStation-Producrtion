@@ -28,8 +28,13 @@ export const siginUser = (userCredentials: UserCredentials, redirect: any, path:
 
       redirect(path);
     } catch(e: any) {
-      console.log(e.response.data);
-      toast.error(`${e.response.data.message}`);
+      if(e) {
+        console.log(e.response.data);
+        toast.error(`${e.response.data.message}`);
+      } else {
+        console.log('Server Connectionn error');
+        toast.error('Server Connectionn error');
+      }
       dispatch(AutenticationFailure());
     }
   };
@@ -56,28 +61,40 @@ export const registerUser = (userCredentials: registerUserCredentials, redirect:
       redirect(path);
       toast.success(`Seja bem vindo ${name}`);
     } catch(e: any) {
-      console.log(e.response.data);
+      if(e) {
+        console.log(e.response.data);
+        toast.error(`${e.response.data.message}`);
+      } else {
+        console.log('Server Connectionn error');
+        toast.error('Server Connectionn error');
+      }
       dispatch(AutenticationFailure());
-      toast.error(`${e.response.data.message}`);
     }
   };
 };
 
-export const loginWithGoogle = (userCredentials: any): any => {
+export const loginWithGoogle = (userCredentials: any, redirect: any, path: string): any => {
   return  async (dispatch: Dispatch<any>) => {
     dispatch(initAutentication());
     try {
       const { name, id, token, email, profilePhoto, birthday, phoneNumber } = userCredentials;
       const userData = {name, email, id, profilePhoto, birthday, phoneNumber};
-      dispatch(AutenticationSuccess(userData));
       nookies.set(null, globalTypes.DRAWING_USER_DATA, token, {
         maxAge: 30 * 24 * 60 * 60,
         path: '/',
       });
+      dispatch(AutenticationSuccess(userData));
+      redirect(path);
+      toast.success(`Seja bem vindo ${name}`);
     } catch(e: any) {
-      console.log(e.response.data);
+      if(e) {
+        console.log(e.response.data);
+        toast.error(`${e.response.data.message}`);
+      } else {
+        console.log('Server Connectionn error');
+        toast.error('Server Connectionn error');
+      }
       dispatch(AutenticationFailure());
-      toast.error(`${e.response.data.message}`);
     }
   };
 };
@@ -85,7 +102,6 @@ export const loginWithGoogle = (userCredentials: any): any => {
 export const validateUser = (redirect: any): any => {
   return  async (dispatch: Dispatch<any>) => {
     const token = JSON.stringify(nookies.get(null, globalTypes.DRAWING_USER_DATA));
-    console.log(token);
     if(!token) return;
     try {
       const { data } = await apiConnection.post('/auth/me', null, {
@@ -93,14 +109,19 @@ export const validateUser = (redirect: any): any => {
           'Authorization': token
         }
       });
-      console.log(data);
       const {name, email, id, profilePhoto, birthday, phoneNumber} = data.message;
 
       const userData = {name, email, id, profilePhoto, birthday, phoneNumber};
       dispatch(AutenticationSuccess(userData));
       redirect('/dashboard');
     } catch(e: any) {
-      console.log(e);
+      if(e) {
+        console.log(e.response.data);
+        toast.error(`${e.response.data.message}`);
+      } else {
+        console.log('Server Connectionn error');
+        toast.error('Server Connectionn error');
+      }
       dispatch(logout(redirect));
       dispatch(AutenticationFailure());
     }

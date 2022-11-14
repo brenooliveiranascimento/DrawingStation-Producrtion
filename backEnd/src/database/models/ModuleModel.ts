@@ -26,7 +26,7 @@ Module.init({
     allowNull: false,
   },
   image: {
-    type: STRING(300),
+    type: STRING(500),
     allowNull: false,
   },
   premium: {

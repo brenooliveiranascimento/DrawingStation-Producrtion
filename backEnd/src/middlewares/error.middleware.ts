@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from "express";
 
 export const errorMiddleware = (err: Error, req: Request, res: Response, next: NextFunction) => {
   const { name, message, details } = err as any;
-  console.log(name);
 
   switch (name) {
     case 'ValidationError':

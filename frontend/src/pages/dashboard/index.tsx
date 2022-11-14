@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
-import syles from './styles.module.scss';
-import { canSSRAuth } from '../../utils/canSSRAuth';
+import styles from './styles.module.scss';
 import { setupUser } from '../../services/setupUser';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import { UserInterface } from '../../interfaces/UserInterfaces';
+import Navbar from '../../Components/ui/SideBar/Navbar';
+import ModulesController from '../../Components/AdmComponents/ModuleControllers/ModulesController';
+import AdmHeader from '../../Components/AdmComponents/AdmHeader/AdmHeader';
+import { canSSRAdm } from '../../utils/canSSRAdm';
+import { parseCookies } from 'nookies';
+import jwtDecode from 'jwt-decode';
+import apiConnection from '../../services/api.connection';
+import SubModuleController from '../../Components/AdmComponents/SubModuleController/SubModuleController';
 
 interface DashboardPropTypes {
   userData: UserInterface,
@@ -13,6 +20,7 @@ interface DashboardPropTypes {
 
 function Dashboad({ userData }: DashboardPropTypes) {
   const dispatch = useDispatch();
+  const [currScreen, setCurrScreen] = useState('dashboard');
 
   const setUser = () => {
     dispatch(AutenticationSuccess(userData));
@@ -22,13 +30,34 @@ function Dashboad({ userData }: DashboardPropTypes) {
     setUser();
   }, []);
 
+  const handleScreen = (screen: string) => {
+    setCurrScreen(screen);
+  };
+
+  const Main = () => {
+    switch(currScreen) {
+    case 'Users':
+      return (<h1>Users</h1>);
+    case 'Dashboard':
+      return <ModulesController/>;
+    case 'SubModules':
+      return <SubModuleController />;
+    default:
+      return <ModulesController />;
+    }
+  };
+
   return (
     <>
       <Head>
         <title>Dashboad</title>
       </Head>
-      <section className={syles.dashboard_container}>
-        <h1>Dashboard</h1>
+      <section className={styles.dashboard_container}>
+        <Navbar setCurrScreen={(screen: string) => handleScreen(screen)} currScreen={currScreen} />
+        <section className={styles.main_container}>
+          <AdmHeader currPage={currScreen}/>
+          <Main />
+        </section>
       </section>
     </>
   );
@@ -36,14 +65,33 @@ function Dashboad({ userData }: DashboardPropTypes) {
 
 export default Dashboad;
 
-export const getServerSideProps = canSSRAuth(async (ctx) => {
+
+export const getServerSideProps = canSSRAdm(async (ctx) => {
   const userConncetion = setupUser(ctx);
+  const cookies = parseCookies(ctx);  
+
+  const token = cookies['DRAWING_USER_DATA'];
+  const decodedEmail: any = jwtDecode(token);
+
+  const { data: validateEmail } = await apiConnection.post('/auth/adm',
+    { 'email': decodedEmail.email },
+    { headers: {'Authorization': token }});
+
+  if(validateEmail.error) {
+    return {
+      redirect:{
+        destination: '/dashboard',
+        permanent: false,
+      }
+    };
+  }
 
   const {data} = await userConncetion.post('/auth/me');
   const { id, name, email, profilePhoto, birthday, phoneNumber } = data.message;
   return {
     props: {
-      userData: { id, name, email, profilePhoto, birthday, phoneNumber }
+      userData: { id, name, email, profilePhoto, birthday, phoneNumber },
     }
   };
+
 });

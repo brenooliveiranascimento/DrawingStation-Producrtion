@@ -26,7 +26,6 @@ class UserController {
       .json({message: error.message, token: null, error: true});
 
     const token = createToken({email: user.email, id: message.id, profilePhoto: message.profilePhoto, name: message.name})
-    console.log(message.id, 'djawiodjwiaojdo')
     return res.status(statusCodes.OK)
       .json({
         message: 'Usuário cirado com sucesso',
@@ -65,11 +64,10 @@ class UserController {
   public loginByGoogle = async (req: Request, res: Response) => {
     const user: UserGoogleCredentials = req.body;
     const { error, message, type } = await this.authService.authByGoogle(user)
-
     if(error) return res.status(statusCodes.NOT_FOUND)
       .json({message: error.message, token: null, error: true});
 
-    const token = createToken({email: user.email, id: message.id, profilePhoto: message.profilePhoto, name: message.name})
+      const token = createToken({email: user.email, id: message.id, profilePhoto: message.profilePhoto, name: message.name})
     if(type === 'Register') {
       return res.status(statusCodes.OK).json({
         message: 'Registrado com sucesso!',
@@ -105,7 +103,6 @@ class UserController {
 
       if(userErr) return res.status(statusCodes.BAD_REQUEST)
       .json({ message: userErr.message, error: userMess });
-    console.log(userMess)
     return res.status(statusCodes.OK).json({ message: userMess });
   }
 

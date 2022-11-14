@@ -1,0 +1,21 @@
+.adm_header_container {
+  width: 100%;
+  height: 10rem;
+  background-color: var(--dark-900);
+  display: flex;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  flex-direction: column;
+
+  h1 {
+    color: var(--white);
+    font-size: 2rem;
+    padding: 0.5rem;
+  }
+
+  span {
+    font-size: 1rem;
+    padding: 0.5rem;
+    color: var(--white);
+  }
+}

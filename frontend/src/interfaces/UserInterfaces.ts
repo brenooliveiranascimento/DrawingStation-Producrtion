@@ -58,15 +58,17 @@ export interface UserVerifyInterface {
   message: UserCredentials | any
 }
 
-export interface InitialValueState {
-  userData: {
-    name: string,
+export interface UserInitialInterface {
+  name: string,
     id: number | null,
     email: string,
     profilePhoto: string | null,
     birthday: null,
     phoneNumber: null,
-  };
+}
+
+export interface InitialValueState {
+  userData: UserInitialInterface
   logged: boolean
   error: boolean;
   loginInit: boolean

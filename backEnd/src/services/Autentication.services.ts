@@ -67,7 +67,7 @@ class AutenticationServices {
         phoneNumber: null
        });
   
-       return { error: null, message: createNewUser.id, type: 'Register' }
+       return { error: null, message: createNewUser, type: 'Register' }
     } catch(e) {
       return { error: { message: errorMapTypes.REQUEST_ERROR }, message: errorMapTypes.REQUEST_ERROR }
     }
@@ -80,7 +80,6 @@ class AutenticationServices {
     if(!userData && error.message !== errorMapTypes.REQUEST_ERROR) {
        return this.registerByGoogle(user)
     }
-
     if(error) {
       return { error: { message: error.message }, message: null };
    }
