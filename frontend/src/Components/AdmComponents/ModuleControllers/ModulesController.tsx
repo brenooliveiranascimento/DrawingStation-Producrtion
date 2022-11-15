@@ -7,7 +7,7 @@ import { ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
 import Modal from 'react-modal';
 import EditModuleModal from './EditModuleModal/EditModuleModal';
 import AddNewModule from './AddNewModule/AddNewModule';
-import ModuleCard from '../../ModuleCard/ModuleCard';
+import ModuleCard from './ModuleCard/ModuleCard';
 
 function ModulesController() {
   const { modules } = useSelector((state: globalState) => state.modules);

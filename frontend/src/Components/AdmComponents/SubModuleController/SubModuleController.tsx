@@ -5,7 +5,7 @@ import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
 import Modal from 'react-modal';
 import { requestSubModulesAction } from '../../../redux/actions/subModuleActions/subModuleActions';
-import SubModuleCard from '../../SubModuleCards/SubModuleCards';
+import SubModuleCard from './SubModuleCards/SubModuleCards';
 import EditSubModuleModal from './EditSubModuleModal/EditSubModuleModal';
 import AddNewSubModule from './AddNewSubModule/AddNewSubModule';
 

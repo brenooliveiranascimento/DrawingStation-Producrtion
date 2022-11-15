@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
 import React from 'react';
-import { ModulesInterface, SubModuleInterface } from '../../interfaces/modules/ModulesInterface';
+import { ModulesInterface, SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
 import styles from './styles.module.scss';
 import { useSelector } from 'react-redux';
-import { globalState } from '../../interfaces/modules/globalStateInterface';
+import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 
 interface ModuleCardProps {
   subModule: SubModuleInterface;
