@@ -1,17 +1,11 @@
+import { ClassroomInterface } from './classroomInterface';
+
 export interface ModulesInterface {
   id?: number;
   name?:string;
   description?: string;
   image?: string;
   premium?: boolean
-}
-
-export interface ClassroomInterface {
-  id: number;
-  name: string;
-  image: string;
-  subModuleId: number;
-  premium: boolean
 }
 
 export interface SubModuleInterface {
