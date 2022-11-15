@@ -106,6 +106,44 @@ export const updateSubModuleAction = (subModule: SubModuleInterface, handleModal
 };
 
 
+
+export const deleteSubModuleAction = (subModule: SubModuleInterface, handleModal: () => void): any => {
+  return async (dispatch: Dispatch<any>, state: () => globalState ) => {
+    const { user } = state();
+    dispatch(genericRequestControl(SubModulesTypes.INIT_REQUEST));
+    const cookies = parseCookies();
+    const { identity, id } = subModule;
+    const insertData = { id };
+    const token = cookies['DRAWING_USER_DATA'];
+    try {
+      const { data } = await apiConnection.post(`/modules/sub/${id}`,
+        {
+          admEmail: user.userData.email,
+          identity,
+        },
+        {
+          headers: { 'Authorization': token }
+        });
+      if(data.message) {
+        dispatch(genericSuccesRequest(SubModulesTypes.EDIT_SUB_MODULES,
+          insertData));
+        toast.success('SubModulo atualizado com sucesso!');
+        handleModal();
+        return;
+      } 
+    } catch(e:any) {
+      if(e) {
+        console.log(e);
+        toast.error(`${e.response.data.message}`);
+      } else {
+        console.log('Server Connectionn error');
+        toast.error('Server Connectionn error');
+      }
+    }
+  };
+};
+
+
 // export const addSubModuleAction = (subModule: SubModuleInterface, handleModal: () => void): any => {
 //   return async (dispatch: Dispatch<any>, state: () => globalState ) => {
 //     const { user, subModules } = state();
