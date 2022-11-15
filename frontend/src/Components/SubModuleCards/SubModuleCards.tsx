@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ModulesInterface, SubModuleInterface } from '../../interfaces/modules/ModulesInterface';
 import styles from './styles.module.scss';
 import { useSelector } from 'react-redux';
@@ -22,7 +22,7 @@ function SubModuleCard({ subModule, handleModal, handleModule }: ModuleCardProps
   };
 
   const referenceModuleName = () => referenceModule
-    .find((currModule: ModulesInterface) => currModule.id === subModule.id);
+    .find((currModule: ModulesInterface) => currModule.id === subModule.moduleId);
 
   return (
     <button onClick={selectModule} className={styles.card_container}>
@@ -42,7 +42,7 @@ function SubModuleCard({ subModule, handleModal, handleModule }: ModuleCardProps
             {subModule.description}
           </span>
           <span>
-            Pertence a {referenceModuleName().name}
+            Pertence a {referenceModuleName()?.name}
           </span>
         </article>
       </section>

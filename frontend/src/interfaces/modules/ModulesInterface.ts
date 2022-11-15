@@ -20,7 +20,7 @@ export interface SubModuleInterface {
   description: string;
   image: string;
   premium: boolean;
-  moduleId: number;
+  moduleId?: number;
   classrooms?: ClassroomInterface[],
   identity?: string;
   admPassword?: string

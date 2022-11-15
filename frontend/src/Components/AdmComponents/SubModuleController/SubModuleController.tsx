@@ -8,6 +8,7 @@ import Modal from 'react-modal';
 import { requestSubModulesAction } from '../../../redux/actions/subModuleActions/subModuleActions';
 import SubModuleCard from '../../SubModuleCards/SubModuleCards';
 import EditSubModuleModal from './EditSubModuleModal/EditSubModuleModal';
+import AddNewSubModule from './AddNewSubModule/AddNewSubModule';
 // import EditModuleModal from './EditModuleModal/EditModuleModal';
 // import AddNewModule from './AddNewModule/AddNewModule';
 
@@ -46,13 +47,13 @@ function SubModulesController() {
   return (
     <section className={styles.sub_modules_controller_container}>
       <section>
-        <h1>Modulos existentes</h1>
+        <h1>SubModulos existentes</h1>
         <button onClick={handleAddModal}>
-          Add New Module
+          Add New SubModule
         </button>
       </section>
       <section className={styles.sub_modules_area}>
-        {subModules.map((currModule: SubModuleInterface) => <SubModuleCard
+        {subModules?.map((currModule: SubModuleInterface) => <SubModuleCard
           key={currModule.id}
           subModule={currModule}
           handleModal={handleModal}
@@ -118,6 +119,7 @@ function SubModulesController() {
         }}
         contentLabel="Example Modal"
       >
+        <AddNewSubModule handleModal={handleAddModal} />
       </Modal>
     </section>
   );
