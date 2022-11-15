@@ -19,9 +19,10 @@ function ModuleCard({ module, handleModal, handleModule }: ModuleCardProps) {
   return (
     <button onClick={selectModule} className={styles.card_container}>
       <section>
-        <Image  
+        <Image
+          style={{ objectFit: 'cover', justifyItems:'flex-start' }}
           width={275}
-          height={350}
+          height={300}
           sizes={'auto'}
           src={`${module.image}`}
           alt={`${module.name}`}

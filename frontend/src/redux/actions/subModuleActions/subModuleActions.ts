@@ -49,12 +49,13 @@ export const addSubModulesAction = (subModule: SubModuleInterface, handleModal: 
           headers: { 'Authorization': token }
         });
       handleModal();
+      toast.success('SubModule adicionado com sucesso!');
       if(data.message) return dispatch(genericSuccesRequest(SubModulesTypes.ADD_NEW_MODULE,
         {...insertData, id: subModules.subModules[subModules.subModules.length -1].id + 1}));
     } catch(e: any) {
       if(e) {
+        toast.error(`${e.response.data.message}`);
         console.log(e);
-        // toast.error(`${e.response}`);
       } else {
         console.log('Server Connectionn error');
         toast.error('Server Connectionn error');
@@ -125,7 +126,7 @@ export const deleteSubModuleAction = (subModule: SubModuleInterface, handleModal
           headers: { 'Authorization': token }
         });
       if(data.message) {
-        dispatch(genericSuccesRequest(SubModulesTypes.EDIT_SUB_MODULES,
+        dispatch(genericSuccesRequest(SubModulesTypes.DELETE_MODULE,
           insertData));
         toast.success('SubModulo atualizado com sucesso!');
         handleModal();

@@ -26,9 +26,10 @@ function SubModuleCard({ subModule, handleModal, handleModule }: ModuleCardProps
   return (
     <button onClick={selectModule} className={styles.card_container}>
       <section>
-        <Image  
+        <Image
           width={275}
           height={350}
+          style={{ objectFit: 'cover', justifyItems:'flex-start' }}
           sizes={'auto'}
           src={`${subModule.image}`}
           alt={`${subModule.name}`}

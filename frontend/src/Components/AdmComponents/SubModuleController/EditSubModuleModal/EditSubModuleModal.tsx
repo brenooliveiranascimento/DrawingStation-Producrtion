@@ -39,7 +39,12 @@ function EditSubModuleModal({ handleModal, subModuleEditing }: EditModuleInterfa
   };
 
   const handleDeleteSubModule = () => {
-    if (confirmDelete) return dispatch(deleteSubModuleAction(editingModule, handleModal));
+    if (confirmDelete) {
+      dispatch(deleteSubModuleAction(editingModule, handleModal));
+      setConfirmDelete(!confirmDelete);
+      return;
+    } 
+    setConfirmDelete(!confirmDelete);
   };
 
   useEffect(() => {
@@ -90,14 +95,14 @@ function EditSubModuleModal({ handleModal, subModuleEditing }: EditModuleInterfa
         }}>
           {confirm ? 'Confirmar!' : 'Atualizar'}
         </button>
-        <button onClick={handleModal}>
-          Cancelar
-        </button>
         <button
           onClick={handleDeleteSubModule}
           type='button'
         >
-          Deletar SubModule
+          { confirmDelete ? 'Confirmar Exclusão!' : 'Excluir' }
+        </button>
+        <button onClick={handleModal}>
+          Cancelar
         </button>
       </form>
       <Image
