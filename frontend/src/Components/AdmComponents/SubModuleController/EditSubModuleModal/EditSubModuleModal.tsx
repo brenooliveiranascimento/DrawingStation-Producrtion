@@ -1,8 +1,7 @@
 import Image from 'next/image';
 import React, { FormEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { EditModule, SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
-import { editModule } from '../../../../redux/actions/moduleActions/moduleActions';
+import { SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
 import { deleteSubModuleAction, updateSubModuleAction } from '../../../../redux/actions/subModuleActions/subModuleActions';
 import { Input } from '../../../ui/Inputs/Inputs';
 
