@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React, { FormEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { EditModule } from '../../../../interfaces/modules/ModulesInterface';
-import { editModule } from '../../../../redux/actions/moduleActions/moduleActions';
+import { deleteModule, editModule } from '../../../../redux/actions/moduleActions/moduleActions';
 import { Input } from '../../../ui/Inputs/Inputs';
 
 interface EditModuleInterface {
@@ -21,6 +21,7 @@ function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
   const dispatch = useDispatch();
 
   const [confirm, setConfirm] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   useEffect(() => {
     setEditingModule(moduleEditing);
@@ -33,6 +34,14 @@ function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
       return; 
     }
     setEditingModule({...editingModule, [name]: value});
+  };
+
+  const handleDeleteModule = () => {
+    if(confirmDelete) {
+      dispatch(deleteModule(editingModule, handleModal));
+      setConfirmDelete(!confirmDelete);
+    }
+    setConfirmDelete(!confirmDelete);
   };
 
   const updateModule = () => {
@@ -85,6 +94,12 @@ function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
         </button>
         <button onClick={handleModal}>
           Cancelar
+        </button>
+        <button
+          type='button'
+          onClick={handleDeleteModule}
+        >
+          {confirmDelete ? 'Confirmar Remoção' : 'Deletar'}
         </button>
       </form>
       <Image

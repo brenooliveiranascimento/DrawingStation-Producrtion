@@ -76,7 +76,7 @@ function AddNewModule({ handleModal }: EditModuleInterface) {
           if(!confirm) return setConfirm(!confirm);
           updateModule();
         }}>
-          {confirm ? 'Confirmar!' : 'Atualizar'}
+          {confirm ? 'Confirmar!' : 'Criar'}
         </button>
         <button onClick={handleModal}>
           Cancelar

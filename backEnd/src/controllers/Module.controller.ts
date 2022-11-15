@@ -62,7 +62,7 @@ class ModuleController{
 
     if(error) return res.status(statusCodes.NOT_FOUND).json({ message: message, error: error.message });
 
-    return res.status(statusCodes.NOT_FOUND).json({ message, error: null });
+    return res.status(statusCodes.OK).json({ message, error: null });
   }
 
   public updateModule = async (req: Request, res: Response) => {

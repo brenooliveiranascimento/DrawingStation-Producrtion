@@ -24,7 +24,7 @@ interface NavPropsInterface {
 }
 
 const Navbar = ({setCurrScreen, currScreen}: NavPropsInterface) => {
-  const [nav, setnav] = useState(true);
+  const [nav, setnav] = useState(false);
 
   const NavUrl = ({ url, icon, description }: any) => {
     const checkWindowSize = () => {

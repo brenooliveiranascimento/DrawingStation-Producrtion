@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { EditModule } from '../../../interfaces/modules/ModulesInterface';
 import apiConnection from '../../../services/api.connection';
-import { addNewModule, initReques, requestSuccess, updateModule } from './moduleGenericActions';
+import { addNewModule, deleteModuleGenecic, initReques, requestSuccess, updateModule } from './moduleGenericActions';
 
 export const requestModulesAction = (): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
@@ -81,6 +81,33 @@ export const addModule = (editedModule: EditModule, handleModal:() => void): any
       toast.success('Adicionado com sucesso!');
       handleModal();
       if(!data.error) return dispatch(addNewModule({...moduleEdited, id: modules.length +1}));
+    } catch(e: any) {
+      toast.error(`${e.response.data.message}`);
+    }
+  };
+};
+
+
+export const deleteModule = (editedModule: EditModule, handleModal:() => void): any => {
+  return async (dispatch: Dispatch<any>, state: () => globalState) => {
+    const { userData } = state().user;
+    const cookies = parseCookies();
+    const token = cookies['DRAWING_USER_DATA'];
+    const { admPassword, id } = editedModule;
+    const moduleEdited = {id};
+    console.log(editedModule);
+    try {
+      const { data } = await apiConnection.post(`/modules/${id}`,
+        {
+          identity: admPassword,
+          admEmail: userData.email,
+        },
+        {
+          headers: { 'Authorization': token }
+        });
+      toast.success('Deletado com sucesso!');
+      handleModal();
+      if(!data.error) return dispatch(deleteModuleGenecic(moduleEdited));
     } catch(e: any) {
       toast.error(`${e.response.data.message}`);
     }

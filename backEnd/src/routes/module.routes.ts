@@ -33,10 +33,10 @@ routes.put('/classrooms/:id',
 validationClassroom,
 validationClassroomData,
 classRoomController.updateClassroom);
-routes.delete('/classrooms/:id', classRoomController.deleteClassroom);
+routes.post('/classrooms/:id', classRoomController.deleteClassroom);
 
 routes.post('/', validationModule, moduleController.addNewModule);
-routes.delete('/:id', validationModule, moduleController.deleteModule);
+routes.post('/:id', moduleController.deleteModule);
 routes.put('/:id', validationModule, moduleController.updateModule);
 
 export default routes
