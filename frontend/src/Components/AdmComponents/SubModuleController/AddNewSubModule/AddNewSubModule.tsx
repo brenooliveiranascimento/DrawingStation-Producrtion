@@ -12,20 +12,20 @@ interface EditSubModuleInterface {
 }
 
 function AddNewSubModule({ handleModal }: EditSubModuleInterface) {
+  const { modules } = useSelector((state: globalState) => state.modules);
+
   const [editingModule, setEditingModule] = useState<SubModuleInterface>({
     name: '',
     description: '',
     image: '',
     premium: true,
     admPassword: '',
-    moduleId: 1,
+    moduleId: modules[0].id,
     identity: '',
   });
   const dispatch = useDispatch();
 
   const [confirm, setConfirm] = useState(false);
-
-  const { modules } = useSelector((state: globalState) => state.modules);
 
   const handleChange = (target: any) => {
     const { name, value, type, checked } = target;
@@ -79,7 +79,7 @@ function AddNewSubModule({ handleModal }: EditSubModuleInterface) {
         />
         <select
           value={editingModule.moduleId}
-          onChange={({target}: any) => setEditingModule({...editingModule, moduleId: target.value})}
+          onChange={({target}: any) => setEditingModule({...editingModule, moduleId: Number(target.value)})}
         >
           {
             modules.map((currModule: ModulesInterface) => (

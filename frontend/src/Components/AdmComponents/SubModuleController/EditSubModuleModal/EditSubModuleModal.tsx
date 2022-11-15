@@ -3,7 +3,7 @@ import React, { FormEvent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { EditModule, SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
 import { editModule } from '../../../../redux/actions/moduleActions/moduleActions';
-import { updateSubModuleAction } from '../../../../redux/actions/subModuleActions/subModuleActions';
+import { deleteSubModuleAction, updateSubModuleAction } from '../../../../redux/actions/subModuleActions/subModuleActions';
 import { Input } from '../../../ui/Inputs/Inputs';
 
 interface EditModuleInterface {
@@ -23,6 +23,7 @@ function EditSubModuleModal({ handleModal, subModuleEditing }: EditModuleInterfa
   });
   const dispatch = useDispatch();
   const [confirm, setConfirm] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const handleChange = (target: any) => {
     const { name, value, type, checked } = target;
@@ -37,6 +38,9 @@ function EditSubModuleModal({ handleModal, subModuleEditing }: EditModuleInterfa
     dispatch(updateSubModuleAction(editingModule, handleModal));
   };
 
+  const handleDeleteSubModule = () => {
+    if (confirmDelete) return dispatch(deleteSubModuleAction(editingModule, handleModal));
+  };
 
   useEffect(() => {
     setEditingModule(subModuleEditing);
@@ -88,6 +92,12 @@ function EditSubModuleModal({ handleModal, subModuleEditing }: EditModuleInterfa
         </button>
         <button onClick={handleModal}>
           Cancelar
+        </button>
+        <button
+          onClick={handleDeleteSubModule}
+          type='button'
+        >
+          Deletar SubModule
         </button>
       </form>
       <Image

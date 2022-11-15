@@ -53,8 +53,8 @@ export const addSubModulesAction = (subModule: SubModuleInterface, handleModal: 
         {...insertData, id: subModules.subModules[subModules.subModules.length -1].id + 1}));
     } catch(e: any) {
       if(e) {
-        console.log(e.response.data);
-        toast.error(`${e.response.data.message}`);
+        console.log(e);
+        // toast.error(`${e.response}`);
       } else {
         console.log('Server Connectionn error');
         toast.error('Server Connectionn error');
