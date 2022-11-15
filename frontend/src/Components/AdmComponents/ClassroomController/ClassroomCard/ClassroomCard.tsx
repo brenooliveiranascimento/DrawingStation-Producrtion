@@ -10,9 +10,10 @@ interface ModuleCardProps {
   handleModule: (module: ModulesInterface) => void
 }
 
-function ClassroomCard({ module, handleModal, handleModule }: ModuleCardProps) {
+function ClassroomCard({ module: classroom, handleModal, handleModule }: ModuleCardProps) {
+
   const selectModule = () => {
-    handleModule(module);
+    handleModule(classroom);
     handleModal();
   };
 
@@ -21,18 +22,18 @@ function ClassroomCard({ module, handleModal, handleModule }: ModuleCardProps) {
       <section>
         <Image
           style={{ objectFit: 'cover', justifyItems:'flex-start' }}
-          width={275}
+          width={260}
           height={300}
           sizes={'auto'}
-          src={`${module.image}`}
-          alt={`${module.name}`}
+          src={`${classroom.image}`}
+          alt={`${classroom.name}`}
         />
       </section>
       <section className={styles.inf_area}>
         <article>
-          <h1>{module.name}</h1>
+          <h1>{classroom.name}</h1>
           <span>
-            {module.description}
+            {classroom.description}
           </span>
         </article>
       </section>

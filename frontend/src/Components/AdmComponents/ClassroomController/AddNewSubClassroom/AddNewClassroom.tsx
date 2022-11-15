@@ -1,0 +1,154 @@
+import Image from 'next/image';
+import React, { FormEvent, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { ModulesInterface, SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
+import { Input } from '../../../ui/Inputs/Inputs';
+import { useSelector } from 'react-redux';
+import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import { ClassroomDataInterface, ClassroomInterface } from '../../../../interfaces/modules/classroomInterface';
+import { addNewClassroomAction } from '../../../../redux/actions/classroomActions/classroomActions';
+
+interface EditSubModuleInterface {
+  handleModal: () => void;
+}
+
+function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
+  const { subModules } = useSelector((state: globalState) => state.subModules);
+  const dispatch = useDispatch();
+
+  const [addNewClassroom, setEditingModule] = useState<ClassroomInterface>({
+    name: '',
+    image: '',
+    premium: true,
+    subModuleId: subModules[0].id,
+  });
+
+  const [identity, setIdentity] = useState('');
+
+  const [addNewClassroomData, setEditingClassroomData] = useState<ClassroomDataInterface>({
+    description: '',
+    image: '',
+    drawing: '',
+    isPremium: true,
+    video: '',
+  });
+
+  const [confirm, setConfirm] = useState(false);
+
+  const handleChange = (target: any) => {
+    const { name, value, type, checked } = target;
+    if(type === 'checkbox') {
+      setEditingModule({...addNewClassroom, [name]: checked});
+      return; 
+    }
+    setEditingModule({...addNewClassroom, [name]: value});
+  };
+
+  const handleChangeData = (target: any) => {
+    const { name, value, type, checked } = target;
+    if(type === 'checkbox') {
+      setEditingClassroomData({...addNewClassroomData, [name]: checked});
+      return; 
+    }
+    setEditingClassroomData({...addNewClassroomData, [name]: value});
+  };
+
+  const handleAddClassroom = () => {
+    dispatch(addNewClassroomAction({classroom: addNewClassroom, classroomData: addNewClassroomData}, identity));
+  };
+
+  return (
+    <section>
+      <form>
+        <Input
+          onChange={({target}) => handleChange(target)}
+          name='name'
+          placeholder='name'
+          value={addNewClassroom.name}
+        />
+        <Input
+          onChange={({target}) => handleChange(target)}
+          name='premium'
+          checked={addNewClassroom.premium}
+          type={'checkbox'}
+        />
+        <Input
+          onChange={({target}) => handleChange(target)}
+          name='image'
+          placeholder='image'
+          value={addNewClassroom.image}
+        />
+        <Input
+          onChange={({target}) => setIdentity(target.value)}
+          name='identity'
+          placeholder='identity'
+          value={identity}
+        />
+
+        <select
+          value={addNewClassroom.subModuleId}
+          onChange={({target}: any) => setEditingModule({...addNewClassroom, subModuleId: Number(target.value)})}
+        >
+          {
+            subModules.map((currSubModule: SubModuleInterface) => (
+              <option value={currSubModule.id} key={currSubModule.id}>
+                {currSubModule.name}
+              </option>
+            ))}
+        </select>
+        <button onClick={handleModal}>
+          Cancelar
+        </button>
+      </form>
+      <form>
+        <Input
+          onChange={({target}) => handleChangeData(target)}
+          name='description'
+          placeholder='description'
+          value={addNewClassroomData.description}
+        />
+        <Input
+          onChange={({target}) => handleChangeData(target)}
+          name='isPremium'
+          checked={addNewClassroomData.isPremium}
+          type={'checkbox'}
+        />
+        <Input
+          onChange={({target}) => handleChangeData(target)}
+          name='image'
+          placeholder='image'
+          value={addNewClassroomData.image}
+        />
+        <Input
+          onChange={({target}) => handleChangeData(target)}
+          name='drawing'
+          placeholder='drawing'
+          value={addNewClassroomData.drawing}
+        />
+        <Input
+          onChange={({target}) => handleChangeData(target)}
+          name='video'
+          placeholder='video'
+          value={addNewClassroomData.video}
+        />
+        <button type='button' onClick={(e: FormEvent) => {
+          e.preventDefault();
+          handleAddClassroom();
+        }}>
+          {confirm ? 'Confirmar!' : 'Adicionar'}
+        </button>
+        <button onClick={handleModal}>
+          Cancelar
+        </button>
+      </form>
+      <Image
+        width={200}
+        height={300}
+        src={`${addNewClassroom.image}`}
+        alt={`${addNewClassroom.name}`}
+      />
+    </section>
+  );
+}
+
+export default AddNewClassroom;

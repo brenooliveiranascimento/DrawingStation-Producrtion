@@ -1,39 +1,30 @@
 import { parseCookies } from 'nookies';
 import { Dispatch } from 'react';
 import { toast } from 'react-toastify';
+import { ReqClassroomInterface } from '../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
-import { EditModule } from '../../../interfaces/modules/ModulesInterface';
 import apiConnection from '../../../services/api.connection';
-import { addNewModule, initReques, requestSuccess } from '../moduleActions/moduleGenericActions';
 
-export const addNewClassroom = (addedClassroom: EditModule, handleModal:() => void): any => {
+export const addNewClassroomAction = (addedClassroom: ReqClassroomInterface, identity: string): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
-    console.log(addedClassroom);
     const { userData } = state().user;
-    const { modules } = state().modules;
     const cookies = parseCookies();
     const token = cookies['DRAWING_USER_DATA'];
-    const { admPassword, description, id, image, name, premium } = addedClassroom;
-    const moduleEdited = {description, id, image, premium, name};
-
+    const { classroom, classroomData,  } = addedClassroom;
+    console.log(classroom, classroomData);
     try {
-      const { data } = await apiConnection.post('/modules',
+      const { data } = await apiConnection.post('/modules/classrooms',
         {
-          identity: admPassword,
           admEmail: userData.email,
-          name,          
-          description,
-          image,
-          premium
+          identity,
+          classroomData,
+          classroom
         },
-        {
-          headers: { 'Authorization': token }
-        });
-      toast.success('Adicionado com sucesso!');
-      handleModal();
-      if(!data.error) return dispatch(addNewModule({...moduleEdited, id: modules.length +1}));
+        { headers: { 'Authorization': token } });
+      console.log(data);
+      toast.success('Classroom adicionado com sucesso!');
     } catch(e: any) {
-      toast.error(`${e.response.data.message}`);
+      console.log(e);
     }
   };
 };

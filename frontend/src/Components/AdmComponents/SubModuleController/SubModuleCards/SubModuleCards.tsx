@@ -27,7 +27,7 @@ function SubModuleCard({ subModule, handleModal, handleModule }: ModuleCardProps
     <button onClick={selectModule} className={styles.card_container}>
       <section>
         <Image
-          width={275}
+          width={260}
           height={350}
           style={{ objectFit: 'cover', justifyItems:'flex-start' }}
           sizes={'auto'}

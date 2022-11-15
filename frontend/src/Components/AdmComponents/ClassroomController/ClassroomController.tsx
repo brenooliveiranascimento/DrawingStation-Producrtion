@@ -3,24 +3,26 @@ import styles from './styles.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { requestModulesAction } from '../../../redux/actions/moduleActions/moduleActions';
-import { ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
+import { ModulesInterface, SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
 import Modal from 'react-modal';
 import ClassroomCard from './ClassroomCard/ClassroomCard';
 import EditModuleModal from '../ModuleControllers/EditModuleModal/EditModuleModal';
-import AddNewModule from '../ModuleControllers/AddNewModule/AddNewModule';
+import AddNewClassroom from './AddNewSubClassroom/AddNewClassroom';
+import EditClassroom from './EditClassroom/EditSubClassroom';
 
 function ClassroomController() {
-  const { modules } = useSelector((state: globalState) => state.modules);
+  const { subModules } = useSelector((state: globalState) => state.subModules);
   const dispatch = useDispatch();
 
   const [editing, setEditing] = useState(false);
   const [add, setAdd] = useState(false);
-  const [moduleEditing, setModuleEditing] = useState<ModulesInterface>({
+  const [classroomEditing, setClassroomEditing] = useState<ModulesInterface>({
     name: '',
     description: '',
     image: '',
     premium: true
   });
+
   const [firstLoad, setFirstLoad] = useState(true);
 
   const setModules = () => {
@@ -28,11 +30,18 @@ function ClassroomController() {
   };
 
   const handleModule = (module: ModulesInterface) => {
-    setModuleEditing(module);
+    setClassroomEditing(module);
   };
 
   const handleModal = () => setEditing(!editing);
   const handleAddModal = () => setAdd(!add);
+
+  const allClassrooms = () => {
+    const classrooms = subModules.reduce((acc: any, currSubModule: SubModuleInterface) => {
+      return [...acc, ...currSubModule.classrooms];
+    }, []);
+    return classrooms;
+  };
 
   useEffect(() => {
     if(firstLoad) {
@@ -40,8 +49,9 @@ function ClassroomController() {
       setFirstLoad(false);
     }
   }, []);
+
   return (
-    <section className={styles.modules_controller_container}>
+    <section className={styles.Classroom_controller_container}>
       <section>
         <h1>Modulos existentes</h1>
         <button onClick={handleAddModal}>
@@ -49,13 +59,12 @@ function ClassroomController() {
         </button>
       </section>
       <section className={styles.Modules_area}>
-        {modules.map((currModule: ModulesInterface) => <ClassroomCard
+        {allClassrooms().reverse().map((currModule: SubModuleInterface) => <ClassroomCard
           key={currModule.id}
           module={currModule}
           handleModal={handleModal}
           handleModule={(module: ModulesInterface) => handleModule(module)}
         />)}
-
       </section>
       <Modal
         isOpen={editing}
@@ -85,7 +94,7 @@ function ClassroomController() {
         }}
         contentLabel="Example Modal"
       >
-        <EditModuleModal handleModal={handleModal} moduleEditing={moduleEditing}/>
+        <EditClassroom handleModal={handleModal} classroomEditing={classroomEditing}/>
       </Modal>
       <Modal
         isOpen={add}
@@ -115,7 +124,7 @@ function ClassroomController() {
         }}
         contentLabel="Example Modal"
       >
-        <AddNewModule handleModal={handleAddModal}/>
+        <AddNewClassroom handleModal={handleAddModal}/>
       </Modal>
     </section>
   );

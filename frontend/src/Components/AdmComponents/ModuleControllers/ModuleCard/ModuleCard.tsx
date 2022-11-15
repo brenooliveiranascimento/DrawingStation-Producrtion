@@ -21,7 +21,7 @@ function ModuleCard({ module, handleModal, handleModule }: ModuleCardProps) {
       <section>
         <Image
           style={{ objectFit: 'cover', justifyItems:'flex-start' }}
-          width={275}
+          width={260}
           height={300}
           sizes={'auto'}
           src={`${module.image}`}

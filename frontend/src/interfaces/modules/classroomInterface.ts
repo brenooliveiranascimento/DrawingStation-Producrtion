@@ -13,3 +13,8 @@ export interface ClassroomDataInterface {
   description: string;
   isPremium: boolean;
 }
+
+export interface ReqClassroomInterface {
+  classroom: ClassroomInterface | any;
+  classroomData: ClassroomDataInterface | any;
+}

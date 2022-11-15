@@ -43,7 +43,7 @@ function Dashboad({ userData }: DashboardPropTypes) {
       return <ModulesController/>;
     case 'SubModules':
       return <SubModuleController />;
-    case 'Classroom':
+    case 'Classrooms':
       return <ClassroomController />;
     default:
       return <ModulesController />;
