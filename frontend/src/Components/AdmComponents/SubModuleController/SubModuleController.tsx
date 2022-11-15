@@ -2,15 +2,12 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
-import ModuleCard from '../../ModuleCard/ModuleCard';
-import { ModulesInterface, SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
+import { SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
 import Modal from 'react-modal';
 import { requestSubModulesAction } from '../../../redux/actions/subModuleActions/subModuleActions';
 import SubModuleCard from '../../SubModuleCards/SubModuleCards';
 import EditSubModuleModal from './EditSubModuleModal/EditSubModuleModal';
 import AddNewSubModule from './AddNewSubModule/AddNewSubModule';
-// import EditModuleModal from './EditModuleModal/EditModuleModal';
-// import AddNewModule from './AddNewModule/AddNewModule';
 
 function SubModulesController() {
   const { subModules } = useSelector((state: globalState) => state.subModules);

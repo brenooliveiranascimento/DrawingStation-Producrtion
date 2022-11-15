@@ -48,6 +48,7 @@ export const addSubModulesAction = (subModule: SubModuleInterface, handleModal: 
         {
           headers: { 'Authorization': token }
         });
+      handleModal();
       if(data.message) return dispatch(genericSuccesRequest(SubModulesTypes.ADD_NEW_MODULE,
         {...insertData, id: subModules.subModules[subModules.subModules.length -1].id + 1}));
     } catch(e: any) {

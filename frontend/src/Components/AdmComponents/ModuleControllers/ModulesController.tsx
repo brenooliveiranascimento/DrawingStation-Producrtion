@@ -3,11 +3,11 @@ import styles from './styles.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { requestModulesAction } from '../../../redux/actions/moduleActions/moduleActions';
-import ModuleCard from '../../ModuleCard/ModuleCard';
 import { ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
 import Modal from 'react-modal';
 import EditModuleModal from './EditModuleModal/EditModuleModal';
 import AddNewModule from './AddNewModule/AddNewModule';
+import ModuleCard from '../../ModuleCard/ModuleCard';
 
 function ModulesController() {
   const { modules } = useSelector((state: globalState) => state.modules);

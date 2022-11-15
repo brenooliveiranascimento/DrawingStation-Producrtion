@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ModulesInterface, SubModuleInterface } from '../../interfaces/modules/ModulesInterface';
 import styles from './styles.module.scss';
 import { useSelector } from 'react-redux';
@@ -22,14 +22,13 @@ function SubModuleCard({ subModule, handleModal, handleModule }: ModuleCardProps
   };
 
   const referenceModuleName = () => referenceModule
-    .find((currModule: ModulesInterface) => currModule.id === subModule.moduleId);
-
+    .find((currModule: ModulesInterface) => currModule.id === Number(subModule.moduleId));
   return (
     <button onClick={selectModule} className={styles.card_container}>
       <section>
         <Image  
-          width={300}
-          height={400}
+          width={275}
+          height={350}
           sizes={'auto'}
           src={`${subModule.image}`}
           alt={`${subModule.name}`}

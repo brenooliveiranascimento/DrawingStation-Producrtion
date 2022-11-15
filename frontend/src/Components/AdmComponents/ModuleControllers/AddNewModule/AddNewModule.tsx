@@ -67,6 +67,7 @@ function AddNewModule({ handleModal }: EditModuleInterface) {
         <Input
           onChange={({target}) => handleChange(target)}
           name='admPassword'
+          type='password'
           placeholder='password'
           value={editingModule.admPassword}
         />

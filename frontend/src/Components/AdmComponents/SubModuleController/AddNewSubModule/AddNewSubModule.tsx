@@ -18,7 +18,7 @@ function AddNewSubModule({ handleModal }: EditSubModuleInterface) {
     image: '',
     premium: true,
     admPassword: '',
-    moduleId: 0,
+    moduleId: 1,
     identity: '',
   });
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ function AddNewSubModule({ handleModal }: EditSubModuleInterface) {
     setEditingModule({...editingModule, [name]: value});
   };
 
-  const updateModule = () => {
+  const addSubModule = () => {
     dispatch(addSubModulesAction(editingModule, handleModal));
   };
 
@@ -73,6 +73,7 @@ function AddNewSubModule({ handleModal }: EditSubModuleInterface) {
         <Input
           onChange={({target}) => handleChange(target)}
           name='identity'
+          type='password'
           placeholder='identity'
           value={editingModule.identity}
         />
@@ -91,9 +92,9 @@ function AddNewSubModule({ handleModal }: EditSubModuleInterface) {
         <button type='button' onClick={(e: FormEvent) => {
           e.preventDefault();
           if(!confirm) return setConfirm(!confirm);
-          updateModule();
+          addSubModule();
         }}>
-          {confirm ? 'Confirmar!' : 'Atualizar'}
+          {confirm ? 'Confirmar!' : 'Adicionar'}
         </button>
         <button onClick={handleModal}>
           Cancelar

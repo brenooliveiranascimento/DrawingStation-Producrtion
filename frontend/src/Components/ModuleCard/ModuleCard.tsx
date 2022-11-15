@@ -20,8 +20,8 @@ function ModuleCard({ module, handleModal, handleModule }: ModuleCardProps) {
     <button onClick={selectModule} className={styles.card_container}>
       <section>
         <Image  
-          width={300}
-          height={400}
+          width={275}
+          height={350}
           sizes={'auto'}
           src={`${module.image}`}
           alt={`${module.name}`}

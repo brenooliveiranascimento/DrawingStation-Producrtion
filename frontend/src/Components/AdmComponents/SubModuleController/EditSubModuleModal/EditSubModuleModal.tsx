@@ -42,10 +42,6 @@ function EditSubModuleModal({ handleModal, subModuleEditing }: EditModuleInterfa
     setEditingModule(subModuleEditing);
   }, []);
 
-  useEffect(() => {
-    console.log(editingModule);
-  }, [editingModule]);
-
   return (
     <section>
       <form>
@@ -78,6 +74,7 @@ function EditSubModuleModal({ handleModal, subModuleEditing }: EditModuleInterfa
 
         <Input
           onChange={({target}) => handleChange(target)}
+          type='password'
           name='identity'
           placeholder='identity'
           value={editingModule.identity}
