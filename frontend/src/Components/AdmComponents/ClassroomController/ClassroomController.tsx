@@ -6,9 +6,10 @@ import { requestModulesAction } from '../../../redux/actions/moduleActions/modul
 import { ModulesInterface, SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
 import Modal from 'react-modal';
 import ClassroomCard from './ClassroomCard/ClassroomCard';
-import EditModuleModal from '../ModuleControllers/EditModuleModal/EditModuleModal';
 import AddNewClassroom from './AddNewSubClassroom/AddNewClassroom';
 import EditClassroom from './EditClassroom/EditSubClassroom';
+import { requestSubModulesAction } from '../../../redux/actions/subModuleActions/subModuleActions';
+import { ClassroomInterface } from '../../../interfaces/modules/classroomInterface';
 
 function ClassroomController() {
   const { subModules } = useSelector((state: globalState) => state.subModules);
@@ -25,12 +26,12 @@ function ClassroomController() {
 
   const [firstLoad, setFirstLoad] = useState(true);
 
-  const setModules = () => {
-    dispatch(requestModulesAction());
+  const setClassroom = () => {
+    dispatch(requestSubModulesAction());
   };
 
-  const handleModule = (module: ModulesInterface) => {
-    setClassroomEditing(module);
+  const handleModule = (classroom: ClassroomInterface) => {
+    setClassroomEditing(classroom);
   };
 
   const handleModal = () => setEditing(!editing);
@@ -45,7 +46,7 @@ function ClassroomController() {
 
   useEffect(() => {
     if(firstLoad) {
-      setModules();
+      setClassroom();
       setFirstLoad(false);
     }
   }, []);
@@ -55,15 +56,15 @@ function ClassroomController() {
       <section>
         <h1>Modulos existentes</h1>
         <button onClick={handleAddModal}>
-          Add New Module
+          Add New Classroom
         </button>
       </section>
       <section className={styles.Modules_area}>
-        {allClassrooms().reverse().map((currModule: SubModuleInterface) => <ClassroomCard
+        {allClassrooms().reverse().map((currModule: ClassroomInterface) => <ClassroomCard
           key={currModule.id}
-          module={currModule}
+          classroom={currModule}
           handleModal={handleModal}
-          handleModule={(module: ModulesInterface) => handleModule(module)}
+          handleModule={(classroom: ClassroomInterface) => handleModule(classroom)}
         />)}
       </section>
       <Modal

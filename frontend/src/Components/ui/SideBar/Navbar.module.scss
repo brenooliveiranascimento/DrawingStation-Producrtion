@@ -14,7 +14,7 @@
     transition: transform 300ms ease-in-out;
     transition: transform 300ms ease-in;
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 730px) {
         transform: translateX((-100%));
         position: absolute;
         top: 0;

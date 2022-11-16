@@ -28,7 +28,7 @@ const Navbar = ({setCurrScreen, currScreen}: NavPropsInterface) => {
 
   const NavUrl = ({ url, icon, description }: any) => {
     const checkWindowSize = () => {
-      if (window.innerWidth < 1024) setnav(!nav);
+      if (window.innerWidth < 730) setnav(!nav);
     };
     return (
       <li className={styles.li_navlink}>

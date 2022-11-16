@@ -1,24 +1,24 @@
 import Image from 'next/image';
 import React, { FormEvent, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { ClassroomInterface } from '../../../../interfaces/modules/classroomInterface';
+import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
 import { deleteSubModuleAction, updateSubModuleAction } from '../../../../redux/actions/subModuleActions/subModuleActions';
 import { Input } from '../../../ui/Inputs/Inputs';
 
-interface EditModuleInterface {
+interface EditClassroomInterface {
   handleModal: () => void;
-  classroomEditing: any
+  classroomEditing: ClassroomInterface
 }
 
-function EditClassroom({ handleModal, classroomEditing }: EditModuleInterface) {
-  const [editingModule, setEditingModule] = useState<SubModuleInterface>({
+function EditClassroom({ handleModal, classroomEditing }: EditClassroomInterface) {
+  const { subModules } = useSelector((state: globalState) => state.subModules);
+  const [editClassroom, setEditClassroom] = useState<ClassroomInterface>({
     name: '',
-    description: '',
     image: '',
     premium: true,
-    admPassword: '',
-    moduleId: 0,
-    identity: '',
+    subModuleId: subModules[0].id,
   });
   const dispatch = useDispatch();
   const [confirm, setConfirm] = useState(false);
@@ -27,19 +27,19 @@ function EditClassroom({ handleModal, classroomEditing }: EditModuleInterface) {
   const handleChange = (target: any) => {
     const { name, value, type, checked } = target;
     if(type === 'checkbox') {
-      setEditingModule({...editingModule, [name]: checked});
+      setEditClassroom({...editClassroom, [name]: checked});
       return; 
     }
-    setEditingModule({...editingModule, [name]: value});
+    setEditClassroom({...editClassroom, [name]: value});
   };
 
   const updateSubModule = () => {
-    dispatch(updateSubModuleAction(editingModule, handleModal));
+    dispatch(updateSubModuleAction(editClassroom, handleModal));
   };
 
   const handleDeleteSubModule = () => {
     if (confirmDelete) {
-      dispatch(deleteSubModuleAction(editingModule, handleModal));
+      dispatch(deleteSubModuleAction(editClassroom, handleModal));
       setConfirmDelete(!confirmDelete);
       return;
     } 
@@ -47,7 +47,7 @@ function EditClassroom({ handleModal, classroomEditing }: EditModuleInterface) {
   };
 
   useEffect(() => {
-    setEditingModule(classroomEditing);
+    setEditClassroom(classroomEditing);
   }, []);
 
   return (
@@ -57,19 +57,19 @@ function EditClassroom({ handleModal, classroomEditing }: EditModuleInterface) {
           onChange={({target}) => handleChange(target)}
           name='name'
           placeholder='name'
-          value={editingModule.name}
+          value={editClassroom.name}
         />
         <Input
           onChange={({target}) => handleChange(target)}
           placeholder='description'
           name='description'
-          value={editingModule.description}
+          value={editClassroom.description}
         />
 
         <Input
           onChange={({target}) => handleChange(target)}
           name='premium'
-          checked={editingModule.premium}
+          checked={editClassroom.premium}
           type={'checkbox'}
         />
 
@@ -77,7 +77,7 @@ function EditClassroom({ handleModal, classroomEditing }: EditModuleInterface) {
           onChange={({target}) => handleChange(target)}
           placeholder='image'
           name='image'
-          value={editingModule.image}
+          value={editClassroom.image}
         />
 
         <Input
@@ -85,7 +85,7 @@ function EditClassroom({ handleModal, classroomEditing }: EditModuleInterface) {
           type='password'
           name='identity'
           placeholder='identity'
-          value={editingModule.identity}
+          value={editClassroom.identity}
         />
         <button type='button' onClick={(e: FormEvent) => {
           e.preventDefault();
@@ -107,10 +107,10 @@ function EditClassroom({ handleModal, classroomEditing }: EditModuleInterface) {
       <Image
         width={200}
         height={300}
-        src={`${editingModule.image}`}
-        alt={`${editingModule.name}`}
+        src={`${editClassroom.image}`}
+        alt={`${editClassroom.name}`}
       />
-      {editingModule.description}
+      {editClassroom.description}
     </section>
   );
 }

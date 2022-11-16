@@ -1,16 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
 import React from 'react';
+import { ClassroomInterface } from '../../../../interfaces/modules/classroomInterface';
 import { ModulesInterface } from '../../../../interfaces/modules/ModulesInterface';
 import styles from './styles.module.scss';
 
 interface ModuleCardProps {
-  module: ModulesInterface;
+  classroom: ClassroomInterface;
   handleModal: () => void;
-  handleModule: (module: ModulesInterface) => void
+  handleModule: (classroom: ClassroomInterface) => void
 }
 
-function ClassroomCard({ module: classroom, handleModal, handleModule }: ModuleCardProps) {
+function ClassroomCard({ classroom, handleModal, handleModule }: ModuleCardProps) {
 
   const selectModule = () => {
     handleModule(classroom);
@@ -32,9 +33,6 @@ function ClassroomCard({ module: classroom, handleModal, handleModule }: ModuleC
       <section className={styles.inf_area}>
         <article>
           <h1>{classroom.name}</h1>
-          <span>
-            {classroom.description}
-          </span>
         </article>
       </section>
     </button>
