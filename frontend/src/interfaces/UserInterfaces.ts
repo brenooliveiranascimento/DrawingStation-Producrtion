@@ -7,6 +7,7 @@ export interface UserInterface {
   premium?: boolean;
   birthday: string;
   profilePhoto?: string;
+  loginType?: string;
   phoneNumber: any;
 }
 
@@ -68,7 +69,7 @@ export interface UserInitialInterface {
 }
 
 export interface InitialValueState {
-  usersControllData: UserInterface[] | null;
+  usersControllData: UserInterface[] | any;
   userData: UserInitialInterface;
   logged: boolean
   error: boolean;
