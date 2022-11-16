@@ -123,6 +123,13 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
           value={identity}
         />
 
+        <Input
+          onChange={({target}) => handleChangeClassData(target)}
+          placeholder='description'
+          name='description'
+          value={editClassroomData.description}
+        />
+
         <button type='button' onClick={(e: FormEvent) => {
           e.preventDefault();
           if(!confirm) return setConfirm(!confirm);
