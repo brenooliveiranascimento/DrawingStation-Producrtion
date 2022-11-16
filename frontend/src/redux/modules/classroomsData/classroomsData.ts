@@ -12,7 +12,7 @@ const INITIAL_ACITON_VALUE: ActionStateInterface = {
   payload: null,
 };
 
-export function classroomsData(state = INITIAL_STATE, action = INITIAL_ACITON_VALUE) {
+function classroomsData(state = INITIAL_STATE, action = INITIAL_ACITON_VALUE) {
   switch(action.type) {
   case ClassroomsTypes.INIT_REQUEST:
     return { ...state, load: true };
@@ -37,3 +37,5 @@ export function classroomsData(state = INITIAL_STATE, action = INITIAL_ACITON_VA
     return state;
   }
 }
+
+export default classroomsData;

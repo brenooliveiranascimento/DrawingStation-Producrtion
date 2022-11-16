@@ -9,7 +9,8 @@ import ClassroomCard from './ClassroomCard/ClassroomCard';
 import AddNewClassroom from './AddNewSubClassroom/AddNewClassroom';
 import EditClassroom from './EditClassroom/EditSubClassroom';
 import { requestSubModulesAction } from '../../../redux/actions/subModuleActions/subModuleActions';
-import { ClassroomInterface } from '../../../interfaces/modules/classroomInterface';
+import { ClassroomDataInterface, ClassroomInterface } from '../../../interfaces/modules/classroomInterface';
+import { requestClassroomAction } from '../../../redux/actions/classroomActions/classroomActions';
 
 function ClassroomController() {
   const { subModules } = useSelector((state: globalState) => state.subModules);
@@ -21,13 +22,22 @@ function ClassroomController() {
     name: '',
     image: '',
     premium: true,
-    subModuleId: subModules[0].id,
+    subModuleId: 0
+  });
+  const [classroomEditingData, setClassroomDataEditingData] = useState<ClassroomDataInterface>({
+    description: '',
+    drawing: '',
+    image: '',
+    isPremium: true,
+    video: '',
+    id: 0,
   });
 
   const [firstLoad, setFirstLoad] = useState(true);
 
   const setClassroom = () => {
     dispatch(requestSubModulesAction());
+    dispatch(requestClassroomAction());
   };
 
   const handleModule = (classroom: ClassroomInterface) => {
