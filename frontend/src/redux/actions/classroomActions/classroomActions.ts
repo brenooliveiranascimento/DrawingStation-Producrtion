@@ -38,7 +38,6 @@ export const addNewClassroomAction = (addedClassroom: ReqClassroomInterface, ide
   };
 };
 
-
 export const editingClassroomAction = (editingClassroom: ReqClassroomInterface, identity: string, handleModal: () => void): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
     const { userData } = state().user;
