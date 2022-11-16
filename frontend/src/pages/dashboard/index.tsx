@@ -14,6 +14,7 @@ import jwtDecode from 'jwt-decode';
 import apiConnection from '../../services/api.connection';
 import SubModuleController from '../../Components/AdmComponents/SubModuleController/SubModuleController';
 import ClassroomController from '../../Components/AdmComponents/ClassroomController/ClassroomController';
+import UserController from '../../Components/AdmComponents/UserController/UserController';
 
 interface DashboardPropTypes {
   userData: UserInterface,
@@ -38,7 +39,7 @@ function Dashboad({ userData }: DashboardPropTypes) {
   const Main = () => {
     switch(currScreen) {
     case 'Users':
-      return (<h1>Users</h1>);
+      return <UserController />;
     case 'Dashboard':
       return <ModulesController/>;
     case 'SubModules':

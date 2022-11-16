@@ -1,9 +1,9 @@
 import React from 'react';
+import styles from './styles.module.scss';
 
 function UserController() {
   return (
-    <section>
-      <h1>User</h1>
+    <section className={styles.user_controller_container}>
     </section>
   );
 }
