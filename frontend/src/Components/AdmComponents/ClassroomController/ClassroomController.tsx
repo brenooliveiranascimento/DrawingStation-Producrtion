@@ -17,11 +17,11 @@ function ClassroomController() {
 
   const [editing, setEditing] = useState(false);
   const [add, setAdd] = useState(false);
-  const [classroomEditing, setClassroomEditing] = useState<ModulesInterface>({
+  const [classroomEditing, setClassroomEditing] = useState<ClassroomInterface>({
     name: '',
-    description: '',
     image: '',
-    premium: true
+    premium: true,
+    subModuleId: subModules[0].id,
   });
 
   const [firstLoad, setFirstLoad] = useState(true);

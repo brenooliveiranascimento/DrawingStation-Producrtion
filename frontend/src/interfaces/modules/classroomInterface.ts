@@ -2,7 +2,7 @@ export interface ClassroomInterface {
   id?: number;
   name: string;
   image: string;
-  subModuleId: number;
+  subModuleId?: number;
   premium: boolean
 }
 
