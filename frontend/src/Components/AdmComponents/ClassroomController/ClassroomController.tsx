@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
-import { requestModulesAction } from '../../../redux/actions/moduleActions/moduleActions';
-import { ModulesInterface, SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
 import Modal from 'react-modal';
 import ClassroomCard from './ClassroomCard/ClassroomCard';
 import AddNewClassroom from './AddNewSubClassroom/AddNewClassroom';
@@ -73,9 +71,9 @@ function ClassroomController() {
   return (
     <section className={styles.Classroom_controller_container}>
       <section>
-        <h1>Modulos existentes</h1>
+        <h1>Aulas Existentes existentes</h1>
         <button onClick={handleAddModal}>
-          Add New Classroom
+          Adicionar nova aula
         </button>
       </section>
       <section className={styles.Modules_area}>
