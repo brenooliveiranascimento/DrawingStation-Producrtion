@@ -86,6 +86,7 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
           onChange={({target}) => setIdentity(target.value)}
           name='identity'
           placeholder='identity'
+          type={'password'}
           value={identity}
         />
 
@@ -152,6 +153,7 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
       <Image
         width={200}
         height={300}
+        style={{ objectFit: 'cover', justifyItems:'flex-start' }}
         src={`${addNewClassroom.image}`}
         alt={`${addNewClassroom.name}`}
       />

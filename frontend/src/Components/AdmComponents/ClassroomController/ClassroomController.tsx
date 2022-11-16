@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
+import { SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
 import Modal from 'react-modal';
 import ClassroomCard from './ClassroomCard/ClassroomCard';
 import AddNewClassroom from './AddNewSubClassroom/AddNewClassroom';
