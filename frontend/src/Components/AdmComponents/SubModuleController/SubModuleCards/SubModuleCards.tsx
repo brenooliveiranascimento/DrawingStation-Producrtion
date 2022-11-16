@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
 import React from 'react';
-import { ModulesInterface, SubModuleInterface } from '../../interfaces/modules/ModulesInterface';
+import { ModulesInterface, SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
 import styles from './styles.module.scss';
 import { useSelector } from 'react-redux';
-import { globalState } from '../../interfaces/modules/globalStateInterface';
+import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 
 interface ModuleCardProps {
   subModule: SubModuleInterface;
@@ -22,14 +22,14 @@ function SubModuleCard({ subModule, handleModal, handleModule }: ModuleCardProps
   };
 
   const referenceModuleName = () => referenceModule
-    .find((currModule: ModulesInterface) => currModule.id === subModule.id);
-
+    .find((currModule: ModulesInterface) => currModule.id === Number(subModule.moduleId));
   return (
     <button onClick={selectModule} className={styles.card_container}>
       <section>
-        <Image  
-          width={300}
-          height={400}
+        <Image
+          width={260}
+          height={350}
+          style={{ objectFit: 'cover', justifyItems:'flex-start' }}
           sizes={'auto'}
           src={`${subModule.image}`}
           alt={`${subModule.name}`}
@@ -42,7 +42,7 @@ function SubModuleCard({ subModule, handleModal, handleModule }: ModuleCardProps
             {subModule.description}
           </span>
           <span>
-            Pertence a {referenceModuleName().name}
+            Pertence a {referenceModuleName()?.name}
           </span>
         </article>
       </section>

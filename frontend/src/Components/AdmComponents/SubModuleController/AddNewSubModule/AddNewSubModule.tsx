@@ -1,31 +1,31 @@
 import Image from 'next/image';
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { EditModule } from '../../../../interfaces/modules/ModulesInterface';
-import { deleteModule, editModule } from '../../../../redux/actions/moduleActions/moduleActions';
+import { ModulesInterface, SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
+import { addSubModulesAction } from '../../../../redux/actions/subModuleActions/subModuleActions';
 import { Input } from '../../../ui/Inputs/Inputs';
+import { useSelector } from 'react-redux';
+import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 
-interface EditModuleInterface {
+interface EditSubModuleInterface {
   handleModal: () => void;
-  moduleEditing: EditModule
 }
 
-function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
-  const [editingModule, setEditingModule] = useState<EditModule>({
+function AddNewSubModule({ handleModal }: EditSubModuleInterface) {
+  const { modules } = useSelector((state: globalState) => state.modules);
+
+  const [editingModule, setEditingModule] = useState<SubModuleInterface>({
     name: '',
     description: '',
     image: '',
     premium: true,
     admPassword: '',
+    moduleId: modules[0].id,
+    identity: '',
   });
   const dispatch = useDispatch();
 
   const [confirm, setConfirm] = useState(false);
-  const [confirmDelete, setConfirmDelete] = useState(false);
-
-  useEffect(() => {
-    setEditingModule(moduleEditing);
-  }, []);
 
   const handleChange = (target: any) => {
     const { name, value, type, checked } = target;
@@ -36,16 +36,8 @@ function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
     setEditingModule({...editingModule, [name]: value});
   };
 
-  const handleDeleteModule = () => {
-    if(confirmDelete) {
-      dispatch(deleteModule(editingModule, handleModal));
-      setConfirmDelete(!confirmDelete);
-    }
-    setConfirmDelete(!confirmDelete);
-  };
-
-  const updateModule = () => {
-    dispatch(editModule(editingModule, handleModal));
+  const addSubModule = () => {
+    dispatch(addSubModulesAction(editingModule, handleModal));
   };
 
   return (
@@ -59,8 +51,8 @@ function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
         />
         <Input
           onChange={({target}) => handleChange(target)}
-          placeholder='description'
           name='description'
+          placeholder='Description'
           value={editingModule.description}
         />
 
@@ -73,33 +65,39 @@ function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
 
         <Input
           onChange={({target}) => handleChange(target)}
-          placeholder='image'
           name='image'
+          placeholder='image'
           value={editingModule.image}
         />
 
         <Input
           onChange={({target}) => handleChange(target)}
-          name='admPassword'
+          name='identity'
           type='password'
-          placeholder='password'
-          value={editingModule.admPassword}
+          placeholder='identity'
+          value={editingModule.identity}
         />
+        <select
+          value={editingModule.moduleId}
+          onChange={({target}: any) => setEditingModule({...editingModule, moduleId: Number(target.value)})}
+        >
+          {
+            modules.map((currModule: ModulesInterface) => (
+              <option value={currModule.id} key={currModule.id}>
+                {currModule.name}
+              </option>
+            ))
+          }
+        </select>
         <button type='button' onClick={(e: FormEvent) => {
           e.preventDefault();
           if(!confirm) return setConfirm(!confirm);
-          updateModule();
+          addSubModule();
         }}>
-          {confirm ? 'Confirmar!' : 'Atualizar'}
+          {confirm ? 'Confirmar!' : 'Adicionar'}
         </button>
         <button onClick={handleModal}>
           Cancelar
-        </button>
-        <button
-          type='button'
-          onClick={handleDeleteModule}
-        >
-          {confirmDelete ? 'Confirmar Remoção' : 'Deletar'}
         </button>
       </form>
       <Image
@@ -108,9 +106,8 @@ function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
         src={`${editingModule.image}`}
         alt={`${editingModule.name}`}
       />
-      {moduleEditing.description}
     </section>
   );
 }
 
-export default EditModuleModal;
+export default AddNewSubModule;

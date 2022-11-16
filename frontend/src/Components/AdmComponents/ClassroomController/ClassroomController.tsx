@@ -2,61 +2,89 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
-import { SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
+import { requestModulesAction } from '../../../redux/actions/moduleActions/moduleActions';
+import { ModulesInterface, SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
 import Modal from 'react-modal';
+import ClassroomCard from './ClassroomCard/ClassroomCard';
+import AddNewClassroom from './AddNewSubClassroom/AddNewClassroom';
+import EditClassroom from './EditClassroom/EditClassroom';
 import { requestSubModulesAction } from '../../../redux/actions/subModuleActions/subModuleActions';
-import SubModuleCard from './SubModuleCards/SubModuleCards';
-import EditSubModuleModal from './EditSubModuleModal/EditSubModuleModal';
-import AddNewSubModule from './AddNewSubModule/AddNewSubModule';
+import { ClassroomDataInterface, ClassroomInterface } from '../../../interfaces/modules/classroomInterface';
+import { requestClassroomAction } from '../../../redux/actions/classroomActions/classroomActions';
 
-function SubModulesController() {
+function ClassroomController() {
+  const { classroomsData } = useSelector((state: globalState) => state.classroomsData);
   const { subModules } = useSelector((state: globalState) => state.subModules);
   const dispatch = useDispatch();
 
   const [editing, setEditing] = useState(false);
   const [add, setAdd] = useState(false);
-  const [subModuleEditing, setSubModule] = useState<SubModuleInterface>({
+  const [classroomEditing, setClassroomEditing] = useState<ClassroomInterface>({
     name: '',
-    description: '',
-    premium: true,
-    moduleId: 0,
     image: '',
+    premium: true,
+    subModuleId: 0
   });
+  const [classroomEditingData, setClassroomDataEditingData] = useState<ClassroomDataInterface>({
+    description: '',
+    drawing: '',
+    image: '',
+    isPremium: true,
+    video: '',
+    id: 0,
+    classroomId: 0,
+  });
+
   const [firstLoad, setFirstLoad] = useState(true);
 
-  const setModules = () => {
+  const setClassroom = () => {
     dispatch(requestSubModulesAction());
+    dispatch(requestClassroomAction());
   };
 
-  const handleModule = (subModule: SubModuleInterface) => {
-    setSubModule(subModule);
+  const currClassromEditingData = (classroomId: number): ClassroomDataInterface => {
+    return classroomsData
+      .find((currClassroomData: ClassroomDataInterface) => currClassroomData
+        .classroomId === classroomId) as ClassroomDataInterface;
+  };
+
+  const handleModule = (classroom: ClassroomInterface) => {
+    setClassroomEditing(classroom);
+    setClassroomDataEditingData(currClassromEditingData(Number(classroom.id)));
   };
 
   const handleModal = () => setEditing(!editing);
   const handleAddModal = () => setAdd(!add);
 
+  const allClassrooms = () => {
+    const classrooms = subModules.reduce((acc: any, currSubModule: SubModuleInterface) => {
+      return [...acc, ...currSubModule.classrooms];
+    }, []);
+    return classrooms;
+  };
+
   useEffect(() => {
     if(firstLoad) {
-      setModules();
+      setClassroom();
       setFirstLoad(false);
     }
   }, []);
+
   return (
-    <section className={styles.sub_modules_controller_container}>
+    <section className={styles.Classroom_controller_container}>
       <section>
-        <h1>SubModulos existentes</h1>
+        <h1>Modulos existentes</h1>
         <button onClick={handleAddModal}>
-          Add New SubModule
+          Add New Classroom
         </button>
       </section>
-      <section className={styles.sub_modules_area}>
-        {subModules?.map((currModule: SubModuleInterface) => <SubModuleCard
+      <section className={styles.Modules_area}>
+        {allClassrooms().reverse().map((currModule: ClassroomInterface) => <ClassroomCard
           key={currModule.id}
-          subModule={currModule}
+          classroom={currModule}
           handleModal={handleModal}
-          handleModule={(module: SubModuleInterface) => handleModule(module)}
+          handleModule={(classroom: ClassroomInterface) => handleModule(classroom)}
         />)}
-
       </section>
       <Modal
         isOpen={editing}
@@ -86,7 +114,7 @@ function SubModulesController() {
         }}
         contentLabel="Example Modal"
       >
-        <EditSubModuleModal subModuleEditing={subModuleEditing} handleModal={handleModal}/>
+        <EditClassroom handleModal={handleModal} classroomEditing={classroomEditing} classroomEditingData={classroomEditingData}/>
       </Modal>
       <Modal
         isOpen={add}
@@ -116,10 +144,10 @@ function SubModulesController() {
         }}
         contentLabel="Example Modal"
       >
-        <AddNewSubModule handleModal={handleAddModal} />
+        <AddNewClassroom handleModal={handleAddModal} />
       </Modal>
     </section>
   );
 }
 
-export default  SubModulesController;
+export default  ClassroomController;

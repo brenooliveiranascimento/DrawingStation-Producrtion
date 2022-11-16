@@ -5,51 +5,33 @@ module.exports = {
       [
         {
           name: 'degrade',
-          image: 'link da imagem',
+          image: 'https://firebasestorage.googleapis.com/v0/b/drawning-station.appspot.com/o/capas%2Fdegrade.jpg?alt=media&token=fadab5e1-d5a9-45fb-8d4c-50d7eec214ed',
           premium: false,
           subModuleId:1
         },
         {
           name: 'circulo',
           premium: false,
-          image: 'link da imagem',
+          image: 'https://firebasestorage.googleapis.com/v0/b/drawning-station.appspot.com/o/capas%2FcapaBolinha.png?alt=media&token=c7687d41-3ebf-42f2-bd47-230a199ea2ec',
           subModuleId:1
         },
         {
-          name: 'rosa',
-          image: 'link da imagem',
+          name: 'Rosa',
+          image: 'https://firebasestorage.googleapis.com/v0/b/drawning-station.appspot.com/o/capas%2FcapaRosa.jpg?alt=media&token=bba4de36-afe5-4e6a-bbd7-9785fa1a3cb2',
           premium: false,
           subModuleId:1,
         },
         {
           name: 'Maçã',
-          image: 'link da imagem',
+          image: 'https://firebasestorage.googleapis.com/v0/b/drawning-station.appspot.com/o/capas%2FCaptura%20de%20Tela%20(15).png?alt=media&token=a651f5b8-b2fb-427b-9db5-168864877c96',
           premium: false,
           subModuleId:1,
         },
         {
           name: 'Rosa Azul',
-          image: 'link da imagem',
+          image: 'https://firebasestorage.googleapis.com/v0/b/drawning-station.appspot.com/o/capas%2FIMG_20220206_141259_821.jpg?alt=media&token=6830b5c9-8a25-44e8-aa5f-d38024599423',
           premium: false,
           subModuleId:1,
-        },
-        {
-          name: 'Principais cores de pele',
-          image: 'link da imagem',
-          premium: true,
-          subModuleId:2,
-        },
-        {
-          name: 'Principais tipos de textura e maçetes',
-          image: 'link da imagem',
-          premium: true,
-          subModuleId:2,
-        },
-        {
-          name: 'Olho 1',
-          image: 'link da imagem',
-          premium: true,
-          subModuleId:2,
         },
       ],
       {},

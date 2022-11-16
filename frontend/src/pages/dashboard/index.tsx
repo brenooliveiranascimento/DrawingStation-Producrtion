@@ -13,6 +13,7 @@ import { parseCookies } from 'nookies';
 import jwtDecode from 'jwt-decode';
 import apiConnection from '../../services/api.connection';
 import SubModuleController from '../../Components/AdmComponents/SubModuleController/SubModuleController';
+import ClassroomController from '../../Components/AdmComponents/ClassroomController/ClassroomController';
 
 interface DashboardPropTypes {
   userData: UserInterface,
@@ -20,7 +21,7 @@ interface DashboardPropTypes {
 
 function Dashboad({ userData }: DashboardPropTypes) {
   const dispatch = useDispatch();
-  const [currScreen, setCurrScreen] = useState('dashboard');
+  const [currScreen, setCurrScreen] = useState('Dashboard');
 
   const setUser = () => {
     dispatch(AutenticationSuccess(userData));
@@ -42,6 +43,8 @@ function Dashboad({ userData }: DashboardPropTypes) {
       return <ModulesController/>;
     case 'SubModules':
       return <SubModuleController />;
+    case 'Classrooms':
+      return <ClassroomController />;
     default:
       return <ModulesController />;
     }

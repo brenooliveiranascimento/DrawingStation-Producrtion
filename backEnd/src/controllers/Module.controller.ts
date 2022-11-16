@@ -48,12 +48,20 @@ class ModuleController{
 
   public addNewSubModule = async (req: Request, res: Response) => {
     const subModule: SubModulesInterface = req.body;
-    console.log(subModule)
     const { error, message } = await this.moduleService.addNewSubModule(subModule);
 
     if(error) return res.status(statusCodes.NO_CONTENT).json({ message: message, error: error.message });
 
     return res.status(statusCodes.OK).json({ message: 'SubMódulo Adicionado com sucesso!', error: null });
+  }
+
+  public deleteSubModule = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { error, message } = await this.moduleService.deleteSubModule(Number(id));
+
+    if(error) return res.status(statusCodes.NO_CONTENT).json({ message: message, error: error.message });
+
+    return res.status(statusCodes.OK).json({ message: 'SubMódulo Deletado com sucesso!', error: null });
   }
 
   public deleteModule = async (req: Request, res: Response) => {
@@ -62,7 +70,7 @@ class ModuleController{
 
     if(error) return res.status(statusCodes.NOT_FOUND).json({ message: message, error: error.message });
 
-    return res.status(statusCodes.NOT_FOUND).json({ message, error: null });
+    return res.status(statusCodes.OK).json({ message, error: null });
   }
 
   public updateModule = async (req: Request, res: Response) => {

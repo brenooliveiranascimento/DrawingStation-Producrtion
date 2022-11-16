@@ -22,7 +22,8 @@ routes.get('/classrooms', moduleController.getClassrooms);
 routes.use(validateAdm, checkAdm);
 
 routes.put('/sub/:id',validationModule ,moduleController.updateSubModule);
-routes.post('/sub',validationModule ,moduleController.addNewSubModule);
+routes.post('/sub', validationModule ,moduleController.addNewSubModule);
+routes.post('/sub/:id', moduleController.deleteSubModule);
 
 routes.post('/classrooms',
 validationClassroom,
@@ -33,10 +34,10 @@ routes.put('/classrooms/:id',
 validationClassroom,
 validationClassroomData,
 classRoomController.updateClassroom);
-routes.delete('/classrooms/:id', classRoomController.deleteClassroom);
+routes.post('/classrooms/:id', classRoomController.deleteClassroom);
 
 routes.post('/', validationModule, moduleController.addNewModule);
-routes.delete('/:id', validationModule, moduleController.deleteModule);
+routes.post('/:id', moduleController.deleteModule);
 routes.put('/:id', validationModule, moduleController.updateModule);
 
 export default routes

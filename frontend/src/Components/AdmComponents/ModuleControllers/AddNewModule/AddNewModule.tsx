@@ -67,6 +67,7 @@ function AddNewModule({ handleModal }: EditModuleInterface) {
         <Input
           onChange={({target}) => handleChange(target)}
           name='admPassword'
+          type='password'
           placeholder='password'
           value={editingModule.admPassword}
         />
@@ -75,7 +76,7 @@ function AddNewModule({ handleModal }: EditModuleInterface) {
           if(!confirm) return setConfirm(!confirm);
           updateModule();
         }}>
-          {confirm ? 'Confirmar!' : 'Atualizar'}
+          {confirm ? 'Confirmar!' : 'Criar'}
         </button>
         <button onClick={handleModal}>
           Cancelar

@@ -24,7 +24,7 @@ export const addNewModule = (updatedModule: ModulesInterface, ) => ({
   payload: updatedModule
 });
 
-export const deleteModule = (deletedModule: ModulesInterface, ) => ({
+export const deleteModuleGenecic = (deletedModule: ModulesInterface, ) => ({
   type: ModulesTypes.DELETE_MODULE,
   payload: deletedModule
 });

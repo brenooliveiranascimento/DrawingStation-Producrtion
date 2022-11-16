@@ -118,6 +118,23 @@ class ModuleService {
     }
   }
 
+  public async deleteSubModule(id: number):  Promise<{ error: {message: string} | null, message: string | null | ModuleInterface | any}> {
+    try {
+      const { error, message }: any = await this.findASubModule(id);
+      if(error) return { error: { message: error.message }, message: message };
+  
+      const removeModule = await SubModuleModel.destroy({
+        where: { id }
+      })
+  
+      if(!removeModule) return { error: { message: errorMapTypes.ERROR_IN_DELETE_MODULE }, message: null };
+  
+      return { error: null, message: 'SubMódulo deletado com sucesso!' };
+    } catch(e) {
+      return { error: { message: errorMapTypes.ERROR_IN_DELETE_MODULE }, message: e };
+    }
+  }
+
   public async findFreeClassroom(): Promise<{ error: {mesage: string} | null, message: ClassroomDataInterface[] | null }> {
     try {
       const freeClassRooms: ClassroomDataInterface[] = await ClassRoomDataModel

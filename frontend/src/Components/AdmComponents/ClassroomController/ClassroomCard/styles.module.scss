@@ -1,5 +1,5 @@
 .card_container {
-  width: 300px;
+  width: 260px;
   height: auto;
   padding-bottom: 0.5rem;
   display: flex;
@@ -12,6 +12,7 @@
   h1 {
     color: var(--white);
     text-align: start;
+    font-size: 1.5rem;
     word-break: break-all;
   }
 

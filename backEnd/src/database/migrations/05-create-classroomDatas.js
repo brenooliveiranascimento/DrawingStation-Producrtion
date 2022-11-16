@@ -13,11 +13,11 @@ module.exports = {
       },
       drawing: {
         allowNull: false,
-        type: Sequelize.STRING(150),
+        type: Sequelize.STRING(500),
       },
       image: {
         allowNull: false,
-        type: Sequelize.STRING(300),
+        type: Sequelize.STRING(500),
       },
       isPremium: {
         allowNull: false,

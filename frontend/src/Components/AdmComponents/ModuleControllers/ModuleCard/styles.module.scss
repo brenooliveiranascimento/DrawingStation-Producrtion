@@ -1,0 +1,42 @@
+.card_container {
+  width: 260px;
+  height: auto;
+  padding-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: rgba(0,0,0);
+  margin: 1rem;
+  border: none;
+
+  h1 {
+    color: var(--white);
+    text-align: start;
+    font-size: 1.5rem;
+    word-break: break-all;
+  }
+
+  span {
+    color: var(--white);
+  }
+
+  article {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%
+  }
+};
+
+.inf_area {
+  display: flex;
+  width: 100%;
+  height: auto;
+
+  button {
+    position: absolute;
+    margin-right: 10px;
+  }
+}

@@ -23,7 +23,7 @@ ClassroomData.init({
     allowNull: false,
   },
   image: {
-    type: STRING(300),
+    type: STRING(500),
     allowNull: false,
   },
   video: {
@@ -31,7 +31,7 @@ ClassroomData.init({
     allowNull: false,
   },
   drawing: {
-    type: STRING(300),
+    type: STRING(500),
     allowNull: false,
   },
   classroomId: {

@@ -5,7 +5,7 @@
   justify-content: center;
 }
 
-.modules_controller_container {
+.Classroom_controller_container {
   display: flex;
   flex-direction: column;
   background-color: var(--dark-900);
@@ -16,27 +16,24 @@
   h1 {
     font-size: 2rem;
   }
-  span {
-    text-align: start;
-  }
 }
 
-.modules_controller_container::-webkit-scrollbar {
+.Classroom_controller_container::-webkit-scrollbar {
   width: 4px;
 }
 
 /* Track */
-.modules_controller_container::-webkit-scrollbar-track {
+.Classroom_controller_container::-webkit-scrollbar-track {
   background: #282828;
 }
 
 /* Handle */
-.modules_controller_container::-webkit-scrollbar-thumb {
+.Classroom_controller_container::-webkit-scrollbar-thumb {
   background: rgb(77, 77, 77);
 }
 
 /* Handle on hover */
-.modules_controller_container::-webkit-scrollbar-thumb:hover {
+.Classroom_controller_container::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
 
