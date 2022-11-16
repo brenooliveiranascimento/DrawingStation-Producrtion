@@ -26,6 +26,17 @@ class UserService {
        return { error: { message: errorMapTypes.REQUEST_ERROR }, message: e };
     }
   }
+
+  public async getAllUsers() {
+    try {
+      const users = await UserModel.findAll({
+        attributes: {exclude: ['password']}})
+      if(!users) return { error: {message: errorMapTypes.REQUEST_ERROR}, message: null }
+      return { error: null, message: users };
+    } catch(e) {
+       return { error: {message: errorMapTypes.REQUEST_ERROR}, message: e }
+    }
+  }
 }
 
 export default UserService;
