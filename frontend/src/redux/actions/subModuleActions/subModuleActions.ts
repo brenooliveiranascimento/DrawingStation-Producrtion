@@ -31,8 +31,8 @@ export const addSubModulesAction = (subModule: SubModuleInterface, handleModal: 
     const { user, subModules } = state();
     dispatch(genericRequestControl(SubModulesTypes.INIT_REQUEST));
     const cookies = parseCookies();
-    const { description, image, moduleId, name, premium , identity, classrooms} = subModule;
-    const insertData = { description, image, moduleId, name, premium, classrooms };
+    const { description, image, moduleId, name, premium , identity } = subModule;
+    const insertData = { description, image, moduleId, name, premium, classrooms: [] };
     const token = cookies['DRAWING_USER_DATA'];
     try {
       const { data } = await apiConnection.post('/modules/sub',
