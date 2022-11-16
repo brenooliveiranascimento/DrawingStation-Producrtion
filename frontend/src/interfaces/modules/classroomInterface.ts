@@ -13,6 +13,7 @@ export interface ClassroomDataInterface {
   image: string;
   description: string;
   isPremium: boolean;
+  classroomId?: number;
 }
 
 export interface ReqClassroomInterface {

@@ -14,6 +14,7 @@ import { requestClassroomAction } from '../../../redux/actions/classroomActions/
 
 function ClassroomController() {
   const { subModules } = useSelector((state: globalState) => state.subModules);
+  const { classroomsData } = useSelector((state: globalState) => state.classroomData);
   const dispatch = useDispatch();
 
   const [editing, setEditing] = useState(false);
@@ -31,6 +32,7 @@ function ClassroomController() {
     isPremium: true,
     video: '',
     id: 0,
+    classroomId: 0,
   });
 
   const [firstLoad, setFirstLoad] = useState(true);
@@ -40,8 +42,15 @@ function ClassroomController() {
     dispatch(requestClassroomAction());
   };
 
+  const currClassromEditingData = (classroomId: number): ClassroomDataInterface => {
+    return classroomsData
+      .find((currClassroomData: ClassroomDataInterface) => currClassroomData
+        .classroomId === classroomId) as ClassroomDataInterface;
+  };
+
   const handleModule = (classroom: ClassroomInterface) => {
     setClassroomEditing(classroom);
+    setClassroomDataEditingData(currClassromEditingData(Number(classroom.id)));
   };
 
   const handleModal = () => setEditing(!editing);
@@ -105,7 +114,7 @@ function ClassroomController() {
         }}
         contentLabel="Example Modal"
       >
-        <EditClassroom handleModal={handleModal} classroomEditing={classroomEditing}/>
+        <EditClassroom handleModal={handleModal} classroomEditing={classroomEditing} classroomEditingData={classroomEditingData}/>
       </Modal>
       <Modal
         isOpen={add}
@@ -135,7 +144,7 @@ function ClassroomController() {
         }}
         contentLabel="Example Modal"
       >
-        <AddNewClassroom handleModal={handleAddModal}/>
+        <AddNewClassroom handleModal={handleAddModal} />
       </Modal>
     </section>
   );

@@ -1,16 +1,17 @@
 import Image from 'next/image';
 import React, { FormEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ClassroomInterface } from '../../../../interfaces/modules/classroomInterface';
+import { ClassroomDataInterface, ClassroomInterface } from '../../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import { Input } from '../../../ui/Inputs/Inputs';
 
 interface EditClassroomInterface {
   handleModal: () => void;
-  classroomEditing: ClassroomInterface
+  classroomEditing: ClassroomInterface;
+  classroomEditingData: ClassroomDataInterface,
 }
 
-function EditClassroom({ handleModal, classroomEditing }: EditClassroomInterface) {
+function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: EditClassroomInterface) {
   const { subModules } = useSelector((state: globalState) => state.subModules);
   const [editClassroom, setEditClassroom] = useState<ClassroomInterface>({
     name: '',
