@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
 import { deleteSubModuleAction, updateSubModuleAction } from '../../../../redux/actions/subModuleActions/subModuleActions';
 import { Input } from '../../../ui/Inputs/Inputs';
+import styles from './style.module.scss';
 
 interface EditModuleInterface {
   handleModal: () => void;
@@ -51,7 +52,7 @@ function EditSubModuleModal({ handleModal, subModuleEditing }: EditModuleInterfa
   }, []);
 
   return (
-    <section>
+    <section className={styles.modal_container}>
       <form>
         <Input
           onChange={({target}) => handleChange(target)}
@@ -66,12 +67,15 @@ function EditSubModuleModal({ handleModal, subModuleEditing }: EditModuleInterfa
           value={editingModule.description}
         />
 
-        <Input
-          onChange={({target}) => handleChange(target)}
-          name='premium'
-          checked={editingModule.premium}
-          type={'checkbox'}
-        />
+        <label htmlFor='premium'>
+          <Input
+            onChange={({target}) => handleChange(target)}
+            name='premium'
+            checked={editingModule.premium}
+            type={'checkbox'}
+          />
+          <span>Premium</span>
+        </label>
 
         <Input
           onChange={({target}) => handleChange(target)}
@@ -105,8 +109,9 @@ function EditSubModuleModal({ handleModal, subModuleEditing }: EditModuleInterfa
         </button>
       </form>
       <Image
-        width={200}
-        height={300}
+        width={300}
+        height={400}
+        style={{ objectFit: 'cover', justifyItems:'flex-start' }}
         src={`${editingModule.image}`}
         alt={`${editingModule.name}`}
       />

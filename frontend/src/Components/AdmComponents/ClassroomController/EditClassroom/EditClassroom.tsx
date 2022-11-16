@@ -5,6 +5,7 @@ import { ClassroomDataInterface, ClassroomInterface } from '../../../../interfac
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import { editingClassroomAction } from '../../../../redux/actions/classroomActions/classroomActions';
 import { Input } from '../../../ui/Inputs/Inputs';
+import styles from './style.module.scss';
 
 interface EditClassroomInterface {
   handleModal: () => void;
@@ -62,21 +63,24 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
   }, []);
 
   return (
-    <section>
+    <section className={styles.modal_container}>
       <form>
+        <h2>Card Inf</h2>
         <Input
           onChange={({target}) => handleChange(target)}
           name='name'
           placeholder='name'
           value={editClassroom.name}
         />
-
-        <Input
-          onChange={({target}) => handleChange(target)}
-          name='premium'
-          checked={editClassroom.premium}
-          type={'checkbox'}
-        />
+        <label htmlFor='premium'>
+          <Input
+            onChange={({target}) => handleChange(target)}
+            name='premium'
+            checked={editClassroom.premium}
+            type={'checkbox'}
+          />
+          <span>Premium</span>
+        </label>
 
         <Input
           onChange={({target}) => handleChange(target)}
@@ -87,6 +91,7 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
       </form>
 
       <form>
+        <h2>Sensive Data</h2>
         <Input
           onChange={({target}) => handleChangeClassData(target)}
           name='image'
@@ -94,12 +99,16 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
           value={editClassroomData.image}
         />
 
-        <Input
-          onChange={({target}) => handleChangeClassData(target)}
-          name='isPremium'
-          checked={editClassroomData.isPremium}
-          type={'checkbox'}
-        />
+
+        <label htmlFor='isPremium'>
+          <Input
+            onChange={({target}) => handleChangeClassData(target)}
+            name='isPremium'
+            checked={editClassroomData.isPremium}
+            type={'checkbox'}
+          />
+          <span>Premium</span>
+        </label>
 
         <Input
           onChange={({target}) => handleChangeClassData(target)}
@@ -112,6 +121,7 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
           onChange={({target}) => handleChangeClassData(target)}
           placeholder='video'
           name='video'
+          type={'password'}
           value={editClassroomData.video}
         />
 
@@ -137,9 +147,7 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
         }}>
           {confirm ? 'Confirmar!' : 'Atualizar'}
         </button>
-        <button
-          type='button'
-        >
+        <button type='button' >
           { confirmDelete ? 'Confirmar Exclusão!' : 'Excluir' }
         </button>
         <button onClick={handleModal}>
@@ -148,6 +156,7 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
       </form>
       <Image
         width={200}
+        style={{ objectFit: 'cover', justifyItems:'flex-start' }}
         height={300}
         src={`${editClassroom.image}`}
         alt={`${editClassroom.name}`}
