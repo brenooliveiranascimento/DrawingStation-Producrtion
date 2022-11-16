@@ -6,5 +6,5 @@ export interface globalState {
   user: InitialValueState,
   modules: ModuleStateInterface
   subModules: SubModuleStateInterface;
-  classroomData: ClassroomStateInterface;
+  classroomsData: ClassroomStateInterface;
 }

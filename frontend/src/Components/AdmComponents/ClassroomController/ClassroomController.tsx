@@ -7,14 +7,14 @@ import { ModulesInterface, SubModuleInterface } from '../../../interfaces/module
 import Modal from 'react-modal';
 import ClassroomCard from './ClassroomCard/ClassroomCard';
 import AddNewClassroom from './AddNewSubClassroom/AddNewClassroom';
-import EditClassroom from './EditClassroom/EditSubClassroom';
+import EditClassroom from './EditClassroom/EditClassroom';
 import { requestSubModulesAction } from '../../../redux/actions/subModuleActions/subModuleActions';
 import { ClassroomDataInterface, ClassroomInterface } from '../../../interfaces/modules/classroomInterface';
 import { requestClassroomAction } from '../../../redux/actions/classroomActions/classroomActions';
 
 function ClassroomController() {
+  const { classroomsData } = useSelector((state: globalState) => state.classroomsData);
   const { subModules } = useSelector((state: globalState) => state.subModules);
-  const { classroomsData } = useSelector((state: globalState) => state.classroomData);
   const dispatch = useDispatch();
 
   const [editing, setEditing] = useState(false);

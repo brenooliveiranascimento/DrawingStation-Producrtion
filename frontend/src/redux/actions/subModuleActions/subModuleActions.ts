@@ -106,8 +106,6 @@ export const updateSubModuleAction = (subModule: SubModuleInterface, handleModal
   };
 };
 
-
-
 export const deleteSubModuleAction = (subModule: SubModuleInterface, handleModal: () => void): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState ) => {
     const { user } = state();

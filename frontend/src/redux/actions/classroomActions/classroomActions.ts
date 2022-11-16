@@ -38,8 +38,41 @@ export const addNewClassroomAction = (addedClassroom: ReqClassroomInterface, ide
 };
 
 
+export const editingClassroomAction = (editingClassroom: ReqClassroomInterface, identity: string, handleModal: () => void): any => {
+  return async (dispatch: Dispatch<any>, state: () => globalState) => {
+    const { userData } = state().user;
+    const cookies = parseCookies();
+    const token = cookies['DRAWING_USER_DATA'];
+    const { classroom, classroomData,  } = editingClassroom;
+    try {
+      const { data } = await apiConnection.put(`/modules/classrooms/${Number(classroom.id)}`,
+        {
+          admEmail: userData.email,
+          identity,
+          classroomData,
+          classroom
+        },
+        { headers: { 'Authorization': token } });
+      toast.success('Atualizado com sucesso!!! adicionado com sucesso!');
+      handleModal();
+    } catch(e: any) {
+      console.log(e);
+      if(e.message) {
+        console.log(e.response.data);
+        toast.error(`${e.response.data.message}`);
+      } else {
+        console.log('Server Connectionn error');
+        toast.error('Server Connectionn error');
+      }
+    }
+  };
+};
+
+
 export const requestClassroomAction = (): any => {
-  return async (dispatch: Dispatch<any>) => {
+  return async (dispatch: Dispatch<any>, state: () => globalState) => {
+    const { classroomsData } = state();
+    if(classroomsData.classroomsData.length) return;
     const cookies = parseCookies();
     const token = cookies['DRAWING_USER_DATA'];
     try {

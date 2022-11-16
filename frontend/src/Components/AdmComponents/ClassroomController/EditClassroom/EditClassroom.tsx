@@ -3,6 +3,7 @@ import React, { FormEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ClassroomDataInterface, ClassroomInterface } from '../../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import { editingClassroomAction } from '../../../../redux/actions/classroomActions/classroomActions';
 import { Input } from '../../../ui/Inputs/Inputs';
 
 interface EditClassroomInterface {
@@ -19,9 +20,19 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
     premium: true,
     subModuleId: subModules[0].id,
   });
+
+  const [editClassroomData, setEditClassroomData] = useState<ClassroomDataInterface>({
+    image: '',
+    description: '',
+    drawing: '',
+    isPremium: true,
+    video: '',
+  });
+
   const dispatch = useDispatch();
   const [confirm, setConfirm] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [identity, setIdentity] = useState('');
 
   const handleChange = (target: any) => {
     const { name, value, type, checked } = target;
@@ -32,11 +43,22 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
     setEditClassroom({...editClassroom, [name]: value});
   };
 
-  const updateSubModule = () => {
+  const handleChangeClassData = (target: any) => {
+    const { name, value, type, checked } = target;
+    if(type === 'checkbox') {
+      setEditClassroomData({...editClassroomData, [name]: checked});
+      return; 
+    }
+    setEditClassroomData({...editClassroomData, [name]: value});
+  };
+
+  const handleUpdate = () => {
+    dispatch(editingClassroomAction({ classroom: editClassroom, classroomData: editClassroomData }, identity, handleModal));
   };
 
   useEffect(() => {
     setEditClassroom(classroomEditing);
+    setEditClassroomData(classroomEditingData);
   }, []);
 
   return (
@@ -62,11 +84,49 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
           name='image'
           value={editClassroom.image}
         />
+      </form>
+
+      <form>
+        <Input
+          onChange={({target}) => handleChangeClassData(target)}
+          name='image'
+          placeholder='image'
+          value={editClassroomData.image}
+        />
+
+        <Input
+          onChange={({target}) => handleChangeClassData(target)}
+          name='isPremium'
+          checked={editClassroomData.isPremium}
+          type={'checkbox'}
+        />
+
+        <Input
+          onChange={({target}) => handleChangeClassData(target)}
+          placeholder='drawing'
+          name='drawing'
+          value={editClassroomData.drawing}
+        />
+
+        <Input
+          onChange={({target}) => handleChangeClassData(target)}
+          placeholder='video'
+          name='video'
+          value={editClassroomData.video}
+        />
+
+        <Input
+          onChange={({target}) => setIdentity(target.value)}
+          placeholder='identity'
+          name='identity'
+          type={'password'}
+          value={identity}
+        />
 
         <button type='button' onClick={(e: FormEvent) => {
           e.preventDefault();
           if(!confirm) return setConfirm(!confirm);
-          updateSubModule();
+          handleUpdate();
         }}>
           {confirm ? 'Confirmar!' : 'Atualizar'}
         </button>
