@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { parseCookies } from 'nookies';
 import { Dispatch } from 'react';
 import { toast } from 'react-toastify';
