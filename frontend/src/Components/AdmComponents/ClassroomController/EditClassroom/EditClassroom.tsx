@@ -99,7 +99,6 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
           value={editClassroomData.image}
         />
 
-
         <label htmlFor='isPremium'>
           <Input
             onChange={({target}) => handleChangeClassData(target)}

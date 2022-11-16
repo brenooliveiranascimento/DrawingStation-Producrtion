@@ -95,14 +95,14 @@ function EditModuleModal({ handleModal, moduleEditing }: EditModuleInterface) {
         }}>
           {confirm ? 'Confirmar!' : 'Atualizar'}
         </button>
-        <button onClick={handleModal}>
-          Cancelar
-        </button>
         <button
           type='button'
           onClick={handleDeleteModule}
         >
           {confirmDelete ? 'Confirmar Remoção' : 'Deletar'}
+        </button>
+        <button onClick={handleModal}>
+          Cancelar
         </button>
       </form>
       <Image
