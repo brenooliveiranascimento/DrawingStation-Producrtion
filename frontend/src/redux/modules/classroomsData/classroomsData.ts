@@ -32,7 +32,7 @@ function classroomsData(state = INITIAL_STATE, action = INITIAL_ACITON_VALUE) {
     return {
       ...state,
       classroomsData: state.classroomsData
-        .filter((currClassrooms: ClassroomDataInterface) => currClassrooms.id !== action.payload.id)};
+        .filter((currClassroom: ClassroomDataInterface) => currClassroom.id !== action.payload.id)};
   default:
     return state;
   }
