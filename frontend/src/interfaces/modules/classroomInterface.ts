@@ -7,6 +7,7 @@ export interface ClassroomInterface {
 }
 
 export interface ClassroomDataInterface {
+  id?: number;
   video: string;
   drawing: string;
   image: string;
@@ -17,4 +18,15 @@ export interface ClassroomDataInterface {
 export interface ReqClassroomInterface {
   classroom: ClassroomInterface | any;
   classroomData: ClassroomDataInterface | any;
+}
+
+export interface ClassroomStateInterface {
+  error: boolean;
+  load: boolean;
+  classroomsData: ClassroomDataInterface[],
+}
+
+export interface ActionStateInterface {
+  type: string;
+  payload: ClassroomDataInterface[] | ClassroomDataInterface | any
 }
