@@ -106,6 +106,14 @@ class ModuleController{
 
     return res.status(statusCodes.OK).json({ message, error: null });
   }
+
+  public getAllUsers = async (req: Request, res: Response) => {
+    const { error, message } = await this.userService.getAllUsers();
+
+    if(error) return res.status(statusCodes.BAD_REQUEST).json({ error, message: error.message });
+
+    return res.status(statusCodes.OK).json({ error: null, message });
+  }
 }
 
 export default ModuleController;

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { EditModule } from '../../../../interfaces/modules/ModulesInterface';
 import { addModule } from '../../../../redux/actions/moduleActions/moduleActions';
 import { Input } from '../../../ui/Inputs/Inputs';
+import styles from './style.module.scss';
 
 interface EditModuleInterface {
   handleModal: () => void;
@@ -35,7 +36,7 @@ function AddNewModule({ handleModal }: EditModuleInterface) {
   };
 
   return (
-    <section>
+    <section className={styles.modal_container}>
       <form>
         <Input
           onChange={({target}) => handleChange(target)}
@@ -50,12 +51,6 @@ function AddNewModule({ handleModal }: EditModuleInterface) {
           value={editingModule.description}
         />
 
-        <Input
-          onChange={({target}) => handleChange(target)}
-          name='premium'
-          checked={editingModule.premium}
-          type={'checkbox'}
-        />
 
         <Input
           onChange={({target}) => handleChange(target)}
@@ -71,6 +66,18 @@ function AddNewModule({ handleModal }: EditModuleInterface) {
           placeholder='password'
           value={editingModule.admPassword}
         />
+
+        <label htmlFor='premium'>
+          <Input
+            onChange={({target}) => handleChange(target)}
+            name='premium'
+            checked={editingModule.premium}
+            type={'checkbox'}
+          />
+
+          <span>Premium</span>
+        </label>
+
         <button type='button' onClick={(e: FormEvent) => {
           e.preventDefault();
           if(!confirm) return setConfirm(!confirm);

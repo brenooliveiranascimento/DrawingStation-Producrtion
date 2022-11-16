@@ -6,6 +6,7 @@ import { addSubModulesAction } from '../../../../redux/actions/subModuleActions/
 import { Input } from '../../../ui/Inputs/Inputs';
 import { useSelector } from 'react-redux';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import styles from './style.module.scss';
 
 interface EditSubModuleInterface {
   handleModal: () => void;
@@ -41,7 +42,7 @@ function AddNewSubModule({ handleModal }: EditSubModuleInterface) {
   };
 
   return (
-    <section>
+    <section className={styles.modal_container}>
       <form>
         <Input
           onChange={({target}) => handleChange(target)}
@@ -56,13 +57,16 @@ function AddNewSubModule({ handleModal }: EditSubModuleInterface) {
           value={editingModule.description}
         />
 
-        <Input
-          onChange={({target}) => handleChange(target)}
-          name='premium'
-          checked={editingModule.premium}
-          type={'checkbox'}
-        />
-
+        
+        <label htmlFor='premium'>
+          <Input
+            onChange={({target}) => handleChange(target)}
+            name='premium'
+            checked={editingModule.premium}
+            type={'checkbox'}
+          />
+          <span>Premium</span>
+        </label>
         <Input
           onChange={({target}) => handleChange(target)}
           name='image'

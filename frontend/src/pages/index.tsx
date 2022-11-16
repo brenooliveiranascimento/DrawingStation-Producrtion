@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { FormEvent, useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import styles from '../../styles/Home.module.scss';
@@ -12,7 +9,7 @@ import Image from 'next/image';
 import { FaGoogle } from 'react-icons/fa';
 import { creadentialRegisterValidation, creadentialSiginValidation } from '../utils/credentialValidation';
 import { useDispatch } from 'react-redux';
-import { loginWithGoogle, registerUser, siginUser, validateUser } from '../redux/actions/autenticationActions/autenticationActions';
+import { loginWithGoogle, registerUser, siginUser } from '../redux/actions/autenticationActions/autenticationActions';
 import axios from 'axios';
 import apiConnection from '../services/api.connection';
 import { useGoogleLogin } from '@react-oauth/google';
@@ -185,18 +182,9 @@ const Home: NextPage = () => {
               loading={false}
               disabled={disabled}
             >
-              {
-                register ? (
-                  'Registrar'
-                ) : (
-                  'Entrar'
-                )
-              }
+              {register ? ( 'Registrar' ) : ( 'Entrar' )}
             </Button>
-            <Button
-              onClick={() => loginGoogle()}
-              type='button'
-            >
+            <Button onClick={() => loginGoogle()} type='button' >
               Entrar com Google <FaGoogle style={{
                 position: 'absolute', marginTop:'0.1rem', marginLeft:'0.4rem'
               }}/>
@@ -204,11 +192,7 @@ const Home: NextPage = () => {
           </form>
           <a onClick={handleRegister} className={styles.handle_form}>
             {
-              register ? (
-                'Já possuo uma conta'
-              ) : (
-                'Não possui conta? Registrar-se'
-              )
+              register ? ( 'Já possuo uma conta' ) : ( 'Não possui conta? Registrar-se' )
             }
           </a>
         </aside>

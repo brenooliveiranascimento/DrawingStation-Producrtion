@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import { ClassroomDataInterface, ClassroomInterface } from '../../../../interfaces/modules/classroomInterface';
 import { addNewClassroomAction } from '../../../../redux/actions/classroomActions/classroomActions';
+import styles from './style.module.scss';
 
 interface EditSubModuleInterface {
   handleModal: () => void;
@@ -58,7 +59,7 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
   };
 
   return (
-    <section>
+    <section className={styles.modal_container}>
       <form>
         <Input
           onChange={({target}) => handleChange(target)}
@@ -66,12 +67,15 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
           placeholder='name'
           value={addNewClassroom.name}
         />
-        <Input
-          onChange={({target}) => handleChange(target)}
-          name='premium'
-          checked={addNewClassroom.premium}
-          type={'checkbox'}
-        />
+        <label htmlFor='premium'>
+          <Input
+            onChange={({target}) => handleChange(target)}
+            name='premium'
+            checked={addNewClassroom.premium}
+            type={'checkbox'}
+          />
+          <span>Premium</span>
+        </label>
         <Input
           onChange={({target}) => handleChange(target)}
           name='image'
@@ -107,12 +111,15 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
           placeholder='description'
           value={addNewClassroomData.description}
         />
-        <Input
-          onChange={({target}) => handleChangeData(target)}
-          name='isPremium'
-          checked={addNewClassroomData.isPremium}
-          type={'checkbox'}
-        />
+        <label htmlFor='isPremium'>
+          <Input
+            onChange={({target}) => handleChangeData(target)}
+            name='isPremium'
+            checked={addNewClassroomData.isPremium}
+            type={'checkbox'}
+          />
+          <span>Premium</span>
+        </label>
         <Input
           onChange={({target}) => handleChangeData(target)}
           name='image'
@@ -129,6 +136,7 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
           onChange={({target}) => handleChangeData(target)}
           name='video'
           placeholder='video'
+          type={'password'}
           value={addNewClassroomData.video}
         />
         <button type='button' onClick={(e: FormEvent) => {
