@@ -21,6 +21,7 @@ function UserController() {
         <thead>
           <td>Name</td>
           <td>Email</td>
+          <td>Phone-number</td>
           <td>Status</td>
           <td>IsPremium</td>
           <td>login Type</td>
@@ -33,6 +34,7 @@ function UserController() {
                 <tr key={currUser.id}>
                   <td>{currUser.name}</td>
                   <td>{currUser.email}</td>
+                  <td>{currUser.phoneNumber || 'No defined'}</td>
                   <td>{currUser.active ? 'Active' : 'Inative'}</td>
                   <td>{currUser.premium ? 'Premim!' : 'Default'}</td>
                   <td>{currUser.loginType}</td>
