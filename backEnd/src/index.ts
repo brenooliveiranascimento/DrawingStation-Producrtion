@@ -4,6 +4,7 @@ import express from 'express';
 import { errorMiddleware } from './middlewares/error.middleware';
 import moduleRoutes from './routes/module.routes';
 import authRoutes from './routes/auth.routes';
+import userRoutes from './routes/user.routes';
 
 import 'dotenv/config';
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 const PORT = process.env.PORT;
 app.use('/modules', moduleRoutes)
 app.use('/auth', authRoutes);
+app.use('/users', userRoutes);
 app.use(errorMiddleware)
 
 app.listen(PORT, () => {
