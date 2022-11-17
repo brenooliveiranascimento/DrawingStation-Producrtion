@@ -56,7 +56,7 @@ function ClassroomController() {
   const handleAddModal = () => setAdd(!add);
 
   const allClassrooms = () => {
-    const classrooms = subModules.reduce((acc: any, currSubModule: SubModuleInterface) => {
+    const classrooms = subModules?.reduce((acc: any, currSubModule: SubModuleInterface) => {
       return [...acc, ...currSubModule.classrooms];
     }, []);
     return classrooms;
