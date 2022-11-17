@@ -77,8 +77,8 @@ export const loginWithGoogle = (userCredentials: any, redirect: any, path: strin
   return  async (dispatch: Dispatch<any>) => {
     dispatch(initAutentication());
     try {
-      const { name, id, token, email, profilePhoto, birthday, phoneNumber } = userCredentials;
-      const userData = {name, email, id, profilePhoto, birthday, phoneNumber};
+      const { name, id, token, email, profilePhoto, birthday, phoneNumber, premium } = userCredentials;
+      const userData = {name, email, id, profilePhoto, birthday, phoneNumber, premium: premium === undefined ? false : premium};
       nookies.set(null, globalTypes.DRAWING_USER_DATA, token, {
         maxAge: 30 * 24 * 60 * 60,
         path: '/',

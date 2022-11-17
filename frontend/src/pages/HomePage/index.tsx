@@ -7,7 +7,6 @@ import styles from './styles.module.scss';
 
 function HomePage() {
   const { userData } = useSelector((state: globalState) => state.user);
-  console.log(userData);
   return (
     <section className={styles.home_page_container}>
       <h1>Seja bem vindo {userData.name}</h1>

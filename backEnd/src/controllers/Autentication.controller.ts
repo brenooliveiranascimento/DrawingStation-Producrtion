@@ -66,7 +66,7 @@ class UserController {
     const { error, message, type } = await this.authService.authByGoogle(user)
     if(error) return res.status(statusCodes.NOT_FOUND)
       .json({message: error.message, token: null, error: true});
-
+    
       const token = createToken({email: user.email, id: message.id, profilePhoto: message.profilePhoto, name: message.name})
     if(type === 'Register') {
       return res.status(statusCodes.OK).json({
@@ -79,6 +79,7 @@ class UserController {
         profilePhoto: message.profilePhoto,
         birthday: message.birthday,
         phoneNumber: message.phoneNumber,
+        premium: false,
     });
     }
     return res.status(statusCodes.OK).json({
@@ -91,6 +92,7 @@ class UserController {
       profilePhoto: message.profilePhoto,
       birthday: message.birthday,
       phoneNumber: message.phoneNumber,
+      premium: message.premium
     });
   }
 
