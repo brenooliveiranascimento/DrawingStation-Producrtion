@@ -30,7 +30,7 @@ function ClassroomCard({ classroom, handleModal, handleModule }: ModuleCardProps
       <section>
         <Image
           style={{ objectFit: 'cover', justifyItems:'flex-start' }}
-          width={260}
+          width={245}
           height={300}
           sizes={'auto'}
           src={`${classroom.image}`}

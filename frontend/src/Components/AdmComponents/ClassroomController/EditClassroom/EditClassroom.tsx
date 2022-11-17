@@ -3,7 +3,7 @@ import React, { FormEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ClassroomDataInterface, ClassroomInterface } from '../../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
-import { editingClassroomAction } from '../../../../redux/actions/classroomActions/classroomActions';
+import { deleteClassroom, editingClassroomAction } from '../../../../redux/actions/classroomActions/classroomActions';
 import { Input } from '../../../ui/Inputs/Inputs';
 import styles from './style.module.scss';
 
@@ -57,6 +57,9 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
     dispatch(editingClassroomAction({ classroom: editClassroom, classroomData: editClassroomData }, identity, handleModal));
   };
 
+  const handleDeleteClassroom = () => {
+    dispatch(deleteClassroom(classroomEditing, handleModal, identity));
+  };
   useEffect(() => {
     setEditClassroom(classroomEditing);
     setEditClassroomData(classroomEditingData);
@@ -146,7 +149,18 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
         }}>
           {confirm ? 'Confirmar!' : 'Atualizar'}
         </button>
-        <button type='button' >
+        <button 
+          onClick={(e: FormEvent) => {
+            e.preventDefault();
+            if(confirmDelete) {
+              handleDeleteClassroom();
+              setConfirmDelete(!confirmDelete);
+              return;
+            }
+            setConfirmDelete(!confirmDelete);
+          }}
+          type='button'
+        >
           { confirmDelete ? 'Confirmar Exclusão!' : 'Excluir' }
         </button>
         <button onClick={handleModal}>

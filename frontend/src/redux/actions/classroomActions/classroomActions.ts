@@ -2,11 +2,12 @@
 import { parseCookies } from 'nookies';
 import { Dispatch } from 'react';
 import { toast } from 'react-toastify';
-import { ReqClassroomInterface } from '../../../interfaces/modules/classroomInterface';
+import { ClassroomInterface, ReqClassroomInterface } from '../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import apiConnection from '../../../services/api.connection';
 import { ClassroomsTypes } from '../../Types/AuthTypes';
 import { genericSuccesRequest } from '../genericActions';
+import { deleteModuleGenecic } from '../moduleActions/moduleGenericActions';
 
 export const addNewClassroomAction = (addedClassroom: ReqClassroomInterface, identity: string): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
@@ -91,3 +92,29 @@ export const requestClassroomAction = (): any => {
     }
   };
 };
+
+
+export const deleteClassroom = (classroom: ClassroomInterface, handleModal:() => void, identity: string): any => {
+  return async (dispatch: Dispatch<any>, state: () => globalState) => {
+    const { userData } = state().user;
+    const cookies = parseCookies();
+    const token = cookies['DRAWING_USER_DATA'];
+    const { id } = classroom;
+    try {
+      const { data } = await apiConnection.post(`/modules/classrooms/${id}`,
+        {
+          identity: identity,
+          admEmail: userData.email,
+        },
+        {
+          headers: { 'Authorization': token }
+        });
+      handleModal();
+      if(!data.error) return dispatch(genericSuccesRequest( ClassroomsTypes.DELETE_CLASSROOMS, classroom));
+    } catch(e: any) {
+      toast.error(`${e.response.data.message}`);
+    }
+  };
+};
+
+
