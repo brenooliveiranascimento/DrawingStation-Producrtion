@@ -91,10 +91,10 @@ export const getServerSideProps = canSSRAdm(async (ctx) => {
   }
 
   const {data} = await userConncetion.post('/auth/me');
-  const { id, name, email, profilePhoto, birthday, phoneNumber } = data.message;
+  const { id, name, email, profilePhoto, birthday, phoneNumber, premium } = data.message;
   return {
     props: {
-      userData: { id, name, email, profilePhoto, birthday, phoneNumber },
+      userData: { id, name, email, profilePhoto, birthday, phoneNumber, premium },
     }
   };
 

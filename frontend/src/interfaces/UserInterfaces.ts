@@ -65,6 +65,7 @@ export interface UserInitialInterface {
     email: string,
     profilePhoto: string | null,
     birthday: null,
+    premium?: boolean;
     phoneNumber: null,
 }
 
