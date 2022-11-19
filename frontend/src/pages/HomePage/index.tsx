@@ -10,12 +10,6 @@ function HomePage() {
   return (
     <section className={styles.home_page_container}>
       <h1>Seja bem vindo {userData.name}</h1>
-      <iframe
-        id="panda-901eedef-87a6-4042-a571-429e3a32e6cd"
-        src="https://player-vz-0a98901c-edb.tv.pandavideo.com.br/embed/?v=901eedef-87a6-4042-a571-429e3a32e6cd" 
-        allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture"
-        width="720" height="360">
-      </iframe>
     </section>
   );
 }
