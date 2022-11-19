@@ -17,6 +17,12 @@ para todas as ações dentro da dashboard como editar adicionar ou excluir conte
 
 O Css no momento está básico pois o meu intuito no momento é deixar a aplicação <strong>Funcional<strong>
 
+Por enquanto o Deploy do Front foi feito pela vercel.
+
+Acesse a antiga plataforma e confira o conteúdo gratuito que disponibilizei para todos.
+https://drawing-station-web.vercel.app/
+
+
 <div>
 <h2>Tecnologias Utilizadas<h2>
 <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"/>
