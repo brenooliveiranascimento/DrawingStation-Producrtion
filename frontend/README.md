@@ -9,7 +9,7 @@ Dashboard onde os Adminstradores terão acesso aos conteúdos da plataforma, pod
 Estou criado a conceção com Api Rest que desenvolvi no BackEnd através do Axios com o auxilio do Redux Thunk para poder criar Actions assincronas executando uma ação no reducer apenas quando o retorno da API der a operação como bem sucedida.
 
 Fluxo de autenticação utilizando JWT com integração de login pela conta do google
-(PS: Autenticação pelo google por enquanto disponivél apenas em hambiente de desenvolvimento).
+(PS: Autenticação pelo google por enquanto está disponivél apenas em hambiente de desenvolvimento).
 O JWT fica salvo nos cookies.
 
 As rotas de dashboard são privadas, apenas contas em emails dentro de uma lista conseguem ter acesso as rotas de ADMS.
