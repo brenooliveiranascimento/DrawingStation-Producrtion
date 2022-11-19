@@ -3,8 +3,15 @@
 Seja bem vindo a parte do FrontEnd da aplicação!
 Estou utilizando NextJs e Redux para o gerenciamento do estado Global da aplicação!.
 
-Atualmente sendo desenvolvido o Dashboard onde os Adminstradores terão acesso aos conteúdos da plataforma, podendo assim adicionar novos módulos e aulas assim com editar as mesmas.
+Dashboard onde os Adminstradores terão acesso aos conteúdos da plataforma, podendo assim adicionar novos módulos e aulas assim com editar as mesmas.
 Estou criado a conceção com Api Rest que desenvolvi no BackEnd através do Axios com o auxilio do Redux Thunk para poder criar Actions assincronas executando uma ação no reducer apenas quando o retorno da API der a operação como bem sucedida.
+
+Fluxo de autenticação feito utilizando JWT com integração de login pela conta do google
+(PS: Autenticação pelo google por enquanto disponivél apenas em hambiente de desenvolvimento).
+O JWT fica salvo nos cookies.
+
+As rotas de dashboard são privadas, apenas contas em emails dentro de uma lista conseguem ter acesso as rotas de ADMS.
+para todas as ações dentro da dashboard como editar adicionar ou excluir conteúdo são verificados se o JWT que o cliente envia para o BackEnd pertence de fato ao cliente que o está enviando, além de ser necessario a utilização de uma senha especifica criada para unica e exclusivamente para o ADM que está executando a ação.
 
 O Css no momento está básico pois o meu intuito no momento é deixar a aplicação <strong>Funcional<strong>
 
