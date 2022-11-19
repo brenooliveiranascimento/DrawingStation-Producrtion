@@ -10,6 +10,8 @@ Atualmente possuo o app em produção publicado na playstore e o site, porém at
 
 ### Mais detalhes do BackEnd e do FrontEnd no ReadMe de seus respectivos arquivos
 
+Acesse a antiga plataforma e confira o conteúdo gratuito que disponibilizei para todos. https://drawing-station-web.vercel.app/
+
 <div>
 <h2>Tecnologias Utilizadas<h2>
 <img src="https://img.shields.io/badge/node.js%20-%2343853D.svg?&style=for-the-badge&logo=node.js&logoColor=white"/> 
