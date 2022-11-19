@@ -8,7 +8,7 @@ Estou utilizando NextJs e Redux para o gerenciamento do estado Global da aplica�
 Dashboard onde os Adminstradores terão acesso aos conteúdos da plataforma, podendo assim adicionar novos módulos e aulas assim com editar as mesmas.
 Estou criado a conceção com Api Rest que desenvolvi no BackEnd através do Axios com o auxilio do Redux Thunk para poder criar Actions assincronas executando uma ação no reducer apenas quando o retorno da API der a operação como bem sucedida.
 
-Fluxo de autenticação feito utilizando JWT com integração de login pela conta do google
+Fluxo de autenticação utilizando JWT com integração de login pela conta do google
 (PS: Autenticação pelo google por enquanto disponivél apenas em hambiente de desenvolvimento).
 O JWT fica salvo nos cookies.
 
