@@ -3,6 +3,11 @@ Seja bem vendo a DrawingStation! Minha plataforma EAD!
 
 Este projeto se trata da refatoração da minha antiga plataforma, esta nova versão possui um BackEnd mais robusto construido com foco em NodeJs e o Front utilizando todo o poder da SSR do NextJs.
 
+## Contextualizando
+Fui professor de desenho e atualmente estou em transição de carreira para a aréa da tecnologia.
+Durante minha jornada como professor, sempre utilizei a tecnologia para me auxiliar até que um dia resolvi desenvolver a minha própria plataforma de ensino para que eu pudesse expandir o alcance do meu negócio.
+Atualmente possuo o app em produção publicado na playstore e o site, porém atualmente estou refatorando todo ecosistema do BackEnd e FrontEnd do projeto atual para tecnologias mais robustas e com um codigo que me permita escalar a aplicação sem ter muita dor de cabeça.
+
 ### Mais detalhes do BackEnd e do FrontEnd no ReadMe de seus respectivos arquivos
 
 <div>
