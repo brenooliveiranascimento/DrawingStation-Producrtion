@@ -16,8 +16,8 @@ export const siginUser = (userCredentials: UserCredentials, redirect: any, path:
         email,
         password
       });
-      const { name, id, token, profilePhoto, birthday, phoneNumber } = data;
-      const userData = {name, email, id, profilePhoto, birthday, phoneNumber};
+      const { name, id, token, profilePhoto, birthday, phoneNumber, premium } = data;
+      const userData = {name, email, id, profilePhoto, birthday, phoneNumber, premium};
 
       dispatch(AutenticationSuccess(userData));
       toast.success(`Seja bem vindo ${name}`);
@@ -29,7 +29,7 @@ export const siginUser = (userCredentials: UserCredentials, redirect: any, path:
       redirect(path);
     } catch(e: any) {
       if(e) {
-        console.log(e.response.data);
+        console.log(e);
         toast.error(`${e.response.data.message}`);
       } else {
         console.log('Server Connectionn error');
@@ -52,7 +52,7 @@ export const registerUser = (userCredentials: registerUserCredentials, redirect:
         password
       });
       const { name, id, token, profilePhoto, birthday } = data;
-      const userData = {name: userName, email, id, profilePhoto, birthday, phoneNumber};
+      const userData = {name: userName, email, id, profilePhoto, birthday, phoneNumber, premium: false};
       nookies.set(null, globalTypes.DRAWING_USER_DATA, token, {
         maxAge: 30 * 24 * 60 * 60,
         path: '/',
@@ -77,8 +77,8 @@ export const loginWithGoogle = (userCredentials: any, redirect: any, path: strin
   return  async (dispatch: Dispatch<any>) => {
     dispatch(initAutentication());
     try {
-      const { name, id, token, email, profilePhoto, birthday, phoneNumber } = userCredentials;
-      const userData = {name, email, id, profilePhoto, birthday, phoneNumber};
+      const { name, id, token, email, profilePhoto, birthday, phoneNumber, premium } = userCredentials;
+      const userData = {name, email, id, profilePhoto, birthday, phoneNumber, premium: premium === undefined ? false : premium};
       nookies.set(null, globalTypes.DRAWING_USER_DATA, token, {
         maxAge: 30 * 24 * 60 * 60,
         path: '/',
@@ -109,9 +109,9 @@ export const validateUser = (redirect: any): any => {
           'Authorization': token
         }
       });
-      const {name, email, id, profilePhoto, birthday, phoneNumber} = data.message;
+      const {name, email, id, profilePhoto, birthday, phoneNumber, premium} = data.message;
 
-      const userData = {name, email, id, profilePhoto, birthday, phoneNumber};
+      const userData = {name, email, id, profilePhoto, birthday, phoneNumber, premium};
       dispatch(AutenticationSuccess(userData));
       redirect('/dashboard');
     } catch(e: any) {

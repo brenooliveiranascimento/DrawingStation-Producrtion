@@ -9,7 +9,8 @@ const INITIAL_VALUE: InitialValueState = {
     email: '',
     profilePhoto: '',
     birthday: null,
-    phoneNumber: null
+    phoneNumber: null,
+    premium: false,
   },
   logged: false,
   error: false,
