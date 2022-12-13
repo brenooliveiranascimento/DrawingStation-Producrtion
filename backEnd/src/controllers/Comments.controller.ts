@@ -12,5 +12,6 @@ export default class CommentController {
 
   async getAll(req: Request, res: Response) {
     const comments = await this.commentsService.getAll();
+    res.status(200).json(comments);
   }
 }
