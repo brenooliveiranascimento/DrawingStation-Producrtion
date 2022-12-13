@@ -1,4 +1,4 @@
-export interface subComments {
+export interface IsubComments {
   id: number;
   content: string;
   createBy: string;
@@ -6,7 +6,7 @@ export interface subComments {
   creationData: Date;
 }
 
-export interface Comments {
+export interface IComments {
   id: number;
   content: string;
   createBy: string;
