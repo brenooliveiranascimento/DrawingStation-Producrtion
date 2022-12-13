@@ -7,32 +7,35 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
+      content: {
         allowNull: false,
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(500),
       },
-      image: {
-        allowNull: false,
-        type: Sequelize.STRING(400),
-      },
-      description: {
-        allowNull: false,
-        type: Sequelize.STRING(300),
-      },
-      moduleId: {
+      createBy: {
         allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: 'cascade',
         onUpdate: 'cascade',
         references: {
-          model: 'modules',
+          model: 'users',
           key: 'id',
         },
-        field: 'module_id',
+        field: 'create_by',
       },
-      premium: {
+      classroomId: {
         allowNull: false,
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.INTEGER,
+        onDelete: 'cascade',
+        onUpdate: 'cascade',
+        references: {
+          model: 'classrooms',
+          key: 'id',
+        },
+        field: 'classroom_id',
+      },
+      creationData: {
+        allowNull: false,
+        type: Sequelize.DATE,
       },
     });
   },
