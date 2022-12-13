@@ -13,3 +13,7 @@ export interface IComments {
   classroomId: boolean
   creationData: Date;
 }
+
+export interface allComments extends IComments {
+  subcomments: IsubComments[]
+}
