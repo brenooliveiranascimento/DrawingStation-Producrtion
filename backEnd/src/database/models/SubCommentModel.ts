@@ -1,6 +1,6 @@
 import { Model, INTEGER, STRING, BOOLEAN, DATE } from 'sequelize';
 import db from '.';
-import Users from './UserModel';
+import CommentModel from './CommentModel';
 
 class SubComment extends Model {
   declare id: number;
@@ -46,7 +46,7 @@ SubComment.init({
   timestamps: false,
 });
 
-Users.hasMany(SubComment);
-SubComment.belongsTo(Users);
+CommentModel.hasMany(SubComment);
+SubComment.belongsTo(CommentModel);
 
 export default SubComment;

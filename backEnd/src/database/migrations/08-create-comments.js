@@ -14,12 +14,6 @@ module.exports = {
       createBy: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        onDelete: 'cascade',
-        onUpdate: 'cascade',
-        references: {
-          model: 'users',
-          key: 'id',
-        },
         field: 'create_by',
       },
       classroomId: {
@@ -36,6 +30,7 @@ module.exports = {
       creationData: {
         allowNull: false,
         type: Sequelize.DATE,
+        field: 'creation_date',
       },
     });
   },
