@@ -42,7 +42,7 @@ SubComment.init({
   },
 }, {
   sequelize: db,
-  modelName: 'comment',
+  modelName: 'sub_comment',
   timestamps: false,
 });
 
