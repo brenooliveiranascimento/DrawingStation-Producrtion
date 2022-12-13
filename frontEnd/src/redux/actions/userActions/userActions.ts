@@ -2,10 +2,9 @@ import { parseCookies } from 'nookies';
 import { Dispatch } from 'react';
 import { toast } from 'react-toastify';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
-import apiConnection from '../../../services/api.connection';
+import { apiConnection } from '../../../services/api.connection';
 import { AuthTypes } from '../../Types/AuthTypes';
 import { genericSuccesRequest } from '../genericActions';
-
 
 export const getAllUsersAction = (): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState ) => {

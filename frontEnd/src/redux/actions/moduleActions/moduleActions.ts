@@ -3,7 +3,7 @@ import { Dispatch } from 'react';
 import { toast } from 'react-toastify';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { EditModule } from '../../../interfaces/modules/ModulesInterface';
-import apiConnection from '../../../services/api.connection';
+import { apiConnection } from '../../../services/api.connection';
 import { addNewModule, deleteModuleGenecic, initReques, requestSuccess, updateModule } from './moduleGenericActions';
 
 export const requestModulesAction = (): any => {

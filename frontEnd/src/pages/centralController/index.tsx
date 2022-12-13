@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from 'react';
-import { setupUser } from '../../services/setupUser';
+import { serverSideSetupUser, setupUser } from '../../services/setupUser';
 import { canSSRAdm } from '../../utils/canSSRAdm';
 import jwtDecode from 'jwt-decode';
 import { parseCookies } from 'nookies';
-import apiConnection from '../../services/api.connection';
+import { apiConnection, serverSideConnection } from '../../services/api.connection';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { useDispatch } from 'react-redux';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
@@ -47,13 +47,13 @@ function CentralController({userData}: DashboardPropTypes) {
 export default CentralController;
 
 export const getServerSideProps = canSSRAdm(async (ctx) => {
-  const userConncetion = setupUser(ctx);
+  const userConncetion = serverSideSetupUser(ctx);
   const cookies = parseCookies(ctx);  
 
   const token = cookies['DRAWING_USER_DATA'];
   const decodedEmail: any = jwtDecode(token);
 
-  const { data: validateEmail } = await apiConnection.post('/auth/adm',
+  const { data: validateEmail } = await serverSideConnection.post('/auth/adm',
     { 'email': decodedEmail.email },
     { headers: {'Authorization': token }});
 

@@ -3,7 +3,7 @@ import { Dispatch } from 'react';
 import { toast } from 'react-toastify';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
-import apiConnection from '../../../services/api.connection';
+import { apiConnection } from '../../../services/api.connection';
 import { SubModulesTypes } from '../../Types/AuthTypes';
 import { genericRequestControl, genericSuccesRequest } from '../genericActions';
 

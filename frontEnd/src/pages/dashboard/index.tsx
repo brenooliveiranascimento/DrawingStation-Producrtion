@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 import styles from './styles.module.scss';
-import { setupUser } from '../../services/setupUser';
+import { serverSideSetupUser, setupUser } from '../../services/setupUser';
 import { useDispatch } from 'react-redux';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import { UserInterface } from '../../interfaces/UserInterfaces';
@@ -11,7 +11,7 @@ import AdmHeader from '../../Components/AdmComponents/AdmHeader/AdmHeader';
 import { canSSRAdm } from '../../utils/canSSRAdm';
 import { parseCookies } from 'nookies';
 import jwtDecode from 'jwt-decode';
-import apiConnection from '../../services/api.connection';
+import { apiConnection, serverSideConnection } from '../../services/api.connection';
 import SubModuleController from '../../Components/AdmComponents/SubModuleController/SubModuleController';
 import ClassroomController from '../../Components/AdmComponents/ClassroomController/ClassroomController';
 import UserController from '../../Components/AdmComponents/UserController/UserController';
@@ -71,13 +71,13 @@ export default Dashboad;
 
 
 export const getServerSideProps = canSSRAdm(async (ctx) => {
-  const userConncetion = setupUser(ctx);
+  const userConncetion = serverSideSetupUser(ctx);
   const cookies = parseCookies(ctx);  
 
   const token = cookies['DRAWING_USER_DATA'];
   const decodedEmail: any = jwtDecode(token);
 
-  const { data: validateEmail } = await apiConnection.post('/auth/adm',
+  const { data: validateEmail } = await serverSideConnection.post('/auth/adm',
     { 'email': decodedEmail.email },
     { headers: {'Authorization': token }});
 

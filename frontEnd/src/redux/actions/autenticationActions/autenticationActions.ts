@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dispatch } from 'react';
 import { registerUserCredentials, UserCredentials } from '../../../interfaces/UserInterfaces';
-import apiConnection from '../../../services/api.connection';
+import { apiConnection } from '../../../services/api.connection';
 import { globalTypes } from '../../../utils/globalTypes';
 import { AutenticationFailure, AutenticationSuccess, initAutentication, Sigout } from './autenticationGenericActions';
 import { toast } from 'react-toastify';

@@ -4,7 +4,7 @@ import { Dispatch } from 'react';
 import { toast } from 'react-toastify';
 import { ClassroomInterface, ReqClassroomInterface } from '../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
-import apiConnection from '../../../services/api.connection';
+import { apiConnection } from '../../../services/api.connection';
 import { ClassroomsTypes } from '../../Types/AuthTypes';
 import { genericSuccesRequest } from '../genericActions';
 import { deleteModuleGenecic } from '../moduleActions/moduleGenericActions';
