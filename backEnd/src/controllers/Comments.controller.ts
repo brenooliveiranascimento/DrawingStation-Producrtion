@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { allComments } from "../interfaces/commentsTypes";
+import { IallComments } from "../interfaces/commentsTypes";
 
 interface ICommentsProps {
-  getAll: () => Promise<allComments>
+  getAll: () => Promise<IallComments>
 }
 
 export default class CommentController {
@@ -12,6 +12,6 @@ export default class CommentController {
 
   async getAll(req: Request, res: Response) {
     const comments = await this.commentsService.getAll();
-    res.status(200).json(comments);
+    res.status(200).json(comments)
   }
 }

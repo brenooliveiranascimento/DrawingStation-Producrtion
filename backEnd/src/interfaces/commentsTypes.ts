@@ -14,6 +14,6 @@ export interface IComments {
   creationData: Date;
 }
 
-export interface allComments extends IComments {
+export interface IallComments extends IComments {
   subcomments: IsubComments[]
 }
