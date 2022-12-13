@@ -1,6 +1,7 @@
 import { Model, INTEGER, STRING, BOOLEAN, DATE } from 'sequelize';
 import db from '.';
 import CommentModel from './CommentModel';
+import Users from './UserModel';
 
 class SubComment extends Model {
   declare id: number;
@@ -42,7 +43,7 @@ SubComment.init({
   },
 }, {
   sequelize: db,
-  modelName: 'sub_comment',
+  modelName: 'sub-comment',
   timestamps: false,
 });
 

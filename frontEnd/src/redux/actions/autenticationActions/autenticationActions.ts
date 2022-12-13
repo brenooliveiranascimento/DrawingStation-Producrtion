@@ -62,7 +62,7 @@ export const registerUser = (userCredentials: registerUserCredentials, redirect:
       toast.success(`Seja bem vindo ${name}`);
     } catch(e: any) {
       if(e) {
-        console.log(e.response.data);
+        console.log(e);
         toast.error(`${e.response.data.message}`);
       } else {
         console.log('Server Connectionn error');

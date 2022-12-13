@@ -46,7 +46,4 @@ CommentModel.init({
   timestamps: false,
 });
 
-CommentModel.hasMany(SubComment);
-SubComment.belongsTo(CommentModel);
-
 export default CommentModel;
