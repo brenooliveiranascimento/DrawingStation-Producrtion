@@ -1,5 +1,5 @@
 export interface IsubComments {
-  id: number;
+  id?: number;
   content: string;
   userId: string;
   commentId: boolean;
