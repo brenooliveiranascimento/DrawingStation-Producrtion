@@ -5,6 +5,7 @@ import moduleRoutes from './routes/module.routes';
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 import commentsRouter from './routes/comments.routes';
+import subCommentRouter from './routes/subComments.routes';
 
 import 'dotenv/config';
 import errorMiddleware from './middlewares/errorMiddleware';
@@ -18,6 +19,7 @@ app.use('/modules', moduleRoutes)
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/comments', commentsRouter);
+app.use('/subComments', subCommentRouter);
 app.use(errorMiddleware)
 
 app.listen(PORT, () => {

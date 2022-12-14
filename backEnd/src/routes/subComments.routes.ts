@@ -10,6 +10,6 @@ const subCommentServices = {
 
 const subCommentControlelr = new SubCommentControlelr(subCommentServices);
 
-router.post('/create', (req, res) => subCommentControlelr.create);
+router.post('/create', (req, res) => subCommentControlelr.create(req, res));
 
 export default router;
