@@ -32,6 +32,11 @@ CommentModel.init({
     allowNull: false,
     primaryKey: true,
   },
+  userId: {
+    type: INTEGER,
+    allowNull: false,
+    primaryKey: true,
+  },
   creationDate: {
     type: DATE,
     allowNull: false,
