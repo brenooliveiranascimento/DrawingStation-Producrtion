@@ -1,0 +1,68 @@
+version: '3.9'
+services:
+  frontend:
+    build: ./frontEnd
+    ports:
+      - 3000:3000
+    platform: linux/x86_64
+    working_dir: /app/drawingstation-frontend
+    volumes:
+      - ./frontEnd:/app/drawingstation-frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 10s
+      retries: 5
+    networks:
+      - drawingstation-network
+  backend:
+    container_name: drawingstation_backend
+    build: ./backEnd
+    ports:
+      - 3001:3001
+    platform: linux/x86_64
+    working_dir: /app/drawingstation-backend
+    volumes:
+      - ./backEnd:/app/drawingstation-backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - SECRET=itachiuchiha
+      - JWT_SECRET=jwt_secret
+      - MYSQLDATABASE=drawing_station
+      - MYSQLHOST=drawingstation_db
+      - MYSQLPASSWORD=password
+      - UPDATE_DELETE_CREDENTIAL=birujuice
+      - FIRST_ADM_EMAIL=drawing564station@gmail.com
+      - MYSQLUSER=root
+      - MYSQLPORT=3306
+      - PORT=3001
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"] 
+      timeout: 10s
+      retries: 5
+    networks:
+      - drawingstation-network
+  db:
+    image: mysql:8.0.21
+    container_name: drawingstation_db
+    platform: linux/x86_64
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    restart: 'always'
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
+    cap_add:
+      - SYS_NICE
+    networks:
+      - drawingstation-network
+networks:
+  drawingstation-network:
+    driver: bridge

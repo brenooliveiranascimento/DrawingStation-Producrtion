@@ -119,7 +119,6 @@ class UserController {
 
     return res.status(statusCodes.OK).json({ message: userMess, error: null });
   }  
-
 }
 
 export default UserController;
