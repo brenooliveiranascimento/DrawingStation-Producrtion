@@ -1,10 +1,13 @@
 import { Router } from 'express';
 
-import CommentController from "../controllers/Comments.controller";
-import CommentsServices from "../services/Comments.services";
+import CommentController from "../services/Comments/Comments.controller";
+import GetCommentsServices from "../services/Comments/GetAllComments";
 
-const commentServices = new CommentsServices();
-const commentControlelr = new CommentController(commentServices);
+const commentsServices = {
+  getAllComments: new GetCommentsServices(),
+}
+
+const commentControlelr = new CommentController(commentsServices);
 
 const router = Router();
 

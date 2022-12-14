@@ -16,6 +16,10 @@ export interface IComments {
   creationDate: Date;
 }
 
+export interface ICommentGenericReturn {
+  message: string
+}
+
 export interface IallComments extends IComments {
   subComments: IsubComments[]
 }

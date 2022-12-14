@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
-import { IallComments } from "../interfaces/commentsTypes";
+import { IallComments } from "../../interfaces/commentsTypes";
 
 interface ICommentsProps {
-  getAll: () => Promise<IallComments>
+  getAllComments: {
+    execute: () => Promise<IallComments>
+  }
 }
 
 export default class CommentController {
@@ -11,7 +13,7 @@ export default class CommentController {
   }
 
   async getAll(req: Request, res: Response) {
-    const comments = await this.commentsService.getAll();
+    const comments = await this.commentsService.getAllComments.execute();
     res.status(200).json(comments)
   }
 }
