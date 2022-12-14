@@ -10,9 +10,10 @@ export default class ValidateSubComment {
     const { commentId, content, userId } = subComment;
     try {
       const comment = await CommentModel.findByPk(Number(commentId));
-      const user = await Users.findByPk(Number(userId));
       if(!content.length) throw new CustomError(errorMapTypes.COMMENT_NO_CONTENT, 401);
       if(!commentId || !comment) throw new CustomError(errorMapTypes.COMMENT_NOT_FOUND, 404);
+
+      const user = await Users.findByPk(Number(userId));
       if(!user || !user) throw new CustomError(errorMapTypes.USER_DONT_EXIST, 404);
       return true
     } catch(e: any) {
@@ -25,11 +26,13 @@ export default class ValidateSubComment {
     try {
       if(!content) throw new CustomError(errorMapTypes.COMMENT_NO_CONTENT, 500);
       const comment = await CommentModel.findByPk(Number(commentId));
-      const user = await Users.findByPk(Number(userId));
-      const subComment = await SubCommentModel.findByPk(Number(id));
       if(!commentId || !comment) throw new CustomError(errorMapTypes.COMMENT_NOT_FOUND, 404);
-      if(!user || !user) throw new CustomError(errorMapTypes.USER_DONT_EXIST, 404);
       if(Number(userId) !== Number(comment.userId)) throw new CustomError(errorMapTypes.COMMENT_USER_DONT_MATCH, 404);
+
+      const user = await Users.findByPk(Number(userId));
+      if(!user || !user) throw new CustomError(errorMapTypes.USER_DONT_EXIST, 404);
+
+      const subComment = await SubCommentModel.findByPk(Number(id));
       if(!id || !subComment) throw new CustomError(errorMapTypes.COMMENT_NOT_FOUND, 404);
       return true
     } catch(e: any) {
