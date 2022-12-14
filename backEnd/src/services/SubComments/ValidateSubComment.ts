@@ -21,8 +21,9 @@ export default class ValidateSubComment {
   }
 
   async checkSubCommentUpdate(subComment: IsubCommentsEdit): Promise<boolean> {
-    const { commentId, userId, id } = subComment;
+    const { commentId, userId, id, content } = subComment;
     try {
+      if(!content) throw new CustomError(errorMapTypes.COMMENT_NO_CONTENT, 500);
       const comment = await CommentModel.findByPk(Number(commentId));
       const user = await Users.findByPk(Number(userId));
       const subComment = await SubCommentModel.findByPk(Number(id));

@@ -1,10 +1,21 @@
 import SubCommentModel from "../../database/models/SubCommentModel";
-import { ICommentGenericReturn, IsubComments } from "../../interfaces/commentsTypes";
+import { ICommentGenericReturn, IsubComments, IsubCommentsEdit } from "../../interfaces/commentsTypes";
 import CustomError from "../../utils/StatusError";
+import ValidateSubComment from "./ValidateSubComment";
 
 export default class UpdateSubComment {
-  async execute(subComment: IsubComments): Promise<ICommentGenericReturn> {
+  constructor(
+    private validateSubComment = new ValidateSubComment(),
+    private subCommentModel = SubCommentModel,
+  ) {}
+  async execute(subComment: IsubCommentsEdit): Promise<ICommentGenericReturn> {
+    const { id, content } = subComment;
     try {
+      await this.validateSubComment.checkSubCommentUpdate(subComment);
+      await this.subCommentModel.update(
+        { content },
+        { where: { id } }
+      )
       return { message: 'Comentário atualizado com sucesso!!' }
     } catch(e: any) {
       throw new CustomError(e.message, 500);

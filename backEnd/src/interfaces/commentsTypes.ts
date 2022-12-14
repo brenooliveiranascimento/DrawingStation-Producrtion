@@ -9,6 +9,7 @@ export interface IsubComments {
 
 export interface IsubCommentsEdit {
   id?: number;
+  content: string;
   userId: string;
   commentId: boolean;
 }
