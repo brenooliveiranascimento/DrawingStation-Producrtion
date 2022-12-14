@@ -12,7 +12,7 @@ export default class SubCommentControlelr {
 
   async create(req: Request, res: Response) {
     const subComment: IsubComments = req.body;
-    const create = this.props.create.execute(subComment);
+    const create = await this.props.create.execute(subComment);
     res.status(201).json(create);
   }
 }
