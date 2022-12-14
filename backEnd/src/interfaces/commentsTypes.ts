@@ -12,7 +12,7 @@ export interface IComments {
   content: string;
   active: boolean;
   userId: string;
-  classroomId: boolean
+  classroomId: number
   creationDate: Date;
 }
 

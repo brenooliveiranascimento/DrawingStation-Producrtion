@@ -14,5 +14,8 @@ export const errorMapTypes = {
   ERROR_ADD_NEW_CLASSROOM_DATA: 'Add new classroom data error',
   CLASSROOM_DONT_EXIST:'Classroom dont exist',
   TOKEN_NOT_FOUND: 'Token not found',
-  ADM_NOT_DOUND: 'Adm not found'
+  ADM_NOT_DOUND: 'Adm not found',
+  USER_COMMENT_NOT_FOUND: 'Comentário não acossiado a um usuário',
+  CLASSROOM_COMMENT_NOT_FOUND: 'Comentário não acossiado a uma aula',
+  COMMENT_NO_CONTENT: 'Comentário sem conteúdo',
 }
