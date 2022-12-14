@@ -9,7 +9,7 @@ export interface IsubComments {
 
 export interface ICommentUpdate {
   id: number;
-  content: string;
+  content?: string;
   userId: number
 }
 
