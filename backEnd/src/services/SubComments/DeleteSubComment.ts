@@ -11,7 +11,7 @@ export default class DeleteSubComment {
   async execute(subComment: IsubCommentsEdit): Promise<ICommentGenericReturn> {
     const { id } = subComment;
     try {
-      await this.validateSubcomment.checkSubCommentUpdate({ ...subComment, content: 'Delete' });
+      await this.validateSubcomment.checkSubCommentUpdate({ ...subComment, content: 'Delete!!!123' });
       await this.subCommentModel.update(
         { active: false },
         { where: { id } }
