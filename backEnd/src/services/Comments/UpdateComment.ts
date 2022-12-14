@@ -11,10 +11,10 @@ export default class UpdateComment {
     ) {}
 
   async execute(comment: ICommentUpdate): Promise<ICommentGenericReturn> {
-    const { id } = comment;
+    const { id, content } = comment;
     await this.checkComment.commentUpdateCheckList(comment);
     try {
-      await this.commentModel.update({ ...comment }, {where: { id }})
+      await this.commentModel.update({ content }, {where: { id }})
       return { message: 'Comentário atualizado com sucesso!' };
     } catch(e: any) {
       throw new CustomError(e.message, 404);

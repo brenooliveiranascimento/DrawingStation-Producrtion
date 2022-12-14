@@ -1,4 +1,5 @@
 import Classroom from "../../database/models/ClassroomModel";
+import CommentModel from "../../database/models/CommentModel";
 import Users from "../../database/models/UserModel";
 import { IComments, ICommentUpdate } from "../../interfaces/commentsTypes";
 import { errorMapTypes } from "../../utils/errorMap";
@@ -19,10 +20,13 @@ export default class CheckComment {
   }
 
   async commentUpdateCheckList(comment: ICommentUpdate): Promise<boolean> {
-    const { content, userId } = comment;
+    const { content, userId, id } = comment;
+    const getComment = await CommentModel.findByPk(id);
     const user = await Users.findByPk(userId);
+    if(!user) throw new CustomError(errorMapTypes.USER_DONT_EXIST, 401);
+    if(!getComment) throw new CustomError(errorMapTypes.COMMENT_NOT_FOUND, 404);
     if(!content) throw new CustomError(errorMapTypes.COMMENT_NO_CONTENT, 401);
-    if(!userId || !user) throw new CustomError(errorMapTypes.COMMENT_USER_DONT_MATCH, 401);
+    if(userId !== Number(getComment.userId)) throw new CustomError(errorMapTypes.COMMENT_USER_DONT_MATCH, 401);
     return true
   }
 };

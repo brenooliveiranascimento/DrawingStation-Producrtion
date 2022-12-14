@@ -21,4 +21,5 @@ export const errorMapTypes = {
   NO_UPDATE_COMMENT: 'Erro no servidor, Não foi possível atualizar o comentário',
   COMMENT_UPDATED_SUCCESS: 'Comentário atualizado com sucesso!',
   COMMENT_USER_DONT_MATCH: 'Comentário não pertence ao usuário',
+  COMMENT_NOT_FOUND: 'Comentário não existe',
 }

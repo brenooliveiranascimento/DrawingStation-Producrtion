@@ -1,25 +1,17 @@
 import CommentModel from "../../database/models/CommentModel";
 import { ICommentGenericReturn, IComments } from "../../interfaces/commentsTypes";
 import CustomError from "../../utils/StatusError";
-import Users from "../../database/models/UserModel";
-import Classroom from "../../database/models/ClassroomModel";
-import { errorMapTypes } from "../../utils/errorMap";
+import CheckComment from "./CheckComment";
 
 export default class CreateComment {
-  constructor(private commentModel = CommentModel){}
-
-  private async commentCheckList(comment: IComments): Promise<void> {
-    const { content, userId, classroomId } = comment;
-    const user = await Users.findByPk(userId);
-    const classroom = await Classroom.findByPk(classroomId);
-    if(!content) throw new CustomError(errorMapTypes.COMMENT_NO_CONTENT, 401);
-    if(!userId || !user) throw new CustomError(errorMapTypes.USER_COMMENT_NOT_FOUND, 401);
-    if(!classroomId || !classroom) throw new CustomError(errorMapTypes.CLASSROOM_COMMENT_NOT_FOUND, 401);
-  }
+  constructor(
+    private commentModel = CommentModel,
+    private checkComment = new CheckComment()
+    ){}
 
   async execute(comment: IComments): Promise<ICommentGenericReturn> {
     try {
-      await this.commentCheckList(comment);
+      await this.checkComment.commentCheckList(comment);
       await this.commentModel.create({ ...comment, creationDate: new Date(), active: true }) 
       return { message: 'Comentario adicionado com sucesso!!!' }
     } catch(e: any) {
