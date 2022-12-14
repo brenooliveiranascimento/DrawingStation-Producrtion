@@ -4,6 +4,7 @@ import { ICommentGenericReturn, IsubComments, IsubCommentsEdit } from "../../int
 interface ISubcommentControllerProps {
   create: { execute: (subComment: IsubComments) => Promise<ICommentGenericReturn> },
   update: { execute: (subComment: IsubCommentsEdit) => Promise<ICommentGenericReturn> }
+  delete: { execute: (subComment: IsubCommentsEdit) => Promise<ICommentGenericReturn> }
 }
 
 export default class SubCommentControlelr {
@@ -21,6 +22,13 @@ export default class SubCommentControlelr {
     const { id } = req.params
     const editCommentData:IsubCommentsEdit = { ...req.body, id: Number(id)};
     const edit = await this.props.update.execute(editCommentData);
+    res.status(200).json(edit);
+  }
+
+  async delete(req: Request, res: Response) {
+    const { id } = req.params;
+    const editCommentData:IsubCommentsEdit = { ...req.body, id: Number(id)};
+    const edit = await this.props.delete.execute(editCommentData);
     res.status(200).json(edit);
   }
 }
