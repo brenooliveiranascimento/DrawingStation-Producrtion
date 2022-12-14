@@ -10,12 +10,10 @@ export default class UpdateSubComment {
   ) {}
   async execute(subComment: IsubCommentsEdit): Promise<ICommentGenericReturn> {
     const { id, content } = subComment;
+    console.log(id)
     try {
       await this.validateSubComment.checkSubCommentUpdate(subComment);
-      await this.subCommentModel.update(
-        { content },
-        { where: { id } }
-      )
+      await SubCommentModel.update({ content }, { where: { id } })
       return { message: 'Comentário atualizado com sucesso!!' }
     } catch(e: any) {
       throw new CustomError(e.message, 500);

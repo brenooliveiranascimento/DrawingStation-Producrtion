@@ -25,14 +25,12 @@ export default class ValidateSubComment {
     const { commentId, userId, id, content } = subComment;
     try {
       if(!content) throw new CustomError(errorMapTypes.COMMENT_NO_CONTENT, 500);
+
       const comment = await CommentModel.findByPk(Number(commentId));
-      if(!commentId || !comment) throw new CustomError(errorMapTypes.COMMENT_NOT_FOUND, 404);
+      if(!comment) throw new CustomError(errorMapTypes.COMMENT_NOT_FOUND, 404);
       if(Number(userId) !== Number(comment.userId)) throw new CustomError(errorMapTypes.COMMENT_USER_DONT_MATCH, 404);
 
-      const user = await Users.findByPk(Number(userId));
-      if(!user || !user) throw new CustomError(errorMapTypes.USER_DONT_EXIST, 404);
-
-      const subComment = await SubCommentModel.findByPk(Number(id));
+      const subComment = await SubCommentModel.findByPk(id);
       if(!id || !subComment) throw new CustomError(errorMapTypes.COMMENT_NOT_FOUND, 404);
       return true
     } catch(e: any) {
