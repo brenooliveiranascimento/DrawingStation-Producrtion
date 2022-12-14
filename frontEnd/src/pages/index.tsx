@@ -170,6 +170,7 @@ const Home: NextPage = () => {
               name='password'
               placeholder='Password'
             />
+
             {register && (<Input
               value={credentials.confirmPassword}
               style={{borderBottomColor: unknowField === 'confirmPassword' ? 'red' : 'white'}}

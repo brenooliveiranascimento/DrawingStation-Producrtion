@@ -7,6 +7,7 @@ class SubCommentModel extends Model {
   declare content: string;
   declare commentId: boolean
   declare creationDate: Date;
+  declare active: boolean
 }
 
 SubCommentModel.init({
@@ -27,6 +28,11 @@ SubCommentModel.init({
   },
   commentId: {
     type: INTEGER,
+    allowNull: false,
+    primaryKey: true,
+  },
+  active: {
+    type: BOOLEAN,
     allowNull: false,
     primaryKey: true,
   },

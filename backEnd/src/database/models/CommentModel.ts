@@ -1,4 +1,4 @@
-import { Model, INTEGER, STRING, DATE } from 'sequelize';
+import { Model, INTEGER, STRING, DATE, BOOLEAN } from 'sequelize';
 import db from '.';
 import SubCommentModel from './SubCommentModel';
 
@@ -6,7 +6,8 @@ class CommentModel extends Model {
   declare id: number;
   declare content: string;
   declare userId: string;
-  declare commentId: boolean
+  declare commentId: boolean;
+  declare active: boolean;
   declare creationDate: Date;
 }
 
@@ -23,6 +24,11 @@ CommentModel.init({
   },
   classroomId: {
     type: INTEGER,
+    allowNull: false,
+    primaryKey: true,
+  },
+  active: {
+    type: BOOLEAN,
     allowNull: false,
     primaryKey: true,
   },

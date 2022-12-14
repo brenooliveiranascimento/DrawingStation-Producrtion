@@ -2,13 +2,15 @@ export interface IsubComments {
   id: number;
   content: string;
   userId: string;
-  commentId: boolean
+  commentId: boolean;
   creationDate: Date;
+  active: boolean
 }
 
 export interface IComments {
   id: number;
   content: string;
+  active: boolean;
   userId: string;
   classroomId: boolean
   creationDate: Date;
