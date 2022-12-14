@@ -1,6 +1,5 @@
-import { IallComments, IComments } from "../interfaces/commentsTypes";
 import CommentModel from "../database/models/CommentModel";
-import SubComment from "../database/models/SubCommentModel";
+import SubCommentModel from "../database/models/SubCommentModel";
 import CustomError from "../utils/StatusError";
 
 export default class CommentsServices {
@@ -9,7 +8,7 @@ export default class CommentsServices {
   async getAll(): Promise<any> {
     try {
       const comments = await this.commentModel.findAll(
-        { include: [{ model: SubComment, as: 'subcomments' }] }
+      { include: [{ model: SubCommentModel, as: 'subComments' }] },
       )
       return comments;
     } catch(e: any) {

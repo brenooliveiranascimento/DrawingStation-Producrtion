@@ -1,17 +1,15 @@
 import { Model, INTEGER, STRING, BOOLEAN, DATE } from 'sequelize';
 import db from '.';
 import CommentModel from './CommentModel';
-import Users from './UserModel';
 
-class SubComment extends Model {
+class SubCommentModel extends Model {
   declare id: number;
   declare content: string;
-  declare createBy: string;
   declare commentId: boolean
-  declare creationData: Date;
+  declare creationDate: Date;
 }
 
-SubComment.init({
+SubCommentModel.init({
   id: {
     type: INTEGER,
     allowNull: false,
@@ -22,7 +20,7 @@ SubComment.init({
     type: STRING(500),
     allowNull: false,
   },
-  createBy: {
+  userId: {
     type: INTEGER,
     allowNull: false,
     primaryKey: true,
@@ -32,22 +30,19 @@ SubComment.init({
     allowNull: false,
     primaryKey: true,
   },
-  drawing: {
-    type: STRING(500),
-    allowNull: false,
-  },
-  creationData: {
+  creationDate: {
     type: DATE,
     allowNull: false,
     primaryKey: true,
   },
 }, {
   sequelize: db,
-  modelName: 'subcomments',
+  modelName: 'subComments',
   timestamps: false,
+  underscored: true
 });
 
-CommentModel.hasMany(SubComment);
-SubComment.belongsTo(CommentModel);
+CommentModel.hasMany(SubCommentModel);
+SubCommentModel.belongsTo(CommentModel);
 
-export default SubComment;
+export default SubCommentModel;

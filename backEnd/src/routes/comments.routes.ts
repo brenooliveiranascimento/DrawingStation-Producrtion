@@ -8,6 +8,6 @@ const commentControlelr = new CommentController(commentServices);
 
 const router = Router();
 
-router.get('/', (req, res) => commentControlelr.getAll(req, res))
+router.get('/all', (req, res) => commentControlelr.getAll(req, res))
 
 export default router;

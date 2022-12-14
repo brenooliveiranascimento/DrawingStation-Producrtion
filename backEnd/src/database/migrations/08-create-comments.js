@@ -11,10 +11,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(500),
       },
-      createBy: {
+      user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        field: 'create_by',
+        field: 'user_id',
       },
       classroomId: {
         allowNull: false,
