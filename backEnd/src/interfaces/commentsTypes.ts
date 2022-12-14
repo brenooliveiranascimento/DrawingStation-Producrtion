@@ -7,6 +7,12 @@ export interface IsubComments {
   active: boolean
 }
 
+export interface ICommentUpdate {
+  id: number;
+  content: string;
+  userId: number
+}
+
 export interface IComments {
   id: number;
   content: string;
