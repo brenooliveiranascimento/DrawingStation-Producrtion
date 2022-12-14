@@ -11,10 +11,18 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(500),
       },
+      active: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+      },
       user_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         field: 'user_id',
+        references: {
+          model: 'users',
+          key: 'id',
+        },
       },
       classroomId: {
         allowNull: false,

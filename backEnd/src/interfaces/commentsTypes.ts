@@ -1,19 +1,19 @@
 export interface IsubComments {
   id: number;
   content: string;
-  createBy: string;
+  userId: string;
   commentId: boolean
-  creationData: Date;
+  creationDate: Date;
 }
 
 export interface IComments {
   id: number;
   content: string;
-  createBy: string;
+  userId: string;
   classroomId: boolean
-  creationData: Date;
+  creationDate: Date;
 }
 
 export interface IallComments extends IComments {
-  subcomments: IsubComments[]
+  subComments: IsubComments[]
 }
