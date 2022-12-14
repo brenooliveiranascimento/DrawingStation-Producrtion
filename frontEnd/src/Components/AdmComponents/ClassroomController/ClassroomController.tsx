@@ -42,9 +42,11 @@ function ClassroomController() {
   };
 
   const currClassromEditingData = (classroomId: number): ClassroomDataInterface => {
-    return classroomsData
+    const classroom = classroomsData
       .find((currClassroomData: ClassroomDataInterface) => currClassroomData
         .classroomId === classroomId) as ClassroomDataInterface;
+    console.log(classroom);
+    return classroom;
   };
 
   const handleModule = (classroom: ClassroomInterface) => {

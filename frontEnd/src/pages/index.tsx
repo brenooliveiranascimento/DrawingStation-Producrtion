@@ -11,7 +11,7 @@ import { creadentialRegisterValidation, creadentialSiginValidation } from '../ut
 import { useDispatch } from 'react-redux';
 import { loginWithGoogle, registerUser, siginUser } from '../redux/actions/autenticationActions/autenticationActions';
 import axios from 'axios';
-import { serverSideConnection } from '../services/api.connection';
+import { apiConnection, serverSideConnection } from '../services/api.connection';
 import { useGoogleLogin } from '@react-oauth/google';
 import { toast } from 'react-toastify';
 import Router from 'next/router';
@@ -89,7 +89,7 @@ const Home: NextPage = () => {
             'Authorization': `Bearer ${response.access_token}`
           }
         });
-        const { data } = await serverSideConnection.post('/auth/google', {
+        const { data } = await apiConnection.post('/auth/google', {
           email: userData.email,
           sub: userData.sub,
           picture: userData.picture,
@@ -98,7 +98,7 @@ const Home: NextPage = () => {
         dispatch(loginWithGoogle(data, redirect, '/HomePage'));
       } catch(e: any) {
         toast.dismiss('Algo de errado! :(');
-        console.log(e.response.data);
+        console.log(e);
       }
     },
   });

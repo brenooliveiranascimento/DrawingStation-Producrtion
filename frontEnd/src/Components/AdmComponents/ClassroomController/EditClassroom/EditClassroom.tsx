@@ -61,6 +61,7 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
     dispatch(deleteClassroom(classroomEditing, handleModal, identity));
   };
   useEffect(() => {
+    console.log(classroomEditingData);
     setEditClassroom(classroomEditing);
     setEditClassroomData(classroomEditingData);
   }, []);
