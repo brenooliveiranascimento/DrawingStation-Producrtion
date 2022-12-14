@@ -18,4 +18,6 @@ export const errorMapTypes = {
   USER_COMMENT_NOT_FOUND: 'Comentário não acossiado a um usuário',
   CLASSROOM_COMMENT_NOT_FOUND: 'Comentário não acossiado a uma aula',
   COMMENT_NO_CONTENT: 'Comentário sem conteúdo',
+  NO_UPDATE_COMMENT: 'Erro no servidor, Não foi possível atualizar o comentário',
+  COMMENT_UPDATED_SUCCESS: 'Comentário atualizado com sucesso!',
 }
