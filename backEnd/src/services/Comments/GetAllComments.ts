@@ -21,7 +21,9 @@ export default class GetAllCommentsServices {
   async execute(): Promise<IallComments> {
     try {
       const comments = await this.commentModel.findAll(
-      {include: [{ model: SubCommentModel, as: 'subComments' }], where: { active: true }})
+      {
+        include: [{ model: SubCommentModel, as: 'subComments' }], where: { active: true }
+      })
 
       return this.filterActiveComments(comments) as any;
     } catch(e: any) {

@@ -15,14 +15,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.BOOLEAN,
       },
-      user_id: {
+      userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         field: 'user_id',
-        references: {
-          model: 'users',
-          key: 'id',
-        },
       },
       classroomId: {
         allowNull: false,
