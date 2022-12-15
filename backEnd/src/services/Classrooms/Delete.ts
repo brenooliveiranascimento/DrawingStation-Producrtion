@@ -15,8 +15,8 @@ export default class Delete extends Classroom {
       await ClassroomModel.destroy({where: { id }});
 
       return { message: 'Aula Deletada com sucesso!' };
-    } catch(e) {
-      return { error: { message: errorMapTypes.REQUEST_ERROR }, message: e };
+    } catch(e: any) {
+      throw new CustomError(e.message, statusCodes.BAD_REQUEST);
     }
   }
 }
