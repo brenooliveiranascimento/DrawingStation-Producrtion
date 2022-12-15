@@ -24,6 +24,10 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: true,
       },
+      stripeClientId: {
+        allowNull: true,
+        type: Sequelize.STRING(300)
+      },
       premium: {
         allowNull: false,
         type: Sequelize.BOOLEAN,

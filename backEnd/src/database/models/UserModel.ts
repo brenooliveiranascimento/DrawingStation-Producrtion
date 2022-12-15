@@ -11,6 +11,7 @@ class Users extends Model {
   declare active: number;
   declare birthday: Date;
   declare premium: boolean;
+  declare stripeClientId: string;
   declare profilePhoto: string | null;
   declare phoneNumber: string;
 }
@@ -46,6 +47,10 @@ Users.init({
     type: BOOLEAN,
     allowNull: false,
     defaultValue: true,
+  },
+  stripeClientId:  {
+    type: STRING(300),
+    allowNull: true,
   },
   premium: {
     type: BOOLEAN,
