@@ -1,5 +1,4 @@
 import SubModules from "./SubModules";
-import { SubModulesInterface } from "../../interfaces/modulesTypes";
 import SubModuleModel from "../../database/models/SubModuleModel";
 import { errorMapTypes } from "../../utils/errorMap";
 import CustomError from "../../utils/StatusError";
