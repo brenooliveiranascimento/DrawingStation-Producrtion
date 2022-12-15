@@ -1,6 +1,6 @@
 import CommentModel from "../../database/models/CommentModel";
 import SubCommentModel from "../../database/models/SubCommentModel";
-import { IallComments, IComments, IsubComments } from "../../interfaces/commentsTypes";
+import { IallComments, IAllSubCommentsUserData, IComments, IsubComments } from "../../interfaces/commentsTypes";
 import CustomError from "../../utils/StatusError";
 import Users from "../../database/models/UserModel";
 
@@ -25,16 +25,18 @@ export default class GetAllCommentsServices {
     return user
   }
 
-  private async getUsersData(comments: IallComments[]): Promise<IallComments> {
+  private async AddUserDataInMainComment(comments: IallComments[]) {
     const commentsWithUsers = await Promise.all(comments.map(async (currComment: IallComments) => {
-        const userData = await this.requestUser(Number(currComment.userId));
-        return { userData, ...currComment }
-    }))
-    const addUserInSubComment = await Promise.all(commentsWithUsers.map(async (currComment) => {
+      const userData = await this.requestUser(Number(currComment.userId));
+      return { userData, ...currComment }
+  }))
+  return commentsWithUsers;
+  }
+
+  private async addUserDataInSUbComment(comments: any) {
+    const addUserInSubComment = await Promise.all(comments.map(async (currComment: IAllSubCommentsUserData) => {
       const subComments = await Promise.all(currComment.subComments.map(async (currSubComment: IsubComments) => {
-        const getUserData = await Users.findByPk(Number(currSubComment.userId), { attributes: {
-          exclude: ['password', 'birthday', 'phoneNumber', 'loginType']
-        }})
+        const getUserData = await this.requestUser(Number(currSubComment.userId));
         const userData = {
           name: getUserData?.name,
           email: getUserData?.email,
@@ -50,6 +52,12 @@ export default class GetAllCommentsServices {
       const currData = {userData, active, classroomId, content, creationDate};
       return { ...currData, subComments }
     }))
+    return addUserInSubComment;
+  }
+
+  private async addUserDataInComments(comments: IallComments[]): Promise<IallComments> {
+    const commentsWithUsers = await this.AddUserDataInMainComment(comments);
+    const addUserInSubComment = await this.addUserDataInSUbComment(commentsWithUsers)
     return addUserInSubComment as any;
   }
 
@@ -63,7 +71,7 @@ export default class GetAllCommentsServices {
       })
 
       const activeComments = this.filterActiveComments(comments) as any;
-      const commentsWithUsers = await this.getUsersData(activeComments)
+      const commentsWithUsers = await this.addUserDataInComments(activeComments)
       return commentsWithUsers
     } catch(e: any) {
       throw new CustomError(e.message, 500)

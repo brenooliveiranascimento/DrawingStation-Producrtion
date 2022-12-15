@@ -33,6 +33,21 @@ export interface ICommentGenericReturn {
   message: string
 }
 
+export interface userData {
+  id: number;
+  name: string;
+  email: string;
+  profilePhoto: string | null;
+  active: boolean;
+  premium: boolean;
+}
+
+export interface IAllSubCommentsUserData extends IComments {
+  subComments: IsubComments[];
+  userData: userData;
+}
+
+
 export interface IallComments extends IComments {
   subComments: IsubComments[]
 }
