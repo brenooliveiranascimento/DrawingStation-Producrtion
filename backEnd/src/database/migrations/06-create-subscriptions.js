@@ -9,23 +9,11 @@ module.exports = {
         onDelete: 'cascade',
         onUpdate: 'cascade',
       },
-      transactionData: {
+      priceId: {
         allowNull: false,
-        type: Sequelize.DATE()
+        type: Sequelize.INTEGER
       },
-      expirationData: {
-        allowNull: false,
-        type: Sequelize.DATE()
-      },
-      subscriptionType: {
-        allowNull: false,
-        type: Sequelize.STRING(50)
-      },
-      value: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-      },
-      active: {
+      status: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
       },

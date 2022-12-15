@@ -8,7 +8,7 @@ class Subscription extends Model {
   declare expirationData: Date;
   declare subscriptionType: string;
   declare value: number;
-  declare active: boolean;
+  declare status: boolean;
   declare userId: number
 }
 
@@ -19,27 +19,15 @@ Subscription.init({
     primaryKey: true,
     autoIncrement: true,
   },
-  transactionData: {
-    type: DATE(),
-    allowNull: false,
-  },
-  expirationData: {
-    type: DATE(),
-    allowNull: false,
-  },
-  subscriptionType: {
-    type: STRING(50),
-    allowNull: false,
-  },
-  value: {
-    type: INTEGER,
-    allowNull: false,
-  },
-  active: {
+  status: {
     type: BOOLEAN,
     allowNull: false,
   },
   userId: {
+    type: INTEGER,
+    allowNull: false,
+  },
+  priceId: {
     type: INTEGER,
     allowNull: false,
   },
