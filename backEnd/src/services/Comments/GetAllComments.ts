@@ -13,7 +13,7 @@ export default class GetAllCommentsServices {
         include: [{ model: SubCommentModel, as: 'subComments' }],
         where: { active: true },
         attributes: { exclude: ['classroomId', 'active', 'commentId'] }
-      })
+      });
     return comments
   }
 
@@ -25,21 +25,21 @@ export default class GetAllCommentsServices {
           id, userId, active, classroomId, content, subComments: filterSuibComments, creationDate
         }
         return items
-    })
+    });
   }
 
   private async requestUser(id: number) {
     const user = await Users.findByPk(Number(id), { attributes: {
       exclude: ['password', 'birthday', 'phoneNumber', 'loginType']
-    }})
-    return user
+    }});
+    return user;
   }
 
   private async AddUserDataInMainComment(comments: IallComments[]) {
     const commentsWithUsers = await Promise.all(comments.map(async (currComment: IallComments) => {
       const userData = await this.requestUser(Number(currComment.userId));
       return { userData, ...currComment }
-  }))
+  }));
   return commentsWithUsers;
   }
 
@@ -51,21 +51,21 @@ export default class GetAllCommentsServices {
           name: getUserData?.name, email: getUserData?.email,
           profilePhoto: getUserData?.profilePhoto,active: getUserData?.active,
           premium: getUserData?.premium
-        }
+        };
         const { active, commentId, content, creationDate, id, userId } = currSubComment;
-        const currData = {active, commentId, content, creationDate, id, userId}
-        return { userData, ...currData }
+        const currData = { active, commentId, content, creationDate, id, userId };
+        return { userData, ...currData };
       }))
       const { active, classroomId, content, creationDate, userData } = currComment;
       const currData = {userData, active, classroomId, content, creationDate};
-      return { ...currData, subComments }
+      return { ...currData, subComments };
     }))
     return addUserInSubComment;
   }
 
   private async addUserDataInComments(comments: IallComments[]): Promise<IallComments> {
     const commentsWithUsers = await this.AddUserDataInMainComment(comments);
-    const addUserInSubComment = await this.addUserDataInSubComment(commentsWithUsers)
+    const addUserInSubComment = await this.addUserDataInSubComment(commentsWithUsers);
     return addUserInSubComment as any;
   }
 
@@ -74,10 +74,10 @@ export default class GetAllCommentsServices {
       const comments = await this.getComments();
 
       const activeComments = this.filterActiveComments(comments) as any;
-      const commentsWithUsers = await this.addUserDataInComments(activeComments)
-      return commentsWithUsers
+      const commentsWithUsers = await this.addUserDataInComments(activeComments);
+      return commentsWithUsers;
     } catch(e: any) {
-      throw new CustomError(e.message, 500)
+      throw new CustomError(e.message, 500);
     }
   }
 }
