@@ -47,6 +47,22 @@ export interface IAllSubCommentsUserData extends IComments {
   userData: userData;
 }
 
+export interface INewSubComments {
+  userData: userData;
+  active: string;
+  commentId: number;
+  content: string;
+  creationDate: Date;
+  id: number
+}
+
+export interface ICommentsWithUserData {
+  userData: userData;
+  content: string;
+  creationDate: Date;
+  subComments: INewSubComments[];
+}
+
 
 export interface IallComments extends IComments {
   subComments: IsubComments[]

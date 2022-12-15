@@ -48,6 +48,7 @@
     "joi": "17.6.0",
     "jsonwebtoken": "^8.5.1",
     "restify-errors": "^8.0.2",
-    "sequelize": "^6.25.3"
+    "sequelize": "^6.25.3",
+    "stripe": "^11.3.0"
   }
 }

@@ -7,8 +7,6 @@ import CustomError from "../../utils/StatusError";
 
 export default class CheckComment {
 
-  constructor() {}
-
   async commentCheckList(comment: IComments): Promise<boolean> {
     const { content, userId, classroomId } = comment;
     const user = await Users.findByPk(userId);
