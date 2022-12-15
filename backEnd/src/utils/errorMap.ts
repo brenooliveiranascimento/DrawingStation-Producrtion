@@ -10,6 +10,7 @@ export const errorMapTypes = {
   SUBMODULE_DONT_CREATE: 'SubModule not create',
   UPDATE_SUBMODULE_ERROR: 'Error in update submodule',
   ERROR_IN_DELETE_MODULE: 'Error in module delete',
+  ERROR_IN_DELETE_CLASSROOM: 'Error in classroom delete',
   ERROR_IN_UPDATE_SUBMODULE: 'Error in update submodule',
   ERROR_IN_UPDATE_MODULE: 'Error in update module',
   ERROR_ADD_NEW_CLASSROOM: 'Add new classroom error',

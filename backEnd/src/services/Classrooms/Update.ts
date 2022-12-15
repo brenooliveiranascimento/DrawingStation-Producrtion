@@ -27,9 +27,7 @@ export default class Update extends Classroom {
   newClassroom: ClassroomInterface, classroomData: ClassroomDataInterface, id: number
   ):Promise<ICommentGenericReturn> {
   try {
-    const classroom = await this.findClassroomById(id);
-    if(!classroom) throw new CustomError(errorMapTypes.CLASSROOM_DONT_EXIST, statusCodes.NOT_FOUND);
-
+    await this.findById(id);
     const {image, name, premium} = newClassroom
 
     const classroomDataUpdated = await this.updateClassroomData(classroomData, id);
