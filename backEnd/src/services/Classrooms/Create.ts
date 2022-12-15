@@ -7,7 +7,7 @@ import statusCodes from "../../statusCode";
 
 export default class Create {
 
-  public async addNewClassroomData(classroomData: ClassroomDataInterface) {
+  private async addNewClassroomData(classroomData: ClassroomDataInterface) {
     try {
       const add = await ClassroomDataModel.create({...classroomData});
       if(!add) throw new CustomError(errorMapTypes.ERROR_ADD_NEW_CLASSROOM_DATA, statusCodes.NO_CONTENT);
