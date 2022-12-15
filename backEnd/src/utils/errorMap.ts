@@ -3,6 +3,7 @@ export const errorMapTypes = {
   USER_DONT_EXIST: 'User dont exist',
   INCORRECT_PASSWORD: 'Incorrect password',
   CLASSROOM_REQUEST_ERROR: 'Classroom request error',
+  SUB_MODULE_DONT_EXIST: 'SubModule Dont Exists!',
   REQUEST_ERROR: 'RequestError, please tent again',
   MODULE_NOT_FOUD: 'Module dont exist',
   SUBMODULE_DONT_EXIST: 'SubModule not found',
