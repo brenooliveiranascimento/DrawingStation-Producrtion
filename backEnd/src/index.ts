@@ -6,6 +6,7 @@ import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 import commentsRouter from './routes/comments.routes';
 import subCommentRouter from './routes/subComments.routes';
+import subscriptionRoutes from './routes/subscription.routes';
 
 import 'dotenv/config';
 import errorMiddleware from './middlewares/errorMiddleware';
@@ -20,6 +21,7 @@ app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/comments', commentsRouter);
 app.use('/subComments', subCommentRouter);
+app.use('/subscription', subscriptionRoutes);
 app.use(errorMiddleware)
 
 app.listen(PORT, () => {

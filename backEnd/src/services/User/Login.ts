@@ -1,22 +1,25 @@
 import { compare } from "bcryptjs";
-import { ILogin } from "../../interfaces/User/ILogin";
-import { LoginResponse, UserCredentials } from "../../interfaces/userTypes";
+import { ICommentGenericReturn } from "../../interfaces/commentsTypes";
+import { UserCredentials } from "../../interfaces/userTypes";
 import { errorMapTypes } from "../../utils/errorMap";
+import createToken from "../../utils/jwt.utils";
 import CustomError from "../../utils/StatusError";
 import CheckAlredyExist from "./CheckAlredyExist";
+import Find from "./User";
 
-export default class Login {
+export default class Login extends Find{
 
-  constructor(private checkAlredyExist = new CheckAlredyExist()) {}
+  constructor() { super() }
 
-  public async login(userCredential: UserCredentials): Promise<ILogin> {
-    const { email, password } = userCredential;
-    const userData = await this.checkAlredyExist.findAUser(email);
+  public async execute(userCredential: UserCredentials): Promise<ICommentGenericReturn> {
+    const { email, password,  } = userCredential;
+    const userData = await this.getByEmail(email);
 
     const checkPassword = await compare(password, userData.password)
 
     if(!checkPassword) throw new CustomError(errorMapTypes.INCORRECT_PASSWORD, 402);
+    const token = createToken({email: userData.email, id: userData.id, profilePhoto: userData.profilePhoto, name: userData.name})
     
-    return { message: userData }
+    return { message: token }
   }
 }
