@@ -5,8 +5,9 @@ Este projeto se trata da refatoração da minha antiga plataforma, esta nova ver
 
 ## Contextualizando
 Fui professor de desenho e atualmente estou em transição de carreira para a aréa da tecnologia.
-Durante minha jornada como professor, sempre utilizei a tecnologia para me auxiliar até que um dia resolvi desenvolver a minha própria plataforma de ensino para que eu pudesse expandir o alcance do meu negócio.
-Atualmente possuo o app em produção publicado na playstore e o site, porém atualmente estou refatorando todo ecosistema do BackEnd e FrontEnd do projeto atual para tecnologias mais robustas e com um codigo que me permita escalar a aplicação sem ter muita dor de cabeça.
+Durante minha jornada como professor, sempre utilizei a tecnologia para me auxiliar, até que um dia resolvi desenvolver a minha própria plataforma de ensino para que eu pudesse expandir o alcance do meu negócio.
+Atualmente possuo o app em produção publicado na playstore e o site.
+Atualmente estou refatorando todo ecosistema do BackEnd e FrontEnd do projeto para tecnologias mais robustas e com um codigo que me permita escalar a aplicação sem ter muita dor de cabeça.
 
 ### Mais detalhes do BackEnd e do FrontEnd no ReadMe de seus respectivos arquivos
 
