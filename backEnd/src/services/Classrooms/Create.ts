@@ -4,6 +4,7 @@ import { errorMapTypes } from "../../utils/errorMap";
 import CustomError from "../../utils/StatusError";
 import ClassroomDataModel from "../../database/models/ClassRoomDataModel";
 import statusCodes from "../../statusCode";
+import { messageMap } from "../../utils/messageMap";
 
 export default class Create {
 
@@ -24,7 +25,7 @@ export default class Create {
   
       await this.addNewClassroomData({ ...classroomData, classroomId: add.id })
 
-      return { message: 'Aula adicionada com sucesso!' };
+      return { message: messageMap.CLASSROM_UPDATED_SUCCESSFULLY };
     } catch(e: any) {
       throw new CustomError(e.message, statusCodes.BAD_REQUEST);
     }
