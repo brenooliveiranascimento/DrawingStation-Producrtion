@@ -7,6 +7,16 @@ import Users from "../../database/models/UserModel";
 export default class GetAllCommentsServices {
   constructor(private commentModel = CommentModel) {}
 
+  private async getComments() {
+    const comments = await this.commentModel.findAll(
+      {
+        include: [{ model: SubCommentModel, as: 'subComments' }],
+        where: { active: true },
+        attributes: { exclude: ['classroomId', 'active', 'commentId'] }
+      })
+    return comments
+  }
+
   private filterActiveComments(comments: any): IallComments[] {
     return comments.map((
       { active, classroomId, content, creationDate, id, userId, subComments}: IallComments) => {
@@ -33,15 +43,13 @@ export default class GetAllCommentsServices {
   return commentsWithUsers;
   }
 
-  private async addUserDataInSUbComment(comments: any) {
+  private async addUserDataInSubComment(comments: any) {
     const addUserInSubComment = await Promise.all(comments.map(async (currComment: IAllSubCommentsUserData) => {
       const subComments = await Promise.all(currComment.subComments.map(async (currSubComment: IsubComments) => {
         const getUserData = await this.requestUser(Number(currSubComment.userId));
         const userData = {
-          name: getUserData?.name,
-          email: getUserData?.email,
-          profilePhoto: getUserData?.profilePhoto,
-          active: getUserData?.active,
+          name: getUserData?.name, email: getUserData?.email,
+          profilePhoto: getUserData?.profilePhoto,active: getUserData?.active,
           premium: getUserData?.premium
         }
         const { active, commentId, content, creationDate, id, userId } = currSubComment;
@@ -57,18 +65,13 @@ export default class GetAllCommentsServices {
 
   private async addUserDataInComments(comments: IallComments[]): Promise<IallComments> {
     const commentsWithUsers = await this.AddUserDataInMainComment(comments);
-    const addUserInSubComment = await this.addUserDataInSUbComment(commentsWithUsers)
+    const addUserInSubComment = await this.addUserDataInSubComment(commentsWithUsers)
     return addUserInSubComment as any;
   }
 
   async execute(): Promise<IallComments> {
     try {
-      const comments = await this.commentModel.findAll(
-      {
-        include: [{ model: SubCommentModel, as: 'subComments' }],
-        where: { active: true },
-        attributes: { exclude: ['classroomId', 'active', 'commentId'] }
-      })
+      const comments = await this.getComments();
 
       const activeComments = this.filterActiveComments(comments) as any;
       const commentsWithUsers = await this.addUserDataInComments(activeComments)

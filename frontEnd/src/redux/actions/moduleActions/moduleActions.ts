@@ -95,7 +95,6 @@ export const deleteModule = (editedModule: EditModule, handleModal:() => void): 
     const token = cookies['DRAWING_USER_DATA'];
     const { admPassword, id } = editedModule;
     const moduleEdited = {id};
-    console.log(editedModule);
     try {
       const { data } = await apiConnection.post(`/modules/${id}`,
         {
