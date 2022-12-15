@@ -7,6 +7,7 @@ export const errorMapTypes = {
   REQUEST_ERROR: 'RequestError, please tent again',
   MODULE_NOT_FOUD: 'Module dont exist',
   SUBMODULE_DONT_EXIST: 'SubModule not found',
+  SUBMODULE_DONT_CREATE: 'SubModule not create',
   UPDATE_SUBMODULE_ERROR: 'Error in update submodule',
   ERROR_IN_DELETE_MODULE: 'Error in module delete',
   ERROR_IN_UPDATE_SUBMODULE: 'Error in update submodule',
