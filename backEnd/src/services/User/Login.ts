@@ -1,7 +1,6 @@
 import { compare } from "bcryptjs";
 import { ICommentGenericReturn } from "../../interfaces/commentsTypes";
-import { ILogin } from "../../interfaces/User/ILogin";
-import { LoginResponse, UserCredentials } from "../../interfaces/userTypes";
+import { UserCredentials } from "../../interfaces/userTypes";
 import { errorMapTypes } from "../../utils/errorMap";
 import createToken from "../../utils/jwt.utils";
 import CustomError from "../../utils/StatusError";
@@ -11,7 +10,7 @@ export default class Login {
 
   constructor(private checkAlredyExist = new CheckAlredyExist()) {}
 
-  public async login(userCredential: UserCredentials): Promise<ICommentGenericReturn> {
+  public async exwecute(userCredential: UserCredentials): Promise<ICommentGenericReturn> {
     const { email, password,  } = userCredential;
     const userData = await this.checkAlredyExist.findAUser(email);
 
