@@ -52,8 +52,8 @@ export default class GetAllCommentsServices {
           profilePhoto: getUserData?.profilePhoto,active: getUserData?.active,
           premium: getUserData?.premium
         };
-        const { active, commentId, content, creationDate, id, userId } = currSubComment;
-        const currData = { active, commentId, content, creationDate, id, userId };
+        const { active, commentId, content, creationDate, id } = currSubComment;
+        const currData = { active, commentId, content, creationDate, id };
         return { userData, ...currData };
       }))
       const { active, classroomId, content, creationDate, userData } = currComment;
