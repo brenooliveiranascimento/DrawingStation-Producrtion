@@ -18,6 +18,8 @@ Regra de negocio para retornar os dados das aulas privadas apenas para usuários
 Apis para a manipulação adição ou excluisão do conteúdo da plataforma.
 Essas apis são restristas apenas para ADMS e possuem validações de credenciais em seus middlewares.
 
+Apis para adicionar editar e excluir comentários e subcomentários resposta nas aulas.
+
 Acesse a antiga plataforma e confira o conteúdo gratuito que disponibilizei para todos.
 https://drawing-station-web.vercel.app/
 
