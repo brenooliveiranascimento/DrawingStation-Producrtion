@@ -2,8 +2,8 @@ import Users from "../../database/models/UserModel"
 import { errorMapTypes } from "../../utils/errorMap"
 import CustomError from "../../utils/StatusError"
 
-export default class FindUser {
-  async findAUser(email: string) {
+export default class Find {
+  async execute(email: string) {
     try {
       const findUser = await Users.findOne({
         where: { email }
