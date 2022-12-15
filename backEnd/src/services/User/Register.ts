@@ -23,15 +23,14 @@ export default class Register {
       if(checkUserExist) return { error: { message: errorMapTypes.USER_ALREDY_EXISTS }, message: null };
       const encriptedPassword = await hash(user.password, 8)
   
-      const createNewUser = await Users.create({
-        ...user,
-        password: encriptedPassword,
-        loginType: 'credential',
-        profilePhoto: null,
+      await Users.create({
+        ...user, password: encriptedPassword,
+        loginType: 'credential', profilePhoto: null,
       });
+
       return { message: 'User criado com sucesso!!!' }
-    } catch(e) {
-      return { error: { message: errorMapTypes.REQUEST_ERROR }, message: errorMapTypes.REQUEST_ERROR }
+    } catch(e: any) {
+      throw new CustomError(e.message, 500);
     }
   }
 
