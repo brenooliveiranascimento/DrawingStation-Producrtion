@@ -6,6 +6,7 @@ export interface UserInterface {
   premium: boolean;
   birthday: string;
   phoneNumber: string;
+  profilePhoto: string;
 }
 
 export interface UserCredentials extends UserInterface {
