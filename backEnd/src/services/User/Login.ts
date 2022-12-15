@@ -5,14 +5,15 @@ import { errorMapTypes } from "../../utils/errorMap";
 import createToken from "../../utils/jwt.utils";
 import CustomError from "../../utils/StatusError";
 import CheckAlredyExist from "./CheckAlredyExist";
+import Find from "./User";
 
-export default class Login {
+export default class Login extends Find{
 
-  constructor(private checkAlredyExist = new CheckAlredyExist()) {}
+  constructor() { super() }
 
-  public async exwecute(userCredential: UserCredentials): Promise<ICommentGenericReturn> {
+  public async execute(userCredential: UserCredentials): Promise<ICommentGenericReturn> {
     const { email, password,  } = userCredential;
-    const userData = await this.checkAlredyExist.findAUser(email);
+    const userData = await this.getByEmail(email);
 
     const checkPassword = await compare(password, userData.password)
 
