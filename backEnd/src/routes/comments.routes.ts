@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import validateToken from '../middlewares/tokenVerification';
 
 import CommentController from "../services/Comments/Comments.controller";
 import CreateComment from '../services/Comments/CreateComment';
@@ -16,6 +17,7 @@ const commentsServices = {
 const commentControlelr = new CommentController(commentsServices);
 
 const router = Router();
+router.use(validateToken);
 
 router.get('/all', (req, res) => commentControlelr.getAll(req, res));
 router.post('/create', (req, res) => commentControlelr.create(req, res));
