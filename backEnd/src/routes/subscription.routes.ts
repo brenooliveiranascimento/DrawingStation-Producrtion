@@ -6,6 +6,7 @@ import SubcriptionController from '../services/Subscriptions/Subscription.contro
 const subscriptionController = new SubcriptionController();
 
 const router = Router();
+
 router.use(validateToken);
 
 router.post('/create', (req, res) => subscriptionController.handle(req, res));
