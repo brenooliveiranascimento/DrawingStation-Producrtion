@@ -30,16 +30,9 @@ services:
       db:
         condition: service_healthy
     environment:
-      - SECRET=itachiuchiha
-      - JWT_SECRET=jwt_secret
-      - MYSQLDATABASE=drawing_station
       - MYSQLHOST=drawingstation_db
       - MYSQLPASSWORD=password
-      - UPDATE_DELETE_CREDENTIAL=birujuice
-      - FIRST_ADM_EMAIL=drawing564station@gmail.com
       - MYSQLUSER=root
-      - MYSQLPORT=3306
-      - PORT=3001
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3001"] 
       timeout: 10s
