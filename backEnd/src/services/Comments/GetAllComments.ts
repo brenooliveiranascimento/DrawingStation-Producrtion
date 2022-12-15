@@ -1,6 +1,6 @@
 import CommentModel from "../../database/models/CommentModel";
 import SubCommentModel from "../../database/models/SubCommentModel";
-import { IallComments, IAllSubCommentsUserData, IComments, ICommentsWithUserData, IsubComments } from "../../interfaces/commentsTypes";
+import { IallComments, IAllSubCommentsUserData, IComments, IsubComments } from "../../interfaces/commentsTypes";
 import CustomError from "../../utils/StatusError";
 import Users from "../../database/models/UserModel";
 
@@ -43,7 +43,7 @@ export default class GetAllCommentsServices {
   return commentsWithUsers;
   }
 
-  private async addUserDataInSubComment(comments: any): Promise<ICommentsWithUserData[]> {
+  private async addUserDataInSubComment(comments: any) {
     const addUserInSubComment = await Promise.all(comments.map(async (currComment: IAllSubCommentsUserData) => {
       const subComments = await Promise.all(currComment.subComments.map(async (currSubComment: IsubComments) => {
         const getUserData = await this.requestUser(Number(currSubComment.userId));
@@ -63,13 +63,13 @@ export default class GetAllCommentsServices {
     return addUserInSubComment;
   }
 
-  private async addUserDataInComments(comments: IallComments[]): Promise<ICommentsWithUserData[]> {
+  private async addUserDataInComments(comments: IallComments[]): Promise<IallComments> {
     const commentsWithUsers = await this.AddUserDataInMainComment(comments);
     const addUserInSubComment = await this.addUserDataInSubComment(commentsWithUsers);
-    return addUserInSubComment;
+    return addUserInSubComment as any;
   }
 
-  async execute(): Promise<ICommentsWithUserData[]> {
+  async execute(): Promise<IallComments> {
     try {
       const comments = await this.getComments();
 
