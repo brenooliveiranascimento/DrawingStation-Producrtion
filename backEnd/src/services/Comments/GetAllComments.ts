@@ -18,16 +18,21 @@ export default class GetAllCommentsServices {
     })
   }
 
+  private async requestUser(id: number) {
+    const user = await Users.findByPk(Number(id), { attributes: {
+      exclude: ['password', 'birthday', 'phoneNumber', 'loginType']
+    }})
+    return user
+  }
+
   private async getUsersData(comments: IallComments[]): Promise<IallComments> {
     const commentsWithUsers = await Promise.all(comments.map(async (currComment: IallComments) => {
-        const userData = await Users.findByPk(Number(currComment.userId), { attributes: {
-          exclude: ['password', 'birthday', 'phoneNumber', 'loginType']
-        }})
+        const userData = await this.requestUser(Number(currComment.userId));
         return { userData, ...currComment }
     }))
     const addUserInSubComment = await Promise.all(commentsWithUsers.map(async (currComment) => {
       const subComments = await Promise.all(currComment.subComments.map(async (currSubComment: IsubComments) => {
-        const getUserData = await Users.findByPk(Number(currComment.userId), { attributes: {
+        const getUserData = await Users.findByPk(Number(currSubComment.userId), { attributes: {
           exclude: ['password', 'birthday', 'phoneNumber', 'loginType']
         }})
         const userData = {
