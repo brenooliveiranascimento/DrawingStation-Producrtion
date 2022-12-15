@@ -8,14 +8,12 @@ import { ICommentGenericReturn } from "../../interfaces/commentsTypes";
 export default class Delete extends Modules {
   constructor() { super() };
 
-  public async deleteModule(id: number):  Promise<ICommentGenericReturn> {
+  public async execute(id: number):  Promise<ICommentGenericReturn> {
     try {
-      const checkModuleExists = await this.getById(id);
-      if(checkModuleExists) throw new CustomError(errorMapTypes.MODULE_NOT_FOUD, statusCodes.NOT_FOUND);
-  
+      await this.getById(id);
       const removeModule = await ModuleModel.destroy({ where: { id } })
   
-      if(removeModule) throw new CustomError(errorMapTypes.ERROR_IN_DELETE_MODULE, statusCodes.NO_CONTENT);
+      if(!removeModule) throw new CustomError(errorMapTypes.ERROR_IN_DELETE_MODULE, statusCodes.NO_CONTENT);
   
       return { message: 'Módulo deletado com sucesso!' };
     } catch(e: any) {
