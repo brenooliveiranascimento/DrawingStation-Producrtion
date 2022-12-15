@@ -14,7 +14,7 @@ module.exports = {
         {
           id: 2,
           content: 'sub comentario teste!!!!',
-          user_id: 4,
+          user_id: 2,
           active: true,
           comment_id: 1,
           creation_date: new Date(),

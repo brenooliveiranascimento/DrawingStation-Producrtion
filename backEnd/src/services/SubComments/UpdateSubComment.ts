@@ -6,11 +6,9 @@ import ValidateSubComment from "./ValidateSubComment";
 export default class UpdateSubComment {
   constructor(
     private validateSubComment = new ValidateSubComment(),
-    private subCommentModel = SubCommentModel,
   ) {}
   async execute(subComment: IsubCommentsEdit): Promise<ICommentGenericReturn> {
     const { id, content } = subComment;
-    console.log(id)
     try {
       await this.validateSubComment.checkSubCommentUpdate(subComment);
       await SubCommentModel.update({ content }, { where: { id } })

@@ -1,0 +1,22 @@
+{
+  "name": "drawingstation",
+  "version": "1.0.0",
+  "description": "Seja bem vendo a DrawingStation! Minha plataforma EAD!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compose:up:build": "cd backEnd && docker-compose up -d --build",
+    "compose:up": "cd backEnd && docker-compose up -d"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brenooliveiranascimento/DrawingStation-Final.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brenooliveiranascimento/DrawingStation-Final/issues"
+  },
+  "homepage": "https://github.com/brenooliveiranascimento/DrawingStation-Final#readme"
+}

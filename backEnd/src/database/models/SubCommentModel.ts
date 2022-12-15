@@ -7,6 +7,7 @@ class SubCommentModel extends Model {
   declare content: string;
   declare commentId: boolean
   declare creationDate: Date;
+  declare userId: number;
   declare active: boolean
 }
 

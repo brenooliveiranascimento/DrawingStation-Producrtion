@@ -11,6 +11,7 @@ class Users extends Model {
   declare active: number;
   declare birthday: Date;
   declare premium: boolean;
+  declare profilePhoto: string | null;
   declare phoneNumber: string;
 }
 
