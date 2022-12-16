@@ -16,6 +16,7 @@ interface DashboardPropTypes {
 export default function Subscription({ userData }: DashboardPropTypes) {
 
   const dispatch = useDispatch();
+  const cookies = parseCookies();
 
   const setUser = () => {
     dispatch(AutenticationSuccess(userData));
@@ -29,16 +30,11 @@ export default function Subscription({ userData }: DashboardPropTypes) {
 
   const initCheckout = async () => {
     try {
-      const cookies = parseCookies();
       const token = cookies['DRAWING_USER_DATA'];
-  
-      const resposne = await apiConnection.post('/subscription/create',
-        { userId: id },
-        { headers: { 'Authorization': token } });
-      const { sessionId } = resposne.data;
-  
+      const { data } = await apiConnection.post('/subscription/create',
+        { userId: id }, { headers: { 'Authorization': token } });
+      const { sessionId } = data;
       const stripe = await getStripeJs();
-  
       await stripe?.redirectToCheckout({ sessionId });
     } catch(e: any) {
       console.log(e.message);
@@ -47,14 +43,11 @@ export default function Subscription({ userData }: DashboardPropTypes) {
 
   const removePremium = async () => {
     try {
-      const cookies = parseCookies();
       const token = cookies['DRAWING_USER_DATA'];
-  
       const resposne = await apiConnection.post(`/users/removePremium/${id}`,
-        { userId: id },
-        { headers: { 'Authorization': token } });
+        { userId: id }, { headers: { 'Authorization': token } });
+
       const { sessionId } = resposne.data;
-  
       const stripe = await getStripeJs();
   
       await stripe?.redirectToCheckout({ sessionId });
@@ -65,14 +58,11 @@ export default function Subscription({ userData }: DashboardPropTypes) {
 
   const accessPortal = async () => {
     try {
-      const cookies = parseCookies();
       const token = cookies['DRAWING_USER_DATA'];
-  
       const { data } = await apiConnection.post(`/subscription/portal/${id}`,
-        { userId: id },
+        null,
         { headers: { 'Authorization': token } });
-      const { portalUrl } = data;
-      window.location.href = portalUrl;
+      window.location.href = data.portalUrl;
     } catch(e: any) {
       console.log(e.message);
     }
@@ -95,12 +85,8 @@ export default function Subscription({ userData }: DashboardPropTypes) {
 
 export const getServerSideProps = canSSRAuth(async (ctx) => {
   const userConncetion = serverSideSetupUser(ctx);
-  const cookies = parseCookies(ctx);  
 
-  const token = cookies['DRAWING_USER_DATA'];
-  const decodedEmail: any = jwtDecode(token);
-
-  const {data} = await userConncetion.post('/auth/me');
+  const { data } = await userConncetion.post('/auth/me');
   const { id, name, email, profilePhoto, birthday, phoneNumber, premium } = data.message;
   return {
     props: {
