@@ -1,21 +1,18 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('subscriptions', {
+    await queryInterface.createTable('signatures', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
-        onDelete: 'cascade',
-        onUpdate: 'cascade',
+        type: Sequelize.STRING(300),
       },
       priceId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING(300)
       },
       status: {
         allowNull: false,
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.STRING(30),
       },
       userId: {
         allowNull: false,
@@ -30,6 +27,6 @@ module.exports = {
     });
   },
   down: async (queryInterface) => {
-    await queryInterface.dropTable('subscriptions');
+    await queryInterface.dropTable('signatures');
   },
 };

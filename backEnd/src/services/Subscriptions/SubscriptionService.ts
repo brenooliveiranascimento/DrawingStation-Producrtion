@@ -1,7 +1,5 @@
-import Subscription from "../../database/models/Subscription";
 import UserModel from '../../database/models/UserModel';
 import Stripe from 'stripe';
-import { stripe } from "../../utils/stripe";
 import 'dotenv';
 
 interface IExecuteSubs {
@@ -11,18 +9,28 @@ interface IExecuteSubs {
 export default class SubscriptionService {
 
   async execute({ userId }: IExecuteSubs) {
+    const stripe = new Stripe(
+      process.env.STRIPE_API_KEY as string,
+      {
+        apiVersion: '2022-08-01',
+        appInfo:{
+          name: 'DrawingStation',
+          version: '1',
+        }
+      }
+      )
+      
     const user = await UserModel.findByPk(
       userId, { attributes: { exclude: ['password'] } });
-
       let customerId = user?.stripeClientId;
       
-    if(!user?.stripeClientId) {
+    if(!customerId) {
       const stripeCustomers = await stripe.customers.create({
         email: user?.email.toString(),
       });
 
       await UserModel.update(
-        { stripeClientId: customerId },
+        { stripeClientId: stripeCustomers.id },
         { where: { id: userId } }
       )
       customerId = stripeCustomers.id;
