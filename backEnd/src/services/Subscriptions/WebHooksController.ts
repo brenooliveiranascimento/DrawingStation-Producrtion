@@ -17,7 +17,6 @@ export default class WebHooksController {
     switch(event.type){
       case 'customer.subscription.deleted':
         const payment = event.data.object as Stripe.Subscription;
-        console.log('deletado')
         await saveSubscription(
           payment.id,
           payment.customer.toString(),
@@ -28,7 +27,6 @@ export default class WebHooksController {
         break;
       case 'customer.subscription.updated':
          const paymentIntent = event.data.object as Stripe.Subscription;
-         console.log('updatado')
          await saveSubscription(
           paymentIntent.id,
           paymentIntent.customer.toString(),
@@ -38,7 +36,6 @@ export default class WebHooksController {
       break;
       case 'checkout.session.completed':
         const checkoutSession = event.data.object as any;
-        console.log('Deu bom')
           console.log(checkoutSession)
         await saveSubscription(
           checkoutSession.subscription.toString(),

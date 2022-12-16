@@ -63,6 +63,21 @@ export default function Subscription({ userData }: DashboardPropTypes) {
     }
   };
 
+  const accessPortal = async () => {
+    try {
+      const cookies = parseCookies();
+      const token = cookies['DRAWING_USER_DATA'];
+  
+      const { data } = await apiConnection.post(`/subscription/portal/${id}`,
+        { userId: id },
+        { headers: { 'Authorization': token } });
+      const { portalUrl } = data;
+      window.location.href = portalUrl;
+    } catch(e: any) {
+      console.log(e.message);
+    }
+  };
+
   return (
     <section>
       <button onClick={initCheckout}>
@@ -70,6 +85,9 @@ export default function Subscription({ userData }: DashboardPropTypes) {
       </button>
       <button onClick={removePremium}>
         Remover premium
+      </button>
+      <button onClick={accessPortal}>
+        Portal do assinande (Cancelar/Atualizar assinatura!);
       </button>
     </section>
   );
