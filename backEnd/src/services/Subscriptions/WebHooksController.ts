@@ -15,11 +15,28 @@ export default class WebHooksController {
     //   return;
     // }
   
-    console.log(event.type)
-    switch (event.type) {
-      case 'payment_intent.succeeded':
-        const paymentIntent = event.data.object;
+    switch(event.type){
+      case 'customer.subscription.deleted':
+        const payment = event.data.object as Stripe.Subscription;
+
+        await saveSubscription(
+          payment.id,
+          payment.customer.toString(),
+          false,
+          true
+        )
+      
         break;
+      case 'customer.subscription.updated':
+         const paymentIntent = event.data.object as Stripe.Subscription;
+
+         await saveSubscription(
+          paymentIntent.id,
+          paymentIntent.customer.toString(),
+          false
+         )
+
+      break;
       case 'checkout.session.completed':
         const checkoutSession = event.data.object as any;
       
