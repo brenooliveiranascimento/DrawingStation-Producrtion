@@ -7,13 +7,13 @@ export default class WebHooksController {
   async handle(request: Request, response: Response){
     const sig = request.headers['stripe-signature'] as string;
     let event:Stripe.Event = request.body;
-    const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
-    // try {
-    //   event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
-    // } catch (err: any) {
-    //   response.status(400).send(`Webhook Error: ${err.message}`);
-    //   return;
-    // }
+    const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
+    try {
+      event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+    } catch (err: any) {
+      response.status(400).send(`Webhook Error: ${err.message}`);
+      return;
+    }
     switch(event.type){
       case 'customer.subscription.deleted':
         const payment = event.data.object as Stripe.Subscription;
