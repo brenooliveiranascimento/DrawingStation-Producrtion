@@ -11,6 +11,7 @@ const INITIAL_VALUE: InitialValueState = {
     birthday: null,
     phoneNumber: null,
     premium: false,
+    stripeClientId: null,
   },
   logged: false,
   error: false,
