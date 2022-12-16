@@ -9,6 +9,6 @@ const router = Router();
 
 router.use(validateToken);
 
-router.post('/create', (req, res) => subscriptionController.handle(req, res));
+router.post('/create', (req, res) => subscriptionController.init(req, res));
 
 export default router;
