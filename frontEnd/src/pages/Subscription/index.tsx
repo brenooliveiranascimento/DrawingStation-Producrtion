@@ -45,12 +45,30 @@ export default function Subscription({ userData }: DashboardPropTypes) {
     }
   };
 
+  const removePremium = async () => {
+    try {
+      const cookies = parseCookies();
+      const token = cookies['DRAWING_USER_DATA'];
+  
+      const resposne = await apiConnection.post(`/users/removePremium/${id}`,
+        { userId: id },
+        { headers: { 'Authorization': token } });
+      const { sessionId } = resposne.data;
+  
+      const stripe = await getStripeJs();
+  
+      await stripe?.redirectToCheckout({ sessionId });
+    } catch(e: any) {
+      console.log(e.message);
+    }
+  };
+
   return (
     <section>
       <button onClick={initCheckout}>
         Assianr plano mensal
       </button>
-      <button onClick={initCheckout}>
+      <button onClick={removePremium}>
         Remover premium
       </button>
     </section>
