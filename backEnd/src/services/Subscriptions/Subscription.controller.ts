@@ -17,7 +17,7 @@ export default class SubcriptionController {
   }
 
   async portal(req: Request, res:Response) {
-    const { userId } = req.body;
+    const { userId } = req.params;
 
     const portalService = new UserPortalService();
     const portalUrl = await portalService.execute({ userId: Number(userId) });
