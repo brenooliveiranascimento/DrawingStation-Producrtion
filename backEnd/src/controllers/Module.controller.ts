@@ -116,7 +116,9 @@ class ModuleController{
   }
 
   public removePremium = async (req: Request, res: Response) => {
-    
+    const { id } = req.params;
+    await this.userService.removePremium(Number(id));
+    return res.status(202).json({ message: 'premium removido' });
   }
 }
 

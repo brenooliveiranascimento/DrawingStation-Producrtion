@@ -8,5 +8,6 @@ const moduleController = new ModuleController();
 
 router.use(validateToken, checkAdm);
 router.post('/getAll', moduleController.getAllUsers);
+router.post('/removePremium/:id', moduleController.removePremium);
 
 export default router

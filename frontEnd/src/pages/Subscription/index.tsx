@@ -50,6 +50,9 @@ export default function Subscription({ userData }: DashboardPropTypes) {
       <button onClick={initCheckout}>
         Assianr plano mensal
       </button>
+      <button onClick={initCheckout}>
+        Remover premium
+      </button>
     </section>
   );
 }

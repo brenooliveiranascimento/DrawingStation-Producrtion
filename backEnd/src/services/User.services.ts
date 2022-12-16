@@ -42,7 +42,7 @@ class UserService {
   async removePremium(id: number) {
     try {
       await UserModel.update(
-        { premium: false },
+        { premium: false, stripeClientId: null},
         { where: { id } })
     } catch(e: any) {
       throw new CustomError(errorMapTypes.REQUEST_ERROR, 500)
