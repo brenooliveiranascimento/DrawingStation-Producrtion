@@ -7,6 +7,7 @@ import userRoutes from './routes/user.routes';
 import commentsRouter from './routes/comments.routes';
 import subCommentRouter from './routes/subComments.routes';
 import subscriptionRoutes from './routes/subscription.routes';
+import webhooksRoutes from './routes/WebHook.routes';
 
 import 'dotenv/config';
 import errorMiddleware from './middlewares/errorMiddleware';
@@ -16,6 +17,7 @@ app.use(cors())
 app.use(express.json());
 
 const PORT = process.env.PORT;
+app.use('/webhook', webhooksRoutes);
 app.use('/modules', moduleRoutes)
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
