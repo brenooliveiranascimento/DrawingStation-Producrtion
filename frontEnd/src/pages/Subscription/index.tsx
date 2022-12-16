@@ -26,7 +26,7 @@ export default function Subscription({ userData }: DashboardPropTypes) {
     setUser();
   }, []);
 
-  const { id } = useSelector(({ user }: globalState) => user.userData);
+  const { id, stripeClientId } = useSelector(({ user }: globalState) => user.userData);
 
   const signaturesPlans = {
     mensal: '/subscription/mensal',
@@ -61,6 +61,7 @@ export default function Subscription({ userData }: DashboardPropTypes) {
 
   const accessPortal = async () => {
     try {
+      if(!stripeClientId) return;
       const token = cookies['DRAWING_USER_DATA'];
       const { data } = await apiConnection.post(`/subscription/portal/${id}`,
         null, { headers: { 'Authorization': token } });
