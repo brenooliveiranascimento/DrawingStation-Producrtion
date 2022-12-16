@@ -10,5 +10,6 @@ const router = Router();
 router.use(validateToken);
 
 router.post('/create', (req, res) => subscriptionController.init(req, res));
+router.post('/portal', (req, res) => subscriptionController.init(req, res));
 
 export default router;
