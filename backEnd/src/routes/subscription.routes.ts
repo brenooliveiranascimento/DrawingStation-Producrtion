@@ -9,8 +9,8 @@ const router = Router();
 
 router.use(validateToken);
 
-router.post('/create', (req, res) => subscriptionController.initMensalSubscription(req, res));
-router.post('/anual/create', (req, res) => subscriptionController.initMensalSubscription(req, res));
+router.post('/mensal', (req, res) => subscriptionController.initMensalSubscription(req, res));
+router.post('/anual', (req, res) => subscriptionController.initMensalSubscription(req, res));
 router.post('/portal/:userId', (req, res) => subscriptionController.initPortal(req, res));
 
 export default router;

@@ -28,10 +28,15 @@ export default function Subscription({ userData }: DashboardPropTypes) {
 
   const { id } = useSelector(({ user }: globalState) => user.userData);
 
-  const initCheckout = async () => {
+  const signaturesPlans = {
+    mensal: '/subscription/mensal',
+    anual: 'subscription/anual'
+  };
+
+  const initCheckout = async (subscription: string) => {
     try {
       const token = cookies['DRAWING_USER_DATA'];
-      const { data } = await apiConnection.post('/subscription/create',
+      const { data } = await apiConnection.post(subscription,
         { userId: id }, { headers: { 'Authorization': token } });
       const { sessionId } = data;
       const stripe = await getStripeJs();
@@ -67,8 +72,11 @@ export default function Subscription({ userData }: DashboardPropTypes) {
 
   return (
     <section>
-      <button onClick={initCheckout}>
+      <button onClick={() => initCheckout(signaturesPlans.mensal)}>
         Assianr plano mensal
+      </button>
+      <button onClick={() => initCheckout(signaturesPlans.anual)}>
+        Assianr plano anual
       </button>
       <button onClick={removePremium}>
         Remover premium
