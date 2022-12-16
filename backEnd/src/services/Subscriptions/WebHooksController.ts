@@ -6,7 +6,7 @@ import { stripe } from '../../utils/stripe';
 export default class WebHooksController {
   async handle(request: Request, response: Response){
     const sig = request.headers['stripe-signature'] as string;
-    let event = request.body;
+    let event:Stripe.Event = request.body;
     const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
     // try {
     //   event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
@@ -14,23 +14,41 @@ export default class WebHooksController {
     //   response.status(400).send(`Webhook Error: ${err.message}`);
     //   return;
     // }
-  
-    console.log(event.type)
-    switch (event.type) {
-      case 'payment_intent.succeeded':
-        const paymentIntent = event.data.object;
+    switch(event.type){
+      case 'customer.subscription.deleted':
+        const payment = event.data.object as Stripe.Subscription;
+        console.log('deletado')
+        await saveSubscription(
+          payment.id,
+          payment.customer.toString(),
+          false,
+          true
+        )
+      
         break;
+      case 'customer.subscription.updated':
+         const paymentIntent = event.data.object as Stripe.Subscription;
+         console.log('updatado')
+         await saveSubscription(
+          paymentIntent.id,
+          paymentIntent.customer.toString(),
+          false
+         )
+
+      break;
       case 'checkout.session.completed':
         const checkoutSession = event.data.object as any;
-      
+        console.log('Deu bom')
+          console.log(checkoutSession)
         await saveSubscription(
           checkoutSession.subscription.toString(),
           checkoutSession.customer.toString(),
           true,
-          )
-  
+        )
+
+      break;
       default:
-        console.log(`Unhandled event type ${event.type}`);
+        console.log(`Evento desconhecido ${event.type}`)
     }
     response.send();
   }
