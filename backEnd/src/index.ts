@@ -14,7 +14,14 @@ import errorMiddleware from './middlewares/errorMiddleware';
 const app = express();
 app.use(cors())
 
-app.use(express.json());
+app.use((req, res, next) => {
+  if(req.originalUrl === '/webhook') {
+    next();
+  }else {
+    express.json()(req, res, next);
+  }
+});
+// app.use(express.json());
 
 const PORT = process.env.PORT;
 app.use('/webhook', webhooksRoutes);

@@ -46,10 +46,8 @@ export default function Subscription({ userData }: DashboardPropTypes) {
       const token = cookies['DRAWING_USER_DATA'];
       const resposne = await apiConnection.post(`/users/removePremium/${id}`,
         { userId: id }, { headers: { 'Authorization': token } });
-
       const { sessionId } = resposne.data;
       const stripe = await getStripeJs();
-  
       await stripe?.redirectToCheckout({ sessionId });
     } catch(e: any) {
       console.log(e.message);
@@ -60,8 +58,7 @@ export default function Subscription({ userData }: DashboardPropTypes) {
     try {
       const token = cookies['DRAWING_USER_DATA'];
       const { data } = await apiConnection.post(`/subscription/portal/${id}`,
-        null,
-        { headers: { 'Authorization': token } });
+        null, { headers: { 'Authorization': token } });
       window.location.href = data.portalUrl;
     } catch(e: any) {
       console.log(e.message);
