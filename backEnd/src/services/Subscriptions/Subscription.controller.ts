@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
 import SubscriptionService from "./SubscriptionService";
-import UserModel from "../../database/models/UserModel";
-import SubscriptionModel from "../../database/models/SignatureModel";
 import UserPortalService from "./UserPortslService";
 
 export default class SubcriptionController {
@@ -20,7 +18,8 @@ export default class SubcriptionController {
     const { userId } = req.params;
 
     const portalService = new UserPortalService();
-    const portalUrl = await portalService.execute({ userId: Number(userId) });
-    return res.status(200).json(portalUrl);
+    const portalUrl = await portalService.execute(Number(userId));
+    console.log(portalUrl, 'ADWDWDW')
+    return res.status(200).json({portalUrl});
   }
 }

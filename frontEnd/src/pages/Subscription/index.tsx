@@ -72,7 +72,6 @@ export default function Subscription({ userData }: DashboardPropTypes) {
         { userId: id },
         { headers: { 'Authorization': token } });
       const { portalUrl } = data;
-      
       window.location.href = portalUrl;
     } catch(e: any) {
       console.log(e.message);
