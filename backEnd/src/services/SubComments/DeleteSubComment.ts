@@ -8,7 +8,7 @@ export default class DeleteSubComment {
     private validateSubcomment = new ValidateSubComment(),
     private subCommentModel = SubCommentModel
     ) {}
-  async execute(subComment: IsubCommentsEdit): Promise<ICommentGenericReturn> {
+  async execute(subComment: IsubCommentsEdit): Promise<string> {
     const { id } = subComment;
     try {
       await this.validateSubcomment.checkSubCommentUpdate({ ...subComment, content: 'Delete!!!123' });
@@ -16,7 +16,7 @@ export default class DeleteSubComment {
         { active: false },
         { where: { id } }
       )
-      return { message: 'Comentário deletado com sucesso!' }
+      return 'Comentário deletado com sucesso!'
     } catch(e: any) {
       throw new CustomError(e.message, 500)
     }

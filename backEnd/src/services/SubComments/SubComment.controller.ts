@@ -15,20 +15,20 @@ export default class SubCommentControlelr {
   async create(req: Request, res: Response) {
     const subComment: IsubComments = req.body;
     const create = await this.props.create.execute(subComment);
-    res.status(201).json(create);
+    res.status(201).json({ message: create });
   }
 
   async update(req: Request, res: Response) {
     const { id } = req.params
     const editCommentData:IsubCommentsEdit = { ...req.body, id: Number(id)};
     const edit = await this.props.update.execute(editCommentData);
-    res.status(200).json(edit);
+    res.status(200).json({ message: edit });
   }
 
   async delete(req: Request, res: Response) {
     const { id } = req.params;
     const editCommentData:IsubCommentsEdit = { ...req.body, id: Number(id)};
     const edit = await this.props.delete.execute(editCommentData);
-    res.status(200).json(edit);
+    res.status(200).json({ message: edit });
   }
 }
