@@ -2,6 +2,7 @@ import UserModel from '../database/models/UserModel';
 import AdmModel from '../database/models/AdmModel';
 import { GetUserInterface, UserInterface } from '../interfaces/userTypes';
 import { errorMapTypes } from '../utils/errorMap';
+import CustomError from '../utils/StatusError';
 
 class UserService {
   public async findUserById(id: number):Promise<GetUserInterface> {
@@ -35,6 +36,16 @@ class UserService {
       return { error: null, message: users };
     } catch(e) {
        return { error: {message: errorMapTypes.REQUEST_ERROR}, message: e }
+    }
+  }
+
+  async removePremium(id: number) {
+    try {
+      await UserModel.update(
+        { premium: false },
+        { where: { id } })
+    } catch(e: any) {
+      throw new CustomError(errorMapTypes.REQUEST_ERROR, 500)
     }
   }
 }

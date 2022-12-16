@@ -114,6 +114,10 @@ class ModuleController{
 
     return res.status(statusCodes.OK).json({ error: null, message });
   }
+
+  public removePremium = async (req: Request, res: Response) => {
+    
+  }
 }
 
 export default ModuleController;
