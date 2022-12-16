@@ -1,6 +1,7 @@
 import { BOOLEAN } from 'sequelize';
 import { Model, INTEGER, STRING } from 'sequelize';
 import db from '.';
+import UsersModel from './UserModel';
 
 class SignatureModel extends Model {
   declare id: number;
@@ -33,5 +34,8 @@ SignatureModel.init({
   modelName: 'signature',
   timestamps: false,
 });
+
+SignatureModel.belongsTo(UsersModel);
+UsersModel.hasOne(SignatureModel);
 
 export default SignatureModel;

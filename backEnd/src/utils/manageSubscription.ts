@@ -11,10 +11,7 @@ export async function saveSubscription(
   
   const user = await UserModel.findOne({
     where: { stripeClientId: customerId },
-    include: { model: SignatureModel, as: 'signature' }
-  }) as any
-
-  console.log(user?.signure)
+  })
 
   const subscription = await stripe.subscriptions.retrieve(subscriptionId);
 
