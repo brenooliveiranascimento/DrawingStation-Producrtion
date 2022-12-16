@@ -9,11 +9,11 @@ export default class CreateComment {
     private checkComment = new CheckComment()
     ){}
 
-  async execute(comment: IComments): Promise<ICommentGenericReturn> {
+  async execute(comment: IComments): Promise<string> {
     try {
       await this.checkComment.commentCheckList(comment);
       await this.commentModel.create({ ...comment, creationDate: new Date(), active: true }) 
-      return { message: 'Comentario adicionado com sucesso!!!' }
+      return 'Comentario adicionado com sucesso!!!'
     } catch(e: any) {
       throw new CustomError(e.message, 500);
     }
