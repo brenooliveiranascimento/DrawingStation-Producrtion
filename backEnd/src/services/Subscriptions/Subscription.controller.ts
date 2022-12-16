@@ -6,7 +6,7 @@ export default class SubcriptionController {
 
   constructor() {}
 
-  async init(req: Request, res: Response) {
+  async initSubscription(req: Request, res: Response) {
     const { userId } = req.body;
 
     const subscribeService = new SubscriptionService()
@@ -14,7 +14,7 @@ export default class SubcriptionController {
     return res.status(201).json(subscribe);
   }
 
-  async portal(req: Request, res:Response) {
+  async initPortal(req: Request, res:Response) {
     const { userId } = req.params;
 
     const portalService = new UserPortalService();
