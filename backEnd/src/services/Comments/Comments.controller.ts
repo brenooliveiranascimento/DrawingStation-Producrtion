@@ -37,8 +37,8 @@ export default class CommentController {
     const { id } = req.params;
     const updateData: ICommentUpdate = req.body;
     const updateArgs = { ...updateData, id: Number(id) }
-    const createComment = await this.commentsService
+    const deleteComment = await this.commentsService
       .delete.execute(updateArgs);
-    res.status(201).json({ message: createComment});
+    res.status(201).json({ message: deleteComment});
   }
 }

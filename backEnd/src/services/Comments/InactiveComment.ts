@@ -8,7 +8,7 @@ export default class InactiveComment {
     private checkComment = new CheckComment()
   ) {}
 
-  async execute(comment: ICommentUpdate): Promise<ICommentGenericReturn> {
+  async execute(comment: ICommentUpdate): Promise<string> {
     const { id } = comment;
     try {
       await this.checkComment.commentUpdateCheckList({ ...comment, content: 'Delete' });
@@ -16,7 +16,7 @@ export default class InactiveComment {
         { active: false },
         { where: { id } },
       )
-      return { message: 'Comentário removido com sucesso!' }
+      return 'Comentário removido com sucesso!'
     } catch(e: any) {
       throw new CustomError(e.message, 500)
     }
