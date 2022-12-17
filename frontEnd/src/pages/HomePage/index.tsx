@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
 import ModulesScreen from '../../Components/ui/HomePage/ModulesScreen/ModulesScreen';
@@ -14,10 +14,16 @@ interface DashboardPropTypes {
 }
 function HomePage({ userData }: DashboardPropTypes) {
   const dispatch = useDispatch();
+  const [currScreen, setCurrScreen] = useState('');
 
   const setUser = () => {
     dispatch(AutenticationSuccess(userData));
     dispatch(requestModulesAction());
+  };
+
+  const ScreenController = () => {
+    if(currScreen === 'Modules') return <ModulesScreen/>;
+    return <ModulesScreen/>;
   };
 
   useEffect(() => {
@@ -28,7 +34,7 @@ function HomePage({ userData }: DashboardPropTypes) {
     <section className={styles.dashboard_container}>
       <CurrSideBar/>
       <section className={styles.main_container}>
-        <ModulesScreen />
+        <ScreenController />
       </section>
     </section>
   );
