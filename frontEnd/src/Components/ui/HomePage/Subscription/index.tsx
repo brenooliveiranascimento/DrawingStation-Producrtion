@@ -12,7 +12,7 @@ import { canSSRAuth } from '../../../../utils/canSSRAuth';
 export default function Subscription() {
   const cookies = parseCookies();
 
-  const { id, stripeClientId } = useSelector(({ user }: globalState) => user.userData);
+  const { id, stripeClientId, premium } = useSelector(({ user }: globalState) => user.userData);
 
   const signaturesPlans = {
     mensal: '/subscription/mensal',
@@ -21,6 +21,7 @@ export default function Subscription() {
 
   const initCheckout = async (subscription: string) => {
     try {
+      if(premium) return;
       const token = cookies['DRAWING_USER_DATA'];
       const { data } = await apiConnection.post(subscription,
         { userId: id }, { headers: { 'Authorization': token } });
@@ -34,6 +35,7 @@ export default function Subscription() {
   };
 
   const accessPortal = async () => {
+    if(!stripeClientId) return;
     try {
       if(!stripeClientId) return;
       const token = cookies['DRAWING_USER_DATA'];

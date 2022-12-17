@@ -21,7 +21,7 @@ interface DashboardPropTypes {
 function HomePage({ userData }: DashboardPropTypes) {
   const dispatch = useDispatch();
 
-  const { user, modules } = useSelector((state: globalState) => state);
+  const { user } = useSelector((state: globalState) => state);
   const { currScreen } = user;
 
   const initHome = async () => {
