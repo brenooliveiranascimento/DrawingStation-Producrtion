@@ -15,9 +15,12 @@ export default function UserHeader() {
       </aside>
       <aside>
         <span>{name}</span>
-        <Image width={50} alt={name} height={50} style={{
-          borderRadius: '50%' 
-        }} src={profilePhoto || profileDefault}/>
+        <section>
+          <Image width={50} alt={name} height={50} style={{
+            borderRadius: '50%' , border: premium ? '4px solid #B8860B' : 'null'
+          }} src={profilePhoto || profileDefault}/>
+          <span>Premium!</span>
+        </section>
       </aside>
     </header>
   );
