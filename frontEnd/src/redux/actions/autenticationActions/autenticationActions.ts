@@ -16,8 +16,8 @@ export const siginUser = (userCredentials: UserCredentials, redirect: any, path:
         email,
         password
       });
-      const { name, id, token, profilePhoto, birthday, phoneNumber, premium } = data;
-      const userData = {name, email, id, profilePhoto, birthday, phoneNumber, premium};
+      const { name, id, token, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data;
+      const userData = {name, email, id, profilePhoto, birthday, phoneNumber, premium, stripeClientId};
 
       dispatch(AutenticationSuccess(userData));
       toast.success(`Seja bem vindo ${name}`);
@@ -77,8 +77,8 @@ export const loginWithGoogle = (userCredentials: any, redirect: any, path: strin
   return  async (dispatch: Dispatch<any>) => {
     dispatch(initAutentication());
     try {
-      const { name, id, token, email, profilePhoto, birthday, phoneNumber, premium } = userCredentials;
-      const userData = {name, email, id, profilePhoto, birthday, phoneNumber, premium: premium === undefined ? false : premium};
+      const { name, id, token, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = userCredentials;
+      const userData = {name, email, id, profilePhoto, birthday, phoneNumber, premium: premium === undefined ? false : premium, stripeClientId};
       nookies.set(null, globalTypes.DRAWING_USER_DATA, token, {
         maxAge: 30 * 24 * 60 * 60,
         path: '/',
@@ -109,9 +109,9 @@ export const validateUser = (redirect: any): any => {
           'Authorization': token
         }
       });
-      const {name, email, id, profilePhoto, birthday, phoneNumber, premium} = data.message;
+      const {name, email, id, profilePhoto, birthday, phoneNumber, premium, stripeClientId} = data.message;
 
-      const userData = {name, email, id, profilePhoto, birthday, phoneNumber, premium};
+      const userData = {name, email, id, profilePhoto, birthday, phoneNumber, premium, stripeClientId};
       dispatch(AutenticationSuccess(userData));
       redirect('/dashboard');
     } catch(e: any) {

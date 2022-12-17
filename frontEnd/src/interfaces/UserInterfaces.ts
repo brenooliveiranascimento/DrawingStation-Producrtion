@@ -9,6 +9,7 @@ export interface UserInterface {
   profilePhoto?: string;
   loginType?: string;
   phoneNumber: any;
+  stripeClientId?: null | string
 }
 
 export interface UserCredentials {
@@ -66,7 +67,8 @@ export interface UserInitialInterface {
     profilePhoto: string | null,
     birthday: null,
     premium?: boolean;
-    phoneNumber: null,
+    phoneNumber: null;
+    stripeClientId: null | string,
 }
 
 export interface InitialValueState {
@@ -74,5 +76,5 @@ export interface InitialValueState {
   userData: UserInitialInterface;
   logged: boolean
   error: boolean;
-  loginInit: boolean
+  loginInit: boolean;
 }

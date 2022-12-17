@@ -7,13 +7,13 @@ export default class WebHooksController {
   async handle(request: Request, response: Response){
     const sig = request.headers['stripe-signature'] as string;
     let event:Stripe.Event = request.body;
-    const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
-    // try {
-    //   event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
-    // } catch (err: any) {
-    //   response.status(400).send(`Webhook Error: ${err.message}`);
-    //   return;
-    // }
+    const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
+    try {
+      event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+    } catch (err: any) {
+      response.status(400).send(`Webhook Error: ${err.message}`);
+      return;
+    }
     switch(event.type){
       case 'customer.subscription.deleted':
         const payment = event.data.object as Stripe.Subscription;
@@ -23,7 +23,7 @@ export default class WebHooksController {
           false,
           true
         )
-      
+
         break;
       case 'customer.subscription.updated':
          const paymentIntent = event.data.object as Stripe.Subscription;
@@ -36,11 +36,13 @@ export default class WebHooksController {
       break;
       case 'checkout.session.completed':
         const checkoutSession = event.data.object as any;
-          console.log(checkoutSession)
+        const transactionId = checkoutSession.subscription?.toString()
         await saveSubscription(
-          checkoutSession.subscription.toString(),
+          checkoutSession.mode === 'payment' ? checkoutSession.payment_intent : transactionId,
           checkoutSession.customer.toString(),
           true,
+          false,
+          checkoutSession.mode == 'payment'
         )
 
       break;

@@ -3,9 +3,9 @@ import { IallComments, ICommentGenericReturn, IComments, ICommentUpdate } from "
 
 interface ICommentsProps {
   getAll: { execute: () => Promise<IallComments> };
-  create: { execute: (comment: IComments) => Promise<ICommentGenericReturn> };
-  update: { execute: (comment: ICommentUpdate) => Promise<ICommentGenericReturn> };
-  delete: { execute: (comment: ICommentUpdate) => Promise<ICommentGenericReturn> };
+  create: { execute: (comment: IComments) => Promise<string> };
+  update: { execute: (comment: ICommentUpdate) => Promise<string> };
+  delete: { execute: (comment: ICommentUpdate) => Promise<string> };
 }
 
 export default class CommentController {

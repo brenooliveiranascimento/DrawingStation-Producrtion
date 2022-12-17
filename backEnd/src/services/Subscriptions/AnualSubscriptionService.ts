@@ -6,24 +6,23 @@ interface IExecuteSubs {
   userId: number;
 }
 
-export default class SubscriptionService {
+export default class AnualSubscriptionService {
 
   async execute({ userId }: IExecuteSubs) {
     const stripe = new Stripe(
-      process.env.STRIPE_API_KEY as string,
+      process.env.STRIPE_ANUAL_API_KEY as string,
       {
         apiVersion: '2022-08-01',
         appInfo:{
-          name: 'DrawingStation',
+          name: 'DrawingStation 1 ano',
           version: '1',
         }
       }
       )
-      
     const user = await UserModel.findByPk(
       userId, { attributes: { exclude: ['password'] } });
     let customerId = user?.stripeClientId;
-      
+
     if(!customerId) {
       const stripeCustomers = await stripe.customers.create({
         email: user?.email.toString(),
@@ -43,14 +42,13 @@ export default class SubscriptionService {
       payment_method_types: ['card'],
       billing_address_collection: 'required',
       line_items: [
-        { price: process.env.STRIPE_PRICE, quantity: 1 }
+        { price: process.env.STRIPE_ANUAL_PRICE, quantity: 1 }
       ],
       mode: 'subscription',
       allow_promotion_codes: true,
       success_url: successUrl,
       cancel_url: failUrl
     })
-
     return { sessionId: stripeCheckoutSession.id }
   }
 }

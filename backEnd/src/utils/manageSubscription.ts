@@ -7,20 +7,31 @@ export async function saveSubscription(
   customerId: string,
   createAction = false,
   deleteAction = false,
+  anual = false,
 ) {
-  
   const user = await UserModel.findOne({
     where: { stripeClientId: customerId },
     include: { model: SignatureModel, as: 'signature' }
   }) as any
 
-  const subscription = await stripe.subscriptions.retrieve(subscriptionId);
-
-  const subscriptionData = {
+  let subscription: any
+  let subscriptionData: any;
+  if(anual) {
+    subscription = await stripe.paymentIntents.retrieve(subscriptionId);
+    subscriptionData = {
+      id: subscription.id,
+      userId: user?.id,
+      status: subscription.status,
+      priceId: process.env.STRIPE_ANUAL_PRICE,
+    }
+  } else {
+   subscription = await stripe.subscriptions.retrieve(subscriptionId);
+   subscriptionData = {
     id: subscription.id,
     userId: user?.id,
     status: subscription.status,
     priceId: subscription.items.data[0].price.id,
+  }
   }
 
   if(createAction) {
@@ -28,16 +39,14 @@ export async function saveSubscription(
       await SignatureModel.create({
         id: subscription.id,
         userId: user?.id,
-        status: subscriptionData.status,
-       priceId: subscription.items.data[0].price.id,
+        status: anual ? subscriptionData.status : 'active',
+        priceId: anual ? subscriptionId : subscription.items.data[0].price.id,
       })
 
       await UserModel.update(
         { premium: true },
         { where: { id: user?.id } }
       )
-      console.log('VIROU PREMIUM!!')
-
     } catch(e: any) {
       console.log("ERRO CREATE")
       console.log(e)
@@ -56,7 +65,7 @@ export async function saveSubscription(
 
     try {
       await SignatureModel.update(
-        { status: subscription.status, priceId: subscription.items.data[0].price.id, },
+        { status: anual ? 'active' : subscription.status, priceId: anual ? subscriptionId : subscription.items.data[0].price.id, },
         { where: { id: subscriptionId } }
       )
     } catch(e) {
