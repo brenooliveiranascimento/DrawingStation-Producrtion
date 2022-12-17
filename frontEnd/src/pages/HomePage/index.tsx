@@ -22,8 +22,8 @@ function HomePage({ userData }: DashboardPropTypes) {
   };
 
   const ScreenController = () => {
-    if(currScreen === 'Modules') return <ModulesScreen/>;
-    return <ModulesScreen/>;
+    if(currScreen === 'Modules') return <ModulesScreen />;
+    return <ModulesScreen />;
   };
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function HomePage({ userData }: DashboardPropTypes) {
 
   return (
     <section className={styles.dashboard_container}>
-      <CurrSideBar/>
+      <CurrSideBar handleScreen={(screen: string) => setCurrScreen(screen)}/>
       <section className={styles.main_container}>
         <ScreenController />
       </section>
