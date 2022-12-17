@@ -13,4 +13,16 @@
     margin-top: 2rem;
   }
 
+  @media screen and (max-width: 660px) {
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    button {
+      margin-bottom: 0.5rem;
+      margin-left: 2rem;
+      margin-top: 0rem;
+    }
+  }
+
 }

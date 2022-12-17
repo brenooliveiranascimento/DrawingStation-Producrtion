@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
+import ClassroomsPage from '../../Components/ui/HomePage/Classrooms';
 import ModulesScreen from '../../Components/ui/HomePage/ModulesScreen/ModulesScreen';
+import { globalState } from '../../interfaces/modules/globalStateInterface';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import { requestModulesAction } from '../../redux/actions/moduleActions/moduleActions';
@@ -14,7 +16,8 @@ interface DashboardPropTypes {
 }
 function HomePage({ userData }: DashboardPropTypes) {
   const dispatch = useDispatch();
-  const [currScreen, setCurrScreen] = useState('');
+
+  const { currScreen } = useSelector((state: globalState) => state.user);
 
   const setUser = () => {
     dispatch(AutenticationSuccess(userData));
@@ -23,6 +26,7 @@ function HomePage({ userData }: DashboardPropTypes) {
 
   const ScreenController = () => {
     if(currScreen === 'Modules') return <ModulesScreen />;
+    if(currScreen === 'Classrooms') return <ClassroomsPage />;
     return <ModulesScreen />;
   };
 
@@ -32,7 +36,7 @@ function HomePage({ userData }: DashboardPropTypes) {
 
   return (
     <section className={styles.dashboard_container}>
-      <CurrSideBar handleScreen={(screen: string) => setCurrScreen(screen)} screen={currScreen}/>
+      <CurrSideBar />
       <section className={styles.main_container}>
         <ScreenController />
       </section>

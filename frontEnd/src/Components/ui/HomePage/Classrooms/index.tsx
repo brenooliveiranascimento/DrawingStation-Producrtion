@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { globalState } from '../interfaces/modules/globalStateInterface';
-import { SubModuleInterface } from '../interfaces/modules/ModulesInterface';
-import { requestSubModulesAction } from '../redux/actions/subModuleActions/subModuleActions';
-import { serverSideSetupUser } from '../services/setupUser';
-import { canSSRAuth } from '../utils/canSSRAuth';
+import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import { SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
+import { requestSubModulesAction } from '../../../../redux/actions/subModuleActions/subModuleActions';
+import { serverSideSetupUser } from '../../../../services/setupUser';
+import { canSSRAuth } from '../../../../utils/canSSRAuth';
 
 export default function ClassroomsPage() {
   const { subModules, currSubModule } = useSelector(({ subModules }: globalState) => subModules);

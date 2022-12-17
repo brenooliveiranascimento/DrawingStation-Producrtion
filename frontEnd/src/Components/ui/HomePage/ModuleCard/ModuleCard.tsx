@@ -3,7 +3,7 @@ import Router from 'next/router';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { ModulesInterface } from '../../../../interfaces/modules/ModulesInterface';
-import { setCurrSubmodule } from '../../../../redux/actions/genericActions';
+import { handleScreen, setCurrSubmodule } from '../../../../redux/actions/genericActions';
 import { serverSideSetupUser } from '../../../../services/setupUser';
 import { canSSRAuth } from '../../../../utils/canSSRAuth';
 import styles from './styles.module.scss';
@@ -16,7 +16,7 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
   const dispatch = useDispatch();
   const redirect = () => {
     dispatch(setCurrSubmodule(Number(moduleCard.id)));
-    Router.push('/Classrooms');
+    dispatch(handleScreen('Classrooms'));
   };
   const { image, name } = moduleCard;
   return (

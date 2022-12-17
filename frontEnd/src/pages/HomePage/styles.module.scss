@@ -3,6 +3,11 @@
   display: flex;
   overflow: hidden;
   color: var(--white);
+  @media screen and (max-width: 660px) {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
 }
 
 .main_container {
@@ -16,6 +21,10 @@
   overflow: auto;
   scrollbar-width: 1px;
   -ms-overflow-style: none;
+
+  @media screen and (max-width: 595px) {
+    padding-top: 30rem;
+  }
 }
 
 .main_container::-webkit-scrollbar {

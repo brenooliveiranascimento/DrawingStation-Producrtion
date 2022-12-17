@@ -77,4 +77,5 @@ export interface InitialValueState {
   logged: boolean
   error: boolean;
   loginInit: boolean;
+  currScreen: string
 }
