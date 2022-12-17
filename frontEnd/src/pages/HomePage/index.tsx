@@ -7,6 +7,7 @@ import { globalState } from '../../interfaces/modules/globalStateInterface';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import { requestModulesAction } from '../../redux/actions/moduleActions/moduleActions';
+import { requestSubModulesAction } from '../../redux/actions/subModuleActions/subModuleActions';
 import { serverSideSetupUser } from '../../services/setupUser';
 import { canSSRAuth } from '../../utils/canSSRAuth';
 import styles from './styles.module.scss';
@@ -17,11 +18,13 @@ interface DashboardPropTypes {
 function HomePage({ userData }: DashboardPropTypes) {
   const dispatch = useDispatch();
 
-  const { currScreen } = useSelector((state: globalState) => state.user);
+  const { user, modules } = useSelector((state: globalState) => state);
+  const { currScreen } = user;
 
-  const setUser = () => {
-    dispatch(AutenticationSuccess(userData));
-    dispatch(requestModulesAction());
+  const initHome = async () => {
+    await dispatch(AutenticationSuccess(userData));
+    await dispatch(requestModulesAction());
+    await dispatch(requestSubModulesAction());
   };
 
   const ScreenController = () => {
@@ -31,7 +34,7 @@ function HomePage({ userData }: DashboardPropTypes) {
   };
 
   useEffect(() => {
-    setUser();
+    initHome();
   }, []);
 
   return (

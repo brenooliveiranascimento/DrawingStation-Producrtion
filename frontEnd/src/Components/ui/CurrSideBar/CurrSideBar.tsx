@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import { FiHome, FiMessageCircle} from 'react-icons/fi';
-import { IScreenBaseProps } from '../../../interfaces/IScressns';
 import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { handleScreen } from '../../../redux/actions/genericActions';

@@ -1,33 +1,19 @@
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
-import { requestSubModulesAction } from '../../../../redux/actions/subModuleActions/subModuleActions';
 import { serverSideSetupUser } from '../../../../services/setupUser';
 import { canSSRAuth } from '../../../../utils/canSSRAuth';
 
 export default function ClassroomsPage() {
   const { subModules, currSubModule } = useSelector(({ subModules }: globalState) => subModules);
   const [moduleData, setModuleData] = useState([]);
-  const dispatch = useDispatch();
-
-  const getSubmodules = async () => {
-    dispatch(requestSubModulesAction());
-  };
-
-  const initComponent = async () => {
-    await getSubmodules();
-  };
-
-  useEffect(() => {
-    initComponent();
-  }, []);
 
   useEffect(() => {
     setModuleData(subModules
-      .filter((currSubModuleInt: SubModuleInterface) => currSubModuleInt.moduleId === Number(currSubModule)));
-  }, [subModules]);
+      .filter((currSubModuleInt: SubModuleInterface) =>
+        currSubModuleInt.moduleId === Number(currSubModule)));
+  }, []);
 
   return (
     <section>
@@ -53,4 +39,3 @@ export const getServerSideProps = canSSRAuth(async (ctx) => {
   };
 
 });
-
