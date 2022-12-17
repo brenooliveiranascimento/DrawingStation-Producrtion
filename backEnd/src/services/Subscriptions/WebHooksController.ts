@@ -36,11 +36,14 @@ export default class WebHooksController {
       break;
       case 'checkout.session.completed':
         const checkoutSession = event.data.object as any;
-          console.log(checkoutSession)
+        console.log(event.data);
+        const transactionId = checkoutSession.subscription?.toString()
         await saveSubscription(
-          checkoutSession.subscription.toString(),
+          checkoutSession.mode === 'payment' ? checkoutSession.payment_intent : transactionId,
           checkoutSession.customer.toString(),
           true,
+          false,
+          checkoutSession.mode == 'payment'
         )
 
       break;

@@ -40,6 +40,7 @@ export default function Subscription({ userData }: DashboardPropTypes) {
         { userId: id }, { headers: { 'Authorization': token } });
       const { sessionId } = data;
       const stripe = await getStripeJs();
+      console.log(sessionId);
       await stripe?.redirectToCheckout({ sessionId });
     } catch(e: any) {
       console.log(e.message);
@@ -91,7 +92,6 @@ export default function Subscription({ userData }: DashboardPropTypes) {
 
 export const getServerSideProps = canSSRAuth(async (ctx) => {
   const userConncetion = serverSideSetupUser(ctx);
-
   const { data } = await userConncetion.post('/auth/me');
   const { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
   return {

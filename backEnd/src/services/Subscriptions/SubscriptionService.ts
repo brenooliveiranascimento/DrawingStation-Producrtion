@@ -22,7 +22,7 @@ export default class SubscriptionService {
       
     const user = await UserModel.findByPk(
       userId, { attributes: { exclude: ['password'] } });
-      let customerId = user?.stripeClientId;
+    let customerId = user?.stripeClientId;
       
     if(!customerId) {
       const stripeCustomers = await stripe.customers.create({

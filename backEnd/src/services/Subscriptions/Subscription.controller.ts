@@ -16,11 +16,11 @@ export default class SubcriptionController {
   }
 
   async initAnualSubscription(req: Request, res: Response) {
-    const { userId } = req.body;
+      const { userId } = req.body;
 
-    const subscribeService = new AnualSubscriptionService()
-    const subscribe = await subscribeService.execute({ userId });
-    return res.status(201).json(subscribe);
+      const subscribeService = new AnualSubscriptionService()
+      const subscribe = await subscribeService.execute({ userId });
+      return res.status(201).json(subscribe);
   }
 
   async initPortal(req: Request, res:Response) {
@@ -28,7 +28,6 @@ export default class SubcriptionController {
 
     const portalService = new UserPortalService();
     const portalUrl = await portalService.execute(Number(userId));
-    console.log(portalUrl, 'ADWDWDW')
     return res.status(200).json({portalUrl});
   }
 }
