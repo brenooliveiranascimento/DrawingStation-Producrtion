@@ -1,6 +1,11 @@
 import Image from 'next/image';
+import Router from 'next/router';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
+import { setCurrSubmodule } from '../../../redux/actions/genericActions';
+import { serverSideSetupUser } from '../../../services/setupUser';
+import { canSSRAuth } from '../../../utils/canSSRAuth';
 import styles from './styles.module.scss';
 
 interface IModuleCard {
@@ -8,6 +13,11 @@ interface IModuleCard {
 }
 
 export default function ModuleCard({ moduleCard }: IModuleCard) {
+  const dispatch = useDispatch();
+  const redirect = () => {
+    dispatch(setCurrSubmodule(Number(moduleCard.id)));
+    Router.push('/Classrooms');
+  };
   const { image, name } = moduleCard;
   return (
     <section className={styles.module_card_container}>
@@ -16,7 +26,7 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
       <article>
         <h2>{name}</h2>
       </article>
-      <button>
+      <button onClick={redirect}>
         <span>
           Continuar assistindo
         </span>
@@ -24,3 +34,17 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
     </section>
   );
 }
+
+export const getServerSideProps = canSSRAuth(async (ctx) => {
+  const userConncetion = serverSideSetupUser(ctx);
+
+  const { data } = await userConncetion.post('/auth/me');
+  const { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
+  return {
+    props: {
+      userData: { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId },
+    }
+  };
+
+});
+
