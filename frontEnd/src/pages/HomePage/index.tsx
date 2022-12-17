@@ -8,6 +8,7 @@ import Subscription from '../../Components/ui/HomePage/Subscription';
 import { globalState } from '../../interfaces/modules/globalStateInterface';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
+import { requestClassroomAction } from '../../redux/actions/classroomActions/classroomActions';
 import { requestModulesAction } from '../../redux/actions/moduleActions/moduleActions';
 import { requestSubModulesAction } from '../../redux/actions/subModuleActions/subModuleActions';
 import { serverSideSetupUser } from '../../services/setupUser';
@@ -27,6 +28,7 @@ function HomePage({ userData }: DashboardPropTypes) {
     await dispatch(AutenticationSuccess(userData));
     await dispatch(requestModulesAction());
     await dispatch(requestSubModulesAction());
+    await dispatch(requestClassroomAction());
   };
 
   const ScreenController = () => {

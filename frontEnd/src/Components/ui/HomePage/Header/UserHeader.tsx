@@ -20,9 +20,11 @@ export default function UserHeader() {
       <aside>
         <section className={styles.premium_area}>
           <h2>{name}</h2>
-          <button onClick={() => changeScreen('Subscription')}>
+          { !premium ? <button onClick={() => changeScreen('Subscription')}>
             <span>{ stripeClientId ? 'Renovar Assinatura' : 'Obter Premium' }</span>
-          </button>
+          </button> :<button onClick={() => changeScreen('Subscription')}>
+            <span>Gerenciar planos</span>
+          </button>}
         </section>
         <button>
           <Image width={50} alt={name} height={50} style={{
