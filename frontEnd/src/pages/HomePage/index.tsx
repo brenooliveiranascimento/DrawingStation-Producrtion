@@ -2,8 +2,10 @@ import React, { useEffect } from 'react';
 import { MdAccessibleForward, MdDashboardCustomize } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../interfaces/modules/globalStateInterface';
+import { ModulesInterface } from '../../interfaces/modules/ModulesInterface';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
+import { requestModulesAction } from '../../redux/actions/moduleActions/moduleActions';
 import { serverSideSetupUser } from '../../services/setupUser';
 import { canSSRAuth } from '../../utils/canSSRAuth';
 import styles from './styles.module.scss';
@@ -12,11 +14,12 @@ interface DashboardPropTypes {
   userData: UserInterface,
 }
 function HomePage({ userData }: DashboardPropTypes) {
-  const { userData: user } = useSelector((state: globalState) => state.user);
+  const { modules } = useSelector((state: globalState) => state);
   const dispatch = useDispatch();
 
   const setUser = () => {
     dispatch(AutenticationSuccess(userData));
+    dispatch(requestModulesAction());
   };
 
   useEffect(() => {
@@ -26,6 +29,9 @@ function HomePage({ userData }: DashboardPropTypes) {
   return (
     <section className={styles.home_page_container}>
       <section className={styles.home_container}>
+        { modules.modules.map((currModule: ModulesInterface) => (
+          <span key={currModule.id}>{currModule.name}</span>
+        )) }
       </section>
     </section>
   );
