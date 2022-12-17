@@ -23,7 +23,7 @@ export default class WebHooksController {
           false,
           true
         )
-      
+
         break;
       case 'customer.subscription.updated':
          const paymentIntent = event.data.object as Stripe.Subscription;

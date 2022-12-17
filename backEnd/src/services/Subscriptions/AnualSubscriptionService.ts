@@ -39,12 +39,12 @@ export default class AnualSubscriptionService {
     const failUrl = process.env.STRIPE_CANCEL_URL as string
     const stripeCheckoutSession = await stripe.checkout.sessions.create({
       customer: customerId,
-      payment_method_types: ['card', 'boleto'],
+      payment_method_types: ['card'],
       billing_address_collection: 'required',
       line_items: [
         { price: process.env.STRIPE_ANUAL_PRICE, quantity: 1 }
       ],
-      mode: 'payment',
+      mode: 'subscription',
       allow_promotion_codes: true,
       success_url: successUrl,
       cancel_url: failUrl
