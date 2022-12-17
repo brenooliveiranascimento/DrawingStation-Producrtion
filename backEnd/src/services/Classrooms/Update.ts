@@ -9,9 +9,9 @@ import { ICommentGenericReturn } from "../../interfaces/commentsTypes";
 import { messageMap } from "../../utils/messageMap";
 
 export default class Update extends Classroom {
- constructor() { super() }
+constructor() { super() }
 
- public async updateClassroomData(classroomData: ClassroomDataInterface, id: number) {
+public async updateClassroomData(classroomData: ClassroomDataInterface, id: number) {
   try {
     const { description, drawing, isPremium, video, image } = classroomData
     const updatedClassroomData = await ClassRoomDataModel.update(
@@ -23,7 +23,7 @@ export default class Update extends Classroom {
   }
 };
 
- public async execute(
+public async execute(
   newClassroom: ClassroomInterface, classroomData: ClassroomDataInterface, id: number
   ):Promise<ICommentGenericReturn> {
   try {
