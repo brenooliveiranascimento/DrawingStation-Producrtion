@@ -45,7 +45,9 @@ export default function UserHeader() {
           <Image width={50} alt={name} height={50} style={{
             borderRadius: '50%' , border: premium ? '4px solid #B8860B' : 'null'
           }} src={profilePhoto || profileDefault}/>
-          { premium && <span>Premium!</span> }
+          { premium && <button onClick={() => changeScreen('Subscription')}>
+            <span>Premium!</span>
+          </button> }
         </button>
       </aside>
     </header>
