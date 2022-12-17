@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
-import { MdAccessibleForward, MdDashboardCustomize } from 'react-icons/md';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
-import ModuleCard from '../../Components/ui/HomePage/ModuleCard/ModuleCard';
-import { globalState } from '../../interfaces/modules/globalStateInterface';
-import { ModulesInterface } from '../../interfaces/modules/ModulesInterface';
+import ModulesScreen from '../../Components/ui/HomePage/ModulesScreen/ModulesScreen';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import { requestModulesAction } from '../../redux/actions/moduleActions/moduleActions';
@@ -16,7 +13,6 @@ interface DashboardPropTypes {
   userData: UserInterface,
 }
 function HomePage({ userData }: DashboardPropTypes) {
-  const { modules } = useSelector((state: globalState) => state);
   const dispatch = useDispatch();
 
   const setUser = () => {
@@ -29,12 +25,10 @@ function HomePage({ userData }: DashboardPropTypes) {
   }, []);
 
   return (
-    <section className={styles.home_page_container}>
+    <section className={styles.dashboard_container}>
       <CurrSideBar/>
-      <section className={styles.home_container}>
-        { modules.modules.map((currModule: ModulesInterface) => (
-          <ModuleCard moduleCard={currModule} key={currModule.id}/>
-        )) }
+      <section className={styles.main_container}>
+        <ModulesScreen />
       </section>
     </section>
   );

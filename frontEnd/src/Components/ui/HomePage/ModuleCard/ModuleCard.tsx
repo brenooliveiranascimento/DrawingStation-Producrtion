@@ -35,16 +35,3 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
   );
 }
 
-export const getServerSideProps = canSSRAuth(async (ctx) => {
-  const userConncetion = serverSideSetupUser(ctx);
-
-  const { data } = await userConncetion.post('/auth/me');
-  const { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
-  return {
-    props: {
-      userData: { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId },
-    }
-  };
-
-});
-
