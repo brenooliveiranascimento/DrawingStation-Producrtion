@@ -1,0 +1,10 @@
+.header_container {
+  display: flex;
+  top: 0px;
+  width: 100%;
+  height: 5rem;
+  border-bottom: 1px solid var(--dark-900);
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 1rem;
+}

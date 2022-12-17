@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
 import ClassroomsPage from '../../Components/ui/HomePage/Classrooms';
+import UserHeader from '../../Components/ui/HomePage/Header/UserHeader';
 import ModulesScreen from '../../Components/ui/HomePage/ModulesScreen/ModulesScreen';
 import { globalState } from '../../interfaces/modules/globalStateInterface';
 import { UserInterface } from '../../interfaces/UserInterfaces';
@@ -41,6 +42,7 @@ function HomePage({ userData }: DashboardPropTypes) {
     <section className={styles.dashboard_container}>
       <CurrSideBar />
       <section className={styles.main_container}>
+        <UserHeader/>
         <ScreenController />
       </section>
     </section>
