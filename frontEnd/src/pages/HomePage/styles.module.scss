@@ -10,7 +10,9 @@
 
 .home_container {
   display: flex;
-  width: 95%;
+  width: 1300px;
   min-height: 200px;
   background-color: var(--dark-700);
+  justify-content: flex-start;
+  padding: 1rem;
 }

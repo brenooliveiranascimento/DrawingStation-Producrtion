@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { MdAccessibleForward, MdDashboardCustomize } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
+import ModuleCard from '../../Components/ui/ModuleCard/ModuleCard';
 import { globalState } from '../../interfaces/modules/globalStateInterface';
 import { ModulesInterface } from '../../interfaces/modules/ModulesInterface';
 import { UserInterface } from '../../interfaces/UserInterfaces';
@@ -30,7 +31,7 @@ function HomePage({ userData }: DashboardPropTypes) {
     <section className={styles.home_page_container}>
       <section className={styles.home_container}>
         { modules.modules.map((currModule: ModulesInterface) => (
-          <span key={currModule.id}>{currModule.name}</span>
+          <ModuleCard moduleCard={currModule} key={currModule.id}/>
         )) }
       </section>
     </section>
