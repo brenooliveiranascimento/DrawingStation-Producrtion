@@ -22,7 +22,7 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
   return (
     <section className={styles.module_card_container}>
       <Image style={{borderTopLeftRadius: 6, borderTopRightRadius: 6}}
-        width={170} height={180} src={image} alt={name} />
+        width={250} height={270} src={image} alt={name} />
       <article>
         <h2>{name}</h2>
       </article>

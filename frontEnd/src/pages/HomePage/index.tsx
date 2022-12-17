@@ -32,7 +32,7 @@ function HomePage({ userData }: DashboardPropTypes) {
 
   return (
     <section className={styles.dashboard_container}>
-      <CurrSideBar handleScreen={(screen: string) => setCurrScreen(screen)}/>
+      <CurrSideBar handleScreen={(screen: string) => setCurrScreen(screen)} screen={currScreen}/>
       <section className={styles.main_container}>
         <ScreenController />
       </section>
