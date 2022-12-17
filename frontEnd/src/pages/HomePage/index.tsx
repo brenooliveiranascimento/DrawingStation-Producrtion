@@ -25,7 +25,8 @@ function HomePage({ userData }: DashboardPropTypes) {
 
   return (
     <section className={styles.home_page_container}>
-      <h1>Seja bem vindo {userData.name}</h1>
+      <section className={styles.home_container}>
+      </section>
     </section>
   );
 }
