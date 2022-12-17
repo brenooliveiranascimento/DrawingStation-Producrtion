@@ -5,7 +5,7 @@ const STATE_INITIAL_STATE: SubModuleStateInterface = {
   subModules: [],
   load: false,
   error: false,
-  currSubModule: null
+  currSubModule: 1
 };
 
 const ACTION_INITIAL_VALUE: SubModuleActionInterface = {

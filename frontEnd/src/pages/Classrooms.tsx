@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../interfaces/modules/ModulesInterface';
 import { requestSubModulesAction } from '../redux/actions/subModuleActions/subModuleActions';
+import { serverSideSetupUser } from '../services/setupUser';
+import { canSSRAuth } from '../utils/canSSRAuth';
 
 export default function ClassroomsPage() {
   const { subModules, currSubModule } = useSelector(({ subModules }: globalState) => subModules);
@@ -40,3 +42,18 @@ export default function ClassroomsPage() {
     </section>
   );
 }
+
+
+export const getServerSideProps = canSSRAuth(async (ctx) => {
+  const userConncetion = serverSideSetupUser(ctx);
+
+  const { data } = await userConncetion.post('/auth/me');
+  const { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
+  return {
+    props: {
+      userData: { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId },
+    }
+  };
+
+});
+
