@@ -33,9 +33,6 @@ export async function saveSubscription(
     priceId: subscription.items.data[0].price.id,
   }
   }
-  // const subscription = await stripe.subscriptions.retrieve(subscriptionId);
-  // const subscription = await stripe.payouts.retrieve(subscriptionId);
-
 
   if(createAction) {
     try {
@@ -50,8 +47,6 @@ export async function saveSubscription(
         { premium: true },
         { where: { id: user?.id } }
       )
-      console.log('VIROU PREMIUM!!')
-
     } catch(e: any) {
       console.log("ERRO CREATE")
       console.log(e)
