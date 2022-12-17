@@ -25,10 +25,8 @@ export default function ClassroomsPage() {
   }, []);
 
   useEffect(() => {
-    setModuleData(subModules.filter((currSubModuleInt: SubModuleInterface) => {
-      console.log(currSubModule);
-      return currSubModuleInt.moduleId === Number(currSubModule);
-    }));
+    setModuleData(subModules
+      .filter((currSubModuleInt: SubModuleInterface) => currSubModuleInt.moduleId === Number(currSubModule)));
   }, [subModules]);
 
   return (
@@ -42,7 +40,6 @@ export default function ClassroomsPage() {
     </section>
   );
 }
-
 
 export const getServerSideProps = canSSRAuth(async (ctx) => {
   const userConncetion = serverSideSetupUser(ctx);
