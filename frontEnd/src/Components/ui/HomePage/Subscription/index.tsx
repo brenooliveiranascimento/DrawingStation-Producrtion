@@ -10,8 +10,6 @@ import { getStripeJs } from '../../../../services/stripe-js';
 import { canSSRAuth } from '../../../../utils/canSSRAuth';
 
 export default function Subscription() {
-
-  const dispatch = useDispatch();
   const cookies = parseCookies();
 
   const { id, stripeClientId } = useSelector(({ user }: globalState) => user.userData);
@@ -29,19 +27,6 @@ export default function Subscription() {
       const { sessionId } = data;
       const stripe = await getStripeJs();
       console.log(sessionId);
-      await stripe?.redirectToCheckout({ sessionId });
-    } catch(e: any) {
-      console.log(e.message);
-    }
-  };
-
-  const removePremium = async () => {
-    try {
-      const token = cookies['DRAWING_USER_DATA'];
-      const resposne = await apiConnection.post(`/users/removePremium/${id}`,
-        { userId: id }, { headers: { 'Authorization': token } });
-      const { sessionId } = resposne.data;
-      const stripe = await getStripeJs();
       await stripe?.redirectToCheckout({ sessionId });
     } catch(e: any) {
       console.log(e.message);
@@ -67,9 +52,6 @@ export default function Subscription() {
       </button>
       <button onClick={() => initCheckout(signaturesPlans.anual)}>
         Assianr plano anual
-      </button>
-      <button onClick={removePremium}>
-        Remover premium
       </button>
       <button onClick={accessPortal}>
         Portal do assinande (Cancelar/Atualizar assinatura!);
