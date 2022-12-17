@@ -9,7 +9,7 @@ export function canSSRGuest<P extends { [key: string]: any; }>(fn: GetServerSide
     if(cookies['DRAWING_USER_DATA']){
       return {
         redirect:{
-          destination: '/dashboard',
+          destination: '/HomePage',
           permanent: false,
         }
       };

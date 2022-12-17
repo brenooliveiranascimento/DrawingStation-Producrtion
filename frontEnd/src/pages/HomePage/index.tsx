@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react';
-import { MdAccessibleForward, MdDashboardCustomize } from 'react-icons/md';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ModuleCard from '../../Components/ui/ModuleCard/ModuleCard';
+import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
+import ClassroomsPage from '../../Components/ui/HomePage/Classrooms';
+import UserHeader from '../../Components/ui/HomePage/Header/UserHeader';
+import ModulesScreen from '../../Components/ui/HomePage/ModulesScreen/ModulesScreen';
+import Subscription from '../../Components/ui/HomePage/Subscription';
 import { globalState } from '../../interfaces/modules/globalStateInterface';
-import { ModulesInterface } from '../../interfaces/modules/ModulesInterface';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
+import { requestClassroomAction } from '../../redux/actions/classroomActions/classroomActions';
 import { requestModulesAction } from '../../redux/actions/moduleActions/moduleActions';
+import { requestSubModulesAction } from '../../redux/actions/subModuleActions/subModuleActions';
 import { serverSideSetupUser } from '../../services/setupUser';
 import { canSSRAuth } from '../../utils/canSSRAuth';
 import styles from './styles.module.scss';
@@ -15,24 +19,35 @@ interface DashboardPropTypes {
   userData: UserInterface,
 }
 function HomePage({ userData }: DashboardPropTypes) {
-  const { modules } = useSelector((state: globalState) => state);
   const dispatch = useDispatch();
 
-  const setUser = () => {
-    dispatch(AutenticationSuccess(userData));
-    dispatch(requestModulesAction());
+  const { user } = useSelector((state: globalState) => state);
+  const { currScreen } = user;
+
+  const initHome = async () => {
+    await dispatch(AutenticationSuccess(userData));
+    await dispatch(requestModulesAction());
+    await dispatch(requestSubModulesAction());
+    await dispatch(requestClassroomAction());
+  };
+
+  const ScreenController = () => {
+    if(currScreen === 'Modules') return <ModulesScreen />;
+    if(currScreen === 'Classrooms') return <ClassroomsPage />;
+    if(currScreen === 'Subscription') return <Subscription />;
+    return <ModulesScreen />;
   };
 
   useEffect(() => {
-    setUser();
+    initHome();
   }, []);
 
   return (
-    <section className={styles.home_page_container}>
-      <section className={styles.home_container}>
-        { modules.modules.map((currModule: ModulesInterface) => (
-          <ModuleCard moduleCard={currModule} key={currModule.id}/>
-        )) }
+    <section className={styles.dashboard_container}>
+      <CurrSideBar />
+      <section className={styles.main_container}>
+        <UserHeader/>
+        <ScreenController />
       </section>
     </section>
   );
