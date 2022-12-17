@@ -5,4 +5,14 @@
   justify-content: center;
   color: white;
   display: flex;
+  background-color: black;
+}
+
+.home_container {
+  display: flex;
+  width: 1300px;
+  min-height: 200px;
+  background-color: var(--dark-700);
+  justify-content: flex-start;
+  padding: 1rem;
 }

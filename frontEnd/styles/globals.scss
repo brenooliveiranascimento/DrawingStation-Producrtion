@@ -10,7 +10,7 @@
   --black-900: rgb(31, 31, 31);
   --black-700: rgb(70, 70, 70);
   --dark-900: #242424;
-  --dark-700: #1D1D2E;
+  --dark-700: #23232d;
   --gray-100: #8A8A8A;
   --green-900: #3FFFa3;
   --red-900: #FF3F4B;
@@ -45,7 +45,6 @@ body {
 
 body::-webkit-scrollbar {
   width: 5px;
-  background-color: red;
 }
 
 @media (max-width: 720px) {

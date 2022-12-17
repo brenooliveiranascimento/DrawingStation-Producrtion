@@ -2,10 +2,10 @@ import { ClassroomInterface } from './classroomInterface';
 
 export interface ModulesInterface {
   id?: number;
-  name?:string;
-  description?: string;
-  image?: string;
-  premium?: boolean
+  name:string | any;
+  description?: string | any;
+  image: string | any;
+  premium?: boolean | any
 }
 
 export interface SubModuleInterface {
