@@ -2,10 +2,10 @@ import Image from 'next/image';
 import Router from 'next/router';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
-import { setCurrSubmodule } from '../../../redux/actions/genericActions';
-import { serverSideSetupUser } from '../../../services/setupUser';
-import { canSSRAuth } from '../../../utils/canSSRAuth';
+import { ModulesInterface } from '../../../../interfaces/modules/ModulesInterface';
+import { setCurrSubmodule } from '../../../../redux/actions/genericActions';
+import { serverSideSetupUser } from '../../../../services/setupUser';
+import { canSSRAuth } from '../../../../utils/canSSRAuth';
 import styles from './styles.module.scss';
 
 interface IModuleCard {

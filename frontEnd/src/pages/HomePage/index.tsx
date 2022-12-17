@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { MdAccessibleForward, MdDashboardCustomize } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
-import ModuleCard from '../../Components/ui/ModuleCard/ModuleCard';
+import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
+import ModuleCard from '../../Components/ui/HomePage/ModuleCard/ModuleCard';
 import { globalState } from '../../interfaces/modules/globalStateInterface';
 import { ModulesInterface } from '../../interfaces/modules/ModulesInterface';
 import { UserInterface } from '../../interfaces/UserInterfaces';
@@ -29,6 +30,7 @@ function HomePage({ userData }: DashboardPropTypes) {
 
   return (
     <section className={styles.home_page_container}>
+      <CurrSideBar/>
       <section className={styles.home_container}>
         { modules.modules.map((currModule: ModulesInterface) => (
           <ModuleCard moduleCard={currModule} key={currModule.id}/>
