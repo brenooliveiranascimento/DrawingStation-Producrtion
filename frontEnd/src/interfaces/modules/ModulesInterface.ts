@@ -1,7 +1,7 @@
 import { ClassroomInterface } from './classroomInterface';
 
 export interface ModulesInterface {
-  id?: number;
+  id?: number | any;
   name:string | any;
   description?: string | any;
   image: string | any;

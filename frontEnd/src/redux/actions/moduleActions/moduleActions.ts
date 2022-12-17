@@ -29,8 +29,8 @@ export const editModule = (editedModule: EditModule, handleModal:() => void): an
     const { userData } = state().user;
     const cookies = parseCookies();
     const token = cookies['DRAWING_USER_DATA'];
-    const { admPassword, description, id, image, name, premium, moduleId } = editedModule;
-    const moduleEdited = {description, id, image, premium, name, moduleId};
+    const { admPassword, description, id, image, name, premium } = editedModule;
+    const moduleEdited = {description, id, image, premium, name};
 
     try {
       const { data } = await apiConnection.put(`/modules/${id}`,
