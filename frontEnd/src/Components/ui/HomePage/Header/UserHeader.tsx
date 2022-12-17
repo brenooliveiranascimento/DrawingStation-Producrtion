@@ -8,10 +8,10 @@ import profileDefault from '../../../../../public/profilePhoto.png';
 export default function UserHeader() {
   const { userData } = useSelector((state: globalState) => state.user);
   const { name, premium, profilePhoto, stripeClientId } = userData;
+
   return (
     <header className={styles.header_container}>
       <aside>
-        <h1>a</h1>
       </aside>
       <aside>
         <section className={styles.premium_area}>

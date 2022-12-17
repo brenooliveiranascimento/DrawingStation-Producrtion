@@ -1,30 +1,18 @@
-import React, { useEffect } from 'react';
-import { getStripeJs } from '../../services/stripe-js';
-import { serverSideConnection, apiConnection } from '../../services/api.connection';
 import { parseCookies } from 'nookies';
-import { canSSRAuth } from '../../utils/canSSRAuth';
-import { serverSideSetupUser } from '../../services/setupUser';
-import jwtDecode from 'jwt-decode';
-import { UserInterface } from '../../interfaces/UserInterfaces';
-import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { globalState } from '../../interfaces/modules/globalStateInterface';
+import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import { UserInterface } from '../../../../interfaces/UserInterfaces';
+import { AutenticationSuccess } from '../../../../redux/actions/autenticationActions/autenticationGenericActions';
+import { apiConnection } from '../../../../services/api.connection';
+import { serverSideSetupUser } from '../../../../services/setupUser';
+import { getStripeJs } from '../../../../services/stripe-js';
+import { canSSRAuth } from '../../../../utils/canSSRAuth';
 
-interface DashboardPropTypes {
-  userData: UserInterface,
-}
-export default function Subscription({ userData }: DashboardPropTypes) {
+export default function Subscription() {
 
   const dispatch = useDispatch();
   const cookies = parseCookies();
-
-  const setUser = () => {
-    dispatch(AutenticationSuccess(userData));
-  };
-
-  useEffect(() => {
-    setUser();
-  }, []);
 
   const { id, stripeClientId } = useSelector(({ user }: globalState) => user.userData);
 
@@ -89,15 +77,3 @@ export default function Subscription({ userData }: DashboardPropTypes) {
     </section>
   );
 }
-
-export const getServerSideProps = canSSRAuth(async (ctx) => {
-  const userConncetion = serverSideSetupUser(ctx);
-  const { data } = await userConncetion.post('/auth/me');
-  const { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
-  return {
-    props: {
-      userData: { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId },
-    }
-  };
-
-});

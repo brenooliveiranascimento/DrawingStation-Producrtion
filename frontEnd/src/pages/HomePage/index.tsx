@@ -4,6 +4,7 @@ import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
 import ClassroomsPage from '../../Components/ui/HomePage/Classrooms';
 import UserHeader from '../../Components/ui/HomePage/Header/UserHeader';
 import ModulesScreen from '../../Components/ui/HomePage/ModulesScreen/ModulesScreen';
+import Subscription from '../../Components/ui/HomePage/Subscription';
 import { globalState } from '../../interfaces/modules/globalStateInterface';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
@@ -31,6 +32,7 @@ function HomePage({ userData }: DashboardPropTypes) {
   const ScreenController = () => {
     if(currScreen === 'Modules') return <ModulesScreen />;
     if(currScreen === 'Classrooms') return <ClassroomsPage />;
+    if(currScreen === 'Classrooms') return <Subscription />;
     return <ModulesScreen />;
   };
 
