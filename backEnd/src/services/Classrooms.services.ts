@@ -42,9 +42,9 @@ class ClassroomService extends ModuleService {
 
   public async updateClassroomData(classroomData: ClassroomDataInterface, id: number) {
     try {
-      const { description, drawing, isPremium, video, image } = classroomData
+      const { description, drawing, isPremium, video, image, multiExemple, conclude, colors } = classroomData
       const updatedClassroomData = await ClassRoomDataModel.update(
-        { image, description, drawing, isPremium, video },
+        { image, description, drawing, isPremium, video, multiExemple, conclude, colors },
         { where: { id } },
       )
       return { error: null, message: updatedClassroomData }
@@ -58,7 +58,7 @@ class ClassroomService extends ModuleService {
     ) {
     try {
       const { error: checkError, message: checkMessage } = await this.findClassroomById(id);
-      const {image, name, premium} = newClassroom
+      const {image, name, premium, conclude} = newClassroom
 
       if(checkError) return { error: { message: errorMapTypes.CLASSROOM_DONT_EXIST }, message: checkMessage }
   
@@ -66,8 +66,8 @@ class ClassroomService extends ModuleService {
 
       if(error) return { error: { message: errorMapTypes.CLASSROOM_DONT_EXIST }, message: message }
 
-      const updatedClassroomData = await ClassroomModel.update(
-        { image, name, premium },
+      await ClassroomModel.update(
+        { image, name, premium, conclude },
         { where: { id } },
       )
       return { error: null, message: newClassroom };
