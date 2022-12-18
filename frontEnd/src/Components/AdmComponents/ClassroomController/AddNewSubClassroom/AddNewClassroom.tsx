@@ -22,7 +22,7 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
     image: '',
     premium: true,
     subModuleId: subModules[0].id,
-    conclude: false,
+    conclude: true
   });
 
   const [identity, setIdentity] = useState('');

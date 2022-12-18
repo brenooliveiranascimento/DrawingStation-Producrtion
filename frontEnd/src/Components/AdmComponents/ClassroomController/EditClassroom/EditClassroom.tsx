@@ -248,26 +248,28 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
               </form>
               <ul>
                 { editClassroomData.colors.length && editClassroomData.colors.map(({cor}: {cor: string}, index: number) => {
-                  return <li key={index}>{
-                    editing.currEditing === cor ? (<Input
-                      name={cor}
-                      value={editing.editedValue}
-                      onChange={({target}) => setEditing({ ...editing, editedValue: target.value })}
-                    />) : <span>{cor}</span>}
-                  <button onClick={(e) => {
-                    e.preventDefault();
-                    removeColor(cor);
-                  }}>-</button>
-                  <button onClick={(e) => {
-                    e.preventDefault();
-                    if(!editing.execution) {
-                      setEditing({ currEditing: cor, execution: true, editedValue: cor });
-                    } else {
-                      saveEditedColor(cor);
-                    }
-                  }}>
-                    {editing.currEditing === cor ? 'salvar' : 'Editar'}
-                  </button></li>;
+                  return <li key={index}>
+                    {
+                      editing.currEditing === cor ? (<Input
+                        name={cor}
+                        value={editing.editedValue}
+                        onChange={({target}) => setEditing({ ...editing, editedValue: target.value })}
+                      />) :
+                        <span>{cor}</span>}
+                    <button onClick={(e) => {
+                      e.preventDefault();
+                      removeColor(cor);
+                    }}>-</button>
+                    <button onClick={(e) => {
+                      e.preventDefault();
+                      if(!editing.execution) {
+                        setEditing({ currEditing: cor, execution: true, editedValue: cor });
+                      } else {
+                        saveEditedColor(cor);
+                      }
+                    }}>
+                      {editing.currEditing === cor ? 'salvar' : 'Editar'}
+                    </button></li>;
                 })}
               </ul>
               <button onClick={addCollor}>Add</button>
