@@ -16,6 +16,11 @@ interface EditClassroomInterface {
 function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: EditClassroomInterface) {
   const { subModules } = useSelector((state: globalState) => state.subModules);
   const [currColor, setCurrColor] = useState('');
+  const [editing, setEditing] = useState({
+    currEditing: '',
+    execution: false,
+    editedValue: '',
+  });
   const [currColorCollection, setCurrColorCollection] = useState([
     {color: ''}
   ]);
@@ -85,13 +90,25 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
     });
   };
 
+  const saveEditedColor = (editedColor: string) => {
+    setEditClassroomData({
+      ...editClassroomData, colors: editClassroomData.colors
+        .map((color: {cor: string}) => {
+          if(color.cor === editedColor) return { cor: editing.editedValue };
+          return { cor: color.cor };
+        }) 
+    });
+
+    setEditing({
+      currEditing: '',
+      editedValue: '',
+      execution: false,
+    });
+  };
+
   const convertColor = async () => {
     const convertColors = await JSON.parse(classroomEditingData.colors);
     setEditClassroomData({ ...classroomEditingData, colors: convertColors });
-  };
-
-  const resetColors = () => {
-    setEditClassroomData({ ...classroomEditingData, colors: [] });
   };
 
   useEffect(() => {
@@ -231,10 +248,26 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
               </form>
               <ul>
                 { editClassroomData.colors.length && editClassroomData.colors.map(({cor}: {cor: string}, index: number) => {
-                  return <li key={index}>{cor}<button onClick={(e) => {
+                  return <li key={index}>{
+                    editing.currEditing === cor ? (<Input
+                      name={cor}
+                      value={editing.editedValue}
+                      onChange={({target}) => setEditing({ ...editing, editedValue: target.value })}
+                    />) : <span>{cor}</span>}
+                  <button onClick={(e) => {
                     e.preventDefault();
                     removeColor(cor);
-                  }}>-</button></li>;
+                  }}>-</button>
+                  <button onClick={(e) => {
+                    e.preventDefault();
+                    if(!editing.execution) {
+                      setEditing({ currEditing: cor, execution: true, editedValue: cor });
+                    } else {
+                      saveEditedColor(cor);
+                    }
+                  }}>
+                    {editing.currEditing === cor ? 'salvar' : 'Editar'}
+                  </button></li>;
                 })}
               </ul>
               <button onClick={addCollor}>Add</button>
