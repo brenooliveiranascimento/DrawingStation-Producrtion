@@ -5,7 +5,7 @@ module.exports = {
       [
         {
           description: 'Hora de aprender os fundamentos',
-          video: 'link do video',
+          video: 'DXqcoe8bSKM',
           image: 'link da imagem',
           drawing:'link da referencia',
           isPremium: false,
@@ -13,17 +13,17 @@ module.exports = {
         },
         {
           description: 'Hora de aprender profundidade!',
-          drawing:'link da referencia',
-          image: 'link da imagem',
-          video: 'link do video',
+          drawing:'https://firebasestorage.googleapis.com/v0/b/drawning-station.appspot.com/o/capas%2FcapaBolinha.png?alt=media&token=c7687d41-3ebf-42f2-bd47-230a199ea2ec',
+          image: 'https://firebasestorage.googleapis.com/v0/b/drawning-station.appspot.com/o/capas%2FcapaBolinha.png?alt=media&token=c7687d41-3ebf-42f2-bd47-230a199ea2ec',
+          video: 'SMXCMsgJo6Y',
           isPremium: false,
           classroomId:2,
         },
         {
           description: 'Hora de um desenho um pouco mais complexo!',
-          drawing:'link da referencia',
-          image: 'link da imagem',
-          video: 'link do video',
+          drawing:'yZ7qqDUzMFc',
+          image: 'https://firebasestorage.googleapis.com/v0/b/drawning-station.appspot.com/o/capas%2FcapaPetalas.jpg?alt=media&token=24064f35-3bdc-41c1-b93c-a22b10bfbcad',
+          video: 'MhDWTg7vdkI',
           isPremium: false,
           classroomId:3,
         },
