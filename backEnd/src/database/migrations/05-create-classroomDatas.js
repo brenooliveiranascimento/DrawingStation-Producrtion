@@ -20,7 +20,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
       },
       colors: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING(3000),
       },
       multiExemple: {

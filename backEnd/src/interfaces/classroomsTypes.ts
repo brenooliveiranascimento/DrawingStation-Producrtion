@@ -11,6 +11,9 @@ export interface ClassroomDataInterface {
   video: string;
   drawing: string;
   image?: string;
+  colors: string;
+  multiExemple: boolean;
+  conclude: boolean;
   description: string;
   isPremium: boolean;
   classroomId?: number;

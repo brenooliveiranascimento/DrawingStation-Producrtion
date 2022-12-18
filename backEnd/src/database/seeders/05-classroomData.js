@@ -9,6 +9,13 @@ module.exports = {
           image: 'link da imagem',
           drawing:'link da referencia',
           isPremium: false,
+          multiExemple: true,
+          concluide: true,
+          colors: JSON.stringify({
+            red: [{cor: 'Preto'}, {cor: 'Cinza escuro'}, {cor: 'Vermelho escuro'}, {cor: 'Vermelho'}, {cor:'Rosa claro'},{cor:'branco'}],
+            green: [{cor: 'Preto'}, {cor: 'Cinza escuro'}, {cor: 'Verde'}, {cor: 'Verde claro'},{cor:'branco'},],
+            blue: [{cor: 'Preto'}, {cor: 'Cinza escuro'}, {cor: 'azul turquesa'}, {cor: 'azul real'}, {cor:'azul'},{cor:'branco'}],
+          }),
           classroomId:1
         },
         {
@@ -17,6 +24,9 @@ module.exports = {
           image: 'https://firebasestorage.googleapis.com/v0/b/drawning-station.appspot.com/o/capas%2FcapaBolinha.png?alt=media&token=c7687d41-3ebf-42f2-bd47-230a199ea2ec',
           video: 'SMXCMsgJo6Y',
           isPremium: false,
+          multiExemple: false,
+          concluide: true,
+          colors: JSON.stringify([{cor: 'Preto'}, {cor: 'Marrom'}, {cor: 'Cinza escuro'}, {cor: 'Vermelho escuro'}, {cor: 'Vermelho'}, {cor:'Rosa claro'},{cor:'branco'}],),
           classroomId:2,
         },
         {
@@ -25,6 +35,9 @@ module.exports = {
           image: 'https://firebasestorage.googleapis.com/v0/b/drawning-station.appspot.com/o/capas%2FcapaPetalas.jpg?alt=media&token=24064f35-3bdc-41c1-b93c-a22b10bfbcad',
           video: 'MhDWTg7vdkI',
           isPremium: false,
+          multiExemple: true,
+          concluide: true,
+          colors: JSON.stringify([{cor: 'Preto'}, {cor: 'Cinza escuro'}, {cor: 'Vermelho escuro'}, {cor: 'Vermelho'}, {cor:'Carmim'}, {cor:'Rosa claro'},{cor:'branco'}],),
           classroomId:3,
         },
         {
@@ -33,6 +46,9 @@ module.exports = {
           image: 'link da imagem',
           video: 'link do video',
           isPremium: false,
+          multiExemple: false,
+          concluide: false,
+          colors: null,
           classroomId:4,
         },
         {
@@ -41,6 +57,9 @@ module.exports = {
           image: 'link da imagem',
           video: 'link do video',
           isPremium: false,
+          multiExemple: true,
+          concluide: false,
+          colors: null,
           classroomId:5,
         },
       ],
