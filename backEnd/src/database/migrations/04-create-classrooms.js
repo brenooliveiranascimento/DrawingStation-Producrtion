@@ -16,17 +16,9 @@ module.exports = {
         type: Sequelize.STRING(500),
       },
       conclude: {
-        allowNull: false,
-        type: Sequelize.BOOLEAN,
-      },
-      colors: {
-        allowNull: false,
-        type: Sequelize.STRING(3000),
-      },
-      multiExemple: {
-        allowNull: false,
-        type: Sequelize.BOOLEAN,
-      },
+          allowNull: false,
+          type: Sequelize.BOOLEAN,
+        },
       premium: {
         allowNull: false,
         type: Sequelize.BOOLEAN,

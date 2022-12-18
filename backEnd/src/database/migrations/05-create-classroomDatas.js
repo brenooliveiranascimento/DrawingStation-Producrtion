@@ -18,6 +18,7 @@ module.exports = {
       conclude: {
         allowNull: false,
         type: Sequelize.BOOLEAN,
+        default: true
       },
       colors: {
         allowNull: true,
