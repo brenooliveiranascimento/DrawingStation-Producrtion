@@ -64,8 +64,9 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
   };
 
   const handleUpdate = () => {
+    const jsonColors = JSON.stringify(editClassroomData.colors);
     dispatch(editingClassroomAction({
-      classroom: editClassroom, classroomData: editClassroomData }, identity, handleModal));
+      classroom: editClassroom, classroomData: {...editClassroomData, colors: jsonColors} }, identity, handleModal));
   };
 
   const handleDeleteClassroom = () => {
@@ -80,9 +81,7 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
 
   const convertColor = async () => {
     const convertColors = await JSON.parse(classroomEditingData.colors);
-    console.log(convertColors);
     setEditClassroomData({ ...classroomEditingData, colors: convertColors });
-    console.log(editClassroomData);
   };
 
   useEffect(() => {
