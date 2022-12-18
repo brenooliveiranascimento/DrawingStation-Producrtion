@@ -21,7 +21,7 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
   const { image, name } = moduleCard;
   return (
     <section className={styles.module_card_container}>
-      <Image style={{borderTopLeftRadius: 6, borderTopRightRadius: 6}}
+      <Image style={{borderTopLeftRadius: 6, borderTopRightRadius: 6, objectFit: 'cover'}}
         width={250} height={270} src={image} alt={name} />
       <article>
         <h2>{name}</h2>

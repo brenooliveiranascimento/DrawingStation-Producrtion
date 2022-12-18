@@ -2,8 +2,13 @@ export interface ClassroomInterface {
   id?: number;
   name: string;
   image: string;
+  conclude: boolean,
   subModuleId?: number;
   premium: boolean
+}
+
+export interface IColorsOne {
+  cor: string
 }
 
 export interface ClassroomDataInterface {
@@ -13,7 +18,10 @@ export interface ClassroomDataInterface {
   image: string;
   description: string;
   isPremium: boolean;
-  classroomId?: number;
+  conclude: boolean,
+  colors: IColorsOne | IColorsOne[];
+  multiExemple: boolean
+  classroomId?: number; 
 }
 
 export interface ReqClassroomInterface {
