@@ -79,6 +79,12 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
     setCurrColor('');
   };
 
+  const removeColor = (referenceColor: string) => {
+    setEditClassroomData({
+      ...editClassroomData, colors: editClassroomData.colors.filter((color: {cor: string}) => color.cor !== referenceColor) 
+    });
+  };
+
   const convertColor = async () => {
     const convertColors = await JSON.parse(classroomEditingData.colors);
     setEditClassroomData({ ...classroomEditingData, colors: convertColors });
@@ -217,7 +223,10 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
               </form>
               <ul>
                 { editClassroomData.colors && editClassroomData.colors.map(({cor}: {cor: string}, index: number) => {
-                  return <li key={index}>{cor}</li>;
+                  return <li key={index}>{cor}<button onClick={(e) => {
+                    e.preventDefault();
+                    removeColor(cor);
+                  }}>-</button></li>;
                 })}
               </ul>
               <button onClick={addCollor}>Add</button>
