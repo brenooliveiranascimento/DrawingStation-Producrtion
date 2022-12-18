@@ -22,6 +22,7 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
     image: '',
     premium: true,
     subModuleId: subModules[0].id,
+    conclude: true
   });
 
   const [identity, setIdentity] = useState('');
@@ -32,6 +33,9 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
     drawing: '',
     isPremium: true,
     video: '',
+    colors: [],
+    conclude: true,
+    multiExemple: false,
   });
 
   const [confirm, setConfirm] = useState(false);
@@ -55,7 +59,7 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
   };
 
   const handleAddClassroom = () => {
-    dispatch(addNewClassroomAction({classroom: addNewClassroom, classroomData: addNewClassroomData}, identity));
+    dispatch(addNewClassroomAction({classroom: addNewClassroom, classroomData: {...addNewClassroomData, colors: JSON.stringify(addNewClassroomData.colors)}}, identity));
   };
 
   return (
@@ -104,8 +108,6 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
         <button onClick={handleModal}>
           Cancelar
         </button>
-      </form>
-      <form>
         <Input
           onChange={({target}) => handleChangeData(target)}
           name='description'
@@ -120,6 +122,18 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
             type={'checkbox'}
           />
           <span>Premium</span>
+        </label>
+        <label htmlFor='isPremium'>
+          <Input
+            onChange={({target}) => {
+              handleChangeData(target);
+              handleChangeData(target);
+            }}
+            name='conclude'
+            checked={addNewClassroomData.conclude}
+            type={'checkbox'}
+          />
+          <span>conclude</span>
         </label>
         <Input
           onChange={({target}) => handleChangeData(target)}

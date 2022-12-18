@@ -46,7 +46,7 @@ export const editingClassroomAction = (editingClassroom: ReqClassroomInterface, 
     const token = cookies['DRAWING_USER_DATA'];
     const { classroom, classroomData,  } = editingClassroom;
     try {
-      const { data } = await apiConnection.put(`/modules/classrooms/${Number(classroom.id)}`,
+      await apiConnection.put(`/modules/classrooms/${Number(classroom.id)}`,
         {
           admEmail: userData.email,
           identity,

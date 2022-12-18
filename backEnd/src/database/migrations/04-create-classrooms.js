@@ -15,6 +15,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(500),
       },
+      conclude: {
+          allowNull: true,
+          default: true,
+          type: Sequelize.BOOLEAN,
+        },
       premium: {
         allowNull: false,
         type: Sequelize.BOOLEAN,

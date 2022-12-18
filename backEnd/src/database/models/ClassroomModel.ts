@@ -7,6 +7,7 @@ class Classroom extends Model {
   declare name: string;
   declare image: string;
   declare premium: boolean
+  declare conclude: boolean;
   declare subModuleId:number;
 }
 
@@ -22,6 +23,10 @@ Classroom.init({
     allowNull: false,
   },
   image: {
+    type: STRING(500),
+    allowNull: false,
+  },
+  conclude: {
     type: STRING(500),
     allowNull: false,
   },

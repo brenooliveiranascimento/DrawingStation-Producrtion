@@ -137,7 +137,7 @@ class ModuleService {
 
   public async findFreeClassroom(): Promise<{ error: {mesage: string} | null, message: ClassroomDataInterface[] | null }> {
     try {
-      const freeClassRooms: ClassroomDataInterface[] = await ClassRoomDataModel
+      const freeClassRooms: any = await ClassRoomDataModel
       .findAll({ where: { isPremium: false } });
 
     if(!freeClassRooms) return { error: { mesage: errorMapTypes.CLASSROOM_REQUEST_ERROR }, message: null }
@@ -149,7 +149,7 @@ class ModuleService {
 
   public async findAllClassroom(): Promise<{ error: {message: string} | null, message: ClassroomDataInterface[] | null | any }> {
     try {
-      const allClassrooms: ClassroomDataInterface[] = await ClassRoomDataModel.findAll();
+      const allClassrooms: any = await ClassRoomDataModel.findAll();
 
       if(!allClassrooms) return { error: { message: errorMapTypes.CLASSROOM_REQUEST_ERROR }, message: null }
       return { error: null, message: allClassrooms }

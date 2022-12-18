@@ -7,8 +7,9 @@ import ModuleService from './Modules.service';
 class ClassroomService extends ModuleService {
   public async addNewClassroomData(classroomData: ClassroomDataInterface) {
     try {
+      console.log(classroomData)
       const add = await ClassRoomDataModel.create({...classroomData});
-      if(!add) return { error: { message: errorMapTypes.ERROR_ADD_NEW_CLASSROOM_DATA }, message: null }
+      if(!add) return { error: { message: errorMapTypes.ERROR_ADD_NEW_CLASSROOM_DATA }, message: add }
     } catch(e) {
       return { error: { message: errorMapTypes.ERROR_ADD_NEW_CLASSROOM_DATA }, message: e }
     }
@@ -24,6 +25,9 @@ class ClassroomService extends ModuleService {
         ...classroomData,
         classroomId: add.id
       })
+      if(addClassroomData?.error) {
+        return { error: { message: errorMapTypes.REQUEST_ERROR }, message: addClassroomData.message }
+      }
       return { error: null, message: addClassroomData };
     } catch(e) {
       return { error: { message: errorMapTypes.REQUEST_ERROR }, message: e };
@@ -42,9 +46,9 @@ class ClassroomService extends ModuleService {
 
   public async updateClassroomData(classroomData: ClassroomDataInterface, id: number) {
     try {
-      const { description, drawing, isPremium, video, image } = classroomData
+      const { description, drawing, isPremium, video, image, colors, conclude } = classroomData
       const updatedClassroomData = await ClassRoomDataModel.update(
-        { image, description, drawing, isPremium, video },
+        { image, description, drawing, isPremium, video, colors, conclude },
         { where: { id } },
       )
       return { error: null, message: updatedClassroomData }

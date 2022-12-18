@@ -22,13 +22,17 @@ function ClassroomController() {
     name: '',
     image: '',
     premium: true,
-    subModuleId: 0
+    conclude: true,
+    subModuleId: 0,
   });
   const [classroomEditingData, setClassroomDataEditingData] = useState<ClassroomDataInterface>({
     description: '',
     drawing: '',
     image: '',
     isPremium: true,
+    conclude: true,
+    multiExemple: false,
+    colors: [],
     video: '',
     id: 0,
     classroomId: 0,
@@ -45,7 +49,6 @@ function ClassroomController() {
     const classroom = classroomsData
       .find((currClassroomData: ClassroomDataInterface) => currClassroomData
         .classroomId === classroomId) as ClassroomDataInterface;
-    console.log(classroom);
     return classroom;
   };
 
