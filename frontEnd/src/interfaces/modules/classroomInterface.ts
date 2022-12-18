@@ -19,7 +19,7 @@ export interface ClassroomDataInterface {
   description: string;
   isPremium: boolean;
   conclude: boolean,
-  colors: IColorsOne | IColorsOne[];
+  colors: IColorsOne[] | IColorsOne | any;
   multiExemple: boolean
   classroomId?: number; 
 }

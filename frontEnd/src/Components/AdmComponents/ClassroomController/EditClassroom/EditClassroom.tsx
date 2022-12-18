@@ -15,7 +15,7 @@ interface EditClassroomInterface {
 
 function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: EditClassroomInterface) {
   const { subModules } = useSelector((state: globalState) => state.subModules);
-  const [currColor, setCurrColor] = useState({ color: '' });
+  const [currColor, setCurrColor] = useState('');
   const [currColorCollection, setCurrColorCollection] = useState([
     {color: ''}
   ]);
@@ -66,21 +66,28 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
   const handleUpdate = () => {
     dispatch(editingClassroomAction({
       classroom: editClassroom, classroomData: editClassroomData }, identity, handleModal));
-    setCurrColor({color: ''});
   };
 
   const handleDeleteClassroom = () => {
     dispatch(deleteClassroom(classroomEditing, handleModal, identity));
   };
 
-  const addCollor = () => {
-    setEditClassroomData({ ...editClassroomData, colors: [...editClassroomData.colors, currColor ] });
+  const addCollor = (e: FormEvent) => {
+    e.preventDefault();
+    setEditClassroomData({ ...editClassroomData, colors: [...editClassroomData.colors, {cor: currColor} ] });
+    setCurrColor('');
+  };
+
+  const convertColor = async () => {
+    const convertColors = await JSON.parse(classroomEditingData.colors);
+    console.log(convertColors);
+    setEditClassroomData({ ...classroomEditingData, colors: convertColors });
+    console.log(editClassroomData);
   };
 
   useEffect(() => {
-    console.log(classroomEditingData);
     setEditClassroom(classroomEditing);
-    setEditClassroomData(classroomEditingData);
+    convertColor();
   }, []);
 
   return (
@@ -123,7 +130,7 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
           <Input
             onChange={({target}) => handleChangeClassData(target)}
             name='multiExemple'
-            checked={editClassroom.conclude}
+            checked={editClassroomData.multiExemple}
             type={'checkbox'}
           />
           <span>multiExemple</span>
@@ -199,8 +206,29 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
         </button>
       </form>
       <form>
-        <Input
-        />
+        {
+          !editClassroomData.multiExemple ? (
+            <section>
+              <h1>Adicionar variação</h1>
+              <form>
+                <Input
+                  onChange={({target}) => setCurrColor(target.value)}
+                  value={currColor}
+                />
+              </form>
+              <ul>
+                { editClassroomData.colors && editClassroomData.colors.map(({cor}: {cor: string}, index: number) => {
+                  return <li key={index}>{cor}</li>;
+                })}
+              </ul>
+              <button onClick={addCollor}>Add</button>
+            </section>
+          ) : (
+            <section>
+              <h1>Adicionar cor</h1>
+            </section>
+          )
+        }
       </form>
       <Image
         width={200}
