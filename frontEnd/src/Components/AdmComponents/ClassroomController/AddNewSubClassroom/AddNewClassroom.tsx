@@ -22,6 +22,7 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
     image: '',
     premium: true,
     subModuleId: subModules[0].id,
+    conclude: false,
   });
 
   const [identity, setIdentity] = useState('');
@@ -32,6 +33,9 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
     drawing: '',
     isPremium: true,
     video: '',
+    colors: [],
+    conclude: true,
+    multiExemple: false,
   });
 
   const [confirm, setConfirm] = useState(false);

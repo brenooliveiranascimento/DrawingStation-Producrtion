@@ -15,6 +15,10 @@ interface EditClassroomInterface {
 
 function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: EditClassroomInterface) {
   const { subModules } = useSelector((state: globalState) => state.subModules);
+  const [currColor, setCurrColor] = useState({ color: '' });
+  const [currColorCollection, setCurrColorCollection] = useState([
+    {color: ''}
+  ]);
   const [editClassroom, setEditClassroom] = useState<ClassroomInterface>({
     name: '',
     image: '',
@@ -186,6 +190,10 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
         <button onClick={handleModal}>
           Cancelar
         </button>
+      </form>
+      <form>
+        <Input
+        />
       </form>
       <Image
         width={200}
