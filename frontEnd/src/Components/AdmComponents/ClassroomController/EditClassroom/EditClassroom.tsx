@@ -90,6 +90,10 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
     setEditClassroomData({ ...classroomEditingData, colors: convertColors });
   };
 
+  const resetColors = () => {
+    setEditClassroomData({ ...classroomEditingData, colors: [] });
+  };
+
   useEffect(() => {
     setEditClassroom(classroomEditing);
     convertColor();
@@ -131,9 +135,13 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
           <span>conclude</span>
         </label>
 
-        <label htmlFor='conclude'>
+        <label htmlFor='multiExemple'>
           <Input
-            onChange={({target}) => handleChangeClassData(target)}
+            onChange={({target}) => {
+              // setEditClassroomData({...editClassroomData, colors: {}});
+              handleChangeClassData(target);
+            }}
+            disabled
             name='multiExemple'
             checked={editClassroomData.multiExemple}
             type={'checkbox'}
@@ -222,7 +230,7 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
                 />
               </form>
               <ul>
-                { editClassroomData.colors && editClassroomData.colors.map(({cor}: {cor: string}, index: number) => {
+                { editClassroomData.colors.length && editClassroomData.colors.map(({cor}: {cor: string}, index: number) => {
                   return <li key={index}>{cor}<button onClick={(e) => {
                     e.preventDefault();
                     removeColor(cor);
