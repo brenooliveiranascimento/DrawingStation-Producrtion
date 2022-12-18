@@ -8,14 +8,14 @@ export interface ClassroomInterface {
 }
 
 export interface ClassroomDataInterface {
-  id: number;
+  id?: number;
   video: string;
   drawing: string;
-  image?: string;
+  image: string;
   colors: string;
   multiExemple: boolean;
   conclude: boolean;
   description: string;
   isPremium: boolean;
-  classroomId?: number;
+  classroomId: number;
 }

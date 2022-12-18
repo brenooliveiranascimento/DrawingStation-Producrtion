@@ -107,7 +107,7 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
   };
 
   const convertColor = async () => {
-    const convertColors = await JSON.parse(classroomEditingData.colors);
+    const convertColors = classroomEditingData.colors ? JSON.parse(classroomEditingData.colors) : [];
     setEditClassroomData({ ...classroomEditingData, colors: convertColors });
   };
 
