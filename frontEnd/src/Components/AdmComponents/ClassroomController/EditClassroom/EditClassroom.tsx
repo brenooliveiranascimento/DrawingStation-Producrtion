@@ -64,12 +64,19 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
   };
 
   const handleUpdate = () => {
-    dispatch(editingClassroomAction({ classroom: editClassroom, classroomData: editClassroomData }, identity, handleModal));
+    dispatch(editingClassroomAction({
+      classroom: editClassroom, classroomData: editClassroomData }, identity, handleModal));
+    setCurrColor({color: ''});
   };
 
   const handleDeleteClassroom = () => {
     dispatch(deleteClassroom(classroomEditing, handleModal, identity));
   };
+
+  const addCollor = () => {
+    setEditClassroomData({ ...editClassroomData, colors: [...editClassroomData.colors, currColor ] });
+  };
+
   useEffect(() => {
     console.log(classroomEditingData);
     setEditClassroom(classroomEditing);
