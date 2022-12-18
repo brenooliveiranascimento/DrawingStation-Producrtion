@@ -1,13 +1,11 @@
 import { parseCookies } from 'nookies';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
-import { UserInterface } from '../../../../interfaces/UserInterfaces';
-import { AutenticationSuccess } from '../../../../redux/actions/autenticationActions/autenticationGenericActions';
 import { apiConnection } from '../../../../services/api.connection';
-import { serverSideSetupUser } from '../../../../services/setupUser';
 import { getStripeJs } from '../../../../services/stripe-js';
-import { canSSRAuth } from '../../../../utils/canSSRAuth';
+import styles from './styles.module.scss';
+import logo from '../../../../../public/Logoteste3.png';
 
 export default function Subscription() {
   const cookies = parseCookies();
@@ -48,16 +46,44 @@ export default function Subscription() {
   };
 
   return (
-    <section>
-      <button onClick={() => initCheckout(signaturesPlans.mensal)}>
-        Assianr plano mensal
-      </button>
-      <button onClick={() => initCheckout(signaturesPlans.anual)}>
-        Assianr plano anual
-      </button>
-      <button onClick={accessPortal}>
-        Portal do assinande (Cancelar/Atualizar assinatura!);
-      </button>
+    <section className={styles.subscription_continer}>
+      <section>
+        <article>
+          <h1>34,00/Mês</h1>
+          <span>Assinatura mensal</span>
+        </article>
+        <button 
+          disabled={premium}
+          style={{
+            backgroundColor: premium ? 'green' : 'white'
+          }}
+          onClick={() => !premium && initCheckout(signaturesPlans.mensal)}>
+          { premium ? 'Premium ativo!!!' : 'Assianr plano mensal' }
+        </button>
+      </section>
+      <section>
+        <article>
+          <h1>367,00/Ano 15% de desconto</h1>
+          <span>Assinatura Anual!</span>
+        </article>
+        <button
+          disabled={premium}
+          style={{
+            backgroundColor: premium ? 'green' : 'white',
+          }}
+          onClick={() => !premium && initCheckout(signaturesPlans.anual)}>
+          { premium ? 'Premium ativo!!!' : 'Assianr plano anual' }
+        </button>
+      </section>
+      <section>
+        <article>
+          <h1>Portal do assinante</h1>
+          <span>Atualize/Cancele seus planos</span>
+        </article>
+        <button disabled={!premium} onClick={accessPortal}>
+          Acessar portal do assinante
+        </button>
+      </section>
     </section>
   );
 }
