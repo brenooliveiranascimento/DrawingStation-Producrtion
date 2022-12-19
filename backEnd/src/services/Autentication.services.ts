@@ -23,9 +23,10 @@ class AutenticationServices {
       if(userExist) return { error: { message: errorMapTypes.USER_ALREDY_EXISTS }, message: null };
       if(error && error.message !== errorMapTypes.USER_DONT_EXIST) return { error: { message: errorMapTypes.REQUEST_ERROR }, message: null };
       const encriptedPassword = await hash(user.password, 8)
-  
+      const email = user.email.toLocaleLowerCase();
       const createNewUser = await UserModel.create({
         ...user,
+        email,
         password: encriptedPassword,
         loginType: 'credential',
         profilePhoto: null,
@@ -38,10 +39,10 @@ class AutenticationServices {
 
   public async login(userCredential: UserCredentials): Promise<LoginResponse> {
     const { email, password } = userCredential;
-    const { error, message: userData } = await this.findAUser(email);
+    const { error, message: userData } = await this.findAUser(email.toLocaleLowerCase());
 
     if(error) {
-       return { error: { message: error.message }, message: null };
+      return { error: { message: error.message }, message: null };
     }
 
     const checkPassword = await compare(password, userData.password)
@@ -65,9 +66,9 @@ class AutenticationServices {
         profilePhoto: picture,
         birthday: null,
         phoneNumber: null
-       });
+      });
   
-       return { error: null, message: createNewUser, type: 'Register' }
+      return { error: null, message: createNewUser, type: 'Register' }
     } catch(e) {
       return { error: { message: errorMapTypes.REQUEST_ERROR }, message: errorMapTypes.REQUEST_ERROR }
     }
@@ -78,18 +79,18 @@ class AutenticationServices {
     const { error, message: userData } = await this.findAUser(email);
 
     if(!userData && error.message !== errorMapTypes.REQUEST_ERROR) {
-       return this.registerByGoogle(user)
+      return this.registerByGoogle(user)
     }
     if(error) {
       return { error: { message: error.message }, message: null };
-   }
+  }
 
-   const checkPassword = await compare(password, userData.password)
+  const checkPassword = await compare(password, userData.password)
 
-   if(!checkPassword) {
-     return {error: { message: errorMapTypes.INCORRECT_PASSWORD },  message: null};
-   }
-   return { error: null, message: userData, type: 'Login' }
+  if(!checkPassword) {
+    return {error: { message: errorMapTypes.INCORRECT_PASSWORD },  message: null};
+  }
+  return { error: null, message: userData, type: 'Login' }
   }
 };
 

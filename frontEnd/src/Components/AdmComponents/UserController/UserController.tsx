@@ -100,7 +100,7 @@ function UserController() {
                   <td>{currUser.premium ? 'Premim!' : 'Default'}</td>
                   <td>{currUser.loginType}</td>
                   <section className={styles.action_button_container}>
-                    <button onClick={() => handlePremium(currUser.id, currUser.premium)}>
+                    <button disabled={editPremium} onClick={() => handlePremium(currUser.id, currUser.premium)}>
                       {currUser.premium ? 'Remove Premium' : 'Active premium'}
                     </button>
                     <button>
