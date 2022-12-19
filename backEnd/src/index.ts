@@ -31,7 +31,7 @@ app.use('/users', userRoutes);
 app.use('/comments', commentsRouter);
 app.use('/subComments', subCommentRouter);
 app.use('/subscription', subscriptionRoutes);
-app.use('/subscription', accountValidationRoutes);
+app.use('/email', accountValidationRoutes);
 app.use(errorMiddleware)
 
 app.listen(PORT, () => {
