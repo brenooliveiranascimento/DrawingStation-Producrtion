@@ -3,6 +3,7 @@ import { errorMapTypes } from "../../utils/errorMap";
 import CustomError from "../../utils/StatusError";
 import jwt from "jsonwebtoken";
 import statusCodes from "../../statusCode";
+import { transporter } from "../../utils/transporter";
 
 export default class InitRecoverPassword {
 
@@ -25,14 +26,25 @@ export default class InitRecoverPassword {
     return token;
   };
 
-  async execute(email: string) {
+  async execute(email: string): Promise<string> {
     try { 
       const userExist = await UserModel.findOne({ where: { email } });
+
       if(!userExist) throw new CustomError(errorMapTypes.USER_DONT_EXIST, 500);
+
       const token = this.createToken(email);
+
       await this.validateToken(token, email);
+
       await UserModel.update({ recoverPassword: token }, { where: { email } });
-      return 'Token criado com sucesso!';
+
+      transporter.sendMail({
+          from: 'DrawingStation Recuperação de senha <accountvalidation@drawingstation.com.br>',
+          to: email,
+          subject: 'Recuperação de senha',
+          html: `<h1>Olá desenhista!!<h1><p>Este é o seu token de acesso!<strong>${token}<strong><p>`
+      })
+      return token;
     } catch(e: any) {
       throw new CustomError(e.message, 500);
     }
