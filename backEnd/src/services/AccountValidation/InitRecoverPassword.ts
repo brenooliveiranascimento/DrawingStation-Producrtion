@@ -20,32 +20,43 @@ private async validateToken(token: string, email: string) {
   }
 };
 
-private createToken(email: string) {
+private async createToken(email: string) {
   const key = process.env.SECRET as string
-  const token = jwt.sign(email, key, { expiresIn: '1h' });
+  const token = jwt.sign({email}, key, { expiresIn: '1h' });
   return token;
 };
+
+private geterateCode() {
+  let code = '';
+  for (let index = 0; index <= 5; index += 1) {
+    const random = Math.floor(Math.random() * 10);
+    code += random;
+  }
+  return Number(code);
+}
 
 async execute(email: string): Promise<string> {
   try { 
     const userExist = await UserModel.findOne({ where: { email } });
 
     if(!userExist) throw new CustomError(errorMapTypes.USER_DONT_EXIST, 500);
-
-    const token = this.createToken(email);
-
+    const token = await this.createToken(email);
+    const code = this.geterateCode();
     await this.validateToken(token, email);
 
-    await UserModel.update({ recoverPassword: token }, { where: { email } });
+    await UserModel.update({ recoverPasswordToken: token, recoverPasswordCode: code }, { where: { email } });
 
     transporter.sendMail({
         from: 'DrawingStation Recuperação de senha <accountvalidation@drawingstation.com.br>',
         to: email,
         subject: 'Recuperação de senha',
-        html: `<h1>Olá desenhista!!<h1><p>Este é o seu token de acesso!<strong>${token}<strong><p>`
-    })
+        html: `<div><h1>Olá desenista!!<h1/><p>Este é o seu token de recuperação de senha!
+        Não o mostre para niguém! válido por 1 hora<br/> <strong>${code}<strong><p><div>`
+    });
+
     return token;
   } catch(e: any) {
+    console.log(e)
     throw new CustomError(e.message, 500);
   }
 }

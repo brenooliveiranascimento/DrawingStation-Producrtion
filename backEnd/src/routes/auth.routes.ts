@@ -10,14 +10,15 @@ const routes = express.Router();
 const userController = new UserController();
 const accountValidationController = new AccountValidationController();
 
+routes.post('/accountValidation', (req, res) => accountValidationController
+  .sendEmailValidation(req, res));
+routes.post('/recoverPassword', (req, res) => accountValidationController
+.initPasswordRecover(req, res));
 routes.post('/me', validateToken, userController.getUserData);
 routes.post('/adm', validateToken, userController.getAdm);
 routes.post('/register', validationUser, userController.create);
 routes.post('/login', validationCredentials, userController.login);
 routes.post('/google', userController.loginByGoogle);
-routes.post('/accountValidation', (req, res) => accountValidationController
-  .sendEmailValidation(req, res));
-routes.post('/recoverPassword', (req, res) => accountValidationController
-.initPasswordRecover(req, res));
+
 
 export default routes;

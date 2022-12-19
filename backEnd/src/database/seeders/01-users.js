@@ -9,7 +9,6 @@ module.exports = {
           password: 'djwi8u290ue9i8wj893qwjr093qjr',
           active: true,
           premium: true,
-          recoverPassword: null,
           loginType: 'google',
           birthday: '2002-02-23',
           phoneNumber: 'xx-xxxxx-xx'
@@ -21,7 +20,6 @@ module.exports = {
           active: true,
           loginType: 'credential',
           premium: true,
-          recoverPassword: null,
           birthday: '2002-02-23',
           phoneNumber: '8492384932409234'
         },
@@ -32,7 +30,6 @@ module.exports = {
           active: true,
           loginType: 'credential',
           premium: true,
-          recoverPassword: null,
           birthday: '2002-02-23',
           phoneNumber: '77988439270'
         },
