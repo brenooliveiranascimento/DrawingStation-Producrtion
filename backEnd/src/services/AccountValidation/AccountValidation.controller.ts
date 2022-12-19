@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { errorMapTypes } from "../../utils/errorMap";
 import CustomError from "../../utils/StatusError";
 import InitRecoverPassword from "./InitRecoverPassword";
 import ValidateRecoverPasswordCode from "./ValidadeRecoverPasswordCode";
@@ -19,7 +18,7 @@ export default class AccountValidationController {
 
   async finishPasswordRecover(req: Request, res: Response) {
     const { code, newPassword } = req.body
-    if(!newPassword || newPassword.lenght <= 6) throw new CustomError('Senha deve ter pelo menos 6 caracteres', 404);
+    if(newPassword.length < 6) throw new CustomError('Senha deve ter pelo menos 6 caracteres', 404);
     const token = req.header('Authorization') as string;
     const update = await this.finishRecoverService.execute(token, code, newPassword);
     res.status(201).json({ message: update });

@@ -28,7 +28,7 @@ export default class ValidateRecoverPasswordCode {
         const encriptedPassword = await hash(newPassword, 8)
   
         await UserModel.update(
-          {recoverPasswordCode: null, recoverPasswordtoken: null, password: encriptedPassword},
+          {recoverPasswordCode: null, recoverPasswordToken: null, password: encriptedPassword},
           { where: { email } });
         return 'Senha atualizada com sucesso!'
       }
