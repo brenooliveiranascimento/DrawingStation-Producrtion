@@ -5,6 +5,7 @@ export const errorMapTypes = {
   CLASSROOM_REQUEST_ERROR: 'Classroom request error',
   SUB_MODULE_DONT_EXIST: 'SubModule Dont Exists!',
   REQUEST_ERROR: 'RequestError, please tent again',
+  TOKEN_EXPIRED: 'Código expirado',
   MODULE_NOT_FOUD: 'Module dont exist',
   SUBMODULE_DONT_EXIST: 'SubModule not found',
   SUBMODULE_DONT_CREATE: 'SubModule not create',
