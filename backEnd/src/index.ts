@@ -21,7 +21,6 @@ app.use((req, res, next) => {
     express.json()(req, res, next);
   }
 });
-// app.use(express.json());
 
 const PORT = process.env.PORT;
 app.use('/webhook', webhooksRoutes);

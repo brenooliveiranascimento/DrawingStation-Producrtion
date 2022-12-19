@@ -1,11 +1,9 @@
 import { Request, Response } from "express";
-import SendEmail from "../../utils/SendEmail";
 import InitRecoverPassword from "./InitRecoverPassword";
 
 export default class AccountValidationController {
 
   constructor(
-    private sendEmailService = new SendEmail(),
     private initRecoverService = new InitRecoverPassword(),
   ) {}
 
@@ -15,8 +13,7 @@ export default class AccountValidationController {
 
   async initPasswordRecover(req: Request, res: Response) {
     const { email } = req.body;
-    const token = await  this.initRecoverService.execute(email);
-    await this.sendEmailService.execute(email, token, );
-    res.status(201).json({  });
+    await  this.initRecoverService.execute(email);
+    res.status(201).json({ message: 'Token de recuperação enviado para seu Email, confira sua caixa de entrada e seu spam.' });
   }
 }

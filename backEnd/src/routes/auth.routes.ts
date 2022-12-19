@@ -17,5 +17,7 @@ routes.post('/login', validationCredentials, userController.login);
 routes.post('/google', userController.loginByGoogle);
 routes.post('/accountValidation', (req, res) => accountValidationController
   .sendEmailValidation(req, res));
-  
+routes.post('/recoverPassword', (req, res) => accountValidationController
+.initPasswordRecover(req, res));
+
 export default routes;
