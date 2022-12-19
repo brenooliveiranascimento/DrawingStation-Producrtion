@@ -120,6 +120,12 @@ class ModuleController{
     await this.userService.removePremium(Number(id));
     return res.status(202).json({ message: 'premium removido' });
   }
+
+  public goPremium = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    await this.userService.goPremium(Number(id));
+    return res.status(202).json({ message: 'premium removido' });
+  }
 }
 
 export default ModuleController;

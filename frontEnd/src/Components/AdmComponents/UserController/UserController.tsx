@@ -1,12 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsersAction } from '../../../redux/actions/userActions/userActions';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
+import { apiConnection } from '../../../services/api.connection';
+import { UserInterface } from '../../../interfaces/UserInterfaces';
+import { parseCookies } from 'nookies';
+import { toast } from 'react-toastify';
+import { Input } from '../../ui/Inputs/Inputs';
 
 function UserController() {
   const dispatch = useDispatch();
+  const { userData } = useSelector((state: globalState) => state.user);
+  const [editPremium, setEditPremium] = useState(false);
+  const [identity, setIdentity] = useState('');
   const { usersControllData } = useSelector((state: globalState) => state.user);
+  const cookies = parseCookies();
+
+  const handlePremium = async (id: number, isPremium: boolean) => {
+    if(!editPremium) {
+      setEditPremium(true);
+      return;
+    }
+    const token = cookies['DRAWING_USER_DATA'];
+    try {
+      await apiConnection.post(`/users/${isPremium ? 'removePremium' : 'goPremium'}/${id}`,
+        { identity, admEmail: userData.email },
+        { headers: { 'Authorization': token } });
+      toast.success('Status do usuário alterado com sucesso!!');
+      setEditPremium(false);
+    } catch(e: any) {
+      toast.error(e.response.data.message);
+      setEditPremium(false);
+    }
+  };
 
   const requestAllUSers = () => {
     dispatch(getAllUsersAction());
@@ -15,13 +42,20 @@ function UserController() {
   useEffect(() => {
     requestAllUSers();
   }, []);
+
   return (
     <section className={styles.user_controller_container}>
+    
       <article>
         <h1>User List</h1>
         <span>
           {usersControllData.length} Users
         </span>
+        { editPremium && <Input
+          value={identity}
+          type={'password'}
+          onChange={({target}) => setIdentity(target.value)}
+        />}
       </article>
 
       <table>
@@ -35,7 +69,7 @@ function UserController() {
         </thead>
         <tbody>
           {
-            usersControllData.map((currUser: any) => {
+            usersControllData.map((currUser: UserInterface) => {
               console.log(currUser);
               return (
                 <tr key={currUser.id}>
@@ -46,7 +80,7 @@ function UserController() {
                   <td>{currUser.premium ? 'Premim!' : 'Default'}</td>
                   <td>{currUser.loginType}</td>
                   <section className={styles.action_button_container}>
-                    <button>
+                    <button onClick={() => handlePremium(currUser.id, currUser.premium)}>
                       {currUser.premium ? 'Remove Premium' : 'Active premium'}
                     </button>
                     <button>
