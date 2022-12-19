@@ -16,20 +16,34 @@ function UserController() {
   const [identity, setIdentity] = useState('');
   const { usersControllData } = useSelector((state: globalState) => state.user);
   const cookies = parseCookies();
+  const [currUser, setCurrUser] = useState({
+    userId: 0,
+    userStateus: false
+  });
 
   const handlePremium = async (id: number, isPremium: boolean) => {
     if(!editPremium) {
+      setCurrUser({
+        userId: id,
+        userStateus: isPremium
+      });
       setEditPremium(true);
       return;
     }
     const token = cookies['DRAWING_USER_DATA'];
     try {
-      await apiConnection.post(`/users/${isPremium ? 'removePremium' : 'goPremium'}/${id}`,
+      await apiConnection.post(`/users/${currUser.userStateus ? 'removePremium' : 'goPremium'}/${currUser.userId}`,
         { identity, admEmail: userData.email },
         { headers: { 'Authorization': token } });
       toast.success('Status do usuário alterado com sucesso!!');
+      setCurrUser({
+        userId: 0,
+        userStateus: false
+      });
+      setIdentity('');
       setEditPremium(false);
     } catch(e: any) {
+      setIdentity('');
       toast.error(e.response.data.message);
       setEditPremium(false);
     }
@@ -51,11 +65,18 @@ function UserController() {
         <span>
           {usersControllData.length} Users
         </span>
-        { editPremium && <Input
-          value={identity}
-          type={'password'}
-          onChange={({target}) => setIdentity(target.value)}
-        />}
+        { editPremium &&
+        <section>
+          <Input
+            value={identity}
+            type={'password'}
+            onChange={({target}) => setIdentity(target.value)}
+          />
+          <button onClick={() => handlePremium(0, false)}>
+            Confirmar!
+          </button>
+        </section>
+        }
       </article>
 
       <table>
@@ -70,7 +91,6 @@ function UserController() {
         <tbody>
           {
             usersControllData.map((currUser: UserInterface) => {
-              console.log(currUser);
               return (
                 <tr key={currUser.id}>
                   <td>{currUser.name}</td>
