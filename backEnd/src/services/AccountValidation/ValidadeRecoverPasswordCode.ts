@@ -3,6 +3,7 @@ import statusCodes from "../../statusCode";
 import { errorMapTypes } from "../../utils/errorMap";
 import CustomError from "../../utils/StatusError";
 import jwt from 'jsonwebtoken';
+import { hash } from "bcryptjs";
 
 export default class ValidateRecoverPasswordCode {
   private async validateToken(token: string, email: string) {
@@ -18,16 +19,24 @@ export default class ValidateRecoverPasswordCode {
     }
   };
 
-  async execute(token: string, code: number) {
+  async execute(token: string, code: number, newPassword: string) {
     const { email } = jwt.decode(token) as any;
     this.validateToken(token, email);
+    try {
+      const user = await UserModel.findOne({ where: { email } });
 
-    const user = await UserModel.findOne({ where: { email } });
-
-    if(code === user?.recoverPasswordCode) {
-      await UserModel.update(
-        {recoverPasswordCode: null, recoverPasswordtoken: null},
-        { where: { email } });
+      if(code === user?.recoverPasswordCode) {
+        const encriptedPassword = await hash(newPassword, 8)
+  
+        await UserModel.update(
+          {recoverPasswordCode: null, recoverPasswordtoken: null, password: encriptedPassword},
+          { where: { email } });
+  
+          return 'Senha atualizada com sucesso!!'
+      }
+      return 'Erro ao atualizar sua senha'
+    } catch(e: any) {
+      throw new CustomError(e.message, 500);
     }
   }
 }
