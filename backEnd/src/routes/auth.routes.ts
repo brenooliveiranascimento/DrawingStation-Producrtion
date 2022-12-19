@@ -13,7 +13,9 @@ const accountValidationController = new AccountValidationController();
 routes.post('/accountValidation', (req, res) => accountValidationController
   .sendEmailValidation(req, res));
 routes.post('/recoverPassword', (req, res) => accountValidationController
-.initPasswordRecover(req, res));
+  .initPasswordRecover(req, res));
+routes.post('/recoverPasswordFinish', (req, res) => accountValidationController
+  .finishPasswordRecover(req, res));
 routes.post('/me', validateToken, userController.getUserData);
 routes.post('/adm', validateToken, userController.getAdm);
 routes.post('/register', validationUser, userController.create);

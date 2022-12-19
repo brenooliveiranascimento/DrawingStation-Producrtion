@@ -28,7 +28,7 @@ Users.init({
   recoverPasswordCode: {
     defaultValue: null,
     type: INTEGER,
-    allowNull: false,
+    allowNull: true,
   },
   name: {
     type: STRING(30),

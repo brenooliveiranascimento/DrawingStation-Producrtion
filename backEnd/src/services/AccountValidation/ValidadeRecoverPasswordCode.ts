@@ -21,20 +21,18 @@ export default class ValidateRecoverPasswordCode {
 
   async execute(token: string, code: number, newPassword: string) {
     const { email } = jwt.decode(token) as any;
-    this.validateToken(token, email);
+    await this.validateToken(token, email);
     try {
       const user = await UserModel.findOne({ where: { email } });
-
       if(code === user?.recoverPasswordCode) {
         const encriptedPassword = await hash(newPassword, 8)
   
         await UserModel.update(
           {recoverPasswordCode: null, recoverPasswordtoken: null, password: encriptedPassword},
           { where: { email } });
-  
-          return 'Senha atualizada com sucesso!!'
+        return 'Senha atualizada com sucesso!'
       }
-      return 'Erro ao atualizar sua senha'
+      throw new CustomError("Código inválido", 500);
     } catch(e: any) {
       throw new CustomError(e.message, 500);
     }
