@@ -14,7 +14,7 @@ class UserService {
       if(!user) return { error: { message: errorMapTypes.USER_DONT_EXIST }, message: null };
       return { error: null, message: user }
     } catch(e) {
-       return { error: { message: errorMapTypes.REQUEST_ERROR }, message: e };
+      return { error: { message: errorMapTypes.REQUEST_ERROR }, message: e };
     }
   }
 
@@ -24,7 +24,7 @@ class UserService {
       if(!user) return { error: { message: errorMapTypes.ADM_NOT_DOUND }, message: errorMapTypes.ADM_NOT_DOUND };
       return { error: null, message: user }
     } catch(e) {
-       return { error: { message: errorMapTypes.REQUEST_ERROR }, message: e };
+      return { error: { message: errorMapTypes.REQUEST_ERROR }, message: e };
     }
   }
 
@@ -35,7 +35,7 @@ class UserService {
       if(!users) return { error: {message: errorMapTypes.REQUEST_ERROR}, message: null }
       return { error: null, message: users };
     } catch(e) {
-       return { error: {message: errorMapTypes.REQUEST_ERROR}, message: e }
+      return { error: {message: errorMapTypes.REQUEST_ERROR}, message: e }
     }
   }
 
@@ -43,6 +43,16 @@ class UserService {
     try {
       await UserModel.update(
         { premium: false, stripeClientId: null},
+        { where: { id } })
+    } catch(e: any) {
+      throw new CustomError(errorMapTypes.REQUEST_ERROR, 500)
+    }
+  }
+
+  async goPremium(id: number) {
+    try {
+      await UserModel.update(
+        { premium: true, stripeClientId: null},
         { where: { id } })
     } catch(e: any) {
       throw new CustomError(errorMapTypes.REQUEST_ERROR, 500)

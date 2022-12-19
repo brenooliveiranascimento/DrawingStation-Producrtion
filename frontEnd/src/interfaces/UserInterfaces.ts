@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface UserInterface {
-  id?: number;
+  id: number;
   name: string
   email: string;
   active?: boolean;
-  premium?: boolean;
+  premium: boolean;
   birthday: string;
   profilePhoto?: string;
   loginType?: string;
