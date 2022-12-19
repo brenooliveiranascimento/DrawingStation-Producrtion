@@ -4,7 +4,7 @@ const router = Router();
 
 const accountValidationController = new AccountValidationController();
 
-router.post('/sendAccountValidation', (req, res) => accountValidationController
+router.post('/accountValidation', (req, res) => accountValidationController
   .sendEmailValidation(req, res));
 
 export default router;

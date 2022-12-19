@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import CustomError from '../../utils/StatusError';
+import CustomError from './StatusError';
 
 export default class SendEmail {
   async execute(email: string) {
@@ -15,7 +15,7 @@ export default class SendEmail {
 
     try {
       await transporter.sendMail({
-        from: `DrawingStation account verification <${process.env.SEND_EMAIL}>`,
+        from: 'DrawingStation account verification <accountvalidation@drawingstation.com.br>',
         to: email,
         subject: 'Email de verificação da conta',
         html: '<h1>Olá desenhista!!<h1><p>Isso pe um teste!!!<p>'

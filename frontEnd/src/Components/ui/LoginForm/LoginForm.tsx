@@ -85,6 +85,17 @@ export default function LoginForm() {
     },
   });
 
+  const sendEmail = async () => {
+    try {
+      const { data } = await apiConnection.post('/email/accountValidation', {
+        email: 'carangueijo564helicoptero@gmail.com'
+      });
+      toast.success(data.message);
+    } catch(e: any) {
+      toast.error(e.message);
+    }
+  };
+
   const sigin = () => {
     const { email, password } = credentials;
     dispatch(siginUser({ email, password }, redirect, '/HomePage'));
@@ -171,13 +182,16 @@ export default function LoginForm() {
           {register ? ( 'Registrar' ) : ( 'Entrar' )}
         </Button>
         <Button onClick={() => loginGoogle()} type='button' >
-      Entrar com Google <FaGoogle style={{
+          Entrar com Google <FaGoogle style={{
             position: 'absolute', marginTop:'0.1rem', marginLeft:'0.4rem'
           }}/>
         </Button>
       </form>
       <a onClick={handleRegister} className={styles.handle_form}>
         { register ? ( 'Já possuo uma conta' ) : ( 'Não possui conta? Registrar-se' ) }
+      </a>
+      <a onClick={sendEmail} className={styles.handle_form}>
+        enviar email
       </a>
     </section>
   );

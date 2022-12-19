@@ -10,6 +10,7 @@ class Users extends Model {
   declare password: string;
   declare active: number;
   declare birthday: Date;
+  declare recoverPassword: string;
   declare premium: boolean;
   declare stripeClientId: string;
   declare profilePhoto: string | null;
@@ -26,6 +27,10 @@ Users.init({
   name: {
     type: STRING(30),
     allowNull: false,
+  },
+  recoverPassword: {
+    allowNull: true,
+    type: STRING(300),
   },
   email: {
     type: STRING(60),

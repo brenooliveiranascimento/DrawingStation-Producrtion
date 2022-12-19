@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import SendEmail from "./SendEmail";
+import SendEmail from "../../utils/SendEmail";
 
 export default class AccountValidationController {
   async sendEmailValidation(req: Request, res: Response) {

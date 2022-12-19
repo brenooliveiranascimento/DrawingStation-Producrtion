@@ -37,6 +37,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      recoverPassword: {
+        allowNull: true,
+        type: Sequelize.STRING(300),
+      },
       loginType: {
         type: Sequelize.STRING,
         allowNull: false,
