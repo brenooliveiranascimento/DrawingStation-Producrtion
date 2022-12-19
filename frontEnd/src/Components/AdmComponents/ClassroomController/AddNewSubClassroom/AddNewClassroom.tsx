@@ -73,7 +73,10 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
         />
         <label htmlFor='premium'>
           <Input
-            onChange={({target}) => handleChange(target)}
+            onChange={({target}) => {
+              handleChange(target);
+              setEditingClassroomData({ ...addNewClassroomData, isPremium: target.checked});
+            }}
             name='premium'
             checked={addNewClassroom.premium}
             type={'checkbox'}
@@ -114,16 +117,7 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
           placeholder='description'
           value={addNewClassroomData.description}
         />
-        <label htmlFor='isPremium'>
-          <Input
-            onChange={({target}) => handleChangeData(target)}
-            name='isPremium'
-            checked={addNewClassroomData.isPremium}
-            type={'checkbox'}
-          />
-          <span>Premium</span>
-        </label>
-        <label htmlFor='isPremium'>
+        <label htmlFor='conclude'>
           <Input
             onChange={({target}) => {
               handleChangeData(target);
