@@ -23,7 +23,7 @@ export default function LoginForm() {
   const [register, setRegister] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [firstLoad, setFIstLoad] = useState(true);
-  const [codeMode, setCodeMode] = useState(true);
+  const [codeMode, setCodeMode] = useState(false);
   const [unknowField, setUnknowField] = useState('');
 
   const [credentials, setCredentials] = useState<IUserCredentials>({
@@ -170,7 +170,7 @@ export default function LoginForm() {
         }}
         contentLabel="Example Modal"
       >
-        <ValidationAccount credentials={credentials} />
+        <ValidationAccount credentials={credentials} userRegister={userRegister} sendCode={sendToken}/>
       </Modal>
       <form onSubmit={handleAutentication}>
         {
