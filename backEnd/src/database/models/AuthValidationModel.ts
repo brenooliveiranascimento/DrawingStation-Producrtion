@@ -4,6 +4,7 @@ import db from '.';
 class AuthValidationModel extends Model {
   declare id: number;
   declare email: string;
+  declare token: string;
   declare code: number;
 }
 

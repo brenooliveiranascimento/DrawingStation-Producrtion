@@ -15,9 +15,10 @@ export default class AccountValidationController {
 
   async codeValidation(req: Request, res: Response) {
     const { code } = req.body;
+    const token = req.header('Authorization') as string;
     if(!code) throw new CustomError('Código inválido', 400);
     const codeValidateService = new CodeValidate();
-    await codeValidateService.execute(code);
+    await codeValidateService.execute(code, token);
 
     return res.status(201).json({ message: true });
   }
