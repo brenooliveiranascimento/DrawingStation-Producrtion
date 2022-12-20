@@ -17,7 +17,8 @@ routes.post('/recoverPassword', (req, res) => recoverPasswordController
 routes.post('/recoverPasswordFinish', (req, res) => recoverPasswordController
   .finishPasswordRecover(req, res));
 
-routes.post('/validateEmail', accountValidation.InitAccountValidation);
+routes.post('/validateEmail/init', accountValidation.InitAccountValidation);
+routes.post('/validateEmail', accountValidation.codeValidation);
 
 routes.post('/me', validateToken, userController.getUserData);
 routes.post('/adm', validateToken, userController.getAdm);
