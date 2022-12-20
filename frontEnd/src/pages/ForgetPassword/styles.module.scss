@@ -1,0 +1,42 @@
+.label_content {
+  color: white;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+
+  input {
+    margin-top: 2rem;
+  }
+}
+
+.home_container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+
+  button {
+    width: 450px;
+    padding: 0.7rem;
+    font-size: 1.3rem;
+
+    :hover {
+      filter: brightness(20%);
+    }
+  }
+  h2 {
+    margin-top: 3rem;
+  }
+
+  .handle_form {
+    color: var(--white);
+    margin: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(80%);
+    }
+  }
+}

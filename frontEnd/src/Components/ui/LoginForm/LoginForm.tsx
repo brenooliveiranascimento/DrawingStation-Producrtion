@@ -85,17 +85,6 @@ export default function LoginForm() {
     },
   });
 
-  const sendEmail = async () => {
-    try {
-      const { data } = await apiConnection.post('/email/accountValidation', {
-        email: 'carangueijo564helicoptero@gmail.com'
-      });
-      toast.success(data.message);
-    } catch(e: any) {
-      toast.error(e.message);
-    }
-  };
-
   const sigin = () => {
     const { email, password } = credentials;
     dispatch(siginUser({ email, password }, redirect, '/HomePage'));
@@ -190,9 +179,9 @@ export default function LoginForm() {
       <a onClick={handleRegister} className={styles.handle_form}>
         { register ? ( 'Já possuo uma conta' ) : ( 'Não possui conta? Registrar-se' ) }
       </a>
-      <a onClick={sendEmail} className={styles.handle_form}>
-        enviar email
-      </a>
+      { !register && <a onClick={handleRegister} className={styles.handle_form}>
+        Esqueci minha senha
+      </a> }
     </section>
   );
 }
