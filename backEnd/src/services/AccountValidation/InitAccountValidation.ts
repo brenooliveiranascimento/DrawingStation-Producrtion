@@ -9,7 +9,7 @@ export default class InitAccountValidation {
 
   private createCode() {
     let code = '';
-    for(let index = 1; index <= 10; index += 1) {
+    for(let index = 1; index <= 6; index += 1) {
       const randomvalue = Math.floor(Math.random() * 10);
       code += randomvalue;
     }
