@@ -179,7 +179,7 @@ export default function LoginForm() {
       <a onClick={handleRegister} className={styles.handle_form}>
         { register ? ( 'Já possuo uma conta' ) : ( 'Não possui conta? Registrar-se' ) }
       </a>
-      { !register && <a onClick={handleRegister} className={styles.handle_form}>
+      { !register && <a onClick={() => redirect('/ForgetPassword')} className={styles.handle_form}>
         Esqueci minha senha
       </a> }
     </section>
