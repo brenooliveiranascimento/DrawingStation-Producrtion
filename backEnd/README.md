@@ -11,6 +11,8 @@ Utilizo a ORM sequelize para criar as migrations do banco de dados e povoa-lo em
 
 APIs para o fluxo de autenticação com JWT, registrando novos usuários e logando usuários já existentes gerando um novo Token e enviando como resposta para o cliente.
 
+Sistema de recuperação de senha utilizando NodeMailer.
+
 Apis para consumir os módulos, subMódulos e Aulas que estão no banco de dados.
 
 Regra de negocio para retornar os dados das aulas privadas apenas para usuários que possuem plano premium ativo e aulas gratuitas para usuáruos que não possuem nenhum tipo de assinatura.
@@ -19,6 +21,9 @@ Apis para a manipulação adição ou excluisão do conteúdo da plataforma.
 Essas apis são restristas apenas para ADMS e possuem validações de credenciais em seus middlewares.
 
 Apis para adicionar editar e excluir comentários e subcomentários resposta nas aulas.
+
+Sistema de mensalidade para contas premium utilizando Stripe.
+Cobrança feita através de carão de créditos e boleto bancário.
 
 Acesse a antiga plataforma e confira o conteúdo gratuito que disponibilizei para todos.
 https://drawing-station-web.vercel.app/
