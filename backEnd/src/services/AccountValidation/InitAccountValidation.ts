@@ -3,6 +3,7 @@ import UsersModel from "../../database/models/UserModel";
 import { errorMapTypes } from "../../utils/errorMap";
 import CustomError from "../../utils/StatusError";
 import jwt from 'jsonwebtoken';
+import { transporter } from "../../utils/transporter";
 
 export default class InitAccountValidation {
 
@@ -15,6 +16,16 @@ export default class InitAccountValidation {
     return Number(code);
   }
 
+  private sendMessage(code: number, email: string) {
+    transporter.sendMail({
+      from: 'DrawingStation Validação de conta <accountvalidation@drawingstation.com.br>',
+      to: email,
+      subject: 'Validação de conta',
+      html: `<div><h1>Olá desenista!!<h1/><p>Este é o seu código de validação!
+      Não o mostre para niguém! válido por 1 hora<br/> <strong>${code}<strong><p><div>`
+  });
+  }
+
   async execute(email: string) {
     const user = await UsersModel.findOne({ where: { email } });
     if(user) throw new CustomError(errorMapTypes.USER_ALREDY_EXISTS, 401);
@@ -24,6 +35,7 @@ export default class InitAccountValidation {
     const token = jwt.sign({ email }, key, { expiresIn: '1h' });
     try {
       await AuthValidationModel.create({ email, code });
+      this.sendMessage(code, email);
       return token;
     } catch(e: any) {
       console.log(e)
