@@ -5,7 +5,6 @@ export default function CodeValidation() {
   return (
     <section>
       <Input/>
-
     </section>
   );
 }

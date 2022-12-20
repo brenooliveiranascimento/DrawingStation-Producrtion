@@ -3,7 +3,7 @@ import CustomError from "../../utils/StatusError";
 import InitRecoverPassword from "./InitRecoverPassword";
 import ValidateRecoverPasswordCode from "./ValidadeRecoverPasswordCode";
 
-export default class AccountValidationController {
+export default class RecoverAccountController {
 
   constructor(
     private initRecoverService = new InitRecoverPassword(),
