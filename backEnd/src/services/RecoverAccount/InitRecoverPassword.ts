@@ -38,8 +38,9 @@ private geterateCode() {
 async execute(email: string): Promise<string> {
   try { 
     const userExist = await UserModel.findOne({ where: { email } });
-
+    console.log(userExist?.loginType)
     if(!userExist) throw new CustomError(errorMapTypes.USER_DONT_EXIST, 500);
+    if(userExist.loginType === 'google') throw new CustomError(`User logado pelo ${userExist.loginType}`, 500);
     const token = await this.createToken(email);
     const code = this.geterateCode();
     await this.validateToken(token, email);
