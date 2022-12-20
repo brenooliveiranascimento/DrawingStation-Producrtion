@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import CustomError from "../../utils/StatusError";
+import CodeValidate from "./CodeValidate";
 import InitAccountValidation from "./InitAccountValidation";
 
 export default class AccountValidationController {
@@ -10,5 +11,14 @@ export default class AccountValidationController {
     const token = await initAccountValidationService.execute(email);
 
     return res.status(201).json({ token });
+  }
+
+  async codeValidation(req: Request, res: Response) {
+    const { code } = req.body;
+    if(!code) throw new CustomError('Código inválido', 400);
+    const codeValidateService = new CodeValidate();
+    await codeValidateService.execute(code);
+
+    return res.status(201).json({ message: true });
   }
 }
