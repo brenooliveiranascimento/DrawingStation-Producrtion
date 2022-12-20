@@ -20,14 +20,13 @@ export default class InitAccountValidation {
     if(user) throw new CustomError(errorMapTypes.USER_ALREDY_EXISTS, 401);
 
     const code = this.createCode();
-    
     const key = process.env.SECRET as string
     const token = jwt.sign({ email }, key, { expiresIn: '1h' });
-
     try {
       await AuthValidationModel.create({ email, code });
       return token;
     } catch(e: any) {
+      console.log(e)
       throw new CustomError(errorMapTypes.REQUEST_ERROR, 500);
     }
   }

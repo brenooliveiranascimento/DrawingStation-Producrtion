@@ -16,16 +16,21 @@ AuthValidationModel.init({
   },
   email: {
     type: STRING(60),
-    allowNull: false,
+    allowNull: true,
+  },
+  token: {
+    type: STRING(60),
+    allowNull: true,
   },
   code: {
     type: INTEGER,
-    allowNull: false,
+    allowNull: true,
   },
 }, {
   sequelize: db,
   modelName: 'authValidation',
   timestamps: false,
+  underscored: true
 });
 
 export default AuthValidationModel;
