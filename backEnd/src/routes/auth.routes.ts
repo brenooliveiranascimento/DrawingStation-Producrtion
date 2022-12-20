@@ -3,12 +3,12 @@ import validationUser from '../controllers/authValidation/authValidation';
 import validationCredentials from '../controllers/authValidation/credentialValidation';
 import UserController from '../controllers/Autentication.controller';
 import validateToken from '../middlewares/tokenVerification';
-import AccountValidationController from "../services/AccountValidation/AccountValidation.controller";
+import RecoverAccountController from "../services/RecoverAccount/RecoverAccount.controller";
 
 const routes = express.Router();
 
 const userController = new UserController();
-const accountValidationController = new AccountValidationController();
+const accountValidationController = new RecoverAccountController();
 
 routes.post('/recoverPassword', (req, res) => accountValidationController
   .initPasswordRecover(req, res));
