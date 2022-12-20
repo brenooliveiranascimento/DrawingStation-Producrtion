@@ -10,8 +10,6 @@ const routes = express.Router();
 const userController = new UserController();
 const accountValidationController = new AccountValidationController();
 
-routes.post('/accountValidation', (req, res) => accountValidationController
-  .sendEmailValidation(req, res));
 routes.post('/recoverPassword', (req, res) => accountValidationController
   .initPasswordRecover(req, res));
 routes.post('/recoverPasswordFinish', (req, res) => accountValidationController
