@@ -15,6 +15,7 @@ import { IUserCredentials } from '../../../interfaces/userCredentials';
 import nookies from 'nookies';
 import { globalTypes } from '../../../utils/globalTypes';
 import Modal from 'react-modal';
+import ValidationAccount from './ValidationAccount';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -169,6 +170,7 @@ export default function LoginForm() {
         }}
         contentLabel="Example Modal"
       >
+        <ValidationAccount credentials={credentials} />
       </Modal>
       <form onSubmit={handleAutentication}>
         {
