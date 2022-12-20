@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Input } from '../../Components/ui/Inputs/Inputs';
 import { apiConnection } from '../../services/api.connection';
@@ -12,9 +12,16 @@ export default function ForgetPassword() {
   const [verify, setVerify] = useState(false);
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [resendTime, setResendTime] = useState(true);
   const [showPassword, setShowPassword] = useState('password');
   const [error, setError] = useState(false);
   const [code, setCode] = useState('');
+
+  const updateResend = () => {
+    setTimeout(() => {
+      setResendTime(false);
+    }, 30000);
+  };
 
   const initRecover = async () => {
     try {
@@ -22,6 +29,7 @@ export default function ForgetPassword() {
         { email });
       nookies.set(null, globalTypes.DRAWING_RECOVER_TOKEN, data.token, { maxAge: 30 * 24 * 60 * 60, path: '/' });
       toast.success('Token enviado');
+      setResendTime(true);
       setVerify(true);
     } catch(e: any) {
       toast.error(e.response.data.message);
@@ -52,6 +60,8 @@ export default function ForgetPassword() {
       toast.error(e.response.data.message);
     }
   };
+
+  useEffect(() => updateResend(), []);
 
   return (
     <section className={mainStyles.home_container}>
@@ -88,7 +98,7 @@ export default function ForgetPassword() {
           )}>
             Mostrar
           </button>
-          <button onClick={initRecover}>Reenviar código</button>
+          <button disabled={resendTime} onClick={initRecover}>Reenviar código</button>
           <button onClick={validatePasswords}>Atualizar senha</button>
         </section>
       ) : (

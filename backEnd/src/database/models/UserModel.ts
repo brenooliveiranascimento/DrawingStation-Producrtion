@@ -12,6 +12,7 @@ class Users extends Model {
   declare recoverPasswordCode: number;
   declare birthday: Date;
   declare recoverPasswordToken: string;
+  declare loginType: string;
   declare premium: boolean;
   declare stripeClientId: string;
   declare profilePhoto: string | null;

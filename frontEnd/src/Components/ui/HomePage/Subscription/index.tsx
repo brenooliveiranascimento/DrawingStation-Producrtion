@@ -25,7 +25,6 @@ export default function Subscription() {
         { userId: id }, { headers: { 'Authorization': token } });
       const { sessionId } = data;
       const stripe = await getStripeJs();
-      console.log(sessionId);
       await stripe?.redirectToCheckout({ sessionId });
     } catch(e: any) {
       console.log(e.message);

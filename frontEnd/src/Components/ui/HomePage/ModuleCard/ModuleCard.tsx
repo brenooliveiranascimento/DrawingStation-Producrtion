@@ -26,7 +26,7 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
       <article>
         <h2>{name}</h2>
       </article>
-      <button onClick={redirect}>
+      <button type='button' onClick={redirect}>
         <span>
           Continuar assistindo
         </span>

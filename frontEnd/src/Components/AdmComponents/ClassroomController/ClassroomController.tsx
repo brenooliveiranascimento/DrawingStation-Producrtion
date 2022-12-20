@@ -78,7 +78,7 @@ function ClassroomController() {
     <section className={styles.Classroom_controller_container}>
       <section>
         <h1>Aulas Existentes existentes</h1>
-        <button onClick={handleAddModal}>
+        <button type='button' onClick={handleAddModal}>
           Adicionar nova aula
         </button>
       </section>

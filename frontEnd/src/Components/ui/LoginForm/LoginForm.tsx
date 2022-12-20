@@ -11,6 +11,11 @@ import { creadentialRegisterValidation, creadentialSiginValidation } from '../..
 import { Button } from '../buttons/Buttons';
 import { FaGoogle } from 'react-icons/fa';
 import styles from '../../../../styles/Home.module.scss';
+import { IUserCredentials } from '../../../interfaces/userCredentials';
+import nookies from 'nookies';
+import { globalTypes } from '../../../utils/globalTypes';
+import Modal from 'react-modal';
+import ValidationAccount from './ValidationAccount';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -18,9 +23,10 @@ export default function LoginForm() {
   const [register, setRegister] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [firstLoad, setFIstLoad] = useState(true);
+  const [codeMode, setCodeMode] = useState(false);
   const [unknowField, setUnknowField] = useState('');
 
-  const [credentials, setCredentials] = useState({
+  const [credentials, setCredentials] = useState<IUserCredentials>({
     name: '',
     phoneNumber: '',
     email: '',
@@ -36,6 +42,23 @@ export default function LoginForm() {
   const handleUserCredentials = (target: TargetValue) => {
     const { name, value } = target;
     setCredentials({...credentials, [name]: value});
+  };
+
+  const sendToken = async () => {
+    try {
+      const { data } = await apiConnection.post('/auth/validateEmail/init',
+        { email: credentials.email });
+
+      nookies.set(null, globalTypes.DRAWING_VERIFICATION_TOKEN, data.token, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      });  
+      toast.success(`Código de verificação enviado enviado para ${credentials.email}`);
+      setCodeMode(true);
+    } catch(e: any) {
+      console.log(e);
+      toast.error(e.message);
+    }
   };
 
   const checkUserCredentials = () => {
@@ -96,7 +119,7 @@ export default function LoginForm() {
 
   const handleAutentication = (e: FormEvent) => {
     e.preventDefault();
-    if(register) return userRegister();
+    if(register) return sendToken();
     sigin();
   };
 
@@ -119,6 +142,36 @@ export default function LoginForm() {
 
   return (
     <section className={styles.login}>
+      <Modal
+        isOpen={codeMode}
+        style={{
+          overlay: {
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: '#00000029'
+          },
+          content: {
+            position: 'absolute',
+            top: '40px',
+            left: '40px',
+            right: '40px',
+            bottom: '40px',
+            border: 'none',
+            background: 'rgba(0,0,0)',
+            overflow: 'auto',
+            WebkitOverflowScrolling: 'touch',
+            borderRadius: '4px',
+            outline: 'none',
+            padding: '20px'
+          }
+        }}
+        contentLabel="Example Modal"
+      >
+        <ValidationAccount credentials={credentials} userRegister={userRegister} sendCode={sendToken}/>
+      </Modal>
       <form onSubmit={handleAutentication}>
         {
           register && (

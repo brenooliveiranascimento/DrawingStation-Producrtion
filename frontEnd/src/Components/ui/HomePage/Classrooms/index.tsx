@@ -19,7 +19,6 @@ export default function ClassroomsPage() {
     <section>
       {
         moduleData && moduleData.map((currModule: SubModuleInterface) => {
-          console.log(currModule);
           return <h1 key={currModule.id}>{currModule.name}</h1>;
         })
       }
