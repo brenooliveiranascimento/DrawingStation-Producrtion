@@ -8,8 +8,10 @@ class Users extends Model {
   declare name: string;
   declare email: number;
   declare password: string;
-  declare active: number;
+  declare active: boolean;
+  declare recoverPasswordCode: number;
   declare birthday: Date;
+  declare recoverPasswordToken: string;
   declare premium: boolean;
   declare stripeClientId: string;
   declare profilePhoto: string | null;
@@ -23,9 +25,19 @@ Users.init({
     primaryKey: true,
     autoIncrement: true,
   },
+  recoverPasswordCode: {
+    defaultValue: null,
+    type: INTEGER,
+    allowNull: true,
+  },
   name: {
     type: STRING(30),
     allowNull: false,
+  },
+  recoverPasswordToken: {
+    defaultValue: null,
+    allowNull: true,
+    type: STRING(300),
   },
   email: {
     type: STRING(60),

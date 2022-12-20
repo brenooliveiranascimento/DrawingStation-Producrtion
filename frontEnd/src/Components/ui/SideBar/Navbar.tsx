@@ -11,12 +11,13 @@ import {
   FaPencilAlt,
 } from 'react-icons/fa';
 import { FiLayout } from 'react-icons/fi';
-import { IoMdLogIn } from 'react-icons/io';
+import { IoMdHome, IoMdLogIn } from 'react-icons/io';
 import { FaTimes } from 'react-icons/fa';
 import { BsThreeDots } from 'react-icons/bs';
 import { VscDashboard } from 'react-icons/vsc';
 import { useState } from 'react';
 import Link from 'next/link';
+import Router from 'next/router';
 
 interface NavPropsInterface {
   setCurrScreen: (url: any) => void;
@@ -38,6 +39,7 @@ const Navbar = ({setCurrScreen, currScreen}: NavPropsInterface) => {
           }}
           href={'/dashboard'}
           onClick={() => {
+            if(url === 'Home') return Router.push('/HomePage');
             setCurrScreen(url);
             checkWindowSize();
           }}
@@ -100,7 +102,8 @@ const Navbar = ({setCurrScreen, currScreen}: NavPropsInterface) => {
             {nav ? 'More' : <BsThreeDots />}
           </span>
 
-          <NavUrl url="/other1" icon={<IoMdLogIn />} description="Auth" />
+          <NavUrl url="Home" icon={<IoMdHome />} description="Auth" />
+          <NavUrl url="logout" icon={<IoMdLogIn />} description="Auth" />
 
         </ul>
 

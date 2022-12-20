@@ -171,7 +171,7 @@ export default function LoginForm() {
           {register ? ( 'Registrar' ) : ( 'Entrar' )}
         </Button>
         <Button onClick={() => loginGoogle()} type='button' >
-      Entrar com Google <FaGoogle style={{
+          Entrar com Google <FaGoogle style={{
             position: 'absolute', marginTop:'0.1rem', marginLeft:'0.4rem'
           }}/>
         </Button>
@@ -179,6 +179,9 @@ export default function LoginForm() {
       <a onClick={handleRegister} className={styles.handle_form}>
         { register ? ( 'Já possuo uma conta' ) : ( 'Não possui conta? Registrar-se' ) }
       </a>
+      { !register && <a onClick={() => redirect('/ForgetPassword')} className={styles.handle_form}>
+        Esqueci minha senha
+      </a> }
     </section>
   );
 }

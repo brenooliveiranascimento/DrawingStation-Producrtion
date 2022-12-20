@@ -22,7 +22,7 @@ interface DashboardPropTypes {
 
 function Dashboad({ userData }: DashboardPropTypes) {
   const dispatch = useDispatch();
-  const [currScreen, setCurrScreen] = useState('Dashboard');
+  const [currScreen, setCurrScreen] = useState('Modules');
 
   const setUser = () => {
     dispatch(AutenticationSuccess(userData));
