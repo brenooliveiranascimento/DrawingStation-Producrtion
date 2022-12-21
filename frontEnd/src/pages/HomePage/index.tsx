@@ -32,7 +32,7 @@ function HomePage({ userData }: DashboardPropTypes) {
   };
 
   const ScreenController = () => {
-    if(currScreen === 'Modules') return <ModulesScreen />;
+    if(currScreen === 'Modules') return ;
     if(currScreen === 'Classrooms') return <ClassroomsPage />;
     if(currScreen === 'Subscription') return <Subscription />;
     return <ModulesScreen />;
@@ -47,7 +47,7 @@ function HomePage({ userData }: DashboardPropTypes) {
       <CurrSideBar />
       <section className={styles.main_container}>
         <UserHeader/>
-        <ScreenController />
+        <ModulesScreen />
       </section>
     </section>
   );
