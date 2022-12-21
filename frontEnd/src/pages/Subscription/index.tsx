@@ -63,6 +63,7 @@ export default function Subscription({ userData }: ISubscriptionProps) {
   };
 
   const initChecckout = (type: string | null) => {
+    alert(type);
     if(!type) return accessPortal();
     initCheckout(type);
   };
@@ -94,7 +95,7 @@ export default function Subscription({ userData }: ISubscriptionProps) {
                     style={{
                       backgroundColor: !currPlan.type ? 'white' : (premium ? 'green' : 'white')
                     }}
-                    onClick={() => !premium && initChecckout(currPlan.type)}>
+                    onClick={() => initChecckout(currPlan.type)}>
                     { !currPlan.type ? 'Acessar Portaç do assinante' : premium ? 'Premium ativo!!!' : 'Assianr plano mensal' }
                   </button>
                 </section>
