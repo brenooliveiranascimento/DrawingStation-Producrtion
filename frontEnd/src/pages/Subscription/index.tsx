@@ -92,7 +92,7 @@ export default function Subscription({ userData }: ISubscriptionProps) {
                   <button 
                     disabled={!currPlan.type ? !premium : premium}
                     style={{
-                      backgroundColor: premium ? 'green' : 'white'
+                      backgroundColor: !currPlan.type ? 'white' : (premium ? 'green' : 'white')
                     }}
                     onClick={() => !premium && initChecckout(currPlan.type)}>
                     { !currPlan.type ? 'Acessar Portaç do assinante' : premium ? 'Premium ativo!!!' : 'Assianr plano mensal' }
