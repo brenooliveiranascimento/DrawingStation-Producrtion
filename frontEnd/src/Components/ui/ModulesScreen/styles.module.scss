@@ -1,4 +1,4 @@
-.module_card_container {
+.module_container {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
@@ -7,4 +7,27 @@
     align-items: center;
     justify-content: center;
   }
+}
+.module_card_container {
+  display: flex;
+  width: auto;
+  height: auto;
+  padding-bottom: 0.5rem;
+  border-radius: 1rem;
+  flex-direction: column;
+  background-color: var(--dark-700);
+  margin: 1rem;
+  margin-left: 2rem;
+  article {
+    padding: 0.5rem;
+  }
+
+  button {
+  background-color: var(--dark-700);
+  border: none;
+  color: white;
+  padding: 0.7rem;
+  outline:none;  
+  }
+
 }
