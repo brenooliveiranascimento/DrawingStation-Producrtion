@@ -11,6 +11,7 @@ import { UserInterface } from '../../interfaces/UserInterfaces';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
 import UserHeader from '../../Components/ui/HomePage/Header/UserHeader';
+import { ISubscription } from '../../interfaces/ISubscription';
 
 interface ISubscriptionProps {
   userData: UserInterface,
@@ -27,9 +28,9 @@ export default function Subscription({ userData }: ISubscriptionProps) {
   };
 
   const plans = [
-    { type: '/subscription/mensal', valor: '34,00/Mês', description: 'Assinatura mensal' },
-    { type: '/subscription/anual', valor: '367,00/Ano 15% de desconto', description: 'Assinatura Anual!' },
-    { type: null, valor: 'Portal do assinante', description: 'Atualize/Cancele seus planos' }
+    { type: '/subscription/mensal', value: '34,00/Mês', description: 'Assinatura mensal' },
+    { type: '/subscription/anual', value: '367,00/Ano 15% de desconto', description: 'Assinatura Anual!' },
+    { type: null, value: 'Portal do assinante', description: 'Atualize/Cancele seus planos' }
   ];
 
   const dispatch = useDispatch();
@@ -61,6 +62,11 @@ export default function Subscription({ userData }: ISubscriptionProps) {
     }
   };
 
+  const initChecckout = (type: string | null) => {
+    if(!type) return accessPortal();
+    initCheckout(type);
+  };
+
   const initScreen = () => {
     dispatch(AutenticationSuccess(userData));
   };
@@ -76,20 +82,20 @@ export default function Subscription({ userData }: ISubscriptionProps) {
         <UserHeader/>
         <main className={styles.main}>
           {
-            plans.map((currPlan: any, index: number) => {
+            plans.map((currPlan: ISubscription, index: number) => {
               return (
                 <section key={index}>
                   <article>
-                    <h1>34,00/Mês</h1>
-                    <span>Assinatura mensal</span>
+                    <h1>{currPlan.value}</h1>
+                    <span>{currPlan.description}</span>
                   </article>
                   <button 
-                    disabled={premium}
+                    disabled={!currPlan.type ? !premium : premium}
                     style={{
                       backgroundColor: premium ? 'green' : 'white'
                     }}
-                    onClick={() => !premium && initCheckout(signaturesPlans.mensal)}>
-                    { premium ? 'Premium ativo!!!' : 'Assianr plano mensal' }
+                    onClick={() => !premium && initChecckout(currPlan.type)}>
+                    { !currPlan.type ? 'Acessar Portaç do assinante' : premium ? 'Premium ativo!!!' : 'Assianr plano mensal' }
                   </button>
                 </section>
               );
