@@ -8,6 +8,7 @@ import Router from 'next/router';
 import { handleScreen } from '../../../redux/actions/genericActions';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { apiConnection } from '../../../services/api.connection';
+import { toast } from 'react-toastify';
 
 export default function UserHeader() {
   const { userData } = useSelector((state: globalState) => state.user);
@@ -17,7 +18,9 @@ export default function UserHeader() {
     Router.push(screen);
     dispatch(handleScreen(screen));
   };
+
   const cookies = parseCookies();
+
   const accessPortal = async () => {
     if(!stripeClientId) return;
     try {
@@ -27,9 +30,11 @@ export default function UserHeader() {
         null, { headers: { 'Authorization': token } });
       window.location.href = data.portalUrl;
     } catch(e: any) {
+      toast.error('Erro ao acessr o portal do asinante, por favor tente mais tarde ou entre em contato');
       console.log(e.message);
     }
   };
+
   return (
     <header className={styles.header_container}>
       <aside>

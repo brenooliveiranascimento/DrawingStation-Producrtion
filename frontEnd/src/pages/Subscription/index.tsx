@@ -48,6 +48,7 @@ export default function Subscription({ userData }: ISubscriptionProps) {
         null, { headers: { 'Authorization': token } });
       window.location.href = data.portalUrl;
     } catch(e: any) {
+      toast.error('Erro ao acessr o portal do asinante, por favor tente mais tarde ou entre em contato');
       console.log(e.message);
     }
   };

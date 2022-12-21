@@ -14,12 +14,15 @@ interface IModuleCard {
 
 export default function ModuleCard({ moduleCard }: IModuleCard) {
   const dispatch = useDispatch();
+  
   const redirect = () => {
     Router.push('Classroom');
     dispatch(setCurrSubmodule(Number(moduleCard.id)));
     dispatch(handleScreen('Classroom'));
   };
+
   const { image, name } = moduleCard;
+
   return (
     <section className={styles.module_card_container}>
       <Image style={{borderTopLeftRadius: 6, borderTopRightRadius: 6, objectFit: 'cover'}}
