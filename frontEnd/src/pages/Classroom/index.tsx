@@ -1,59 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
-import ClassroomsPage from '../../Components/ui/HomePage/Classrooms';
 import UserHeader from '../../Components/ui/HomePage/Header/UserHeader';
-import ModulesScreen from '../../Components/ui/HomePage/ModulesScreen/ModulesScreen';
-import Subscription from '../../Components/ui/HomePage/Subscription';
 import { globalState } from '../../interfaces/modules/globalStateInterface';
+import { SubModuleInterface } from '../../interfaces/modules/ModulesInterface';
+import { serverSideSetupUser } from '../../services/setupUser';
+import { canSSRAuth } from '../../utils/canSSRAuth';
+import styles from 'styles.module.scss';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import { requestClassroomAction } from '../../redux/actions/classroomActions/classroomActions';
 import { requestModulesAction } from '../../redux/actions/moduleActions/moduleActions';
 import { requestSubModulesAction } from '../../redux/actions/subModuleActions/subModuleActions';
-import { serverSideSetupUser } from '../../services/setupUser';
-import { canSSRAuth } from '../../utils/canSSRAuth';
-import styles from './styles.module.scss';
 
-interface DashboardPropTypes {
+interface classroomPropTypes {
   userData: UserInterface,
 }
-function HomePage({ userData }: DashboardPropTypes) {
+export default function ClassroomsPage({ userData }: classroomPropTypes) {
+  const { subModules, currSubModule } = useSelector(({ subModules }: globalState) => subModules);
+  const [moduleData, setModuleData] = useState([]);
+
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state: globalState) => state);
-  const { currScreen } = user;
-
-  const initHome = async () => {
+  const initData = async () => {
     await dispatch(AutenticationSuccess(userData));
     await dispatch(requestSubModulesAction());
     await dispatch(requestClassroomAction());
-    await dispatch(requestModulesAction());
-  };
-
-  const ScreenController = () => {
-    if(currScreen === 'Modules') return <ModulesScreen />;
-    if(currScreen === 'Classrooms') return <ClassroomsPage />;
-    if(currScreen === 'Subscription') return <Subscription />;
-    return <ModulesScreen />;
+    const currSubModules = subModules.filter((currSubModuleInt: SubModuleInterface) =>
+      currSubModuleInt.moduleId === Number(currSubModule));
+    setModuleData(currSubModules);
   };
 
   useEffect(() => {
-    initHome();
+    initData();
   }, []);
 
   return (
-    <section className={styles.dashboard_container}>
-      <CurrSideBar />
-      <section className={styles.main_container}>
-        <UserHeader/>
-        <ScreenController />
-      </section>
+    <section>
+      <UserHeader/>
+      {
+        moduleData && moduleData.map((currModule: SubModuleInterface) => {
+          console.log(currModule);
+          return <h1 key={currModule.id}>{currModule.name}</h1>;
+        })
+      }
     </section>
   );
 }
-
-export default HomePage;
 
 export const getServerSideProps = canSSRAuth(async (ctx) => {
   const userConncetion = serverSideSetupUser(ctx);

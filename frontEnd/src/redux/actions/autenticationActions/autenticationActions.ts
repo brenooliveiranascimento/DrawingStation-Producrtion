@@ -5,7 +5,7 @@ import { apiConnection } from '../../../services/api.connection';
 import { globalTypes } from '../../../utils/globalTypes';
 import { AutenticationFailure, AutenticationSuccess, initAutentication, Sigout } from './autenticationGenericActions';
 import { toast } from 'react-toastify';
-import nookies from 'nookies';
+import nookies, { destroyCookie } from 'nookies';
 
 export const siginUser = (userCredentials: UserCredentials, redirect: any, path: string): any => {
   return  async (dispatch: Dispatch<any>) => {
@@ -32,7 +32,7 @@ export const siginUser = (userCredentials: UserCredentials, redirect: any, path:
         console.log(e);
         toast.error(`${e.response.data.message}`);
       } else {
-        console.log('Server Connectionn error');
+        console.log(e);
         toast.error('Server Connectionn error');
       }
       dispatch(AutenticationFailure());
@@ -57,6 +57,7 @@ export const registerUser = (userCredentials: registerUserCredentials, redirect:
         maxAge: 30 * 24 * 60 * 60,
         path: '/',
       });
+      destroyCookie(null, globalTypes.DRAWING_VERIFICATION_TOKEN);
       dispatch(AutenticationSuccess(userData));
       redirect(path);
       toast.success(`Seja bem vindo ${name}`);
@@ -65,7 +66,7 @@ export const registerUser = (userCredentials: registerUserCredentials, redirect:
         console.log(e);
         toast.error(`${e.response.data.message}`);
       } else {
-        console.log('Server Connectionn error');
+        console.log(e);
         toast.error('Server Connectionn error');
       }
       dispatch(AutenticationFailure());
@@ -91,7 +92,7 @@ export const loginWithGoogle = (userCredentials: any, redirect: any, path: strin
         console.log(e.response.data);
         toast.error(`${e.response.data.message}`);
       } else {
-        console.log('Server Connectionn error');
+        console.log(e);
         toast.error('Server Connectionn error');
       }
       dispatch(AutenticationFailure());
@@ -119,7 +120,7 @@ export const validateUser = (redirect: any): any => {
         console.log(e.response.data);
         toast.error(`${e.response.data.message}`);
       } else {
-        console.log('Server Connectionn error');
+        console.log(e);
         toast.error('Server Connectionn error');
       }
       dispatch(logout(redirect));
