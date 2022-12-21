@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { globalState } from '../../../../interfaces/modules/globalStateInterface';
-import { ModulesInterface } from '../../../../interfaces/modules/ModulesInterface';
+import { globalState } from '../../../interfaces/modules/globalStateInterface';
+import { ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
 import ModuleCard from '../ModuleCard/ModuleCard';
 import styles from './styles.module.scss';
 
