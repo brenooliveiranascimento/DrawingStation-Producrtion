@@ -1,13 +1,22 @@
 import { parseCookies } from 'nookies';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles.module.scss';
-import logo from '../../../../../public/Logoteste3.png';
 import { globalState } from '../../interfaces/modules/globalStateInterface';
 import { apiConnection } from '../../services/api.connection';
 import { getStripeJs } from '../../services/stripe-js';
+import { canSSRAuth } from '../../utils/canSSRAuth';
+import { serverSideSetupUser } from '../../services/setupUser';
+import { UserInterface } from '../../interfaces/UserInterfaces';
+import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
+import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
+import UserHeader from '../../Components/ui/HomePage/Header/UserHeader';
 
-export default function Subscription() {
+interface ISubscriptionProps {
+  userData: UserInterface,
+}
+
+export default function Subscription({ userData }: ISubscriptionProps) {
   const cookies = parseCookies();
 
   const { id, stripeClientId, premium } = useSelector(({ user }: globalState) => user.userData);
@@ -16,6 +25,14 @@ export default function Subscription() {
     mensal: '/subscription/mensal',
     anual: 'subscription/anual'
   };
+
+  const plans = [
+    { type: '/subscription/mensal', valor: '34,00/Mês', description: 'Assinatura mensal' },
+    { type: '/subscription/anual', valor: '367,00/Ano 15% de desconto', description: 'Assinatura Anual!' },
+    { type: null, valor: 'Portal do assinante', description: 'Atualize/Cancele seus planos' }
+  ];
+
+  const dispatch = useDispatch();
 
   const initCheckout = async (subscription: string) => {
     try {
@@ -44,45 +61,55 @@ export default function Subscription() {
     }
   };
 
+  const initScreen = () => {
+    dispatch(AutenticationSuccess(userData));
+  };
+
+  useEffect(() => {
+    initScreen();
+  }, []);
+
   return (
-    <section className={styles.subscription_continer}>
-      <section>
-        <article>
-          <h1>34,00/Mês</h1>
-          <span>Assinatura mensal</span>
-        </article>
-        <button 
-          disabled={premium}
-          style={{
-            backgroundColor: premium ? 'green' : 'white'
-          }}
-          onClick={() => !premium && initCheckout(signaturesPlans.mensal)}>
-          { premium ? 'Premium ativo!!!' : 'Assianr plano mensal' }
-        </button>
-      </section>
-      <section>
-        <article>
-          <h1>367,00/Ano 15% de desconto</h1>
-          <span>Assinatura Anual!</span>
-        </article>
-        <button
-          disabled={premium}
-          style={{
-            backgroundColor: premium ? 'green' : 'white',
-          }}
-          onClick={() => !premium && initCheckout(signaturesPlans.anual)}>
-          { premium ? 'Premium ativo!!!' : 'Assianr plano anual' }
-        </button>
-      </section>
-      <section>
-        <article>
-          <h1>Portal do assinante</h1>
-          <span>Atualize/Cancele seus planos</span>
-        </article>
-        <button disabled={!premium} onClick={accessPortal}>
-          Acessar portal do assinante
-        </button>
+    <section className={styles.dashboard_container}>
+      <CurrSideBar />
+      <section className={styles.main_container}>
+        <UserHeader/>
+        <main className={styles.main}>
+          {
+            plans.map((currPlan: any, index: number) => {
+              return (
+                <section key={index}>
+                  <article>
+                    <h1>34,00/Mês</h1>
+                    <span>Assinatura mensal</span>
+                  </article>
+                  <button 
+                    disabled={premium}
+                    style={{
+                      backgroundColor: premium ? 'green' : 'white'
+                    }}
+                    onClick={() => !premium && initCheckout(signaturesPlans.mensal)}>
+                    { premium ? 'Premium ativo!!!' : 'Assianr plano mensal' }
+                  </button>
+                </section>
+              );
+            })
+          }
+        </main>
       </section>
     </section>
   );
 }
+
+export const getServerSideProps = canSSRAuth(async (ctx) => {
+  const userConncetion = serverSideSetupUser(ctx);
+
+  const { data } = await userConncetion.post('/auth/me');
+  const { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
+  return {
+    props: {
+      userData: { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId },
+    }
+  };
+
+});

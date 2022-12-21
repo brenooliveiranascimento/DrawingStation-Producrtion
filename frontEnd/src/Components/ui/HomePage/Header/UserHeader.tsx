@@ -7,12 +7,14 @@ import profileDefault from '../../../../../public/profilePhoto.png';
 import { handleScreen } from '../../../../redux/actions/genericActions';
 import { parseCookies } from 'nookies';
 import { apiConnection } from '../../../../services/api.connection';
+import Router from 'next/router';
 
 export default function UserHeader() {
   const { userData } = useSelector((state: globalState) => state.user);
   const { name, premium, profilePhoto, stripeClientId } = userData;
   const dispatch = useDispatch();
   const changeScreen = (screen: string) => {
+    Router.push(screen);
     dispatch(handleScreen(screen));
   };
   const cookies = parseCookies();
