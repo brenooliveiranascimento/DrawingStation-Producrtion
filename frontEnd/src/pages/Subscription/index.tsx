@@ -12,6 +12,7 @@ import { AutenticationSuccess } from '../../redux/actions/autenticationActions/a
 import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
 import UserHeader from '../../Components/ui/HomePage/Header/UserHeader';
 import { ISubscription } from '../../interfaces/ISubscription';
+import { plans } from '../../utils/subscriptionsData';
 
 interface ISubscriptionProps {
   userData: UserInterface,
@@ -26,12 +27,6 @@ export default function Subscription({ userData }: ISubscriptionProps) {
     mensal: '/subscription/mensal',
     anual: 'subscription/anual'
   };
-
-  const plans = [
-    { type: '/subscription/mensal', value: '34,00/Mês', description: 'Assinatura mensal' },
-    { type: '/subscription/anual', value: '367,00/Ano 15% de desconto', description: 'Assinatura Anual!' },
-    { type: null, value: 'Portal do assinante', description: 'Atualize/Cancele seus planos' }
-  ];
 
   const dispatch = useDispatch();
 
