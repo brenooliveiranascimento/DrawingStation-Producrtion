@@ -56,7 +56,6 @@ export default function LoginForm() {
       toast.success(`Código de verificação enviado enviado para ${credentials.email}`);
       setCodeMode(true);
     } catch(e: any) {
-      console.log(e);
       toast.error(e.message);
     }
   };

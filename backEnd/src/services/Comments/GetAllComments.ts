@@ -30,7 +30,7 @@ export default class GetAllCommentsServices {
 
   private async requestUser(id: number) {
     const user = await Users.findByPk(Number(id), { attributes: {
-      exclude: ['password', 'birthday', 'phoneNumber', 'loginType']
+      exclude: ['password', 'birthday', 'phoneNumber', 'loginType', 'active', 'stripeClientId', 'recoverPasswordToken', 'recoverPasswordCode']
     }});
     return user;
   }
