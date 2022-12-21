@@ -26,12 +26,12 @@ export default class WebHooksController {
 
         break;
       case 'customer.subscription.updated':
-         const paymentIntent = event.data.object as Stripe.Subscription;
-         await saveSubscription(
-          paymentIntent.id,
-          paymentIntent.customer.toString(),
-          false
-         )
+        const paymentIntent = event.data.object as Stripe.Subscription;
+        await saveSubscription(
+        paymentIntent.id,
+        paymentIntent.customer.toString(),
+        false
+        )
 
       break;
       case 'checkout.session.completed':

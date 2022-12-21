@@ -1,10 +1,6 @@
 import { stripe } from "../../utils/stripe";
 import UserModel from "../../database/models/UserModel";
 
-interface IUserportalServerExecProp {
-  userId: number
-}
-
 export default class UserPortalService {
   async execute(userId: number) {
     const user = await UserModel.findByPk(userId);

@@ -1,5 +1,5 @@
 import CommentModel from "../../database/models/CommentModel";
-import { ICommentGenericReturn, ICommentUpdate } from "../../interfaces/commentsTypes";
+import { ICommentUpdate } from "../../interfaces/commentsTypes";
 import CustomError from "../../utils/StatusError";
 import CheckComment from "./CheckComment";
 
