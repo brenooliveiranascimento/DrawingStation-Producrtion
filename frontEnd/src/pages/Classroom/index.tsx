@@ -5,12 +5,12 @@ import { globalState } from '../../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../../interfaces/modules/ModulesInterface';
 import { serverSideSetupUser } from '../../services/setupUser';
 import { canSSRAuth } from '../../utils/canSSRAuth';
-import styles from 'styles.module.scss';
+import styles from './styles.module.scss';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import { requestClassroomAction } from '../../redux/actions/classroomActions/classroomActions';
-import { requestModulesAction } from '../../redux/actions/moduleActions/moduleActions';
 import { requestSubModulesAction } from '../../redux/actions/subModuleActions/subModuleActions';
+import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
 
 interface classroomPropTypes {
   userData: UserInterface,
@@ -35,14 +35,18 @@ export default function ClassroomsPage({ userData }: classroomPropTypes) {
   }, []);
 
   return (
-    <section>
-      <UserHeader/>
-      {
-        moduleData && moduleData.map((currModule: SubModuleInterface) => {
-          console.log(currModule);
-          return <h1 key={currModule.id}>{currModule.name}</h1>;
-        })
-      }
+
+    <section className={styles.dashboard_container}>
+      <CurrSideBar />
+      <section className={styles.main_container}>
+        <UserHeader/>
+        {
+          moduleData && moduleData.map((currModule: SubModuleInterface) => {
+            console.log(currModule);
+            return <h1 key={currModule.id}>{currModule.name}</h1>;
+          })
+        }
+      </section>
     </section>
   );
 }
