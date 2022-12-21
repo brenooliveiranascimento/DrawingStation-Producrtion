@@ -12,7 +12,7 @@ export default class GetAllCommentsServices {
       {
         include: [{ model: SubCommentModel, as: 'subComments' }],
         where: { active: true },
-        attributes: { exclude: ['classroomId', 'active', 'commentId'] }
+        attributes: { exclude: ['active'], include: ['id'] }
       });
     return comments
   }
@@ -30,17 +30,9 @@ export default class GetAllCommentsServices {
 
   private async requestUser(id: number) {
     const user = await Users.findByPk(Number(id), { attributes: {
-      exclude: ['password', 'birthday', 'phoneNumber', 'loginType']
+      exclude: ['password', 'birthday', 'phoneNumber', 'loginType', 'active', 'stripeClientId', 'recoverPasswordToken', 'recoverPasswordCode']
     }});
     return user;
-  }
-
-  private async AddUserDataInMainComment(comments: IallComments[]) {
-    const commentsWithUsers = await Promise.all(comments.map(async (currComment: IallComments) => {
-      const userData = await this.requestUser(Number(currComment.userId));
-      return { userData, ...currComment }
-  }));
-  return commentsWithUsers;
   }
 
   private async addUserDataInSubComment(comments: any) {
@@ -50,17 +42,26 @@ export default class GetAllCommentsServices {
         const userData = {
           name: getUserData?.name, email: getUserData?.email,
           profilePhoto: getUserData?.profilePhoto,active: getUserData?.active,
-          premium: getUserData?.premium
+          premium: getUserData?.premium,
+          id: getUserData?.id,
         };
         const { active, commentId, content, creationDate, id } = currSubComment;
         const currData = { active, commentId, content, creationDate, id };
         return { userData, ...currData };
       }))
-      const { active, classroomId, content, creationDate, userData } = currComment;
-      const currData = {userData, active, classroomId, content, creationDate};
+      const { active, classroomId, content, creationDate, userData, id } = currComment;
+      const currData = {userData, active, classroomId, content, creationDate, id};
       return { ...currData, subComments };
     }))
     return addUserInSubComment;
+  }
+
+  private async AddUserDataInMainComment(comments: IallComments[]) {
+    const commentsWithUsers = await Promise.all(comments.map(async (currComment: IallComments) => {
+      const userData = await this.requestUser(Number(currComment.userId));
+      return { userData, ...currComment }
+  }));
+  return commentsWithUsers;
   }
 
   private async addUserDataInComments(comments: IallComments[]): Promise<IallComments> {
