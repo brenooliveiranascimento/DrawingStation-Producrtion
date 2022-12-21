@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
-import ClassroomsPage from '../../Components/ui/HomePage/Classrooms';
-import UserHeader from '../../Components/ui/HomePage/Header/UserHeader';
+import UserHeader from '../../Components/ui/Header/UserHeader';
 import ModulesScreen from '../../Components/ui/HomePage/ModulesScreen/ModulesScreen';
 import Subscription from '../../Components/ui/HomePage/Subscription';
 import { globalState } from '../../interfaces/modules/globalStateInterface';
@@ -29,12 +28,6 @@ function HomePage({ userData }: DashboardPropTypes) {
     await dispatch(requestSubModulesAction());
     await dispatch(requestClassroomAction());
     await dispatch(requestModulesAction());
-  };
-
-  const ScreenController = () => {
-    if(currScreen === 'Modules') return ;
-    if(currScreen === 'Subscription') return <Subscription />;
-    return <ModulesScreen />;
   };
 
   useEffect(() => {

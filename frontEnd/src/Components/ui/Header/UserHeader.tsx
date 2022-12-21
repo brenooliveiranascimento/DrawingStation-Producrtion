@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import styles from './styles.module.scss';
-import profileDefault from '../../../../../public/profilePhoto.png';
-import { handleScreen } from '../../../../redux/actions/genericActions';
+import profileDefault from '../../../../public/profilePhoto.png';
 import { parseCookies } from 'nookies';
-import { apiConnection } from '../../../../services/api.connection';
 import Router from 'next/router';
+import { handleScreen } from '../../../redux/actions/genericActions';
+import { globalState } from '../../../interfaces/modules/globalStateInterface';
+import { apiConnection } from '../../../services/api.connection';
 
 export default function UserHeader() {
   const { userData } = useSelector((state: globalState) => state.user);

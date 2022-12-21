@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import UserHeader from '../../Components/ui/HomePage/Header/UserHeader';
 import { globalState } from '../../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../../interfaces/modules/ModulesInterface';
 import { serverSideSetupUser } from '../../services/setupUser';
@@ -11,6 +10,7 @@ import { AutenticationSuccess } from '../../redux/actions/autenticationActions/a
 import { requestClassroomAction } from '../../redux/actions/classroomActions/classroomActions';
 import { requestSubModulesAction } from '../../redux/actions/subModuleActions/subModuleActions';
 import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
+import UserHeader from '../../Components/ui/Header/UserHeader';
 
 interface classroomPropTypes {
   userData: UserInterface,

@@ -10,9 +10,9 @@ import { serverSideSetupUser } from '../../services/setupUser';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
-import UserHeader from '../../Components/ui/HomePage/Header/UserHeader';
 import { ISubscription } from '../../interfaces/ISubscription';
 import { plans } from '../../utils/subscriptionsData';
+import UserHeader from '../../Components/ui/Header/UserHeader';
 
 interface ISubscriptionProps {
   userData: UserInterface,
@@ -22,11 +22,6 @@ export default function Subscription({ userData }: ISubscriptionProps) {
   const cookies = parseCookies();
 
   const { id, stripeClientId, premium } = useSelector(({ user }: globalState) => user.userData);
-
-  const signaturesPlans = {
-    mensal: '/subscription/mensal',
-    anual: 'subscription/anual'
-  };
 
   const dispatch = useDispatch();
 
