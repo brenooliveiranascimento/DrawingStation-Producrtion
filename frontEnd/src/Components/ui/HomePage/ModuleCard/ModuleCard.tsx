@@ -15,8 +15,9 @@ interface IModuleCard {
 export default function ModuleCard({ moduleCard }: IModuleCard) {
   const dispatch = useDispatch();
   const redirect = () => {
+    Router.push('Classroom');
     dispatch(setCurrSubmodule(Number(moduleCard.id)));
-    dispatch(handleScreen('Classrooms'));
+    dispatch(handleScreen('Classroom'));
   };
   const { image, name } = moduleCard;
   return (

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
+import { requestClassroomAction } from '../../../../redux/actions/classroomActions/classroomActions';
+import { requestSubModulesAction } from '../../../../redux/actions/subModuleActions/subModuleActions';
 import { serverSideSetupUser } from '../../../../services/setupUser';
 import { canSSRAuth } from '../../../../utils/canSSRAuth';
 
