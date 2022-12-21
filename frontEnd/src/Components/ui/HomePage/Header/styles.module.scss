@@ -36,6 +36,15 @@
       margin-top: -0.5rem;
     }
   }
+
+  @media screen and (max-width: 660px) {
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    margin-top: 5rem;
+    padding-bottom: 1rem;
+  }
 }
 
 .premium_area {
