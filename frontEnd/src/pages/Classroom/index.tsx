@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import UserHeader from '../../Components/ui/HomePage/Header/UserHeader';
 import { globalState } from '../../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../../interfaces/modules/ModulesInterface';
 import { serverSideSetupUser } from '../../services/setupUser';
@@ -11,12 +10,15 @@ import { AutenticationSuccess } from '../../redux/actions/autenticationActions/a
 import { requestClassroomAction } from '../../redux/actions/classroomActions/classroomActions';
 import { requestSubModulesAction } from '../../redux/actions/subModuleActions/subModuleActions';
 import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
+import UserHeader from '../../Components/ui/Header/UserHeader';
 
 interface classroomPropTypes {
   userData: UserInterface,
 }
 export default function ClassroomsPage({ userData }: classroomPropTypes) {
-  const { subModules, currSubModule } = useSelector(({ subModules }: globalState) => subModules);
+  const { subModules } = useSelector(({ subModules }: globalState) => subModules);
+  const { currModule } = useSelector(({ modules }: globalState) => modules);
+  
   const [moduleData, setModuleData] = useState([]);
 
   const dispatch = useDispatch();
@@ -26,7 +28,7 @@ export default function ClassroomsPage({ userData }: classroomPropTypes) {
     await dispatch(requestSubModulesAction());
     await dispatch(requestClassroomAction());
     const currSubModules = subModules.filter((currSubModuleInt: SubModuleInterface) =>
-      currSubModuleInt.moduleId === Number(currSubModule));
+      currSubModuleInt.moduleId === Number(currModule));
     setModuleData(currSubModules);
   };
 

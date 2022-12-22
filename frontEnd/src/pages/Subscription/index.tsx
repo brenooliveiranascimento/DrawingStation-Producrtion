@@ -10,8 +10,10 @@ import { serverSideSetupUser } from '../../services/setupUser';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
-import UserHeader from '../../Components/ui/HomePage/Header/UserHeader';
 import { ISubscription } from '../../interfaces/ISubscription';
+import { plans } from '../../utils/subscriptionsData';
+import UserHeader from '../../Components/ui/Header/UserHeader';
+import { toast } from 'react-toastify';
 
 interface ISubscriptionProps {
   userData: UserInterface,
@@ -21,17 +23,6 @@ export default function Subscription({ userData }: ISubscriptionProps) {
   const cookies = parseCookies();
 
   const { id, stripeClientId, premium } = useSelector(({ user }: globalState) => user.userData);
-
-  const signaturesPlans = {
-    mensal: '/subscription/mensal',
-    anual: 'subscription/anual'
-  };
-
-  const plans = [
-    { type: '/subscription/mensal', value: '34,00/Mês', description: 'Assinatura mensal' },
-    { type: '/subscription/anual', value: '367,00/Ano 15% de desconto', description: 'Assinatura Anual!' },
-    { type: null, value: 'Portal do assinante', description: 'Atualize/Cancele seus planos' }
-  ];
 
   const dispatch = useDispatch();
 
@@ -58,6 +49,7 @@ export default function Subscription({ userData }: ISubscriptionProps) {
         null, { headers: { 'Authorization': token } });
       window.location.href = data.portalUrl;
     } catch(e: any) {
+      toast.error('Erro ao acessr o portal do asinante, por favor tente mais tarde ou entre em contato');
       console.log(e.message);
     }
   };
@@ -96,7 +88,7 @@ export default function Subscription({ userData }: ISubscriptionProps) {
                       backgroundColor: !currPlan.type ? 'white' : (premium ? 'green' : 'white')
                     }}
                     onClick={() => initChecckout(currPlan.type)}>
-                    { !currPlan.type ? 'Acessar Portaç do assinante' : premium ? 'Premium ativo!!!' : 'Assianr plano mensal' }
+                    { !currPlan.type ? 'Acessar Portal do assinante' : premium ? 'Premium ativo!!!' : 'Assianr plano mensal' }
                   </button>
                 </section>
               );

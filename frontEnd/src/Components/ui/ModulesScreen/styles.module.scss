@@ -1,3 +1,13 @@
+.module_container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: 595px) {
+    align-items: center;
+    justify-content: center;
+  }
+}
 .module_card_container {
   display: flex;
   width: auto;
