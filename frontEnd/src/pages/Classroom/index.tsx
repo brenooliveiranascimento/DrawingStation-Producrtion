@@ -16,7 +16,9 @@ interface classroomPropTypes {
   userData: UserInterface,
 }
 export default function ClassroomsPage({ userData }: classroomPropTypes) {
-  const { subModules, currSubModule } = useSelector(({ subModules }: globalState) => subModules);
+  const { subModules } = useSelector(({ subModules }: globalState) => subModules);
+  const { currModule } = useSelector(({ modules }: globalState) => modules);
+  
   const [moduleData, setModuleData] = useState([]);
 
   const dispatch = useDispatch();
@@ -26,7 +28,7 @@ export default function ClassroomsPage({ userData }: classroomPropTypes) {
     await dispatch(requestSubModulesAction());
     await dispatch(requestClassroomAction());
     const currSubModules = subModules.filter((currSubModuleInt: SubModuleInterface) =>
-      currSubModuleInt.moduleId === Number(currSubModule));
+      currSubModuleInt.moduleId === Number(currModule));
     setModuleData(currSubModules);
   };
 
