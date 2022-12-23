@@ -11,25 +11,18 @@ import { requestClassroomAction } from '../../redux/actions/classroomActions/cla
 import { requestSubModulesAction } from '../../redux/actions/subModuleActions/subModuleActions';
 import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
 import UserHeader from '../../Components/ui/Header/UserHeader';
+import PlayerContainer from '../../Components/ui/Player/PlayerContainer';
 
 interface classroomPropTypes {
   userData: UserInterface,
 }
 export default function ClassroomsPage({ userData }: classroomPropTypes) {
-  const { subModules } = useSelector(({ subModules }: globalState) => subModules);
-  const { currModule } = useSelector(({ modules }: globalState) => modules);
-  
-  const [moduleData, setModuleData] = useState([]);
-
   const dispatch = useDispatch();
 
   const initData = async () => {
     await dispatch(AutenticationSuccess(userData));
     await dispatch(requestSubModulesAction());
     await dispatch(requestClassroomAction());
-    const currSubModules = subModules.filter((currSubModuleInt: SubModuleInterface) =>
-      currSubModuleInt.moduleId === Number(currModule));
-    setModuleData(currSubModules);
   };
 
   useEffect(() => {
@@ -41,12 +34,9 @@ export default function ClassroomsPage({ userData }: classroomPropTypes) {
       <CurrSideBar />
       <section className={styles.main_container}>
         <UserHeader/>
-        {
-          moduleData && moduleData.map((currModule: SubModuleInterface) => {
-            console.log(currModule);
-            return <h1 key={currModule.id}>{currModule.name}</h1>;
-          })
-        }
+        <section className={styles.player_content}>
+          <PlayerContainer/>
+        </section>
       </section>
     </section>
   );

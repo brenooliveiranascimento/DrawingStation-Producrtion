@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './styles.module.scss';
 
 export default function Player() {
   return (
-    <section>
+    <section className={styles.player}>
       <iframe
         className="Video"
         src={'https://www.youtube.com/embed/'}
