@@ -1,10 +1,7 @@
-import { parseCookies } from 'nookies';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles.module.scss';
 import { globalState } from '../../interfaces/modules/globalStateInterface';
-import { apiConnection } from '../../services/api.connection';
-import { getStripeJs } from '../../services/stripe-js';
 import { canSSRAuth } from '../../utils/canSSRAuth';
 import { serverSideSetupUser } from '../../services/setupUser';
 import { UserInterface } from '../../interfaces/UserInterfaces';
@@ -13,7 +10,6 @@ import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
 import { ISubscription } from '../../interfaces/ISubscription';
 import { plans } from '../../utils/subscriptionsData';
 import UserHeader from '../../Components/ui/Header/UserHeader';
-import { toast } from 'react-toastify';
 import { accessPortal, initCheckout } from '../../services/Subscription';
 
 interface ISubscriptionProps {
