@@ -18,14 +18,24 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
   const { subModules } =useSelector(({subModules}: globalState) => subModules);
 
   const getFirstSubModule = () => {
-    console.log(subModules);
     const first = subModules.find((currSubModule: SubModuleInterface) => currSubModule.moduleId === moduleCard.id);
+    console.log(subModules);
+    if(!first) return {id: 'no-content', classrooms: [{id: 'no-content'}]}; 
     return first;
   };
 
   const redirect = () => {
-    Router.push(`Classroom/${moduleCard.id}/${getFirstSubModule().id}/${getFirstSubModule().classrooms[getFirstSubModule().classrooms.length -1].id}`);
+    const subMIdInStorage = localStorage.getItem('DRAWINGSTATION_LAST_SUB_MODUlE');
+    const classInStorage = localStorage.getItem('DRAWINGSTATION_LAST_CLASSROOM');
+    if(classInStorage && subMIdInStorage) {
+      Router.push(`Classroom/${moduleCard.id}/${subMIdInStorage}/${classInStorage}`);
+    } else {
+      const lastSubModuleId = getFirstSubModule().id || 1;
+      const lastClassId =getFirstSubModule().classrooms[getFirstSubModule().classrooms.length -1].id;
+      Router.push(`Classroom/${moduleCard.id}/${lastSubModuleId}/${lastClassId}`);
+    }
     
+
     dispatch(setCurrModule(Number(moduleCard.id)));
     dispatch(setCurrSubmodule(Number(moduleCard.id)));
     dispatch(handleScreen('Classroom'));
