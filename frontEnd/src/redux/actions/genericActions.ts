@@ -1,4 +1,4 @@
-import { AuthTypes, SubModulesTypes } from '../Types/AuthTypes';
+import { AuthTypes, ClassroomsTypes, SubModulesTypes } from '../Types/AuthTypes';
 
 export const genericRequestControl = (actionType: string) => ({
   type: actionType,
@@ -17,6 +17,11 @@ export const setCurrSubmodule = (subModuleId: number) => ({
 export const setCurrModule = (moduleId: number) => ({
   type: SubModulesTypes.SELECT_MODULE,
   payload: moduleId,
+});
+
+export const setCurrClass = (classroom: number) => ({
+  type: ClassroomsTypes.SELECT_CLASSROOMS,
+  payload: classroom,
 });
 
 

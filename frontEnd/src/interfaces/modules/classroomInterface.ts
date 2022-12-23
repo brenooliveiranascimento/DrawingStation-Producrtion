@@ -12,7 +12,7 @@ export interface IColorsOne {
 }
 
 export interface ClassroomDataInterface {
-  id?: number;
+  id: number;
   video: string;
   drawing: string;
   image: string;

@@ -5,13 +5,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ClassroomInterface } from '../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
+import { setCurrClass } from '../../../redux/actions/genericActions';
 import styles from './styles.module.scss';
 
 export default function PlayerSideBar() {
   const { subModules } = useSelector(({ subModules }: globalState) => subModules);
 
+  const dispatch = useDispatch();
+
   const redirect = (classId: number): void => {
     Router.push(`/Classroom/${Router.query.moduleId}/${Router.query.subModuleId}/${classId}`);
+    dispatch(setCurrClass(classId));
   };
 
   const selectSubModule = (id: number) => {
