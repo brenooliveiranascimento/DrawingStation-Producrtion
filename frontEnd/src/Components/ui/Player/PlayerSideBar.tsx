@@ -15,10 +15,12 @@ export default function PlayerSideBar() {
 
   const redirect = (classId: number): void => {
     Router.push(`/Classroom/${Router.query.moduleId}/${Router.query.subModuleId}/${classId}`);
+    localStorage.setItem('DRAWINGSTATION_LAST_CLASS', JSON.stringify(classId));
     dispatch(setCurrClass(classId));
   };
 
   const selectSubModule = (id: number) => {
+    localStorage.setItem('DRAWINGSTATION_LAST_SUB_MODUlE', JSON.stringify(id));
     if(Number(Router.query.subModuleId) === id) {
       return Router.push(`/Classroom/${Router.query.moduleId}/close/${Router.query.classId}`);
     }

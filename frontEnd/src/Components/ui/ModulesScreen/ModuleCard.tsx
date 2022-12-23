@@ -25,6 +25,7 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
   };
 
   const redirect = () => {
+    localStorage.setItem('DRAWINGSTATION_LAST_MODUlE', JSON.stringify(moduleCard.id));
     const subMIdInStorage = localStorage.getItem('DRAWINGSTATION_LAST_SUB_MODUlE');
     const classInStorage = localStorage.getItem('DRAWINGSTATION_LAST_CLASSROOM');
     if(classInStorage && subMIdInStorage) {
