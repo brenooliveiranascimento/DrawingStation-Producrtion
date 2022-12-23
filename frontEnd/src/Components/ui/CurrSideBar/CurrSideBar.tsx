@@ -18,7 +18,7 @@ export default function CurrSideBar() {
 
   return (
     <aside className={styles.side_bar_container}>
-      <button onClick={() => changeScreen('HomePage')}>
+      <button onClick={() => changeScreen('/')}>
         <FiHome size={35} color={currScreen === 'HomePage' || !currScreen ? '#5c5c5c' : 'white'}/>
       </button>
       <button onClick={() => changeScreen('Classroom')}>

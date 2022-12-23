@@ -16,7 +16,7 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
   const dispatch = useDispatch();
   
   const redirect = () => {
-    Router.push('Classroom');
+    Router.push(`Classroom/${moduleCard.id}`);
     dispatch(setCurrModule(Number(moduleCard.id)));
     dispatch(handleScreen('Classroom'));
   };

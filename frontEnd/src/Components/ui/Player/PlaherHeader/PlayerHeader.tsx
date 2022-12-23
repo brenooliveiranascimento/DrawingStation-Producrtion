@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 export default function PlayerHeader() {
   return (
     <header className={styles.header_container}>
-      Header
+      <h1>a</h1>
     </header>
   );
 }

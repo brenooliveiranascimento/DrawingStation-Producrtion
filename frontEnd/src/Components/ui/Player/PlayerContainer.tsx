@@ -1,6 +1,6 @@
 import React from 'react';
 import Player from './player';
-import PlayerHeader from './PlayerHeader';
+import PlayerHeader from './PlaherHeader/PlayerHeader';
 import PlayerSideBar from './PlayerSideBar';
 import styles from './styles.module.scss';
 
