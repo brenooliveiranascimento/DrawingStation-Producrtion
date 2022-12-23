@@ -19,7 +19,7 @@ export default function PlayerSideBar() {
     initData();
   }, []);
   return (
-    <aside>
+    <aside className={styles.side_container}>
       {
         moduleData && moduleData.map((currModule: SubModuleInterface) => {
           console.log(currModule);
