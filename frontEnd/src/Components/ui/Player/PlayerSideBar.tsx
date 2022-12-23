@@ -10,6 +10,7 @@ import styles from './styles.module.scss';
 export default function PlayerSideBar() {
   const { subModules, currSubModule } = useSelector(({ subModules }: globalState) => subModules);
   const { currModule, modules } = useSelector(({ modules }: globalState) => modules);
+  const [currClassroom, setCurrClasstoom] = useState(1);
   const dispatch = useDispatch();  
   const [moduleData, setModuleData] = useState([]);
 
@@ -25,6 +26,7 @@ export default function PlayerSideBar() {
   useEffect(() => {
     initData();
   }, [subModules]);
+  
   return (
     <aside className={styles.side_container}>
       {
@@ -32,16 +34,16 @@ export default function PlayerSideBar() {
           console.log(currModule);
           return (
             <section key={currModule.id}>
-              <article>
+              <button>
                 {currModule.name}
-                <section>
-                  {
-                    currModule.classrooms.map((currClassroom: ClassroomInterface) => {
-                      return <h1 key={currClassroom.id}>{currClassroom.name}</h1>;
-                    })
-                  }
-                </section>
-              </article>
+              </button>
+              {currClassroom === currModule.id && <section>
+                {
+                  currModule.classrooms.map((currClassroom: ClassroomInterface) => {
+                    return <h1 key={currClassroom.id}>{currClassroom.name}</h1>;
+                  })
+                }
+              </section>}
             </section>
           );
         })
