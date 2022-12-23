@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { globalState } from '../../interfaces/modules/globalStateInterface';
-import { SubModuleInterface } from '../../interfaces/modules/ModulesInterface';
-import { serverSideSetupUser } from '../../services/setupUser';
-import { canSSRAuth } from '../../utils/canSSRAuth';
-import styles from './styles.module.scss';
-import { UserInterface } from '../../interfaces/UserInterfaces';
-import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
-import { requestClassroomAction } from '../../redux/actions/classroomActions/classroomActions';
-import { requestSubModulesAction } from '../../redux/actions/subModuleActions/subModuleActions';
-import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
-import UserHeader from '../../Components/ui/Header/UserHeader';
-import PlayerContainer from '../../Components/ui/Player/PlayerContainer';
+import { serverSideSetupUser } from '../../../../services/setupUser';
+import { canSSRAuth } from '../../../../utils/canSSRAuth';
+import styles from '../../styles.module.scss';
+import { UserInterface } from '../../../../interfaces/UserInterfaces';
+import { AutenticationSuccess } from '../../../../redux/actions/autenticationActions/autenticationGenericActions';
+import { requestClassroomAction } from '../../../../redux/actions/classroomActions/classroomActions';
+import { requestSubModulesAction } from '../../../../redux/actions/subModuleActions/subModuleActions';
+import CurrSideBar from '../../../../Components/ui/CurrSideBar/CurrSideBar';
+import UserHeader from '../../../../Components/ui/Header/UserHeader';
+import PlayerContainer from '../../../../Components/ui/Player/PlayerContainer';
 
 interface classroomPropTypes {
   userData: UserInterface,

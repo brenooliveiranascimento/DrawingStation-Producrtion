@@ -1,9 +1,9 @@
 export interface ClassroomInterface {
-  id?: number;
+  id: number;
   name: string;
   image: string;
   conclude: boolean,
-  subModuleId?: number;
+  subModuleId: number;
   premium: boolean
 }
 
@@ -33,6 +33,7 @@ export interface ClassroomStateInterface {
   error: boolean;
   load: boolean;
   classroomsData: ClassroomDataInterface[],
+  currClassroom: number,
 }
 
 export interface ActionStateInterface {
