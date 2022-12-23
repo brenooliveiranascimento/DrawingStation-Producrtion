@@ -8,26 +8,18 @@ import { SubModuleInterface } from '../../../interfaces/modules/ModulesInterface
 import styles from './styles.module.scss';
 
 export default function PlayerSideBar() {
-  const { subModules, currSubModule } = useSelector(({ subModules }: globalState) => subModules);
-  const [currClassroom, setCurrClasstoom] = useState(1);
-  const dispatch = useDispatch();  
-  const [moduleData, setModuleData] = useState<any>([]);
+  const { subModules } = useSelector(({ subModules }: globalState) => subModules);
 
-  const redirect = (className: string): void => {
-    Router.push(`/Classroom/${Router.query.moduleId}/${className}`);
+  const redirect = (classId: number): void => {
+    Router.push(`/Classroom/${Router.query.moduleId}/${Router.query.subModuleId}/${classId}`);
   };
 
-  const initData = async () => {
-    const { moduleId } = Router.query;
-
-    const currSubModules = subModules.filter((currSubModuleInt: SubModuleInterface) =>
-      currSubModuleInt.moduleId === Number(moduleId));
-    setModuleData(currSubModules);
+  const selectSubModule = (id: number) => {
+    if(Number(Router.query.subModuleId) === id) {
+      return Router.push(`/Classroom/${Router.query.moduleId}/close/${Router.query.classId}`);
+    }
+    Router.push(`/Classroom/${Router.query.moduleId}/${id}/${Router.query.classId}`);
   };
-
-  useEffect(() => {
-    initData();
-  }, [subModules]);
 
   return ( 
     <aside className={styles.side_container}>
@@ -37,13 +29,13 @@ export default function PlayerSideBar() {
           .map((currModule: SubModuleInterface) => {
             return (
               <section key={currModule.id}>
-                <button>
+                <button onClick={() => selectSubModule(currModule.id)}>
                   {currModule.name}
                 </button>
-                {currSubModule === currModule.id && <section>
+                {Number(Router.query.subModuleId) === currModule.id && <section>
                   {
                     currModule.classrooms.map((currClassroom: ClassroomInterface) => {
-                      return <button onClick={() => redirect(currClassroom.name)} key={currClassroom.id}>{currClassroom.id}</button>;
+                      return <button onClick={() => redirect(currClassroom.id)} key={currClassroom.id}>{currClassroom.id}</button>;
                     })
                   }
                 </section>}

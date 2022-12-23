@@ -9,7 +9,7 @@ export interface ModulesInterface {
 }
 
 export interface SubModuleInterface {
-  id?: number;
+  id: number;
   name:string;
   description: string;
   image: string;

@@ -30,14 +30,13 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
     if(classInStorage && subMIdInStorage) {
       Router.push(`Classroom/${moduleCard.id}/${subMIdInStorage}/${classInStorage}`);
     } else {
-      const lastSubModuleId = getFirstSubModule().id || 1;
+      const lastSubModuleId = getFirstSubModule().id;
+      dispatch(setCurrSubmodule(Number(lastSubModuleId)));
       const lastClassId =getFirstSubModule().classrooms[getFirstSubModule().classrooms.length -1].id;
       Router.push(`Classroom/${moduleCard.id}/${lastSubModuleId}/${lastClassId}`);
     }
     
-
     dispatch(setCurrModule(Number(moduleCard.id)));
-    dispatch(setCurrSubmodule(Number(moduleCard.id)));
     dispatch(handleScreen('Classroom'));
   };
 
