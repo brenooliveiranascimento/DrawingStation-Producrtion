@@ -1,4 +1,5 @@
 import { IClassroomController } from '../../../interfaces/modules/classroomControllerInterfaces';
+import { ClassroomControllerTypes } from '../../Types/AuthTypes';
 
 const CLASSROOM_CONTROLLER_DEFAULT_VALUE:IClassroomController = {
   subModule: {
@@ -29,6 +30,12 @@ const ACTION_DEFAULT_VALUE = {
 export function classroomController(
   state = CLASSROOM_CONTROLLER_DEFAULT_VALUE, action = ACTION_DEFAULT_VALUE) {
   switch(action.type) {
+  case ClassroomControllerTypes.SELECT_CLASSROOMS:
+    return { ...state, classroom: action.payload, loading: false };
+  case ClassroomControllerTypes.SELECT_MODULE:
+    return { ...state, module: action.payload, loading: false };
+  case ClassroomControllerTypes.SELECT_SUBMODULE:
+    return { ...state, subModule: action.payload, loading: false };
   default:
     return state;
   }
