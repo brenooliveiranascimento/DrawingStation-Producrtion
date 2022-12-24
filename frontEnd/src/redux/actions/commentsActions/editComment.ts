@@ -30,9 +30,7 @@ export const editSubCommentAction = (commentData: IEditComment): any => {
   return async (dispatch: Dispatch<any>) => {
     const { id, content, userId } = commentData;
     const cookies = parseCookies();
-
     const token = cookies['DRAWING_USER_DATA'];
-
     try {
       const { data } = await apiConnection.post(`/subComments/update/${id}`,
         { content, userId, },
