@@ -6,6 +6,7 @@ import { ClassroomDataInterface, ClassroomInterface, ICurrClassroomData } from '
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
 import { selectSubModuleAction } from '../../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
+import { selectCurrSubModule } from '../../../../redux/actions/classroomControllerActions/genericActions';
 import { setCurrClass, setCurrSubmodule } from '../../../../redux/actions/genericActions';
 import { localStorageKeys } from '../../../../redux/Types/localStorageTypes';
 import styles from './styles.module.scss';
@@ -26,6 +27,14 @@ export default function PlayerSideBar() {
     dispatch(selectSubModuleAction(JSON.parse(lastModule)));
   };
 
+  const selectSubModule = (currSubModuleData: {name: string, id: number}) => {
+    if(currSubModuleData.id === currSubModule.id) {
+      dispatch(selectCurrSubModule({name: '', id: 0}));
+      return;
+    }
+    dispatch(selectCurrSubModule(currSubModuleData));
+  };
+
   useEffect(() => {
     initLastModule();
   }, [classroomsData]);
@@ -44,7 +53,7 @@ export default function PlayerSideBar() {
       {
         subModules.map((currModule: SubModuleInterface) => {
           return (
-            <section key={currModule.id}>
+            <section onClick={() => selectSubModule({name: currModule.name, id: currModule.id})} key={currModule.id}>
               <button >
                 {currModule.name}
               </button>
