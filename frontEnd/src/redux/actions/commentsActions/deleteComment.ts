@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { ICommentsWithUserData, IDeleteComment, IEditComment } from '../../../interfaces/modules/commentsModuleInterfaces';
 import { apiConnection } from '../../../services/api.connection';
 import { CommentsTypes } from '../../Types/AuthTypes';
-import { genericCommentAciton, requestComments } from './genericAtions';
+import { genericCommentAciton } from './genericAtions';
 
 export const deleteCommentAction = (commentData: IDeleteComment, comentData: ICommentsWithUserData): any => {
   return async (dispatch: Dispatch<any>) => {

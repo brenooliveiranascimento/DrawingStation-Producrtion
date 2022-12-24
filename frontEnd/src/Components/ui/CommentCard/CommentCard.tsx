@@ -2,6 +2,7 @@ import React, { use, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IAllSubCommentsUserData, ICommentsWithUserData, IsubComments } from '../../../interfaces/modules/commentsModuleInterfaces';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
+import { deleteCommentAction } from '../../../redux/actions/commentsActions/deleteComment';
 import { editCommentAction } from '../../../redux/actions/commentsActions/editComment';
 import user from '../../../redux/modules/user/user';
 import NewSubComment from '../Comments/NewSubComment';
@@ -20,6 +21,10 @@ export default function CommentCard({comment}: commentCardProp) {
   const { userData } = useSelector(({ user }: globalState) => user);
 
   const dispatch = useDispatch();
+
+  const deleteComment = () => {
+    dispatch(deleteCommentAction({id: comment.id, userId: Number(userData.id)}, comment));
+  };
 
   const handleEdit = () => {
     if(!edit) {
@@ -43,6 +48,9 @@ export default function CommentCard({comment}: commentCardProp) {
         <button onClick={handleEdit}>
           { edit ? 'Salvar' : 'Editar' }
         </button>}
+        <button onClick={deleteComment}>
+          deletar
+        </button>
       </article>
       <NewSubComment commentData={comment}/>
       {
