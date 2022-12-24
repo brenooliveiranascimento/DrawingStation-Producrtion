@@ -5,3 +5,8 @@ export const requestComments = (comments: ICommentsWithUserData) => ({
   type: CommentsTypes.REQUEST_COMMENTS,
   payload: comments
 });
+
+export const genericCommentAciton = (type: string, payload: any) => ({
+  type,
+  payload
+});
