@@ -16,15 +16,19 @@ export const handleScreen = (screen: string) => ({
   payload: screen,
 });
 
+export const incompleteASubModule = () => ({
+  type: ClassroomControllerTypes.INCOMPLETE_SUBMODULE
+});
+
 export const setCurrModule = (moduleData: {
   module: {name: string, id: number},
-  subModules: SubModuleInterface,
+  subModules: SubModuleInterface[],
 }) => ({
   type: ClassroomControllerTypes.SELECT_MODULE,
   payload: moduleData,
 });
 
-export const setCurrSubmodule = (currSubModuleData: SubModuleInterface[]) => ({
+export const setCurrSubmodule = (currSubModuleData: {name: string, id: number}) => ({
   type: ClassroomControllerTypes.SELECT_SUBMODULE,
   payload: currSubModuleData,
 });

@@ -27,4 +27,5 @@ export interface IClassroomController {
   module: IModuleController;
   classroom: IClassController;
   loading: boolean;
+  incomplete: boolean
 }
