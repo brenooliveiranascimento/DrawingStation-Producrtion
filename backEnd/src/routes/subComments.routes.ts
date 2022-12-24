@@ -19,6 +19,6 @@ router.use(validateToken);
 
 router.post('/create', (req, res) => subCommentControlelr.create(req, res));
 router.post('/update/:id', (req, res) => subCommentControlelr.update(req, res));
-router.delete('/delete/:id', (req, res) => subCommentControlelr.delete(req, res));
+router.put('/delete/:id', (req, res) => subCommentControlelr.delete(req, res));
 
 export default router;

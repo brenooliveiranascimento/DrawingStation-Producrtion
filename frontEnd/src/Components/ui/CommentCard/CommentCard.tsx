@@ -48,9 +48,12 @@ export default function CommentCard({comment}: commentCardProp) {
         <button onClick={handleEdit}>
           { edit ? 'Salvar' : 'Editar' }
         </button>}
+        {
+          comment.userData.id === userData.id &&
         <button onClick={deleteComment}>
-          deletar
+                  deletar
         </button>
+        }
       </article>
       <NewSubComment commentData={comment}/>
       {
