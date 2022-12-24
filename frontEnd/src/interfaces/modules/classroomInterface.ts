@@ -29,11 +29,16 @@ export interface ReqClassroomInterface {
   classroomData: ClassroomDataInterface | any;
 }
 
+export interface ICurrClassroomData {
+  name: string;
+}
+
 export interface ClassroomStateInterface {
   error: boolean;
   load: boolean;
   classroomsData: ClassroomDataInterface[],
   currClassroom: number,
+  currClassroomData: ICurrClassroomData
 }
 
 export interface ActionStateInterface {

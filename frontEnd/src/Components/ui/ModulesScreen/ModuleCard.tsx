@@ -4,7 +4,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { ModulesInterface, SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
-import { handleScreen, setCurrModule, setCurrSubmodule } from '../../../redux/actions/genericActions';
+import { handleScreen, setCurrClass, setCurrModule, setCurrSubmodule } from '../../../redux/actions/genericActions';
 
 import styles from './styles.module.scss';
 
@@ -15,35 +15,7 @@ interface IModuleCard {
 export default function ModuleCard({ moduleCard }: IModuleCard) {
   const dispatch = useDispatch();
 
-  const { subModules } =useSelector(({subModules}: globalState) => subModules);
-
-  const getFirstSubModule = () => {
-    const first = subModules.find((currSubModule: SubModuleInterface) => currSubModule.moduleId === moduleCard.id);
-    console.log(subModules);
-    if(!first) return {id: 'no-content', classrooms: [{id: 'no-content'}]}; 
-    return first;
-  };
-
-  const redirect = () => {
-    localStorage.setItem('DRAWINGSTATION_LAST_MODUlE', JSON.stringify(moduleCard.id));
-    const subMIdInStorage = localStorage.getItem('DRAWINGSTATION_LAST_SUB_MODUlE');
-    const classInStorage = localStorage.getItem('DRAWINGSTATION_LAST_CLASSROOM');
-    if(classInStorage && subMIdInStorage) {
-      Router.push(`Classroom/${moduleCard.id}/${subMIdInStorage}/${classInStorage}`);
-    } else {
-      const lastSubModuleId = getFirstSubModule().id;
-      dispatch(setCurrSubmodule(Number(lastSubModuleId)));
-      const lastClassId =getFirstSubModule().classrooms[getFirstSubModule().classrooms.length -1].id;
-      Router.push(`Classroom/${moduleCard.id}/${lastSubModuleId}/${lastClassId}`);
-    }
-    
-    dispatch(setCurrModule(Number(moduleCard.id)));
-    dispatch(handleScreen('Classroom'));
-  };
-
   const { image, name } = moduleCard;
-
-
   return (
     <section className={styles.module_card_container}>
       <Image style={{borderTopLeftRadius: 6, borderTopRightRadius: 6, objectFit: 'cover'}}
@@ -51,7 +23,7 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
       <article>
         <h2>{name}</h2>
       </article>
-      <button type='button' onClick={redirect}>
+      <button type='button'>
         <span>
           Continuar assistindo
         </span>
