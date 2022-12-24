@@ -1,4 +1,5 @@
 import { InitialValueState } from '../UserInterfaces';
+import { IClassroomController } from './classroomControllerInterfaces';
 import { ClassroomStateInterface } from './classroomInterface';
 import { ModuleStateInterface, SubModuleStateInterface } from './ModulesInterface';
 
@@ -7,4 +8,5 @@ export interface globalState {
   modules: ModuleStateInterface
   subModules: SubModuleStateInterface;
   classroomsData: ClassroomStateInterface;
+  classroomController: IClassroomController
 }

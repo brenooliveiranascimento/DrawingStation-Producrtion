@@ -33,7 +33,7 @@ const CLASSROOM_CONTROLLER_DEFAULT_VALUE:IClassroomController = {
   loading: true
 };
 
-const ACTION_DEFAULT_VALUE = {
+const ACTION_DEFAULT_VALUE: any = {
   type: '',
   payload: undefined
 };
@@ -41,12 +41,12 @@ const ACTION_DEFAULT_VALUE = {
 export function classroomController(
   state = CLASSROOM_CONTROLLER_DEFAULT_VALUE, action = ACTION_DEFAULT_VALUE) {
   switch(action.type) {
+  case ClassroomControllerTypes.SELECT_MODULE:
+    return { ...state, subModules: action.payload.subModules, module: action.payload.module, loading: false };
+  case ClassroomControllerTypes.SELECT_SUBMODULE:
+    return { ...state, currSubModule: action.payload, loading: false };
   case ClassroomControllerTypes.SELECT_CLASSROOMS:
     return { ...state, classroom: action.payload, loading: false };
-  case ClassroomControllerTypes.SELECT_MODULE:
-    return { ...state, module: action.payload, loading: false };
-  case ClassroomControllerTypes.SELECT_SUBMODULE:
-    return { ...state, subModule: action.payload, loading: false };
   default:
     return state;
   }

@@ -7,17 +7,12 @@ import { SubModuleInterface } from '../../../../interfaces/modules/ModulesInterf
 import styles from './styles.module.scss';
 
 export default function PlayerHeader() {
-  const { currClassroom, classroomsData } = useSelector(({classroomsData}: globalState) => classroomsData);
-  const { subModules, currSubModule } = useSelector(({subModules}: globalState) => subModules);
-  const { currClassroomData } = useSelector(({classroomsData}: globalState) => classroomsData);
-  const [classroomData, setClassroomData] = useState<any>({});
+  const { classroom } = useSelector(({classroomController}: globalState) =>
+    classroomController);
 
-
-
- 
   return (
     <header className={styles.header_container}>
-      <h1>Tatakae</h1>
+      <h1>{classroom.name}</h1>
     </header>
   );
 }

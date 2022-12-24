@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Player from './player';
 import PlayerHeader from './PlaherHeader/PlayerHeader';
-import PlayerSideBar from './PlayerSideBar';
+import PlayerSideBar from './PlayerSideBar/PlayerSideBar';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/router';
 

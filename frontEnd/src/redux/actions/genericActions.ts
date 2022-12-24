@@ -16,9 +16,12 @@ export const handleScreen = (screen: string) => ({
   payload: screen,
 });
 
-export const setCurrModule = (moduleId: number) => ({
+export const setCurrModule = (moduleData: {
+  module: {name: string, id: number},
+  subModules: SubModuleInterface,
+}) => ({
   type: ClassroomControllerTypes.SELECT_MODULE,
-  payload: moduleId,
+  payload: moduleData,
 });
 
 export const setCurrSubmodule = (currSubModuleData: SubModuleInterface[]) => ({

@@ -4,6 +4,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { ModulesInterface, SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
+import { selectSubModuleAction } from '../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
 import { handleScreen, setCurrClass, setCurrModule, setCurrSubmodule } from '../../../redux/actions/genericActions';
 
 import styles from './styles.module.scss';
@@ -15,6 +16,11 @@ interface IModuleCard {
 export default function ModuleCard({ moduleCard }: IModuleCard) {
   const dispatch = useDispatch();
 
+  const selectModule = () => {
+    dispatch(selectSubModuleAction(moduleCard));
+    Router.push('/Classroom');
+  };
+
   const { image, name } = moduleCard;
   return (
     <section className={styles.module_card_container}>
@@ -23,7 +29,7 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
       <article>
         <h2>{name}</h2>
       </article>
-      <button type='button'>
+      <button onClick={selectModule} type='button'>
         <span>
           Continuar assistindo
         </span>
