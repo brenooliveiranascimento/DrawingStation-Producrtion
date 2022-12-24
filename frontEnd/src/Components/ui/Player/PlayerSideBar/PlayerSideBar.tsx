@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ClassroomDataInterface, ClassroomInterface, ICurrClassroomData } from '../../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
-import { selectSubModuleAction } from '../../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
+import { selectClassroomAction, selectSubModuleAction } from '../../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
 import { selectCurrSubModule } from '../../../../redux/actions/classroomControllerActions/genericActions';
 import { setCurrClass, setCurrSubmodule } from '../../../../redux/actions/genericActions';
 import { localStorageKeys } from '../../../../redux/Types/localStorageTypes';
@@ -35,6 +35,10 @@ export default function PlayerSideBar() {
     dispatch(selectCurrSubModule(currSubModuleData));
   };
 
+  const selectClass = (classInfos: ClassroomInterface) => {
+    dispatch(selectClassroomAction(classInfos));
+  };
+
   useEffect(() => {
     initLastModule();
   }, [classroomsData]);
@@ -53,14 +57,14 @@ export default function PlayerSideBar() {
       {
         subModules.map((currModule: SubModuleInterface) => {
           return (
-            <section onClick={() => selectSubModule({name: currModule.name, id: currModule.id})} key={currModule.id}>
-              <button >
+            <section key={currModule.id}>
+              <button onClick={() => selectSubModule({name: currModule.name, id: currModule.id})}>
                 {currModule.name}
               </button>
               {currSubModule.id === currModule.id && <section>
                 {
                   currModule.classrooms.map((currClassroom: ClassroomInterface) => {
-                    return <button key={currClassroom.id}>{currClassroom.id}</button>;
+                    return <button onClick={() => selectClass(currClassroom)} key={currClassroom.id}>{currClassroom.id}</button>;
                   })
                 }
               </section>}
