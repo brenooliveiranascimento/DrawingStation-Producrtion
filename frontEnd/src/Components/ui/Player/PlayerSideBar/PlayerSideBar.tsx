@@ -54,13 +54,20 @@ export default function PlayerSideBar() {
         subModules.map((currModule: SubModuleInterface) => {
           return (
             <section key={currModule.id}>
-              <button onClick={() => selectSubModule({name: currModule.name, id: currModule.id})}>
+              <button 
+                className={styles.submodule_btn}
+                onClick={() => selectSubModule({name: currModule.name, id: currModule.id})}
+              >
                 {currModule.name}
               </button>
               {currSubModule.id === currModule.id && <section>
                 {
                   currModule.classrooms.map((currClassroom: ClassroomInterface) => {
-                    return <button onClick={() => selectClass(currClassroom)} key={currClassroom.id}>{currClassroom.id}</button>;
+                    return <button
+                      className={styles.classroom_btn}
+                      onClick={() => selectClass(currClassroom)} key={currClassroom.id}>
+                      {currClassroom.name}
+                    </button>;
                   })
                 }
               </section>}

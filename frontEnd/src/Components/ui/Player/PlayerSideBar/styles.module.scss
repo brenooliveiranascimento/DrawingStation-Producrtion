@@ -3,6 +3,32 @@
   width: 30rem;
   height: 650px;
   overflow-y: scroll;
+
+  button {
+    width: 100%;
+    display: flex;
+  }
+
+}
+
+.submodule_btn {
+    color: white;
+    background-color: var(--dark-700);
+    height: 2rem;
+    align-items: center;
+    padding: 1rem;
+    border: none;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.classroom_btn {
+  background-color: var(--black-700);  
+  color: white;
+  border: none;
+  padding: 1rem;  
+  padding-left: 2rem;
+  border-bottom: 1px solid #3c334b;
 }
 
 .side_container::-webkit-scrollbar {
