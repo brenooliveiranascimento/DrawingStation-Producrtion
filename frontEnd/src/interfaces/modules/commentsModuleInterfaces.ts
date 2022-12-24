@@ -49,20 +49,25 @@ export interface IAllSubCommentsUserData extends IComments {
 }
 
 export interface INewComment {
-  content: string,
-  userId: number,
+  content: string;
+  userId: number;
   classroomId: number
 }
 
 export interface IEditComment {
-  content: string,
-  userId: number,
+  content: string;
+  userId: number;
   id: number
 }
 
+export interface IDeleteComment {
+  id: number;
+  userId: number;
+}
+
 export interface INewSubComment {
-  content: string,
-  userId: number,
+  content: string;
+  userId: number;
   commentId: number
 }
 
@@ -92,5 +97,5 @@ export interface IallComments extends IComments {
 export interface ISoterCommentsTypes {
   error: boolean;
   load: boolean;
-  comments: ICommentsWithUserData[],
+  comments: ICommentsWithUserData[];
 }
