@@ -2,9 +2,20 @@ import { IClassroomController } from '../../../interfaces/modules/classroomContr
 import { ClassroomControllerTypes } from '../../Types/AuthTypes';
 
 const CLASSROOM_CONTROLLER_DEFAULT_VALUE:IClassroomController = {
-  subModule: {
-    id: 0,
+  subModules: [
+    {
+      description: '',
+      id: 0,
+      image: '',
+      name: '',
+      premium: true,
+      classrooms: [],
+      moduleId: 0,
+    }
+  ],
+  currSubModule: {
     name: '',
+    id: 0,
   },
   module: {
     id: 0,

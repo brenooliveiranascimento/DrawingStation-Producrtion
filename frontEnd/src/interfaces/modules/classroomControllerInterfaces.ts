@@ -1,3 +1,5 @@
+import { SubModuleInterface } from './ModulesInterface';
+
 export interface IClassController {
   id: number;
   name: string;
@@ -20,7 +22,8 @@ export interface IModuleController {
 }
 
 export interface IClassroomController {
-  subModule: ISubmoduleController;
+  currSubModule: ISubmoduleController;
+  subModules: SubModuleInterface[];
   module: IModuleController;
   classroom: IClassController;
   loading: boolean;
