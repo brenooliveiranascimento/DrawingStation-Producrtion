@@ -60,6 +60,8 @@ export interface ICommentsWithUserData {
   userData: userData;
   content: string;
   creationDate: Date;
+  classroomId: number;
+  id: number;
   subComments: INewSubComments[];
 }
 

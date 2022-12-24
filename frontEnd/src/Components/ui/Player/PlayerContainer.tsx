@@ -18,7 +18,7 @@ export default function PlayerContainer() {
       <button onClick={() => setShowComments(!showComments)}>
         Mostrar comentários
       </button>
-      <Comments/>
+      { showComments && <Comments/> }
     </section>
   );
 }
