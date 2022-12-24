@@ -2,6 +2,7 @@ export interface IsubComments {
   id?: number;
   content: string;
   userId: string;
+  userData: userData;
   commentId: boolean;
   creationDate: Date;
   active: boolean
@@ -62,7 +63,7 @@ export interface ICommentsWithUserData {
   creationDate: Date;
   classroomId: number;
   id: number;
-  subComments: INewSubComments[];
+  subComments: IsubComments[];
 }
 
 
