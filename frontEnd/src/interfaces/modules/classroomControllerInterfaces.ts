@@ -1,23 +1,3 @@
-const CLASSROOM_CONTROLLER_DEFAULT_VALUE = {
-  subModule: {
-    id: undefined,
-    name: '',
-  },
-  module: {
-    id: undefined,
-    name: '',
-  },
-  classroom: {
-    id: undefined,
-    name: '',
-    premium: true,
-    video: '',
-    description: '',
-    colors: null,
-    image: '',
-  }
-};
-
 export interface IClassController {
   id: number;
   name: string;
@@ -43,4 +23,5 @@ export interface IClassroomController {
   subModule: ISubmoduleController;
   module: IModuleController;
   classroom: IClassController;
+  loading: boolean;
 }

@@ -1,21 +1,24 @@
-const CLASSROOM_CONTROLLER_DEFAULT_VALUE = {
+import { IClassroomController } from '../../../interfaces/modules/classroomControllerInterfaces';
+
+const CLASSROOM_CONTROLLER_DEFAULT_VALUE:IClassroomController = {
   subModule: {
-    id: undefined,
+    id: 0,
     name: '',
   },
   module: {
-    id: undefined,
+    id: 0,
     name: '',
   },
   classroom: {
-    id: undefined,
+    id: 0,
     name: '',
     premium: true,
     video: '',
     description: '',
     colors: null,
     image: '',
-  }
+  },
+  loading: true
 };
 
 const ACTION_DEFAULT_VALUE = {
