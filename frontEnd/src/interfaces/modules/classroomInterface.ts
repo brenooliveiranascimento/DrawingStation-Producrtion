@@ -38,7 +38,6 @@ export interface ClassroomStateInterface {
   load: boolean;
   classroomsData: ClassroomDataInterface[],
   currClassroom: number,
-  currClassroomData: ICurrClassroomData
 }
 
 export interface ActionStateInterface {

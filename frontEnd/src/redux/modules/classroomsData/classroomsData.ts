@@ -6,9 +6,6 @@ const INITIAL_STATE: ClassroomStateInterface = {
   load: false,
   classroomsData: [],
   currClassroom: 0,
-  currClassroomData: {
-    name: '',
-  }
 };
 
 const INITIAL_ACITON_VALUE: ActionStateInterface = {
@@ -22,8 +19,6 @@ function classroomsData(state = INITIAL_STATE, action = INITIAL_ACITON_VALUE) {
     return { ...state, load: true };
   case ClassroomsTypes.SELECT_CLASSROOMS:
     return { ...state, currClassroom: action.payload };
-  case ClassroomsTypes.SELECT_CLASSROOMSDATA:
-    return { ...state, currClassroomData: { ...state.currClassroomData, name: action.payload } };
   case ClassroomsTypes.REQUEST_FAIL:
     return { ...state, load: false, error: true };
   case ClassroomsTypes.REQUEST_SUCCESS:
