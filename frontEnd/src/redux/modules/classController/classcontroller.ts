@@ -1,5 +1,14 @@
 const CLASSROOM_CONTROLLER_DEFAULT_VALUE = {
+  subModule: {
+    id: undefined,
+    name: '',
+  },
+  module: {
+    id: undefined,
+    name: '',
+  },
   classroom: {
+    id: undefined,
     name: '',
     premium: true,
     video: '',
@@ -9,7 +18,13 @@ const CLASSROOM_CONTROLLER_DEFAULT_VALUE = {
   }
 };
 
-export function classroomController(state: any, action: any) {
+const ACTION_DEFAULT_VALUE = {
+  type: '',
+  payload: undefined
+};
+
+export function classroomController(
+  state = CLASSROOM_CONTROLLER_DEFAULT_VALUE, action = ACTION_DEFAULT_VALUE) {
   switch(action.type) {
   default:
     return state;
