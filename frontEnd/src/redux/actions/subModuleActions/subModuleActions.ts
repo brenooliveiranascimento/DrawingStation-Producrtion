@@ -18,7 +18,11 @@ export const requestSubModulesAction = (): any => {
       const { data } = await apiConnection.get('/modules/sub', {
         headers: { 'Authorization': token }
       });
-      if(data.message) return dispatch(genericSuccesRequest(SubModulesTypes.REQUEST_SUCCESS, data.message));
+      const reverseClassrooms = data.message.map((currSubModule: SubModuleInterface) => {
+        const classrooms = currSubModule.classrooms.reverse();
+        return { ...currSubModule, classrooms };
+      });
+      if(data.message) return dispatch(genericSuccesRequest(SubModulesTypes.REQUEST_SUCCESS, reverseClassrooms));
     } catch(e) {
       toast.error('Erro no servidor, tente novamente');
     }
