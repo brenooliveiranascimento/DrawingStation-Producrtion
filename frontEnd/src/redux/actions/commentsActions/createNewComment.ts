@@ -4,9 +4,7 @@ import { toast } from 'react-toastify';
 import { INewComment } from '../../../interfaces/modules/commentsModuleInterfaces';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { apiConnection } from '../../../services/api.connection';
-import { CommentsTypes } from '../../Types/AuthTypes';
-import { requestSubCommentsAction } from './commentsActions';
-import { genericCommentAciton, requestComments } from './genericAtions';
+import { requestComments } from './genericAtions';
 
 export const crateCommentAction = (commentData: INewComment): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
@@ -15,23 +13,14 @@ export const crateCommentAction = (commentData: INewComment): any => {
     const token = cookies['DRAWING_USER_DATA'];
     try {
       const { data } = await apiConnection.post('/comments/create',
-        {
-          classroomId,
-          content,
-          userId,
-        },
-        {
-          headers: { 'Authorization': token }
-        });
-      toast.success(data.message);
-      const { data: newComments } = await apiConnection.get('/comments/all', {
-        headers: { 'Authorization': token }
-      });
-      dispatch(requestComments(newComments.reverse()));
+        { classroomId, content, userId, },
+        { headers: { 'Authorization': token } });
       console.log(data);
+      toast.success(data);
+      const { data: newComments } = await apiConnection.get('/comments/all', { headers: { 'Authorization': token } });
+      dispatch(requestComments(newComments.reverse()));
     } catch(e: any) {
-      console.log(e);
-      toast.error(e.message);
+      toast.error(e.response.data.message);
     }
   };
 };
