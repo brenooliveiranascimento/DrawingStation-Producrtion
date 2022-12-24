@@ -9,8 +9,12 @@ import { setCurrClass, setCurrSubmodule, setCurrSubmoduleData } from '../../../.
 import styles from './styles.module.scss';
 
 export default function PlayerSideBar() {
-  const { subModules, currSubModule } = useSelector(({ classroomController }: globalState) => classroomController);
+  const { subModules, currSubModule, incomplete } = useSelector(({ classroomController }: globalState) => classroomController);
   const [subModuleData, setSubModuleData] = useState<SubModuleInterface[]>([]);
+
+  if(incomplete) {
+    return (<h1>Sub module incompleto</h1>);
+  }
 
   return ( 
     <aside className={styles.side_container}>

@@ -17,8 +17,8 @@ export const selectSubModuleAction = (module: ModulesInterface): any => {
     const { subModules } = state().subModules;
     const currSubModules = subModules.filter((currSubModule: SubModuleInterface) =>
       currSubModule.moduleId === id);
-    if(!currSubModules) {
-      incompleteASubModule();
+    if(!currSubModules.length) {
+      dispatch(incompleteASubModule());
       return;
     }
     dispatch(selectFirstClassroom(currSubModules[0]));
