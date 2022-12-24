@@ -29,7 +29,7 @@ export const selectFirstClassroom = (firstSubModule: SubModuleInterface): any =>
   return async (dispatch: Dispatch<any>) => {
     const { name, id } = firstSubModule;
     dispatch(setCurrSubmodule({ name, id }));
-    const firstClassroom = firstSubModule.classrooms[0];
+    const firstClassroom = firstSubModule.classrooms.reverse()[0];
     localStorage.setItem(localStorageKeys.lastSubModule, JSON.stringify({id, name}));
     localStorage.setItem(localStorageKeys.lastClassroom, JSON.stringify({id: firstClassroom.id, name: firstClassroom.name}));
     dispatch(setCurrClass(firstClassroom));

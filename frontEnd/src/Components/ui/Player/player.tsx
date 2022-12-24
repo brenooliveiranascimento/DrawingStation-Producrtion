@@ -1,10 +1,6 @@
 import Image from 'next/image';
-import Router, { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { ClassroomDataInterface } from '../../../interfaces/modules/classroomInterface';
+import { useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
-import { setCurrClass } from '../../../redux/actions/genericActions';
 import styles from './styles.module.scss';
 
 export default function Player() {
