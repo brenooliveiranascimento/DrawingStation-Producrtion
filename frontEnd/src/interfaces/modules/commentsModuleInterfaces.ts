@@ -54,6 +54,11 @@ export interface INewComment {
   classroomId: number
 }
 
+export interface IEditComment {
+  content: string,
+  userId: number,
+  id: number
+}
 
 export interface INewSubComment {
   content: string,
