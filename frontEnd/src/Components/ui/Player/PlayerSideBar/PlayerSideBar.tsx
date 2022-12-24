@@ -1,13 +1,10 @@
-import Link from 'next/link';
-import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ClassroomDataInterface, ClassroomInterface, ICurrClassroomData } from '../../../../interfaces/modules/classroomInterface';
+import { ClassroomInterface } from '../../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
 import { selectClassroomAction, selectSubModuleAction } from '../../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
 import { selectCurrSubModule } from '../../../../redux/actions/classroomControllerActions/genericActions';
-import { setCurrClass, setCurrSubmodule } from '../../../../redux/actions/genericActions';
 import { localStorageKeys } from '../../../../redux/Types/localStorageTypes';
 import styles from './styles.module.scss';
 
@@ -50,7 +47,6 @@ export default function PlayerSideBar() {
   if(loading) {
     return (<h1>Carregando!!</h1>);
   }
-
 
   return ( 
     <aside className={styles.side_container}>

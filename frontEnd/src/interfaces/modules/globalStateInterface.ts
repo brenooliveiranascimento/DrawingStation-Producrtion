@@ -1,6 +1,7 @@
 import { InitialValueState } from '../UserInterfaces';
 import { IClassroomController } from './classroomControllerInterfaces';
 import { ClassroomStateInterface } from './classroomInterface';
+import { ISoterCommentsTypes } from './commentsModuleInterfaces';
 import { ModuleStateInterface, SubModuleStateInterface } from './ModulesInterface';
 
 export interface globalState {
@@ -8,5 +9,6 @@ export interface globalState {
   modules: ModuleStateInterface
   subModules: SubModuleStateInterface;
   classroomsData: ClassroomStateInterface;
-  classroomController: IClassroomController
+  classroomController: IClassroomController,
+  commentsModule: ISoterCommentsTypes
 }

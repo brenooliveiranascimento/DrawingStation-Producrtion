@@ -18,7 +18,7 @@ function ClassroomController() {
 
   const [editing, setEditing] = useState(false);
   const [add, setAdd] = useState(false);
-  const [classroomEditing, setClassroomEditing] = useState<ClassroomInterface>({
+  const [classroomEditing, setClassroomEditing] = useState<any>({
     name: '',
     image: '',
     premium: true,

@@ -11,6 +11,11 @@ class ModuleService {
     const allModules = await SubModuleModel.findAll(
       { include: [{ model: ClassroomModel, as: 'classrooms' }] },
     );
+
+    // const allModules = await al.map((currSubModule: any) => {
+    //   const classrooms = currSubModule.classrooms.reverse()
+    //   return { ...currSubModule, classrooms }
+    // })
     if(!allModules) return { error: { mesage: errorMapTypes.CLASSROOM_REQUEST_ERROR }, message: null }
 
     return { error: null, message: allModules }

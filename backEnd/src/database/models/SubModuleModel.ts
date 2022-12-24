@@ -24,7 +24,7 @@ SubModule.init({
   },
   image: {
     allowNull: false,
-    type: STRING(400),
+    type: STRING(800),
   },
   description: {
     type: STRING(300),
