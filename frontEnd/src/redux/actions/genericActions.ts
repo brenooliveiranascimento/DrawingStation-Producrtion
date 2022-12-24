@@ -1,5 +1,6 @@
 import { ICurrClassroomData } from '../../interfaces/modules/classroomInterface';
-import { AuthTypes, ClassroomsTypes, SubModulesTypes } from '../Types/AuthTypes';
+import { SubModuleInterface } from '../../interfaces/modules/ModulesInterface';
+import { AuthTypes, ClassroomControllerTypes, ClassroomsTypes, SubModulesTypes } from '../Types/AuthTypes';
 
 export const genericRequestControl = (actionType: string) => ({
   type: actionType,
@@ -16,17 +17,17 @@ export const handleScreen = (screen: string) => ({
 });
 
 export const setCurrModule = (moduleId: number) => ({
-  type: SubModulesTypes.SELECT_MODULE,
+  type: ClassroomControllerTypes.SELECT_MODULE,
   payload: moduleId,
 });
 
-export const setCurrSubmodule = (subModuleId: number) => ({
-  type: SubModulesTypes.SELECT_SUBMODULE,
-  payload: subModuleId,
+export const setCurrSubmodule = (currSubModuleData: SubModuleInterface[]) => ({
+  type: ClassroomControllerTypes.SELECT_SUBMODULE,
+  payload: currSubModuleData,
 });
 
 export const setCurrClass = (classroom: number) => ({
-  type: ClassroomsTypes.SELECT_CLASSROOMS,
+  type: ClassroomControllerTypes.SELECT_CLASSROOMS,
   payload: classroom,
 });
 
