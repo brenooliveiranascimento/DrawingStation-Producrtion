@@ -54,6 +54,13 @@ export interface INewComment {
   classroomId: number
 }
 
+
+export interface INewSubComment {
+  content: string,
+  userId: number,
+  commentId: number
+}
+
 export interface INewSubComments {
   userData: userData;
   active: string;
