@@ -1,6 +1,7 @@
+import { ISoterCommentsTypes } from '../../../interfaces/modules/commentsModuleInterfaces';
 import { CommentsTypes } from '../../Types/AuthTypes';
 
-const COMMENTS_DEFAULT_VALUE = {
+const COMMENTS_DEFAULT_VALUE: ISoterCommentsTypes = {
   load: true,
   comments: [],
   error: false,

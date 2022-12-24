@@ -67,3 +67,9 @@ export interface ICommentsWithUserData {
 export interface IallComments extends IComments {
   subComments: IsubComments[]
 }
+
+export interface ISoterCommentsTypes {
+  error: boolean;
+  load: boolean;
+  comments: ICommentsWithUserData[],
+}

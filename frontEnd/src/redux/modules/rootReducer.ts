@@ -4,13 +4,15 @@ import modules from './modules/modules';
 import subModules from './subModules/subModules';
 import classroomsData from './classroomsData/classroomsData';
 import { classroomController } from './classController/classcontroller';
+import { commentsModule } from './comments/commentsModules';
 
 const rootReducer = combineReducers({
   user,
   modules,
   subModules,
   classroomsData,
-  classroomController
+  classroomController,
+  commentsModule
 });
 
 export default rootReducer;
