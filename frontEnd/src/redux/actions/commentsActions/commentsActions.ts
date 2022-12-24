@@ -15,7 +15,7 @@ export const requestSubCommentsAction = (): any => {
       const { data } = await apiConnection.get('/comments/all', {
         headers: { 'Authorization': token }
       });
-      dispatch(requestComments(data));
+      dispatch(requestComments(data.reverse()));
     } catch(e: any) {
       console.log(e);
       toast.error(e.message);

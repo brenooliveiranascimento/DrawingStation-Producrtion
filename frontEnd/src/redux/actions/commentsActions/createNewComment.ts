@@ -5,7 +5,8 @@ import { INewComment } from '../../../interfaces/modules/commentsModuleInterface
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { apiConnection } from '../../../services/api.connection';
 import { CommentsTypes } from '../../Types/AuthTypes';
-import { genericCommentAciton } from './genericAtions';
+import { requestSubCommentsAction } from './commentsActions';
+import { genericCommentAciton, requestComments } from './genericAtions';
 
 export const crateCommentAction = (commentData: INewComment): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
@@ -23,7 +24,10 @@ export const crateCommentAction = (commentData: INewComment): any => {
           headers: { 'Authorization': token }
         });
       toast.success(data.message);
-      // dispatch(genericCommentAciton(CommentsTypes.ADD_NEW_COMMENT, ))
+      const { data: newComments } = await apiConnection.get('/comments/all', {
+        headers: { 'Authorization': token }
+      });
+      dispatch(requestComments(newComments.reverse()));
       console.log(data);
     } catch(e: any) {
       console.log(e);
