@@ -1,3 +1,4 @@
+import { IClassController } from '../../interfaces/modules/classroomControllerInterfaces';
 import { ICurrClassroomData } from '../../interfaces/modules/classroomInterface';
 import { SubModuleInterface } from '../../interfaces/modules/ModulesInterface';
 import { AuthTypes, ClassroomControllerTypes, ClassroomsTypes, SubModulesTypes } from '../Types/AuthTypes';
@@ -33,7 +34,7 @@ export const setCurrSubmodule = (currSubModuleData: {name: string, id: number}) 
   payload: currSubModuleData,
 });
 
-export const setCurrClass = (classroom: number) => ({
+export const setCurrClass = (classData: IClassController) => ({
   type: ClassroomControllerTypes.SELECT_CLASSROOMS,
   payload: classroom,
 });

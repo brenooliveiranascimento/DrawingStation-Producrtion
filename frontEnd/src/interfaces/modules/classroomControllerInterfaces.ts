@@ -7,6 +7,7 @@ export interface IClassController {
   video: string;
   description: string;
   colors: any;
+  conclude: boolean;
   image: string;
 }
 

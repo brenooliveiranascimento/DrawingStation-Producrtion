@@ -28,6 +28,7 @@ const CLASSROOM_CONTROLLER_DEFAULT_VALUE:IClassroomController = {
     video: '',
     description: '',
     colors: null,
+    conclude: false,
     image: '',
   },
   loading: true,
