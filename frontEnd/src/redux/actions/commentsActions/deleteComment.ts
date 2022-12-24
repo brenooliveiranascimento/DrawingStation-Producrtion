@@ -1,7 +1,7 @@
 import { parseCookies } from 'nookies';
 import { Dispatch } from 'react';
 import { toast } from 'react-toastify';
-import { ICommentsWithUserData, IDeleteComment, IEditComment, IsubComments } from '../../../interfaces/modules/commentsModuleInterfaces';
+import { ICommentsWithUserData, IDeleteComment, IsubComments } from '../../../interfaces/modules/commentsModuleInterfaces';
 import { apiConnection } from '../../../services/api.connection';
 import { CommentsTypes } from '../../Types/AuthTypes';
 import { genericCommentAciton, requestComments } from './genericAtions';

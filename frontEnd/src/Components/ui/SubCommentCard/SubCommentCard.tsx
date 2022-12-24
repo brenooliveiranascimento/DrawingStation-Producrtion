@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IsubComments } from '../../../interfaces/modules/commentsModuleInterfaces';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
-import { deleteCommentAction, deleteSubCommentAction } from '../../../redux/actions/commentsActions/deleteComment';
-import { editCommentAction, editSubCommentAction } from '../../../redux/actions/commentsActions/editComment';
+import { deleteSubCommentAction } from '../../../redux/actions/commentsActions/deleteComment';
+import { editSubCommentAction } from '../../../redux/actions/commentsActions/editComment';
 import CommentCardHeader from '../CommentCard/CommentCardHeader';
 
 interface ISubCommentCardInterface {
@@ -42,10 +42,11 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
     <section>
       <CommentCardHeader userData={subComment.userData} />
       <article>
-        {edit ? <input
-          onChange={({target}) => setEditedValue(target.value)}
-          value={editedValue}
-        /> :subComment.content}
+        {edit ?
+          <input
+            onChange={({target}) => setEditedValue(target.value)}
+            value={editedValue}
+          /> :subComment.content}
         { subComment.userData.id ===  userData.id &&
         <button onClick={handleEdit}>
           { edit ? 'Salvar' : 'Editar' }
@@ -53,7 +54,7 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
         {
           subComment.userData.id === userData.id &&
         <button onClick={deleteComment}>
-                  deletar
+          deletar
         </button>
         }
       </article>
