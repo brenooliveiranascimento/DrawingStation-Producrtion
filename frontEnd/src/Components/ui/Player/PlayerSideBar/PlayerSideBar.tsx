@@ -5,16 +5,35 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ClassroomDataInterface, ClassroomInterface, ICurrClassroomData } from '../../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../../../../interfaces/modules/ModulesInterface';
+import { selectSubModuleAction } from '../../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
 import { setCurrClass, setCurrSubmodule, setCurrSubmoduleData } from '../../../../redux/actions/genericActions';
+import { localStorageKeys } from '../../../../redux/Types/localStorageTypes';
 import styles from './styles.module.scss';
 
 export default function PlayerSideBar() {
-  const { subModules, currSubModule, incomplete } = useSelector(({ classroomController }: globalState) => classroomController);
-  const [subModuleData, setSubModuleData] = useState<SubModuleInterface[]>([]);
+  const { subModules, currSubModule, incomplete, loading } = useSelector(({ classroomController }: globalState) => classroomController);
+  const { subModules: load } = useSelector(({ subModules }: globalState) => subModules);
+
+  const dispatch = useDispatch();
+
+  const initLastModule = () => {
+    if(incomplete) return;
+    const lastModule = localStorage.getItem(localStorageKeys.lastModule) as string;
+    dispatch(selectSubModuleAction(JSON.parse(lastModule)));
+  };
+
+  useEffect(() => {
+    initLastModule();
+  }, [load]);
 
   if(incomplete) {
     return (<h1>Sub module incompleto</h1>);
   }
+
+  if(loading) {
+    return (<h1>Carregando!!</h1>);
+  }
+
 
   return ( 
     <aside className={styles.side_container}>

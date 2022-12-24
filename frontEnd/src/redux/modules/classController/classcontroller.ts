@@ -55,7 +55,7 @@ export function classroomController(
   case ClassroomControllerTypes.SELECT_CLASSROOMS:
     return { ...state, classroom: action.payload, loading: false, incomplete: false };
   case ClassroomControllerTypes.INCOMPLETE_SUBMODULE:
-    return { ...state, incomplete: true };
+    return { ...state, incomplete: true, loading: false, classroom: {}, currSubModule: {}, subModules: [] };
   default:
     return state;
   }
