@@ -1,5 +1,7 @@
+import { CommentsTypes } from '../../Types/AuthTypes';
+
 const COMMENTS_DEFAULT_VALUE = {
-  load: false,
+  load: true,
   comments: [],
   error: false,
 };
@@ -11,6 +13,10 @@ const ACTION_DEFAULT_VALUE = {
 
 export function commentsModule(state = COMMENTS_DEFAULT_VALUE, action = ACTION_DEFAULT_VALUE) {
   switch(action.type) {
+  case CommentsTypes.REQUEST_COMMENTS:
+    return { ...state, comments: action.payload, load: false };
+  case CommentsTypes.REQUEST_COMMENTS_FAIL:
+    return { ...state, load: false, error: true };
   default:
     return state;
   }

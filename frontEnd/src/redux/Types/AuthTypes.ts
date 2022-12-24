@@ -47,3 +47,8 @@ export const ClassroomControllerTypes = {
   INCOMPLETE_SUBMODULE: 'INCOMPLETE_SUBMODULE',
   BUY_PREIUM: 'BUY_PREIUM',
 };
+
+export const CommentsTypes = {
+  REQUEST_COMMENTS: 'REQUEST_COMMENTS',
+  REQUEST_COMMENTS_FAIL: 'REQUEST_COMMENTS_FAIL',
+};
