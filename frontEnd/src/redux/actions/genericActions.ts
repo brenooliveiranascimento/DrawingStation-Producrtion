@@ -36,10 +36,9 @@ export const setCurrSubmodule = (currSubModuleData: {name: string, id: number}) 
 
 export const setCurrClass = (classData: IClassController) => ({
   type: ClassroomControllerTypes.SELECT_CLASSROOMS,
-  payload: classroom,
+  payload: classData,
 });
 
-export const setCurrSubmoduleData = (name: string) => ({
-  type: ClassroomsTypes.SELECT_CLASSROOMSDATA,
-  payload: name,
+export const buyPremium = () => ({
+  type: ClassroomControllerTypes.BUY_MREIUM,
 });
