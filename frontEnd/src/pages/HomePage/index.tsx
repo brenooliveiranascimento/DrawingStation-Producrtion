@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
 import UserHeader from '../../Components/ui/Header/UserHeader';
 import ModulesScreen from '../../Components/ui/ModulesScreen/ModulesScreen';
-import { globalState } from '../../interfaces/modules/globalStateInterface';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import { requestClassroomAction } from '../../redux/actions/classroomActions/classroomActions';
@@ -16,6 +15,7 @@ import styles from './styles.module.scss';
 interface DashboardPropTypes {
   userData: UserInterface,
 }
+
 function HomePage({ userData }: DashboardPropTypes) {
   const dispatch = useDispatch();
 
