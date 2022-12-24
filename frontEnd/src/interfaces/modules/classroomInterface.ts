@@ -37,7 +37,6 @@ export interface ClassroomStateInterface {
   error: boolean;
   load: boolean;
   classroomsData: ClassroomDataInterface[],
-  currClassroom: number,
 }
 
 export interface ActionStateInterface {

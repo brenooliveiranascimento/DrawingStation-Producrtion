@@ -34,14 +34,12 @@ export interface ModuleStateInterface {
   modules: ModulesInterface[] | any;
   load: boolean;
   error: boolean;
-  currModule: number | null
 }
 
 export interface SubModuleStateInterface {
   subModules: SubModuleInterface[] | any;
   load: boolean;
   error: boolean;
-  currSubModule: number | null
 }
 
 export interface ModuleActionInterface {

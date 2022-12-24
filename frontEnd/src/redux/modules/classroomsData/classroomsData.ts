@@ -5,7 +5,6 @@ const INITIAL_STATE: ClassroomStateInterface = {
   error: false,
   load: false,
   classroomsData: [],
-  currClassroom: 0,
 };
 
 const INITIAL_ACITON_VALUE: ActionStateInterface = {

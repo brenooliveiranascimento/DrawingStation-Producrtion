@@ -5,7 +5,6 @@ const STATE_INITIAL_STATE: SubModuleStateInterface = {
   subModules: [],
   load: false,
   error: false,
-  currSubModule: 1
 };
 
 const ACTION_INITIAL_VALUE: SubModuleActionInterface = {
@@ -14,7 +13,6 @@ const ACTION_INITIAL_VALUE: SubModuleActionInterface = {
 };
 
 function subMdules(state = STATE_INITIAL_STATE, action = ACTION_INITIAL_VALUE) {
-  console.log(action.type);
   switch(action.type) {
   case SubModulesTypes.SELECT_SUBMODULE:
     return { ...state, currSubModule: action.payload };

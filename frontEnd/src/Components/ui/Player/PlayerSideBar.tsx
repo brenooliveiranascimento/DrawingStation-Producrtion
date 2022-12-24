@@ -9,7 +9,7 @@ import { setCurrClass, setCurrSubmodule, setCurrSubmoduleData } from '../../../r
 import styles from './styles.module.scss';
 
 export default function PlayerSideBar() {
-  const { subModules, currSubModule } = useSelector(({ subModules }: globalState) => subModules);
+  const { subModules } = useSelector(({ subModules }: globalState) => subModules);
   const [subModuleData, setSubModuleData] = useState<SubModuleInterface[]>([]);
 
   const initData = () => {
