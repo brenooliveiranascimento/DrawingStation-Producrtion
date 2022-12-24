@@ -25,6 +25,7 @@ export default function NewSubComment({commentData}: ISubCommentForm) {
     <form>
       <label htmlFor='content'>
         <input
+          placeholder='Reponder comentário'
           value={content}
           name="content"
           onChange={({target}) => setContent(target.value)}

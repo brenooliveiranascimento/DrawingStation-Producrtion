@@ -32,13 +32,14 @@ export const crateSubCommentAction = (commentData: INewSubComment): any => {
     const token = cookies['DRAWING_USER_DATA'];
     try {
       const { data } = await apiConnection.post('/subComments/create',
-        { commentData, content, userId, },
+        { commentId, content, userId, },
         { headers: { 'Authorization': token } });
       console.log(data);
       toast.success(data);
       const { data: newComments } = await apiConnection.get('/comments/all', { headers: { 'Authorization': token } });
       dispatch(requestComments(newComments.reverse()));
     } catch(e: any) {
+      console.log(e);
       toast.error(e.response.data.message);
     }
   };
