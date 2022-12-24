@@ -1,7 +1,9 @@
 import React, { use, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { IAllSubCommentsUserData, ICommentsWithUserData, IsubComments } from '../../../interfaces/modules/commentsModuleInterfaces';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
+import { editCommentAction } from '../../../redux/actions/commentsActions/editComment';
+import user from '../../../redux/modules/user/user';
 import NewSubComment from '../Comments/NewSubComment';
 import SubCommentCard from '../SubCommentCard/SubCommentCard';
 import CommentCardHeader from './CommentCardHeader';
@@ -17,11 +19,14 @@ export default function CommentCard({comment}: commentCardProp) {
 
   const { userData } = useSelector(({ user }: globalState) => user);
 
+  const dispatch = useDispatch();
+
   const handleEdit = () => {
     if(!edit) {
       setEdit(true);
       setEditedValue(comment.content);
     } else {
+      dispatch(editCommentAction({ content: editedValue, id: comment.id, userId: Number(userData.id) }));
       setEdit(false);
     }
   };
