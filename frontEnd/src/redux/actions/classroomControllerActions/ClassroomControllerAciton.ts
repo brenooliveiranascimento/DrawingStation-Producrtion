@@ -13,9 +13,8 @@ export const selectClassroomAction = (currClassroom: ClassroomInterface): any =>
     const userData = state().user.userData;
 
     if(!userData.premium && premium) {
-      dispatch(buyPremium());
+      dispatch(buyPremium({name, image}));
     } else {
-
       const findClassData = classData.find((currClass: ClassroomDataInterface) =>
         currClass.classroomId === id) as ClassroomDataInterface;
       const { video, colors, description } = findClassData;

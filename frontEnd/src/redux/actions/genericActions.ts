@@ -39,6 +39,7 @@ export const setCurrClass = (classData: IClassController) => ({
   payload: classData,
 });
 
-export const buyPremium = () => ({
-  type: ClassroomControllerTypes.BUY_MREIUM,
+export const buyPremium = (classData: {name: string, image: string}) => ({
+  type: ClassroomControllerTypes.BUY_PREIUM,
+  payload:classData
 });

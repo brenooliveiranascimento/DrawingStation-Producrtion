@@ -32,7 +32,7 @@ const CLASSROOM_CONTROLLER_DEFAULT_VALUE:IClassroomController = {
     image: '',
   },
   loading: true,
-  buyPremium: false,
+  buyPremium: true,
   incomplete: false
 };
 
@@ -51,16 +51,15 @@ export function classroomController(
       module: action.payload.module,
       loading: false,
       incomplete: false,
-      buyPremium: false
     };
   case ClassroomControllerTypes.SELECT_SUBMODULE:
-    return { ...state, currSubModule: action.payload, loading: false, incomplete: false, buyPremium: false };
+    return { ...state, currSubModule: action.payload, loading: false, incomplete: false };
   case ClassroomControllerTypes.SELECT_CLASSROOMS:
     return { ...state, classroom: action.payload, loading: false, incomplete: false, buyPremium: false };
   case ClassroomControllerTypes.INCOMPLETE_SUBMODULE:
-    return { ...state, incomplete: true, loading: false, classroom: {}, currSubModule: {}, subModules: [], buyPremium: false };
-  case ClassroomControllerTypes.BUY_MREIUM:
-    return { ...state, incomplete: true, loading: false, classroom: {}, currSubModule: {}, subModules: [], buyPremium: true };
+    return { ...state, incomplete: true, loading: false, classroom: {}, currSubModule: {}, subModules: []};
+  case ClassroomControllerTypes.BUY_PREIUM:
+    return { ...state, incomplete: false, loading: false, classroom: action.payload, buyPremium: true };
   default:
     return state;
   }
