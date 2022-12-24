@@ -4,6 +4,7 @@ import { IAllSubCommentsUserData, ICommentsWithUserData } from '../../../interfa
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { requestSubCommentsAction } from '../../../redux/actions/commentsActions/commentsActions';
 import CommentCard from '../CommentCard/CommentCard';
+import NewCommentForm from './NewCommentForm';
 
 export default function Comments() {
 
@@ -27,6 +28,7 @@ export default function Comments() {
   
   return (
     <footer>
+      <NewCommentForm />
       <section>
         {
           comments.filter((currComment: ICommentsWithUserData) =>

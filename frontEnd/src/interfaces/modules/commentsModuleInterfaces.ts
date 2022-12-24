@@ -48,6 +48,12 @@ export interface IAllSubCommentsUserData extends IComments {
   userData: userData;
 }
 
+export interface INewComment {
+  content: string,
+  userId: number,
+  classroomId: number
+}
+
 export interface INewSubComments {
   userData: userData;
   active: string;

@@ -1,11 +1,18 @@
 import React, { FormEvent, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { globalState } from '../../../interfaces/modules/globalStateInterface';
+import { crateCommentAction } from '../../../redux/actions/commentsActions/createNewComment';
 
 export default function NewCommentForm() {
   
-  const [content, setContent] = useState('');
+  const { user: { userData }, classroomController: { classroom } } = useSelector((state: globalState) => state);
 
-  const handleComment = ({preventDefault}: FormEvent) => {
-    preventDefault();
+  const [content, setContent] = useState('');
+  const dispatch = useDispatch();
+
+  const handleComment = (e: FormEvent) => {
+    e.preventDefault();
+    dispatch(crateCommentAction({content, userId: Number(userData.id), classroomId: classroom.id}));
     setContent('');
   };
 
