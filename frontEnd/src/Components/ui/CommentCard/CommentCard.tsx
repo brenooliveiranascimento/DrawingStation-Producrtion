@@ -10,6 +10,9 @@ export default function CommentCard({comment}: commentCardProp) {
   return (
     <section>
       <CommentCardHeader userData={comment.userData} />
+      <article>
+        {comment.content}
+      </article>
     </section>
   );
 }

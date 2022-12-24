@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IAllSubCommentsUserData, ICommentsWithUserData } from '../../../interfaces/modules/commentsModuleInterfaces';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { requestSubCommentsAction } from '../../../redux/actions/commentsActions/commentsActions';
+import CommentCard from '../CommentCard/CommentCard';
 
 export default function Comments() {
 
@@ -30,9 +31,7 @@ export default function Comments() {
         {
           comments.filter((currComment: ICommentsWithUserData) =>
             currComment.classroomId === classroom.id).map((comment: ICommentsWithUserData) => (
-            <section key={comment.id}>
-              <h1>{comment.content}</h1>
-            </section>
+            <CommentCard  comment={comment} key={comment.id}/>
           ))
         }
       </section>
