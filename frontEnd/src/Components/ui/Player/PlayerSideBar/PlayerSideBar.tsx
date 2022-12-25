@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import { FaPlay } from 'react-icons/fa';
+import { FiPlayCircle } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { ClassroomInterface } from '../../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
@@ -92,6 +94,13 @@ export default function PlayerSideBar() {
                       </section>
                       <article>
                         <h1>{currClassroom.name} #{index + 1}</h1>
+                        {
+                          classroom.id === currClassroom.id &&
+                          <FiPlayCircle color='white' size={30} style={{
+                            zIndex: 99,
+                            marginLeft:-10,
+                          }}/>
+                        }
                       </article>
                     </button>;
                   })
