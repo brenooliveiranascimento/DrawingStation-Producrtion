@@ -5,6 +5,7 @@ import PlayerSideBar from './PlayerSideBar/PlayerSideBar';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/router';
 import Comments from '../Comments/Comments';
+import NewCommentForm from '../Comments/NewCommentForm/NewCommentForm';
 
 export default function PlayerContainer() {
   const [showComments, setShowComments] = useState(false);
@@ -15,10 +16,13 @@ export default function PlayerContainer() {
         <Player/>
         <PlayerSideBar/>
       </section>
+      <footer className={styles.player_with_side_bar}>
+        <NewCommentForm/>
+
+      </footer>
       <button onClick={() => setShowComments(!showComments)}>
-        Mostrar comentários
+          Mostrar comentários
       </button>
-      { showComments && <Comments/> }
-    </section>
+      { showComments && <Comments/> }   </section>
   );
 }

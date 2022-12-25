@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { FaPlay } from 'react-icons/fa';
 import { FiPlayCircle } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { ClassroomInterface } from '../../../../interfaces/modules/classroomInterface';

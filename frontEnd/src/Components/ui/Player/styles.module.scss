@@ -7,6 +7,7 @@
 }
 
 .player_with_side_bar {
+  padding: 2rem;
   display: flex;
   width: 100%;
   height: auto;
@@ -23,7 +24,6 @@
   width: 90%;
   height: auto;
   height: 600px;
-  margin: 2rem;
   margin-top: 0rem;
   iframe {
     border: none;
