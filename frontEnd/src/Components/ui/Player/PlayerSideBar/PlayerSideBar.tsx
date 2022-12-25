@@ -26,7 +26,11 @@ export default function PlayerSideBar() {
   };
 
   const selectSubModule = (currSubModuleData: {name: string, id: number}) => {
-    dispatch(selectCurrSubModule(currSubModuleData));
+    if(currSubModule.id === currSubModuleData.id) {
+      dispatch(selectCurrSubModule({name: currSubModuleData.name, id: 0}));
+    } else {
+      dispatch(selectCurrSubModule(currSubModuleData));
+    }
   };
 
   const selectClass = (classInfos: ClassroomInterface) => {
