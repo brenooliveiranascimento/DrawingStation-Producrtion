@@ -19,10 +19,10 @@ export default function CurrSideBar() {
   return (
     <aside className={styles.side_bar_container}>
       <button onClick={() => changeScreen('/')}>
-        <FiHome size={35} color={currScreen === 'HomePage' || !currScreen ? '#5c5c5c' : 'white'}/>
+        <FiHome size={28} color={currScreen === '/' || !currScreen ? '#5c5c5c' : 'white'}/>
       </button>
       <button onClick={() => changeScreen('Classroom')}>
-        <FaPencilAlt size={35} color={currScreen === 'Classroom' ? '#5c5c5c' : 'white'}/>
+        <FaPencilAlt size={28} color={currScreen === 'Classroom' ? '#5c5c5c' : 'white'}/>
       </button>
     </aside>
   );

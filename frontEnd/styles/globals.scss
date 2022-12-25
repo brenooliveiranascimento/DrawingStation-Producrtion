@@ -9,10 +9,10 @@
   --white: #ffffff;
   --black-900: rgb(31, 31, 31);
   --black-700: #1F1C2C;
+  --dark-light-700: #262737;
   --black-500: #382d4a;
   --black-600: #3c334b;
   --dark-900: #3D3A41;
-  --dark-700: #23232d;
   --gray-100: #8A8A8A;
   --green-900: #3FFFa3;
   --red-900: #FF3F4B;
@@ -42,7 +42,6 @@ a {
 
 body {
   background-color: var(--black-700);
-
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
