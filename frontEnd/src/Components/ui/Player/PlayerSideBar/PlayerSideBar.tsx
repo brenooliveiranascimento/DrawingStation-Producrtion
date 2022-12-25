@@ -55,6 +55,9 @@ export default function PlayerSideBar() {
           return (
             <section key={currModule.id}>
               <button 
+                style={{
+                  backgroundColor: currSubModule.id === currModule.id ? '#181527' : '#262737'
+                }}
                 className={styles.submodule_btn}
                 onClick={() => selectSubModule({name: currModule.name, id: currModule.id})}
               >
@@ -62,20 +65,30 @@ export default function PlayerSideBar() {
               </button>
               {currSubModule.id === currModule.id && <section>
                 {
-                  currModule.classrooms.map((currClassroom: ClassroomInterface) => {
+                  currModule.classrooms.map((currClassroom: ClassroomInterface, index: number) => {
                     return <button
                       style={{
-                        backgroundColor: classroom.id === currClassroom.id ? '#382d4a' : '#262737',
+                        backgroundColor: classroom.id === currClassroom.id ? '#3b3348' : '#1F1C2C',
                       }}
                       className={styles.classroom_btn}
                       onClick={() => selectClass(currClassroom)} key={currClassroom.id}>
-                      <Image
-                        alt={currClassroom.name}
-                        height={100}
-                        width={100}
-                        src={currClassroom.image}
-                      />
-                      {currClassroom.name}
+                      <section
+                        style={{
+                          filter: classroom.id === currClassroom.id ? 'brightness(80%)' : 'brightness(50%)'
+                        }}
+                        className={styles.image_area}
+                      >
+                        <Image
+                          style={{objectFit: 'cover'}}
+                          alt={currClassroom.name}
+                          height={125}
+                          width={600}
+                          src={currClassroom.image}
+                        />
+                      </section>
+                      <article>
+                        <h1>{currClassroom.name} #{index + 1}</h1>
+                      </article>
                     </button>;
                   })
                 }

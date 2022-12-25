@@ -7,6 +7,8 @@
   background-color: var(--dark-light-700);
   margin-top: 0rem;
   border-radius: 2rem;
+  border: 2px solid var(--dark-light-700);
+
   button {
     width: 100%;
     display: flex;
@@ -30,21 +32,44 @@
 .submodule_btn {
     color: white;
     background-color: var(--dark-700);
-    height: 2rem;
     align-items: center;
     padding: 1rem;
     border: none;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--dark-900);
     font-size: 1rem;
+    font-size: 1.2rem;
+}
+
+.image_area {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(50%);
+  :hover {
+  filter: brightness(90%);
+  }
 }
 
 .classroom_btn {
+  background-color: var(--black-700);  
   color: white;
   border: none;
-  padding: 1rem;
-  padding-left: 2rem;
-  border-bottom: 1px solid #3c334b;
+  article {
+    display: flex;
+    background-color: red;
+    height: 200;
+    margin-left: -370px;
+    h1 {
+      font-size: 1.3rem;
+      z-index: 99;
+      margin: 1rem;
+      width: 600;
+      height: 200;
+  }
+  }
+
 }
 
 .side_container::-webkit-scrollbar {
@@ -53,5 +78,4 @@
 
 .side_container::-webkit-scrollbar-thumb {
   background-color: rgb(37, 37, 37);  
-  border-radius: 20px;     
 }
