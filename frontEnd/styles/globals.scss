@@ -8,7 +8,8 @@
 :root {
   --white: #ffffff;
   --black-900: rgb(31, 31, 31);
-  --black-700: #27242C;
+  --black-700: #1F1C2C;
+  --black-500: #382d4a;
   --black-600: #3c334b;
   --dark-900: #3D3A41;
   --dark-700: #23232d;
@@ -40,7 +41,8 @@ a {
 }
 
 body {
-  background-color: var(--black-900);
+  background-color: var(--black-700);
+
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 

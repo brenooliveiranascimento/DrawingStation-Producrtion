@@ -15,7 +15,7 @@ export default function Player() {
   }
   return (
     <section className={styles.player}>
-      <iframe width="560" height="315"
+      <iframe
         src={`https://www.youtube.com/embed/${classroom.video}`}
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 

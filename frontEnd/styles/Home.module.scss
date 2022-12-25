@@ -17,7 +17,7 @@
 
 .logo_area {
   width: 100px;
-  background-color: black;
+  background-color: var(--black-700);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,7 +27,7 @@
   filter: brightness(60%);
   height: 100vh;
   width: 50%;
-  background-color: black;
+  background-color: var(--black-700);
 }
 
 .login {
