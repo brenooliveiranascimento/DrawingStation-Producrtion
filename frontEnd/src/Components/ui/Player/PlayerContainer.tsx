@@ -10,7 +10,7 @@ export default function PlayerContainer() {
   const [showComments, setShowComments] = useState(false);
   return (
     <section className={styles.main_player_container}>
-      <PlayerHeader/>
+      {/* <PlayerHeader/> */}
       <section className={styles.player_with_side_bar}>
         <Player/>
         <PlayerSideBar/>

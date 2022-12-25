@@ -21,7 +21,8 @@ export default function CurrSideBar() {
       <button onClick={() => changeScreen('/')}>
         <FiHome size={28} color={currScreen === '/' || !currScreen ? '#5c5c5c' : 'white'}/>
       </button>
-      <button onClick={() => changeScreen('Classroom')}>
+      <button
+        onClick={() => changeScreen('Classroom')}>
         <FaPencilAlt size={28} color={currScreen === 'Classroom' ? '#5c5c5c' : 'white'}/>
       </button>
     </aside>

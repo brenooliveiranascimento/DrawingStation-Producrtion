@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ClassroomInterface } from '../../../../interfaces/modules/classroomInterface';
@@ -9,7 +10,7 @@ import { localStorageKeys } from '../../../../redux/Types/localStorageTypes';
 import styles from './styles.module.scss';
 
 export default function PlayerSideBar() {
-  const { subModules, currSubModule, incomplete, loading, classroom } = useSelector(({ classroomController }: globalState) => classroomController);
+  const { subModules, currSubModule, incomplete, loading, classroom, module } = useSelector(({ classroomController }: globalState) => classroomController);
   const { classroomsData } = useSelector(({ classroomsData }: globalState) => classroomsData);
   const [first, setFirst] = useState(true);
   const dispatch = useDispatch();
@@ -46,6 +47,9 @@ export default function PlayerSideBar() {
 
   return ( 
     <aside className={styles.side_container}>
+      <header>
+        <span>{module.name} {'>'} {currSubModule.name} {'>'} {classroom.name}</span>
+      </header>
       {
         subModules.map((currModule: SubModuleInterface) => {
           return (
@@ -61,10 +65,16 @@ export default function PlayerSideBar() {
                   currModule.classrooms.map((currClassroom: ClassroomInterface) => {
                     return <button
                       style={{
-                        backgroundColor: classroom.id === currClassroom.id ? '#382d4a' : '#27242C'
+                        backgroundColor: classroom.id === currClassroom.id ? '#382d4a' : '#262737',
                       }}
                       className={styles.classroom_btn}
                       onClick={() => selectClass(currClassroom)} key={currClassroom.id}>
+                      <Image
+                        alt={currClassroom.name}
+                        height={100}
+                        width={100}
+                        src={currClassroom.image}
+                      />
                       {currClassroom.name}
                     </button>;
                   })

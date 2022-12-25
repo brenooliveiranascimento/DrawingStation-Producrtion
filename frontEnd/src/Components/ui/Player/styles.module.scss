@@ -19,10 +19,14 @@
 }
 
 .player {
-  width: 100%;
+  width: 90%;
   height: auto;
-  height: 650px;
+  height: 600px;
+  margin: 2rem;
+  margin-top: 0rem;
   iframe {
+    border: none;
+    border-radius: 2rem;
     width: 100%;
     height: 100%;
   }
