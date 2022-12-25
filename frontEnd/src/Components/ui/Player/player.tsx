@@ -7,7 +7,7 @@ export default function Player() {
   const { buyPremium, classroom } = useSelector(({classroomController}: globalState) => classroomController);
   if(buyPremium) {
     return (
-      <section>
+      <section className={styles.player}>
         <h1>Tornar se premium</h1>
         <Image width={300} height={400} src={classroom.image} alt={classroom.name}/>
       </section>
