@@ -1,8 +1,11 @@
+import Image from 'next/image';
 import React, { FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { globalState } from '../../../interfaces/modules/globalStateInterface';
-import { crateCommentAction } from '../../../redux/actions/commentsActions/createNewComment';
+import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import { crateCommentAction } from '../../../../redux/actions/commentsActions/createNewComment';
+import defaultUser from '../../../../../public/profilePhoto.png';
+import styles from './styles.module.scss';
 
 export default function NewCommentForm() {
   
@@ -19,7 +22,16 @@ export default function NewCommentForm() {
   };
 
   return (
-    <form>
+    <form className={styles.new_comemnt_container}>
+      <Image
+        style={{
+          borderRadius: '50%'
+        }}
+        height={50}
+        width={50}
+        alt={userData.name}
+        src={userData.profilePhoto || defaultUser}
+      />
       <label htmlFor='content'>
         <input
           value={content}

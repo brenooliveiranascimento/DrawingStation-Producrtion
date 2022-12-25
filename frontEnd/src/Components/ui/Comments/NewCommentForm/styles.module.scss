@@ -1,0 +1,42 @@
+.new_comemnt_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  padding-top: 0rem;
+  label {
+    width: 600px;
+
+  input {
+    width: 100%;
+    border: none;
+    background-color: var(--input);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    border-bottom-right-radius: 0rem;
+    font-size: 1rem;
+    border-top-right-radius: 0rem;
+  }
+  }
+
+  button {
+    margin-top: 0.5rem;
+    border-radius: 1rem;
+    border-bottom-left-radius: 0rem;
+    border-top-left-radius: 0rem;
+    margin-left: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--input);
+    border: none;
+    color: white;
+    font-size: 1rem;
+  }
+
+  button:hover {
+    filter: brightness(70%);
+  }
+}

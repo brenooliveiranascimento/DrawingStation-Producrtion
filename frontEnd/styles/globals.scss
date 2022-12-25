@@ -8,26 +8,15 @@
 :root {
   --white: #ffffff;
   --black-900: rgb(31, 31, 31);
-  --black-700: #27242C;
+  --black-700: #1F1C2C;
+  --dark-light-700: #262737;
+  --input: #353342;
+  --dark-light-600: #353241;
+  --black-500: #382d4a;
   --black-600: #3c334b;
   --dark-900: #3D3A41;
-  --dark-700: #23232d;
   --gray-100: #8A8A8A;
   --green-900: #3FFFa3;
-  --red-900: #FF3F4B;
-  --margin-xl: 4rem;
-  --margin-lg: 3rem;
-  --margin-md: 2rem;
-  --margin-sm: 1rem;
-  --margin-xs: 0.8rem;
-  --margin-xxs: 0.5rem;
-  --padding-xl: 4rem;
-  --padding-lg: 3rem;
-  --padding-md: 2rem;
-  --padding-sm: 1rem;
-  --padding-xs: 0.8rem;
-  --padding-xxs: 0.5rem;
-
 }
 
 button {
@@ -40,7 +29,7 @@ a {
 }
 
 body {
-  background-color: var(--black-900);
+  background-color: var(--black-700);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 

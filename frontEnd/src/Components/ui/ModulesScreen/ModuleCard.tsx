@@ -18,6 +18,7 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
 
   const selectModule = () => {
     dispatch(selectSubModuleAction(moduleCard));
+    dispatch(handleScreen('Classroom'));
     Router.push('/Classroom');
   };
 

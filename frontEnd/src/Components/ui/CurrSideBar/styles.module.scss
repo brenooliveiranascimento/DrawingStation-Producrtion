@@ -5,12 +5,14 @@
   background-color:var(--black-700);
   height: 100vh;
   left: 0;
+  border-right: 2px solid var(--dark-light-700);
+  padding: 1.5rem;
   button {
-    width: 2rem;
-    height: 2rem;
-    background-color:var(--black-700);
     border: none;
+    padding: 0.5rem;
+    border-radius: 16px;
     margin-top: 2rem;
+    background-color: var(--dark-light-600);
   }
 
   @media screen and (max-width: 660px) {

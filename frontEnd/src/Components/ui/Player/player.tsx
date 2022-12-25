@@ -7,7 +7,7 @@ export default function Player() {
   const { buyPremium, classroom } = useSelector(({classroomController}: globalState) => classroomController);
   if(buyPremium) {
     return (
-      <section>
+      <section className={styles.player}>
         <h1>Tornar se premium</h1>
         <Image width={300} height={400} src={classroom.image} alt={classroom.name}/>
       </section>
@@ -15,7 +15,7 @@ export default function Player() {
   }
   return (
     <section className={styles.player}>
-      <iframe width="560" height="315"
+      <iframe
         src={`https://www.youtube.com/embed/${classroom.video}`}
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
