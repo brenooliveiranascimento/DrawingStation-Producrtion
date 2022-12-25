@@ -51,7 +51,7 @@ export default function CommentCard({comment}: commentCardProp) {
         {
           comment.userData.id === userData.id &&
         <button onClick={deleteComment}>
-                  deletar
+            deletar
         </button>
         }
       </article>

@@ -9,7 +9,7 @@ import { localStorageKeys } from '../../../../redux/Types/localStorageTypes';
 import styles from './styles.module.scss';
 
 export default function PlayerSideBar() {
-  const { subModules, currSubModule, incomplete, loading } = useSelector(({ classroomController }: globalState) => classroomController);
+  const { subModules, currSubModule, incomplete, loading, classroom } = useSelector(({ classroomController }: globalState) => classroomController);
   const { classroomsData } = useSelector(({ classroomsData }: globalState) => classroomsData);
   const [first, setFirst] = useState(true);
   const dispatch = useDispatch();
@@ -25,10 +25,6 @@ export default function PlayerSideBar() {
   };
 
   const selectSubModule = (currSubModuleData: {name: string, id: number}) => {
-    if(currSubModuleData.id === currSubModule.id) {
-      dispatch(selectCurrSubModule({name: '', id: 0}));
-      return;
-    }
     dispatch(selectCurrSubModule(currSubModuleData));
   };
 
@@ -54,13 +50,23 @@ export default function PlayerSideBar() {
         subModules.map((currModule: SubModuleInterface) => {
           return (
             <section key={currModule.id}>
-              <button onClick={() => selectSubModule({name: currModule.name, id: currModule.id})}>
+              <button 
+                className={styles.submodule_btn}
+                onClick={() => selectSubModule({name: currModule.name, id: currModule.id})}
+              >
                 {currModule.name}
               </button>
               {currSubModule.id === currModule.id && <section>
                 {
                   currModule.classrooms.map((currClassroom: ClassroomInterface) => {
-                    return <button onClick={() => selectClass(currClassroom)} key={currClassroom.id}>{currClassroom.id}</button>;
+                    return <button
+                      style={{
+                        backgroundColor: classroom.id === currClassroom.id ? '#382d4a' : '#27242C'
+                      }}
+                      className={styles.classroom_btn}
+                      onClick={() => selectClass(currClassroom)} key={currClassroom.id}>
+                      {currClassroom.name}
+                    </button>;
                   })
                 }
               </section>}
