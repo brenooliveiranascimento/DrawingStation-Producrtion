@@ -17,7 +17,6 @@ export default function PlayerContainer() {
       </section>
       <footer className={styles.player_with_side_bar}>
         <NewCommentForm/>
-
       </footer>
       <button onClick={() => setShowComments(!showComments)}>
           Mostrar comentários

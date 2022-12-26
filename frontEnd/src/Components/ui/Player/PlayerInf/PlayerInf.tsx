@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import NewCommentForm from '../../Comments/NewCommentForm/NewCommentForm';
 import Colors from './Colors';
 import styles from './styles.module.scss';
 
@@ -14,14 +15,18 @@ export default function PlayerInf() {
 
   return (
     <section className={styles.player_inf_container}>
-      <article>
-        <h1>
-          {classroom.name}
-        </h1>
-        <p>
-          {description}
-        </p>
-      </article>
+      <section  className={styles.name_Comment_input}>
+        <article>
+          <h1>
+            {classroom.name}
+          </h1>
+          <p>
+            {description}
+          </p>
+        </article>
+        <NewCommentForm/>
+
+      </section>
       <Colors/>
     </section>
   );
