@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './styles.module.scss';
 
 interface PencilTableProp {
   currColorList: { cor: string }[],
@@ -19,19 +20,17 @@ export default function PencilTable({ currColorList, currColor }: PencilTablePro
     </section>
   );
   return (
-    <section>
+    <section className={styles.pencil_item}>
+      <h1 onClick={() => setShow(!show)}>
+        {currColor}
+      </h1> 
       {
         currColorList.map(({cor}: {cor: string}, index) => {
           return (
             <section key={index}>
-              { !index && currColor &&
-              <section>
-                <button onClick={() => setShow(!show)}>
-                  {currColor}
-                </button> 
-              </section>
-              }
-              <span>{cor}</span>
+            
+              
+              <span>#{index + 1}{cor}</span>
             </section>
           );
         })

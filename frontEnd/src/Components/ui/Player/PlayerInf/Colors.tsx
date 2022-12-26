@@ -17,7 +17,7 @@ export default function Colors() {
   }
 
   return (
-    <aside >
+    <aside>
       {
         multiExemple ?
           (
@@ -36,17 +36,10 @@ export default function Colors() {
           )
           : 
           (
-            <section>
-              <button onClick={() =>  setShowColors(!showColors)}>
-                Cores
-              </button>
-              {
-                showColors && <section>
-                  {JSON.parse(colors).map((currColor: { cor: string }, index: number) => (
-                    <PencilTable key={index} currColor={null} currColorList={[currColor]}/>
-                  ))}
-                </section>
-              }
+            <section className={styles.one_pencil_container}>
+              {JSON.parse(colors).map((currColor: { cor: string }, index: number) => (
+                <PencilTable key={index} currColor={null} currColorList={[currColor]}/>
+              ))}
             </section>
           )
       }
