@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import Colors from './Colors';
 
 export default function PlayerInf() {
   const {
@@ -20,6 +21,7 @@ export default function PlayerInf() {
           {description}
         </span>
       </article>
+      <Colors/>
     </section>
   );
 }
