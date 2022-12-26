@@ -18,9 +18,9 @@ export default function PlayerInf() {
         <h1>
           {classroom.name}
         </h1>
-        <span>
+        <p>
           {description}
-        </span>
+        </p>
       </article>
       <Colors/>
     </section>
