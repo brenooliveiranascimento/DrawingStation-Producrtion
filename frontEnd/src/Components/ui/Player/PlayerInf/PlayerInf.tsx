@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import Comments from '../../Comments/Comments';
 import NewCommentForm from '../../Comments/NewCommentForm/NewCommentForm';
 import Colors from './Colors';
 import styles from './styles.module.scss';
@@ -11,7 +12,8 @@ export default function PlayerInf() {
     classroomsData: { classroomsData }
   } = useSelector((state: globalState) => state);
 
-  const { name, multiExemple, colors, description } = classroom;
+  const { description } = classroom;
+  const [showComments, setShowComments] = useState(false);
 
   return (
     <section className={styles.player_inf_container}>
@@ -25,9 +27,12 @@ export default function PlayerInf() {
           </p>
         </article>
         <NewCommentForm/>
-
       </section>
       <Colors/>
+      <button onClick={() => setShowComments(!showComments)}>
+        mostrar comentarios
+      </button>
+      { showComments && <Comments/> }
     </section>
   );
 }

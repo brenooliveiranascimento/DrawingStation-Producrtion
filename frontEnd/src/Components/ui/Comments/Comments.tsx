@@ -4,7 +4,6 @@ import { IAllSubCommentsUserData, ICommentsWithUserData } from '../../../interfa
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { requestSubCommentsAction } from '../../../redux/actions/commentsActions/commentsActions';
 import CommentCard from '../CommentCard/CommentCard';
-import NewCommentForm from './NewCommentForm/NewCommentForm';
 import styles from './styles.module.scss';
 
 export default function Comments() {
@@ -26,6 +25,12 @@ export default function Comments() {
       <h1>Carregando!</h1>
     );
   }
+
+  if(!comments.length) {
+    return (
+      <h1>Nenhum comentário</h1>
+    );
+  }
   
   return (
     <section className={styles.main_comment_container}>
@@ -34,7 +39,8 @@ export default function Comments() {
           comments.filter((currComment: ICommentsWithUserData) =>
             currComment.classroomId === classroom.id).map((comment: ICommentsWithUserData) => (
             <CommentCard  comment={comment} key={comment.id}/>
-          ))
+          )
+          )
         }
       </section>
     </section>
