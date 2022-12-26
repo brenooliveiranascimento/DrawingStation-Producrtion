@@ -25,8 +25,7 @@ export default function Colors() {
                 const currColorList = allColors[currColor];
                 return (
                   <section key={index}>
-                    <h1>{currColor}</h1>
-                    <PencilTable currColorList={currColorList} />
+                    <PencilTable currColorList={currColorList} currColor={currColor} />
                   </section>
                 );
               })
