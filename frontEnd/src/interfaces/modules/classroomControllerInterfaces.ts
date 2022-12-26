@@ -9,6 +9,7 @@ export interface IClassController {
   colors: any;
   conclude: boolean;
   image: string;
+  multiExemple: boolean
 }
 
 export interface ISubmoduleController {

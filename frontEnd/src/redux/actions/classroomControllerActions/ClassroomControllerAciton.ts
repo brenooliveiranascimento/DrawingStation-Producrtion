@@ -17,8 +17,8 @@ export const selectClassroomAction = (currClassroom: ClassroomInterface): any =>
     } else {
       const findClassData = classData.find((currClass: ClassroomDataInterface) =>
         currClass.classroomId === id) as ClassroomDataInterface;
-      const { video, colors, description } = findClassData;
-      const mountClassData: IClassController  = { video, colors, description, id, image, name,premium, conclude };
+      const { video, colors, description, multiExemple } = findClassData;
+      const mountClassData: IClassController  = { video, colors, description, id, image, name,premium, conclude, multiExemple };
 
       dispatch(setCurrClass(mountClassData));
     }

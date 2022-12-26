@@ -61,7 +61,7 @@ export default function PlayerSideBar() {
             <section key={currModule.id}>
               <button 
                 style={{
-                  backgroundColor: currSubModule.id === currModule.id ? '#1e1c25' : '#1e1c25'
+                  backgroundColor: currSubModule.id === currModule.id ? '#2c2937' : '#1e1c25'
                 }}
                 className={styles.submodule_btn}
                 onClick={() => selectSubModule({name: currModule.name, id: currModule.id})}

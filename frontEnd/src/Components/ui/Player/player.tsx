@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
+import PlayerInf from './PlayerInf/PlayerInf';
 import styles from './styles.module.scss';
 
 export default function Player() {
@@ -20,6 +21,7 @@ export default function Player() {
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
       ></iframe>
+      <PlayerInf/>
     </section>
   );
 }
