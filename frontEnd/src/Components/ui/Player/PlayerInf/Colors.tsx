@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import PencilTable from './PencilTable';
 import styles from './styles.module.scss';
 
 export default function Colors() {
+
+  const [showColors, setShowColors] = useState(true);
 
   const {
     classroomController: { classroom: { multiExemple, colors } },
@@ -35,13 +37,16 @@ export default function Colors() {
           : 
           (
             <section>
-              {JSON.parse(colors).map((currColor: { cor: string }, index: number) => (
-                <section key={index}>
-                  <span>
-                    { currColor.cor }
-                  </span>
+              <button onClick={() =>  setShowColors(!showColors)}>
+                Cores
+              </button>
+              {
+                showColors && <section>
+                  {JSON.parse(colors).map((currColor: { cor: string }, index: number) => (
+                    <PencilTable key={index} currColor={null} currColorList={[currColor]}/>
+                  ))}
                 </section>
-              ))}
+              }
             </section>
           )
       }

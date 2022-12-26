@@ -2,16 +2,20 @@ import React, { useState } from 'react';
 
 interface PencilTableProp {
   currColorList: { cor: string }[],
-  currColor: string
+  currColor: string | null
 }
 
 export default function PencilTable({ currColorList, currColor }: PencilTableProp) {
   const [show, setShow] = useState(true);
   if(!show) return (
     <section>
-      <button onClick={() => setShow(!show)}>
-        {currColor}
-      </button> 
+      { currColor &&
+              <section>
+                <button onClick={() => setShow(!show)}>
+                  {currColor}
+                </button> 
+              </section>
+      }
     </section>
   );
   return (
@@ -20,7 +24,7 @@ export default function PencilTable({ currColorList, currColor }: PencilTablePro
         currColorList.map(({cor}: {cor: string}, index) => {
           return (
             <section key={index}>
-              { !index &&
+              { !index && currColor &&
               <section>
                 <button onClick={() => setShow(!show)}>
                   {currColor}
