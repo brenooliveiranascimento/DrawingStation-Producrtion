@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import PencilTable from './PencilTable';
 import styles from './styles.module.scss';
 
 export default function Colors() {
@@ -18,20 +19,14 @@ export default function Colors() {
       {
         multiExemple ?
           (
-            <section style={{display: 'flex'}}>
+            <section className={styles.pencil_container}>
               {Object.keys(JSON.parse(colors)).map((currColor: string, index: number) => {
                 const allColors: any = JSON.parse(colors);
                 const currColorList = allColors[currColor];
                 return (
                   <section key={index}>
                     <h1>{currColor}</h1>
-                    {currColorList.map(({cor}: {cor: string}, pencilIndex: number) => {
-                      return (
-                        <section key={pencilIndex}>
-                          <span>{cor}</span>
-                        </section>
-                      );
-                    })}
+                    <PencilTable currColorList={currColorList} />
                   </section>
                 );
               })

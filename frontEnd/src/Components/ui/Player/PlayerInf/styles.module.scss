@@ -9,6 +9,9 @@
 }
 
 .pencil_container {
-  width: 50%;
   display: flex;
+
+  section {
+    margin: 0.5rem;
+  }
 }
