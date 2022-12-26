@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import Colors from './Colors';
+import styles from './styles.module.scss';
 
 export default function PlayerInf() {
   const {
@@ -12,7 +13,7 @@ export default function PlayerInf() {
   const { name, multiExemple, colors, description } = classroom;
 
   return (
-    <section>
+    <section className={styles.player_inf_container}>
       <article>
         <h1>
           {classroom.name}

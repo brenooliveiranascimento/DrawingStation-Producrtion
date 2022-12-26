@@ -22,7 +22,10 @@ export default function Colors() {
                 const allColors: any = JSON.parse(colors);
                 const currColorList = allColors[currColor];
                 return currColorList.map((currPencil: { cor: string }, index: number) => (
-                  <h1 key={index}>{currPencil.cor}</h1>
+                  <section key={index}>
+                    { !index && <h1>{currColor}</h1> }
+                    <span>{currPencil.cor}</span>
+                  </section>
                 ));
               })
               }
@@ -33,7 +36,9 @@ export default function Colors() {
             <section>
               {JSON.parse(colors).map((currColor: { cor: string }, index: number) => (
                 <section key={index}>
-                  { currColor.cor }
+                  <span>
+                    { currColor.cor }
+                  </span>
                 </section>
               ))}
             </section>
