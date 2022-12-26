@@ -26,9 +26,7 @@ export default function Colors() {
                 const allColors: any = JSON.parse(colors);
                 const currColorList = allColors[currColor];
                 return (
-                  <section key={index}>
-                    <PencilTable currColorList={currColorList} currColor={currColor} />
-                  </section>
+                  <PencilTable key={index} currColorList={currColorList} currColor={currColor} />
                 );
               })
               }
@@ -37,8 +35,9 @@ export default function Colors() {
           : 
           (
             <section className={styles.one_pencil_container}>
+              <h1>Cores</h1>
               {JSON.parse(colors).map((currColor: { cor: string }, index: number) => (
-                <PencilTable key={index} currColor={null} currColorList={[currColor]}/>
+                <span key={index}>#{index + 1} {currColor.cor}</span>
               ))}
             </section>
           )
