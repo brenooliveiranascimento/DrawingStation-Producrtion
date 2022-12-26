@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import styles from './styles.module.scss';
 
 export default function Colors() {
 
@@ -13,20 +14,26 @@ export default function Colors() {
   }
 
   return (
-    <aside>
+    <aside >
       {
         multiExemple ?
           (
-            <section>
-              {Object.keys(JSON.parse(colors)).map((currColor: string) => {
+            <section style={{display: 'flex'}}>
+              {Object.keys(JSON.parse(colors)).map((currColor: string, index: number) => {
                 const allColors: any = JSON.parse(colors);
                 const currColorList = allColors[currColor];
-                return currColorList.map((currPencil: { cor: string }, index: number) => (
+                return (
                   <section key={index}>
-                    { !index && <h1>{currColor}</h1> }
-                    <span>{currPencil.cor}</span>
+                    <h1>{currColor}</h1>
+                    {currColorList.map(({cor}: {cor: string}, pencilIndex: number) => {
+                      return (
+                        <section key={pencilIndex}>
+                          <span>{cor}</span>
+                        </section>
+                      );
+                    })}
                   </section>
-                ));
+                );
               })
               }
             </section>

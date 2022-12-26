@@ -1,6 +1,5 @@
 .player_inf_container {
   display: flex;
-  background-color: red;
   justify-content: space-between;
   padding: 1rem;
 
@@ -9,4 +8,7 @@
   }
 }
 
-
+.pencil_container {
+  width: 50%;
+  display: flex;
+}
