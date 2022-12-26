@@ -5,6 +5,7 @@ import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { requestSubCommentsAction } from '../../../redux/actions/commentsActions/commentsActions';
 import CommentCard from '../CommentCard/CommentCard';
 import NewCommentForm from './NewCommentForm/NewCommentForm';
+import styles from './styles.module.scss';
 
 export default function Comments() {
 
@@ -27,7 +28,7 @@ export default function Comments() {
   }
   
   return (
-    <footer>
+    <section className={styles.main_comment_container}>
       <section>
         {
           comments.filter((currComment: ICommentsWithUserData) =>
@@ -36,6 +37,6 @@ export default function Comments() {
           ))
         }
       </section>
-    </footer>
+    </section>
   );
 }

@@ -11,7 +11,6 @@ export default function PlayerContainer() {
   const [showComments, setShowComments] = useState(false);
   return (
     <section className={styles.main_player_container}>
-      {/* <PlayerHeader/> */}
       <section className={styles.player_with_side_bar}>
         <Player/>
         <PlayerSideBar/>
@@ -23,6 +22,7 @@ export default function PlayerContainer() {
       <button onClick={() => setShowComments(!showComments)}>
           Mostrar comentários
       </button>
-      { showComments && <Comments/> }   </section>
+      { showComments && <Comments/> }
+    </section>
   );
 }
