@@ -8,6 +8,10 @@ export default function Colors() {
     classroomController: { classroom: { multiExemple, colors } },
   } = useSelector((state: globalState) => state);
 
+  if(!colors) {
+    return <h1>Materiais em breve</h1>;
+  }
+
   return (
     <aside>
       {
@@ -25,7 +29,15 @@ export default function Colors() {
             </section>
           )
           : 
-          (<section></section>)
+          (
+            <section>
+              {JSON.parse(colors).map((currColor: { cor: string }, index: number) => (
+                <section key={index}>
+                  { currColor.cor }
+                </section>
+              ))}
+            </section>
+          )
       }
     </aside>
   );
