@@ -3,6 +3,8 @@
   display: flex;
   overflow: hidden;
   color: var(--white);
+  background: url("../../../public/black.png") fixed;
+  background-size: cover;
   @media screen and (max-width: 660px) {
     flex-direction: column;
     width: 100%;
@@ -45,4 +47,13 @@
 
 .main_container::-webkit-scrollbar {
   display: none;
+}
+
+.darkness_bacgdround {
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+  height: 100%;
+  overflow-y: scroll;
+  background-color: rgba(0,0,0,0.7);
 }

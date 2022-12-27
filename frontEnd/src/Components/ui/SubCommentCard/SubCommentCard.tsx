@@ -5,6 +5,7 @@ import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { deleteSubCommentAction } from '../../../redux/actions/commentsActions/deleteComment';
 import { editSubCommentAction } from '../../../redux/actions/commentsActions/editComment';
 import CommentCardHeader from '../CommentCard/CommentCardHeader';
+import styles from './styles.module.scss';
 
 interface ISubCommentCardInterface {
   subComment: IsubComments
@@ -13,16 +14,20 @@ interface ISubCommentCardInterface {
 export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
   const [editedValue, setEditedValue] = useState('');
   const [edit, setEdit] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
   const dispatch = useDispatch();
 
   const { userData } = useSelector(({ user }: globalState) => user);
 
   const deleteComment = () => {
+    if(edit) return setEdit(!edit);
+    if(!confirmDelete) return setConfirmDelete(true);
     dispatch(deleteSubCommentAction({
       id: Number(subComment.id),
       userId: Number(userData.id)},
     subComment
     ));
+    setConfirmDelete(false);
   };
 
   const handleEdit = () => {
@@ -39,7 +44,7 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
   };
 
   return (
-    <section>
+    <section className={styles.sub_comment_container}>
       <CommentCardHeader userData={subComment.userData} />
       <article>
         {edit ?
@@ -48,14 +53,14 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
             value={editedValue}
           /> :subComment.content}
         { subComment.userData.id ===  userData.id &&
-        <button onClick={handleEdit}>
-          { edit ? 'Salvar' : 'Editar' }
-        </button>}
-        {
-          subComment.userData.id === userData.id &&
-        <button onClick={deleteComment}>
-          deletar
-        </button>
+        <section>
+          <button onClick={handleEdit}>
+            { edit ? 'Salvar' : 'Editar' }
+          </button>
+          <button onClick={deleteComment}>
+            { confirmDelete ? 'Confirmar' : ( edit ? 'Cancelar' : 'deletar') }
+          </button>
+        </section>
         }
       </article>
     </section>

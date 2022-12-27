@@ -40,14 +40,6 @@ export default function UserHeader() {
       <aside>
       </aside>
       <aside>
-        <button>
-          <Image width={50} alt={name} height={50} style={{
-            borderRadius: '50%' , border: premium ? '4px solid #B8860B' : 'null'
-          }} src={profilePhoto || profileDefault}/>
-          { premium && <button onClick={() => changeScreen('Subscription')}>
-            <span>Premium!</span>
-          </button> }
-        </button>
         <section className={styles.premium_area}>
           <h2>{name}</h2>
           { premium ? <button onClick={accessPortal}>
@@ -56,7 +48,14 @@ export default function UserHeader() {
             <span>{ stripeClientId ? 'Renovar Assinatura' : 'Obter Premium' }</span>
           </button> }
         </section>
-
+        <button>
+          <Image width={50} alt={name} height={50} style={{
+            borderRadius: '50%' , border: premium ? '4px solid #B8860B' : 'null'
+          }} src={profilePhoto || profileDefault}/>
+          { premium && <button onClick={() => changeScreen('Subscription')}>
+            <span>Premium!</span>
+          </button> }
+        </button>
       </aside>
     </header>
   );

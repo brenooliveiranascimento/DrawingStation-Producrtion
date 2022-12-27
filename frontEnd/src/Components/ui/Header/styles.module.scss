@@ -3,7 +3,10 @@
   top: 0px;
   width: 100%;
   height: 6rem;
-  background-color: var(--black-700);
+  // background-color: var(--black-700);
+  background-color: rgba(0,0,0,0.4);
+  position: fixed;
+  z-index: 98;
   align-items: center;
   justify-content: space-between;
   padding-right: 1rem;
@@ -11,7 +14,8 @@
 
   aside {
     display: flex;
-    align-items: center;
+    margin-right: 2.5rem;
+  align-items: center;
     justify-content: center;
 
     h2 {
@@ -51,7 +55,6 @@
   flex-direction: column;
   align-items: flex-end;
   margin-top: 1rem;
-  margin-right: 1rem;
 
   button {
     margin-top: 0.8rem;

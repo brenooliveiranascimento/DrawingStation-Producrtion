@@ -73,9 +73,45 @@
 .name_Comment_input {
   justify-content: space-between;
   display: flex;
+  button {
+    background-color: rgba(0,0,0,0.0);
+    border: none;
+    color: white;
+  }
+
+  aside {
+    display: flex;
+    button {
+      width: 150px;
+      padding: 0.5rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 1rem;
+      font-size: 1.2rem;
+      border-radius: 1rem;
+      background-color: var(--dark-light-600);
+      transition: all 0.5s;
+      &:hover {
+        filter: brightness(70%);
+      }
+    }
+  }
 
   article {
     width: 650px;
+    p {
+      background-color: var(--dark-light-600);
+      padding: 1rem;
+      border-radius: 1rem;
+    }
+    button {
+      transition: all 0.5s;
+      &:hover {
+        filter: brightness(70%);
+      }
+    }
   }
 }
 
@@ -83,6 +119,9 @@
   width: 300px;
   padding: 0.5rem;
   border-radius: 1rem;
-  margin-bottom: 1rem;
-  border:none
+  border:none;
+  color: white;
+  font-size: 1.2rem;
+  background-color: var(--dark-light-700);
 }
+
