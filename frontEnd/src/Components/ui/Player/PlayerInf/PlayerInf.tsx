@@ -26,7 +26,6 @@ export default function PlayerInf() {
             {description}
           </p>
         </article>
-        <NewCommentForm/>
       </section>
       <Colors/>
       <button onClick={() => setShowComments(!showComments)}>

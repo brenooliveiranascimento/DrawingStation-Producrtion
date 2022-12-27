@@ -1,5 +1,9 @@
 .main_comment_container {
   width: 100%;
   display: flex;
+  flex-direction: column;
   padding: 2rem;
+  background-color: var(--dark-light-600);
+  margin-top: 1rem;
+  border-radius: 1rem;
 }

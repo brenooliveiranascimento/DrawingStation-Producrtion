@@ -30,6 +30,7 @@ const CLASSROOM_CONTROLLER_DEFAULT_VALUE:IClassroomController = {
     colors: null,
     conclude: false,
     image: '',
+    multiExemple: false
   },
   loading: true,
   buyPremium: true,
