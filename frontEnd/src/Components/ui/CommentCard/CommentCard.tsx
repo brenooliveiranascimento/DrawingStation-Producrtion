@@ -47,14 +47,14 @@ export default function CommentCard({comment}: commentCardProp) {
           value={editedValue}
         /> : <span className={styles.comment}>{comment.content}</span>}
         { comment.userData.id ===  userData.id &&
-        <button onClick={handleEdit}>
-          { edit ? 'Salvar' : 'Editar' }
-        </button>}
-        {
-          comment.userData.id === userData.id &&
-        <button onClick={deleteComment}>
-          { edit ? 'Cancelar' : 'deletar' }
-        </button>
+        <section>
+          <button onClick={handleEdit}>
+            { edit ? 'Salvar' : 'Editar' }
+          </button>
+          <button onClick={deleteComment}>
+            { edit ? 'Cancelar' : 'deletar' }
+          </button>
+        </section>
         }
       </article>
       {

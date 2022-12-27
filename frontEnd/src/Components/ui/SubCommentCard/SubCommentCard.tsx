@@ -5,6 +5,7 @@ import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { deleteSubCommentAction } from '../../../redux/actions/commentsActions/deleteComment';
 import { editSubCommentAction } from '../../../redux/actions/commentsActions/editComment';
 import CommentCardHeader from '../CommentCard/CommentCardHeader';
+import styles from './styles.module.scss';
 
 interface ISubCommentCardInterface {
   subComment: IsubComments
@@ -18,6 +19,7 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
   const { userData } = useSelector(({ user }: globalState) => user);
 
   const deleteComment = () => {
+    if(edit) return setEdit(!edit);
     dispatch(deleteSubCommentAction({
       id: Number(subComment.id),
       userId: Number(userData.id)},
@@ -39,7 +41,7 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
   };
 
   return (
-    <section>
+    <section className={styles.sub_comment_container}>
       <CommentCardHeader userData={subComment.userData} />
       <article>
         {edit ?
@@ -48,14 +50,14 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
             value={editedValue}
           /> :subComment.content}
         { subComment.userData.id ===  userData.id &&
-        <button onClick={handleEdit}>
-          { edit ? 'Salvar' : 'Editar' }
-        </button>}
-        {
-          subComment.userData.id === userData.id &&
-        <button onClick={deleteComment}>
-          deletar
-        </button>
+        <section>
+          <button onClick={handleEdit}>
+            { edit ? 'Salvar' : 'Editar' }
+          </button>
+          <button onClick={deleteComment}>
+            { edit ? 'Cancelar' : 'deletar' }
+          </button>
+        </section>
         }
       </article>
     </section>
