@@ -51,7 +51,7 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
           <input
             onChange={({target}) => setEditedValue(target.value)}
             value={editedValue}
-          /> :subComment.content}
+          /> : <span className={styles.comment}>{subComment.content}</span>}
         { subComment.userData.id ===  userData.id &&
         <section>
           <button onClick={handleEdit}>

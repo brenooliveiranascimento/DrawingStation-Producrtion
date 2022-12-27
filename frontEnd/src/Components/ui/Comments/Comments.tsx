@@ -30,7 +30,10 @@ export default function Comments() {
 
   if(!comments.length) {
     return (
-      <h1>Nenhum comentário</h1>
+      <section className={styles.main_comment_container}>
+        <NewCommentForm/>
+        <p>Nenhum comentário parra essa aula, seja o primeiro!</p>
+      </section>
     );
   }
   
