@@ -8,6 +8,7 @@ import user from '../../../redux/modules/user/user';
 import NewSubComment from '../Comments/NewCommentForm/NewSubComment';
 import SubCommentCard from '../SubCommentCard/SubCommentCard';
 import CommentCardHeader from './CommentCardHeader';
+import styles from './styles.module.scss';
 
 interface commentCardProp {
   comment: ICommentsWithUserData
@@ -23,6 +24,7 @@ export default function CommentCard({comment}: commentCardProp) {
   const dispatch = useDispatch();
 
   const deleteComment = () => {
+    if(edit) return setEdit(!edit);
     dispatch(deleteCommentAction({id: comment.id, userId: Number(userData.id)}, comment));
   };
 
@@ -37,13 +39,13 @@ export default function CommentCard({comment}: commentCardProp) {
   };
 
   return (
-    <section>
-      <CommentCardHeader userData={comment.userData} />
+    <section className={styles.card_caontainer}>
+      <CommentCardHeader userData={comment.userData}  />
       <article>
         {edit ? <input
           onChange={({target}) => setEditedValue(target.value)}
           value={editedValue}
-        /> :comment.content}
+        /> : <span>{comment.content}</span>}
         { comment.userData.id ===  userData.id &&
         <button onClick={handleEdit}>
           { edit ? 'Salvar' : 'Editar' }
@@ -51,14 +53,21 @@ export default function CommentCard({comment}: commentCardProp) {
         {
           comment.userData.id === userData.id &&
         <button onClick={deleteComment}>
-            deletar
+          { edit ? 'Cancelar' : 'deletar' }
         </button>
         }
       </article>
-      <NewSubComment commentData={comment}/>
       {
-        showSubComments && comment.subComments.map((currSubComment: IsubComments) =>
-          <SubCommentCard subComment={currSubComment} key={currSubComment.id}/>)
+        showSubComments && comment.subComments.map((currSubComment: IsubComments, index: number) => {
+          return (
+            <section key={index}>
+              <SubCommentCard subComment={currSubComment} key={currSubComment.id}/>
+              {
+                index + 1 === comment.subComments.length && <NewSubComment commentData={comment}/>
+              }
+            </section>
+          );
+        })
       }
       <button onClick={() => setShowSubComments(!showSubComments)}>
         { showSubComments ? 'Fechar respostas' : 'Mostrar respostas' }

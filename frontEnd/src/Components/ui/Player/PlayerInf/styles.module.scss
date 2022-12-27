@@ -92,9 +92,9 @@
       font-size: 1.2rem;
       border-radius: 1rem;
       background-color: var(--dark-light-600);
-      margin-top: 1rem;
-      :hover {
-        filter: brightness(60%);
+      transition: all 0.5s;
+      &:hover {
+        filter: brightness(70%);
       }
     }
   }
@@ -105,6 +105,12 @@
       background-color: var(--dark-light-600);
       padding: 1rem;
       border-radius: 1rem;
+    }
+    button {
+      transition: all 0.5s;
+      &:hover {
+        filter: brightness(70%);
+      }
     }
   }
 }
