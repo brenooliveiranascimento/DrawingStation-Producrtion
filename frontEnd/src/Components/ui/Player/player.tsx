@@ -17,10 +17,9 @@ export default function Player() {
   return (
     <section className={styles.player}>
       <iframe
-        src={`https://www.youtube.com/embed/${classroom.video}`}
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      ></iframe>
+        src="https://player.vimeo.com/video/784557311?h=c9581f27cd&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+        title="speedart bal&amp;atilde;o metalico">
+      </iframe>
       <PlayerInf/>
     </section>
   );

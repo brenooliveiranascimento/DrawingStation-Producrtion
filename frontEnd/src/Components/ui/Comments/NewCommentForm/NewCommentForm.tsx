@@ -25,7 +25,8 @@ export default function NewCommentForm() {
     <form className={styles.new_comemnt_container}>
       <Image
         style={{
-          borderRadius: '50%'
+          borderRadius: '50%',
+          marginTop: '0.8rem'
         }}
         height={50}
         width={50}
@@ -33,6 +34,7 @@ export default function NewCommentForm() {
         src={userData.profilePhoto || defaultUser}
       />
       <label htmlFor='content'>
+        <span>Adicionar comentário</span>
         <input
           value={content}
           name="content"

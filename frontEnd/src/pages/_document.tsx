@@ -8,6 +8,7 @@ export default function Document() {
       <body>
         <Main/>
         <NextScript/>
+        <script src="https://player.vimeo.com/api/player.js" async></script>
       </body>
     </Html>
   );

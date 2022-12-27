@@ -13,7 +13,6 @@ export default function PlayerInf() {
   } = useSelector((state: globalState) => state);
 
   const { description } = classroom;
-  const [showComments, setShowComments] = useState(false);
 
   return (
     <section className={styles.player_inf_container}>
@@ -28,10 +27,8 @@ export default function PlayerInf() {
         </article>
       </section>
       <Colors/>
-      <button onClick={() => setShowComments(!showComments)}>
-        mostrar comentarios
-      </button>
-      { showComments && <Comments/> }
+
+      <Comments/>
     </section>
   );
 }

@@ -7,6 +7,11 @@
   label {
     width: 100%;
 
+    span {
+      margin-left: 1rem;
+      font-weight: 600;
+    }
+
   input {
     width: 100%;
     border: none;
@@ -29,6 +34,7 @@
     border-top-left-radius: 0rem;
     margin-left: 0.5rem;
     padding: 0.5rem;
+    margin-top: 1.6rem;
     background-color: var(--dark-light-700);
     border: none;
     color: white;

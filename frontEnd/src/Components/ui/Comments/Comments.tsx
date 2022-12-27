@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IAllSubCommentsUserData, ICommentsWithUserData } from '../../../interfaces/modules/commentsModuleInterfaces';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
@@ -12,6 +12,7 @@ export default function Comments() {
   const dispatch = useDispatch();
   const { classroom } = useSelector(({ classroomController }: globalState) => classroomController);
   const { comments, error, load } = useSelector(({ commentsModule }: globalState) => commentsModule);
+  const [showComments, setShowComments] = useState(false);
 
   const initData = () => {
     dispatch(requestSubCommentsAction());
@@ -36,15 +37,22 @@ export default function Comments() {
   return (
     <section className={styles.main_comment_container}>
       <NewCommentForm/>
-      <section>
-        {
-          comments.filter((currComment: ICommentsWithUserData) =>
-            currComment.classroomId === classroom.id).map((comment: ICommentsWithUserData) => (
-            <CommentCard  comment={comment} key={comment.id}/>
-          )
-          )
-        }
-      </section>
+      <button className={styles.show_comment_btn} onClick={() => setShowComments(!showComments)}>
+        mostrar comentarios
+      </button>
+      {
+        showComments && (
+          <section>
+            {
+              comments.filter((currComment: ICommentsWithUserData) =>
+                currComment.classroomId === classroom.id).map((comment: ICommentsWithUserData) => (
+                <CommentCard  comment={comment} key={comment.id}/>
+              )
+              )
+            }
+          </section>
+        )
+      }
     </section>
   );
 }
