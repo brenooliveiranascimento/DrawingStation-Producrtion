@@ -14,17 +14,20 @@ interface ISubCommentCardInterface {
 export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
   const [editedValue, setEditedValue] = useState('');
   const [edit, setEdit] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
   const dispatch = useDispatch();
 
   const { userData } = useSelector(({ user }: globalState) => user);
 
   const deleteComment = () => {
     if(edit) return setEdit(!edit);
+    if(!confirmDelete) return setConfirmDelete(true);
     dispatch(deleteSubCommentAction({
       id: Number(subComment.id),
       userId: Number(userData.id)},
     subComment
     ));
+    setConfirmDelete(false);
   };
 
   const handleEdit = () => {
@@ -55,7 +58,7 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
             { edit ? 'Salvar' : 'Editar' }
           </button>
           <button onClick={deleteComment}>
-            { edit ? 'Cancelar' : 'deletar' }
+            { confirmDelete ? 'Confirmar' : ( edit ? 'Cancelar' : 'deletar') }
           </button>
         </section>
         }
