@@ -18,6 +18,15 @@
     margin-top: -2rem;
     justify-content: space-between;
 
+    input {
+      width: 200px;
+      padding: 0.4rem;
+      background-color: var(--dark-light-700);
+      color: white;
+      border: none;
+      border-radius: 1rem;
+    }
+
     button {
       border-radius: 1rem;
       border: none;

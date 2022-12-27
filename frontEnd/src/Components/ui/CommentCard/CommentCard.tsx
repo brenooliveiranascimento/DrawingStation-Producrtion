@@ -76,7 +76,7 @@ export default function CommentCard({comment}: commentCardProp) {
         !comment.subComments.length && showSubComments && <NewSubComment commentData={comment}/>
       }
       <button className={styles.show_sub_comment} onClick={() => setShowSubComments(!showSubComments)}>
-        Mostrar respostas
+        { showSubComments ? 'Esconder comentários' : 'Mostrar respostas'}
       </button>
     </section>
   );
