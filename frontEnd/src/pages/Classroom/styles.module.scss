@@ -20,7 +20,7 @@
   overflow: auto;
   scrollbar-width: 1px;
   -ms-overflow-style: none;
-
+  
   @media screen and (max-width: 595px) {
     padding-top: 30rem;
   }
@@ -28,6 +28,7 @@
 
 .player_content {
   padding: 1rem;
+  padding-top: 0rem;
   width: 100%;
   height: 100%;
   overflow-y: scroll;

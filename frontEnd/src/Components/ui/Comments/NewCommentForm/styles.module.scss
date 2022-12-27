@@ -3,15 +3,19 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
-  padding: 1rem;
   padding-top: 0rem;
   label {
-    width: 600px;
+    width: 100%;
+
+    span {
+      margin-left: 1rem;
+      font-weight: 600;
+    }
 
   input {
     width: 100%;
     border: none;
-    background-color: var(--input);
+    background-color: var(--dark-light-700);
     color: white;
     padding: 0.5rem;
     border-radius: 1rem;
@@ -30,7 +34,8 @@
     border-top-left-radius: 0rem;
     margin-left: 0.5rem;
     padding: 0.5rem;
-    background-color: var(--input);
+    margin-top: 1.6rem;
+    background-color: var(--dark-light-700);
     border: none;
     color: white;
     font-size: 1rem;

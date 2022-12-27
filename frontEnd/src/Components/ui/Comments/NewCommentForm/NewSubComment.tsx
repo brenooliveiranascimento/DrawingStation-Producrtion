@@ -1,9 +1,10 @@
 import React, { FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { ICommentsWithUserData } from '../../../interfaces/modules/commentsModuleInterfaces';
-import { globalState } from '../../../interfaces/modules/globalStateInterface';
-import { crateSubCommentAction } from '../../../redux/actions/commentsActions/createNewComment';
+import { ICommentsWithUserData } from '../../../../interfaces/modules/commentsModuleInterfaces';
+import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import { crateSubCommentAction } from '../../../../redux/actions/commentsActions/createNewComment';
+import styles from './styles.module.scss';
 
 interface ISubCommentForm {
   commentData: ICommentsWithUserData;

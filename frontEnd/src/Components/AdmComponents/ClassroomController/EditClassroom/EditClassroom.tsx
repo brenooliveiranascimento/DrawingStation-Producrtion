@@ -24,7 +24,7 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
   const [currColorCollection, setCurrColorCollection] = useState([
     {color: ''}
   ]);
-  const [editClassroom, setEditClassroom] = useState<ClassroomInterface>({
+  const [editClassroom, setEditClassroom] = useState<any>({
     name: '',
     image: '',
     premium: true,
