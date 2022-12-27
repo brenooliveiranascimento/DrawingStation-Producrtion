@@ -55,6 +55,7 @@
   width: 170px;
   display: flex;
   margin-top: 1rem;
+  margin-right: 2rem;
   flex-direction: column;
   span {
     padding-left: 1rem;
@@ -72,4 +73,16 @@
 .name_Comment_input {
   justify-content: space-between;
   display: flex;
+
+  article {
+    width: 650px;
+  }
+}
+
+.show_materials {
+  width: 300px;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  border:none
 }

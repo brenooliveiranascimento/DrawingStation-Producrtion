@@ -17,11 +17,14 @@ export default function Colors() {
   }
 
   return (
-    <aside>
+    <aside className={styles.one_pencil_container}>
+      <button className={styles.show_materials}>
+                Materiais necessarios
+      </button>
       {
         multiExemple ?
           (
-            <section className={styles.pencil_container}>
+            <section style={{ display: 'flex', marginLeft: '1rem'}}>
               {Object.keys(JSON.parse(colors)).map((currColor: string, index: number) => {
                 const allColors: any = JSON.parse(colors);
                 const currColorList = allColors[currColor];
@@ -34,7 +37,7 @@ export default function Colors() {
           )
           : 
           (
-            <section className={styles.one_pencil_container}>
+            <section style={{ display: 'flex', flexDirection: 'column' }} >
               <h1>Cores</h1>
               {JSON.parse(colors).map((currColor: { cor: string }, index: number) => (
                 <span key={index}>#{index + 1} {currColor.cor}</span>

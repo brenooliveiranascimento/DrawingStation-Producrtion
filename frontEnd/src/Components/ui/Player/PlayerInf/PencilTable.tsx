@@ -16,8 +16,8 @@ export default function PencilTable({ currColorList, currColor }: PencilTablePro
       {
         currColorList.map(({cor}: {cor: string}, index) => {
           return (
-            <section key={index}>
-              <span>#{index + 1}{cor}</span>
+            <section style={{marginTop:'1rem'}} key={index}>
+              <span >#{index + 1}{cor}</span>
             </section>
           );
         })
