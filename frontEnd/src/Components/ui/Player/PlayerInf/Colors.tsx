@@ -6,7 +6,6 @@ import styles from './styles.module.scss';
 
 export default function Colors() {
 
-  const [showColors, setShowColors] = useState(true);
 
   const {
     classroomController: { classroom: { multiExemple, colors } },
@@ -18,9 +17,6 @@ export default function Colors() {
 
   return (
     <aside className={styles.one_pencil_container}>
-      <button className={styles.show_materials}>
-                Materiais necessarios
-      </button>
       {
         multiExemple ?
           (

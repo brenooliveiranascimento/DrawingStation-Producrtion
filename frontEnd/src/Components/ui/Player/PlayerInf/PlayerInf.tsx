@@ -11,6 +11,7 @@ export default function PlayerInf() {
     classroomController: { classroom },
     classroomsData: { classroomsData }
   } = useSelector((state: globalState) => state);
+  const [showColors, setShowColors] = useState(true);
 
   const { description } = classroom;
 
@@ -26,7 +27,12 @@ export default function PlayerInf() {
           </p>
         </article>
       </section>
-      <Colors/>
+      <section className={styles.one_pencil_container}>
+        <button onClick={() => setShowColors(!showColors)} className={styles.show_materials}>
+            Materiais necessarios
+        </button>
+        {showColors && <Colors/>}
+      </section>
 
       <Comments/>
     </section>
