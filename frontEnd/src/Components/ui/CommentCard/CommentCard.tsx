@@ -18,6 +18,7 @@ export default function CommentCard({comment}: commentCardProp) {
   const [showSubComments, setShowSubComments] = useState(false);
   const [editedValue, setEditedValue] = useState('');
   const [edit, setEdit] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const { userData } = useSelector(({ user }: globalState) => user);
 
@@ -25,7 +26,9 @@ export default function CommentCard({comment}: commentCardProp) {
 
   const deleteComment = () => {
     if(edit) return setEdit(!edit);
+    if(!confirmDelete) return setConfirmDelete(true);
     dispatch(deleteCommentAction({id: comment.id, userId: Number(userData.id)}, comment));
+    setConfirmDelete(false);
   };
 
   const handleEdit = () => {
@@ -52,7 +55,7 @@ export default function CommentCard({comment}: commentCardProp) {
             { edit ? 'Salvar' : 'Editar' }
           </button>
           <button onClick={deleteComment}>
-            { edit ? 'Cancelar' : 'deletar' }
+            { confirmDelete ? 'Confirmar' : ( edit ? 'Cancelar' : 'deletar') }
           </button>
         </section>
         }
@@ -69,8 +72,11 @@ export default function CommentCard({comment}: commentCardProp) {
           );
         })
       }
-      <button onClick={() => setShowSubComments(!showSubComments)}>
-        { showSubComments ? 'Fechar respostas' : 'Mostrar respostas' }
+      {
+        !comment.subComments.length && showSubComments && <NewSubComment commentData={comment}/>
+      }
+      <button className={styles.show_sub_comment} onClick={() => setShowSubComments(!showSubComments)}>
+        Mostrar respostas
       </button>
     </section>
   );
