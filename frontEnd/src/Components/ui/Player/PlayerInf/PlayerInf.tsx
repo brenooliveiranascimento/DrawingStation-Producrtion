@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FaCheckCircle } from 'react-icons/fa';
+import { FiCheck } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import Comments from '../../Comments/Comments';
@@ -21,11 +23,19 @@ export default function PlayerInf() {
         <article>
           <h1>
             {classroom.name}
+            <button>
+              <FaCheckCircle color='green'/>
+            </button>
           </h1>
           <p>
             {description}
           </p>
         </article>
+        <aside>
+          <button>
+            Próxima aula {'>'}
+          </button>
+        </aside>
       </section>
       <section className={styles.one_pencil_container}>
         <button onClick={() => setShowColors(!showColors)} className={styles.show_materials}>
