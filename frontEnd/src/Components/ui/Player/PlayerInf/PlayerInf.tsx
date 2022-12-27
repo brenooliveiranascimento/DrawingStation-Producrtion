@@ -24,7 +24,7 @@ export default function PlayerInf() {
           <h1>
             {classroom.name}
             <button>
-              <FaCheckCircle color='green'/>
+              <FaCheckCircle style={{marginBottom: -5, marginLeft: '1rem'}} size={25} color='green'/>
             </button>
           </h1>
           <p>
@@ -32,6 +32,9 @@ export default function PlayerInf() {
           </p>
         </article>
         <aside>
+          <button>
+            {'<'} Aula anterior 
+          </button>
           <button>
             Próxima aula {'>'}
           </button>
