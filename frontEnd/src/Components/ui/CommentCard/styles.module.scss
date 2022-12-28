@@ -18,8 +18,13 @@
     margin-top: -2rem;
     justify-content: space-between;
 
+    p {
+      word-break: break-all;
+      width: 80%;
+    }
+
     input {
-      width: 200px;
+      width: 80%;
       padding: 0.4rem;
       background-color: var(--dark-light-700);
       color: white;

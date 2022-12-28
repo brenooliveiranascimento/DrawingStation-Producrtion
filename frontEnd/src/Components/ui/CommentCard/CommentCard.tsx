@@ -48,7 +48,7 @@ export default function CommentCard({comment}: commentCardProp) {
         {edit ? <input
           onChange={({target}) => setEditedValue(target.value)}
           value={editedValue}
-        /> : <span className={styles.comment}>{comment.content}</span>}
+        /> : <p className={styles.comment}>{comment.content}</p>}
         { comment.userData.id ===  userData.id &&
         <section>
           <button onClick={handleEdit}>

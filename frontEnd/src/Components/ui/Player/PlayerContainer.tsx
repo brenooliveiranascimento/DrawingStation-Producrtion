@@ -4,16 +4,17 @@ import PlayerSideBar from './PlayerSideBar/PlayerSideBar';
 import styles from './styles.module.scss';
 
 export default function PlayerContainer() {
-  const [showSideBar, setShowSideBar] = useState(true);
-  const [width, setWidth] = useState(window.innerWidth);
-
-  // const handleSideExerciceArea = () => {
-  //   if (window.innerWidth <= 1530) return setShowSideBar(!showSideBar);
-  // };
+  const [showSideBar, setShowSideBar] = useState(false);
+  const [width, setWidth] = useState(0);
 
   useEffect((): any => {
     const verifyWidth = setInterval(() => setWidth(window.innerWidth), 100);
     return () => clearInterval(verifyWidth);
+  }, []);
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+    console.log(width);
   }, [width]);
 
   return (
@@ -24,24 +25,11 @@ export default function PlayerContainer() {
           width >= 1590 ? <PlayerSideBar/> : (
             <section
               style={{
-                position: 'absolute',
-                width: '100%',
-                height: '100vh',
-                top: 0,
-                backgroundColor: 'rgba(0,0,0,0.5)',
-                display: 'flex',
-                justifyContent: 'flex-end',
-                paddingRight: '13rem',
-                paddingTop: '10rem'
+                display: !showSideBar ? 'none' : 'flex'
               }}
+              className={styles.absolute_side_bar}
             >
-              { showSideBar && (
-                <section style={{
-                  display: 'flex',
-                }}>
-                  <PlayerSideBar/>
-                </section>
-              )}
+              <PlayerSideBar/>
             </section>
           )
         }
