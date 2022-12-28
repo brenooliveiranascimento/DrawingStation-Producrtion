@@ -20,7 +20,7 @@ export default function Comments() {
 
   useEffect(() => {
     initData();
-  }, []);
+  }, [showComments]);
 
   if(load) {
     return (
@@ -41,7 +41,7 @@ export default function Comments() {
     <section className={styles.main_comment_container}>
       <NewCommentForm/>
       <button className={styles.show_comment_btn} onClick={() => setShowComments(!showComments)}>
-        mostrar comentarios
+        { showComments ? 'Ocultar comentários' : 'mostrar comentarios' }
       </button>
       {
         showComments && (
