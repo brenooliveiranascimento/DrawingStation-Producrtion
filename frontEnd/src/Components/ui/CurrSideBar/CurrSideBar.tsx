@@ -45,7 +45,7 @@ export default function CurrSideBar() {
 
   return (
     <nav className={styles.side_bar_container}>
-      <section className={styles.nac_area}>
+      <section className={styles.nav_area}>
         <button onClick={() => changeScreen('/')}>
           <FiHome size={28} color={currPath === '/HomePage' || !currScreen ? '#5c5c5c' : 'white'}/>
         </button>

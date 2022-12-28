@@ -76,12 +76,14 @@
     aside {
       display: flex;
       width: 100%;
+      display: flex;
+      justify-content: flex-end;
     }
   }
 
 }
 
-.nac_area {
+.nav_area {
   display: flex;
   width: auto;
   align-items: flex-start;
