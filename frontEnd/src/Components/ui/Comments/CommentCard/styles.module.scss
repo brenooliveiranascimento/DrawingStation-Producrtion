@@ -50,13 +50,29 @@
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   margin-bottom: 1rem;
+  flex-direction: column;
+  height: auto;
   section {
     display: flex;
     align-items: center;
   }
   span {
     font-size: 1.2rem;
+    font-weight: 800;
     margin-left: 1rem;
+  }
+
+  @media screen and (max-width:450px) {
+      section {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        span {
+          margin-left: -0.0rem;
+          font-weight: 800;
+        }
+      }
   }
 }
 
