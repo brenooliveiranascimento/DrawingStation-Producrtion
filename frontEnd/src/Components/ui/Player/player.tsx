@@ -1,13 +1,21 @@
 import Vimeo from '@u-wave/react-vimeo';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
+import { nextClassoomAction, prevClassoomAction } from '../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
 import PlayerInf from './PlayerInf/PlayerInf';
 import styles from './styles.module.scss';
 
 export default function Player() {
   const { buyPremium, classroom } = useSelector(({classroomController}: globalState) => classroomController);
+  const dispatch = useDispatch();
+
+  const nextClassroom = () => {
+    dispatch(nextClassoomAction());
+  };
+
   if(buyPremium) {
     return (
       <section style={{
@@ -31,7 +39,9 @@ export default function Player() {
   return (
     <section className={styles.player}>
       <Vimeo
+        onError={() => toast.error('Erro ao carregar o player')}
         video={classroom.video}
+        onEnd={nextClassroom}
         autoplay
       />
       <PlayerInf/>

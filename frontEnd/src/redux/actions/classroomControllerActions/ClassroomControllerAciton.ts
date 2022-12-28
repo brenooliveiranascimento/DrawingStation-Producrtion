@@ -43,10 +43,11 @@ export const nextClassoomAction = (): any => {
     if(nextClassroomId === currSubModuleData.classrooms.length) {
       let nextSubModuleId = subModules
         .findIndex((currSubMod: SubModuleInterface) => currSubMod.id === currSubModule.id) + 1;
-
+      if(!subModules[nextSubModuleId]) return;
       if(!subModules[nextSubModuleId].classrooms.length) {
         nextSubModuleId += 1;
       }
+
       const nextSubModuleData = subModules[nextSubModuleId];
       dispatch(selectCurrSubModule({ name: nextSubModuleData.name, id: nextSubModuleData.id }));
       dispatch(selectClassroomAction(nextSubModuleData.classrooms[0]));
