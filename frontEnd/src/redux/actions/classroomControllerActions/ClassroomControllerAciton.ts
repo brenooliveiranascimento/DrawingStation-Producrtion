@@ -42,11 +42,14 @@ export const nextClassoomAction = (): any => {
 
     if(nextClassroomId === currSubModuleData.classrooms.length) {
       let nextSubModuleId = subModules
+
         .findIndex((currSubMod: SubModuleInterface) => currSubMod.id === currSubModule.id) + 1;
+
       if(!subModules[nextSubModuleId]) return;
-      if(!subModules[nextSubModuleId].classrooms.length) {
-        nextSubModuleId += 1;
-      }
+
+      if(!subModules[nextSubModuleId].classrooms.length) { nextSubModuleId += 1; }
+
+      if(!subModules[nextSubModuleId]) return;
 
       const nextSubModuleData = subModules[nextSubModuleId];
       dispatch(selectCurrSubModule({ name: nextSubModuleData.name, id: nextSubModuleData.id }));
@@ -64,7 +67,13 @@ export const prevClassoomAction = (): any => {
     const currSubModuleIndex = subModules.findIndex((curSubM: SubModuleInterface) => curSubM.id === currSubModule.id);
     const prevClassroomId = findClassroomIndex(currSubModuleData.classrooms, classroom.id) - 1;
     const prevClassroom = currSubModuleData.classrooms[prevClassroomId];
-    console.log(prevClassroomId);
+
+    if(!currSubModuleData.classrooms.length) {
+      const prevSubModuleData = subModules[0];
+      dispatch(selectCurrSubModule({ name: prevSubModuleData.name, id: prevSubModuleData.id }));
+      dispatch(selectClassroomAction(prevSubModuleData.classrooms[prevSubModuleData.classrooms.length -1]));
+      return;
+    }
 
     if(prevClassroomId === -1 && !currSubModuleIndex) return;
     if(prevClassroomId === - 1) {

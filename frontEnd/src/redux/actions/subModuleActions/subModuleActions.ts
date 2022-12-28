@@ -19,9 +19,10 @@ export const requestSubModulesAction = (): any => {
         headers: { 'Authorization': token }
       });
       const reverseClassrooms = data.message.map((currSubModule: SubModuleInterface) => {
-        const classrooms = currSubModule.classrooms.reverse();
-        return { ...currSubModule, classrooms };
+        const classrooms = currSubModule.classrooms;
+        return { ...currSubModule, classrooms:classrooms.sort((a: any, b: any) => a.id - b.id) };
       });
+      console.log(reverseClassrooms);
       if(data.message) return dispatch(genericSuccesRequest(SubModulesTypes.REQUEST_SUCCESS, reverseClassrooms));
     } catch(e) {
       toast.error('Erro no servidor, tente novamente');

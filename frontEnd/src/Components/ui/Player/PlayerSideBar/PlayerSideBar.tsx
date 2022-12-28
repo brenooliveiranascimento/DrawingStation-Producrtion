@@ -27,11 +27,11 @@ export default function PlayerSideBar() {
   };
 
   const selectSubModule = (currSubModuleData: {name: string, id: number}) => {
-    if(currSubModule.id === currSubModuleData.id) {
-      dispatch(selectCurrSubModule({name: currSubModuleData.name, id: 0}));
-    } else {
-      dispatch(selectCurrSubModule(currSubModuleData));
-    }
+    // if(currSubModule.id === currSubModuleData.id) {
+    //   dispatch(selectCurrSubModule({name: currSubModuleData.name, id: currSubModule.id}));
+    // } else {
+    dispatch(selectCurrSubModule(currSubModuleData));
+    // }
   };
 
   const selectClass = (classInfos: ClassroomInterface) => {
