@@ -5,6 +5,7 @@ import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { ModulesInterface, SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
 import { localStorageKeys } from '../../Types/localStorageTypes';
 import { buyPremium, incompleteASubModule, setCurrClass, setCurrModule, setCurrSubmodule } from '../genericActions';
+import { selectCurrSubModule } from './genericActions';
 
 export const selectClassroomAction = (currClassroom: ClassroomInterface): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
@@ -36,7 +37,7 @@ export const nextClassoomAction = (): any => {
     const nextClassroomId = currSubModuleData.classrooms.findIndex((currClassroom: ClassroomInterface) =>
       currClassroom.id === classroom.id) + 1;
     const nextClassroom = currSubModuleData.classrooms[nextClassroomId];
-
+    console.log(nextClassroom);
     if(nextClassroomId === currSubModuleData.classrooms.length) {
       let nextSubModuleId = subModules
         .findIndex((currSubMod: SubModuleInterface) => currSubMod.id === currSubModule.id) + 1;
@@ -44,14 +45,11 @@ export const nextClassoomAction = (): any => {
         nextSubModuleId += 1;
       }
       const nextSubModuleData = subModules[nextSubModuleId];
-      console.log(nextSubModuleData);
+      dispatch(selectCurrSubModule({ name: nextSubModuleData.name, id: nextSubModuleData.id }));
+      dispatch(selectClassroomAction(nextSubModuleData.classrooms[0]));
       return;
     }
-    if(!nextClassroom ) {
-      const firstClassroomsInNextSubModule: ClassroomInterface = getCurrSubModule(subModules, currSubModule.id + 1).classrooms[0];
-      selectClassroomAction(firstClassroomsInNextSubModule);
-      console.log(firstClassroomsInNextSubModule);
-    }
+    dispatch(selectClassroomAction(nextClassroom));
   };
 };
 
