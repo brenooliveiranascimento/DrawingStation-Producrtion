@@ -127,6 +127,10 @@
         width: 100%;
       }
     }
+
+    aside {
+      flex-direction: column;
+    }
   }
 }
 
