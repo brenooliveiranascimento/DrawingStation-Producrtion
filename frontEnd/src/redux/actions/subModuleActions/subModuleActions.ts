@@ -20,7 +20,7 @@ export const requestSubModulesAction = (): any => {
       });
       const reverseClassrooms = data.message.map((currSubModule: SubModuleInterface) => {
         const classrooms = currSubModule.classrooms;
-        return { ...currSubModule, classrooms };
+        return { ...currSubModule, classrooms:classrooms.sort((a: any, b: any) => a.id - b.id) };
       });
       console.log(reverseClassrooms);
       if(data.message) return dispatch(genericSuccesRequest(SubModulesTypes.REQUEST_SUCCESS, reverseClassrooms));
