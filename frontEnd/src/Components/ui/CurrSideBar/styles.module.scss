@@ -89,9 +89,16 @@
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
+  flex-direction: column;
+  margin-left: -1rem;
 
   button {
     margin-left: 1rem;
+  }
+
+  @media screen and (max-width: 660px) {
+  flex-direction: row;
+  margin-left: 0rem;
   }
 }
 
