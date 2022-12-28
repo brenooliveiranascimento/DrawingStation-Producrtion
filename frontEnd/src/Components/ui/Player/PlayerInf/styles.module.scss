@@ -54,7 +54,6 @@
 .pencil_item {
   width: 170px;
   display: flex;
-  margin-top: 1rem;
   margin-right: 2rem;
   flex-direction: column;
   span {
@@ -144,3 +143,15 @@
   background-color: var(--dark-light-700);
 }
 
+.multi_exemple {
+  display: flex;
+  margin-left: 1rem;
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+
+    h1 {
+      margin-top: 2rem;
+    }
+  }
+}

@@ -20,7 +20,7 @@ export default function Colors() {
       {
         multiExemple ?
           (
-            <section style={{ display: 'flex', marginLeft: '1rem'}}>
+            <section className={styles.multi_exemple} >
               {Object.keys(JSON.parse(colors)).map((currColor: string, index: number) => {
                 const allColors: any = JSON.parse(colors);
                 const currColorList = allColors[currColor];
