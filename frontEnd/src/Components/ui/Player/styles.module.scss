@@ -28,6 +28,10 @@
   align-items: center;
   justify-content: center;
   margin-top: 0rem;
+
+  @media screen and (max-width: 490px) {
+    padding: 0rem;
+  }
   iframe {
     border: none;
     border-radius: 2rem;
