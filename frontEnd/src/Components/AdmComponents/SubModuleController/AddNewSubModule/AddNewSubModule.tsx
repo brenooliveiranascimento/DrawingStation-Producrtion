@@ -15,7 +15,7 @@ interface EditSubModuleInterface {
 function AddNewSubModule({ handleModal }: EditSubModuleInterface) {
   const { modules } = useSelector((state: globalState) => state.modules);
 
-  const [editingModule, setEditingModule] = useState<SubModuleInterface>({
+  const [editingModule, setEditingModule] = useState<any>({
     name: '',
     description: '',
     image: '',
@@ -107,7 +107,7 @@ function AddNewSubModule({ handleModal }: EditSubModuleInterface) {
       <Image
         width={200}
         height={300}
-        src={`${editingModule.image}`}
+        src={editingModule.image}
         alt={`${editingModule.name}`}
       />
     </section>

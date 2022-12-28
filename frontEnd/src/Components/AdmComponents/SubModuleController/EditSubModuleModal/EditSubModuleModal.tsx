@@ -12,7 +12,7 @@ interface EditModuleInterface {
 }
 
 function EditSubModuleModal({ handleModal, subModuleEditing }: EditModuleInterface) {
-  const [editingModule, setEditingModule] = useState<SubModuleInterface>({
+  const [editingModule, setEditingModule] = useState<any>({
     name: '',
     description: '',
     image: '',

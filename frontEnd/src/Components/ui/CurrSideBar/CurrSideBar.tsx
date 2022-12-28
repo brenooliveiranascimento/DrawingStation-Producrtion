@@ -19,7 +19,6 @@ export default function CurrSideBar() {
   const router = useRouter();
 
   const currPath = router.pathname;
-  console.log(currPath);
 
   return (
     <aside className={styles.side_bar_container}>

@@ -18,8 +18,6 @@ export default function Player() {
   return (
     <section className={styles.player}>
       <Vimeo
-        style={{
-        }}
         video={classroom.video}
         autoplay
       />

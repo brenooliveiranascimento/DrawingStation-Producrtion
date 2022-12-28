@@ -14,7 +14,6 @@ export default function PlayerContainer() {
 
   useEffect(() => {
     setWidth(window.innerWidth);
-    console.log(width);
   }, [width]);
 
   return (
