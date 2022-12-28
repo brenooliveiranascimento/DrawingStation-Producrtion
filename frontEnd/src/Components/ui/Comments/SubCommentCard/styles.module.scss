@@ -1,15 +1,12 @@
 .sub_comment_container {
   margin-left: 2rem;
-
   input {
     width: 200px;
     padding: 0.4rem;
     background-color: var(--dark-light-700);
     color: white;
     border: none;
-    border-radius: 1rem;
       width: 80%;
-      font-size: 1.2rem;
   }
 
   article {
@@ -20,7 +17,6 @@
       align-items: center;
       justify-content: center;
 
-      margin-top: 1re,;
     }
     @media screen and (max-width: 630px) {
       flex-direction: column;
