@@ -40,6 +40,12 @@
       padding: 0.5rem;
       margin-left: 0.5rem;
     }
+
+    @media screen and (max-width: 630px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
   }
 }
 
