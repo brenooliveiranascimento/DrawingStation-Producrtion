@@ -3,6 +3,11 @@
   width: 100%;
   flex-wrap: wrap;
   margin-top: 6rem;
+  flex-direction: column;
+
+  section {
+    display: flex;
+  }
 
   @media screen and (max-width: 595px) {
     align-items: center;
