@@ -5,6 +5,7 @@ import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { ModulesInterface, SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
 import { localStorageKeys } from '../../Types/localStorageTypes';
 import { buyPremium, incompleteASubModule, setCurrClass, setCurrModule, setCurrSubmodule } from '../genericActions';
+import { selectCurrSubModule } from './genericActions';
 
 export const selectClassroomAction = (currClassroom: ClassroomInterface): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
@@ -22,6 +23,62 @@ export const selectClassroomAction = (currClassroom: ClassroomInterface): any =>
 
       dispatch(setCurrClass(mountClassData));
     }
+  };
+};
+
+const getCurrSubModule = (subModules: SubModuleInterface[], id: number) => subModules
+  .find((currSModule: SubModuleInterface) =>
+    currSModule.id === id) as SubModuleInterface;
+
+const findClassroomIndex = (classrooms: ClassroomInterface[], id: number) => classrooms.findIndex((currClassroom: ClassroomInterface) =>
+  currClassroom.id === id);
+
+export const nextClassoomAction = (): any => {
+  return async (dispatch: Dispatch<any>, state: () => globalState) => {
+    const { classroom, currSubModule, subModules } = state().classroomController;
+    const currSubModuleData = getCurrSubModule(subModules, currSubModule.id);
+    const nextClassroomId = findClassroomIndex(currSubModuleData.classrooms, classroom.id) + 1;
+    const nextClassroom = currSubModuleData.classrooms[nextClassroomId];
+
+    if(nextClassroomId === currSubModuleData.classrooms.length) {
+      let nextSubModuleId = subModules
+        .findIndex((currSubMod: SubModuleInterface) => currSubMod.id === currSubModule.id) + 1;
+      if(!subModules[nextSubModuleId]) return;
+      if(!subModules[nextSubModuleId].classrooms.length) {
+        nextSubModuleId += 1;
+      }
+
+      const nextSubModuleData = subModules[nextSubModuleId];
+      dispatch(selectCurrSubModule({ name: nextSubModuleData.name, id: nextSubModuleData.id }));
+      dispatch(selectClassroomAction(nextSubModuleData.classrooms[0]));
+      return;
+    }
+    dispatch(selectClassroomAction(nextClassroom));
+  };
+};
+
+export const prevClassoomAction = (): any => {
+  return async (dispatch: Dispatch<any>, state: () => globalState) => {
+    const { classroom, currSubModule, subModules } = state().classroomController;
+    const currSubModuleData = getCurrSubModule(subModules, currSubModule.id);
+    const currSubModuleIndex = subModules.findIndex((curSubM: SubModuleInterface) => curSubM.id === currSubModule.id);
+    const prevClassroomId = findClassroomIndex(currSubModuleData.classrooms, classroom.id) - 1;
+    const prevClassroom = currSubModuleData.classrooms[prevClassroomId];
+    console.log(prevClassroomId);
+
+    if(prevClassroomId === -1 && !currSubModuleIndex) return;
+    if(prevClassroomId === - 1) {
+      let prevSubModuleIndex = currSubModuleIndex - 1;
+        
+      if(!subModules[prevSubModuleIndex].classrooms.length) {
+        prevSubModuleIndex -= 1;
+      }
+      const prevSubModuleData = subModules[prevSubModuleIndex];
+      dispatch(selectCurrSubModule({ name: prevSubModuleData.name, id: prevSubModuleData.id }));
+      dispatch(selectClassroomAction(prevSubModuleData.classrooms[prevSubModuleData.classrooms.length -1]));
+      return;
+    }
+    dispatch(selectClassroomAction(prevClassroom));
   };
 };
 

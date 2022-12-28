@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
-import { FiCheck } from 'react-icons/fi';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import { nextClassoomAction, prevClassoomAction } from '../../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
 import Comments from '../../Comments/Comments';
-import NewCommentForm from '../../Comments/NewCommentForm/NewCommentForm';
 import Colors from './Colors';
 import styles from './styles.module.scss';
 
@@ -16,6 +15,14 @@ export default function PlayerInf() {
   const [showColors, setShowColors] = useState(true);
 
   const { description } = classroom;
+  const dispatch = useDispatch();
+  const nextClassroom = () => {
+    dispatch(nextClassoomAction());
+  };
+
+  const prevClassroom = () => {
+    dispatch(prevClassoomAction());
+  };
 
   return (
     <section className={styles.player_inf_container}>
@@ -32,10 +39,10 @@ export default function PlayerInf() {
           </p>
         </article>
         <aside>
-          <button>
+          <button onClick={prevClassroom}>
             {'<'} Aula anterior 
           </button>
-          <button>
+          <button onClick={nextClassroom}>
             Próxima aula {'>'}
           </button>
         </aside>

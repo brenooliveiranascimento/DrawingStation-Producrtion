@@ -55,7 +55,7 @@ export default function Subscription({ userData }: ISubscriptionProps) {
                       backgroundColor: !currPlan.type ? 'white' : (premium ? 'green' : 'white')
                     }}
                     onClick={() => initChecckout(currPlan.type)}>
-                    { !currPlan.type ? 'Acessar Portal do assinante' : premium ? 'Premium ativo!!!' : 'Assianr plano mensal' }
+                    { !currPlan.type ? 'Acessar Portal do assinante' : premium ? 'Premium ativo!!!' : currPlan.btnMessage }
                   </button>
                 </section>
               );
