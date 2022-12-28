@@ -48,6 +48,10 @@ export const nextClassoomAction = (): any => {
         nextSubModuleId += 1;
       }
 
+      if(!subModules[nextSubModuleId]) {
+        return;
+      }
+
       const nextSubModuleData = subModules[nextSubModuleId];
       dispatch(selectCurrSubModule({ name: nextSubModuleData.name, id: nextSubModuleData.id }));
       dispatch(selectClassroomAction(nextSubModuleData.classrooms[0]));
