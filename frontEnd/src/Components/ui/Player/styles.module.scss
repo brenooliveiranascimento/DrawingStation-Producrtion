@@ -9,6 +9,10 @@
     align-items: center;
     justify-content: center;
   }
+
+  @media screen and (max-width: 550px) {
+    margin-top: 13rem;
+  }
 }
 
 .player_with_side_bar {
@@ -53,6 +57,11 @@
 
     @media screen and (max-width: 740px) {
       height: 340px;
+    }
+
+
+    @media screen and (max-width: 550px) {
+      height: 230px;
     }
   }
   @media screen and (max-width: 1590px) {
