@@ -1,6 +1,7 @@
 import Vimeo from '@u-wave/react-vimeo';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -15,12 +16,19 @@ interface playerProps {
 }
 
 export default function Player({ showSidebar, width }: playerProps) {
-  const { buyPremium, classroom, incomplete } = useSelector(({classroomController}: globalState) => classroomController);
+  const { buyPremium, classroom, incomplete, loading } = useSelector(({classroomController}: globalState) => classroomController);
   const dispatch = useDispatch();
+  const [loadPlayer, setLoadPlayer] = useState(true);
 
   const nextClassroom = () => {
     dispatch(nextClassoomAction());
   };
+
+  if(loading) {
+    return <section className={styles.player}>
+      <h1>Carregando</h1>
+    </section>;
+  }
 
   if(!classroom.conclude || incomplete) {
     return (
@@ -28,7 +36,9 @@ export default function Player({ showSidebar, width }: playerProps) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        width: '100%',
+        height: 600
       }} className={styles.player}>
         <h1>Sem aulas disponiveis no momento</h1>
       </section>
@@ -75,6 +85,7 @@ export default function Player({ showSidebar, width }: playerProps) {
       <Vimeo
         onError={() => toast.error('Erro ao carregar o player')}
         video={classroom.video}
+        onLoaded={() => setLoadPlayer(!loadPlayer)}
         onEnd={nextClassroom}
         autoplay
       />
