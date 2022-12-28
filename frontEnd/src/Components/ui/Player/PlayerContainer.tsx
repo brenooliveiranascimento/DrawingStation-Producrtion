@@ -19,7 +19,7 @@ export default function PlayerContainer() {
   return (
     <section className={styles.main_player_container}>
       <section className={styles.player_with_side_bar}>
-        <Player/>
+        <Player showSidebar={() => setShowSideBar(!showSideBar)}/>
         {
           width >= 1590 ? <PlayerSideBar/> : (
             <section

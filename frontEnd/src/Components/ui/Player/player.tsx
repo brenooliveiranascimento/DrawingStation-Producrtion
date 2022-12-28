@@ -8,7 +8,11 @@ import { nextClassoomAction, prevClassoomAction } from '../../../redux/actions/c
 import PlayerInf from './PlayerInf/PlayerInf';
 import styles from './styles.module.scss';
 
-export default function Player() {
+interface playerProps {
+  showSidebar: () => void
+}
+
+export default function Player({ showSidebar }: playerProps) {
   const { buyPremium, classroom } = useSelector(({classroomController}: globalState) => classroomController);
   const dispatch = useDispatch();
 
@@ -24,6 +28,7 @@ export default function Player() {
         justifyContent: 'center',
         flexDirection: 'column'
       }} className={styles.player}>
+        
         <Link href={'/Subscription'} style={{fontSize:'1.3rem'}}>Tornar se premium</Link>
         <Image
           style={{objectFit: 'cover'}}
@@ -38,6 +43,9 @@ export default function Player() {
 
   return (
     <section className={styles.player}>
+      <button onClick={showSidebar}>
+        Modulos
+      </button>
       <Vimeo
         onError={() => toast.error('Erro ao carregar o player')}
         video={classroom.video}
