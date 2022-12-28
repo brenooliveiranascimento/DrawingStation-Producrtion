@@ -27,6 +27,7 @@ export default function Player() {
       </section>
     );
   }
+
   return (
     <section className={styles.player}>
       <Vimeo

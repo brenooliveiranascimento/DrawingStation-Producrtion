@@ -25,6 +25,36 @@ export const selectClassroomAction = (currClassroom: ClassroomInterface): any =>
   };
 };
 
+const getCurrSubModule = (subModules: SubModuleInterface[], id: number) => subModules
+  .find((currSModule: SubModuleInterface) =>
+    currSModule.id === id) as SubModuleInterface;
+
+export const nextClassoomAction = (): any => {
+  return async (dispatch: Dispatch<any>, state: () => globalState) => {
+    const { classroom, currSubModule, subModules } = state().classroomController;
+    const currSubModuleData = getCurrSubModule(subModules, currSubModule.id);
+    const nextClassroomId = currSubModuleData.classrooms.findIndex((currClassroom: ClassroomInterface) =>
+      currClassroom.id === classroom.id) + 1;
+    const nextClassroom = currSubModuleData.classrooms[nextClassroomId];
+
+    if(nextClassroomId === currSubModuleData.classrooms.length) {
+      let nextSubModuleId = subModules
+        .findIndex((currSubMod: SubModuleInterface) => currSubMod.id === currSubModule.id) + 1;
+      if(!subModules[nextSubModuleId].classrooms.length) {
+        nextSubModuleId += 1;
+      }
+      const nextSubModuleData = subModules[nextSubModuleId];
+      console.log(nextSubModuleData);
+      return;
+    }
+    if(!nextClassroom ) {
+      const firstClassroomsInNextSubModule: ClassroomInterface = getCurrSubModule(subModules, currSubModule.id + 1).classrooms[0];
+      selectClassroomAction(firstClassroomsInNextSubModule);
+      console.log(firstClassroomsInNextSubModule);
+    }
+  };
+};
+
 export const selectFirstClassroom = (firstSubModule: SubModuleInterface): any => {
   return async (dispatch: Dispatch<any>) => {
     const { name, id } = firstSubModule;
