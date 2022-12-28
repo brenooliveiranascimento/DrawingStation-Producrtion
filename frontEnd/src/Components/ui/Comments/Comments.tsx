@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IAllSubCommentsUserData, ICommentsWithUserData } from '../../../interfaces/modules/commentsModuleInterfaces';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { requestSubCommentsAction } from '../../../redux/actions/commentsActions/commentsActions';
-import CommentCard from '../CommentCard/CommentCard';
+import CommentCard from './CommentCard/CommentCard';
 import NewCommentForm from './NewCommentForm/NewCommentForm';
 import styles from './styles.module.scss';
 

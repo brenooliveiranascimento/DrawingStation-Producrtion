@@ -26,6 +26,7 @@
     font-size: 1rem;
     border-top-right-radius: 0rem;
   }
+ 
   }
 
   button {
@@ -41,8 +42,18 @@
     color: white;
     font-size: 1rem;
   }
-
+  .new_comment_btn {
+    background-color: var(--dark-light-600);
+    margin-left: -30%;
+    margin-top: 0.5rem;
+  }
   button:hover {
     filter: brightness(70%);
+  }
+}
+.sub_comment_label {
+  .sub_comment_input {
+    background-color: var(--dark-light-600);
+    width: 70%;
   }
 }

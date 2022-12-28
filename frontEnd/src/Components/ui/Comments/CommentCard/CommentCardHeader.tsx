@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
-import { userData } from '../../../interfaces/modules/commentsModuleInterfaces';
-import defaultUser from '../../../../public/profilePhoto.png';
+import { userData } from '../../../../interfaces/modules/commentsModuleInterfaces';
+import defaultUser from '../../../../../public/profilePhoto.png';
 import styles from './styles.module.scss';
 
 interface ICommentCardHeader {

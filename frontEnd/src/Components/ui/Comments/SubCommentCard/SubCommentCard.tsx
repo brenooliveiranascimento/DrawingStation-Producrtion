@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IsubComments } from '../../../interfaces/modules/commentsModuleInterfaces';
-import { globalState } from '../../../interfaces/modules/globalStateInterface';
-import { deleteSubCommentAction } from '../../../redux/actions/commentsActions/deleteComment';
-import { editSubCommentAction } from '../../../redux/actions/commentsActions/editComment';
-import CommentCardHeader from '../CommentCard/CommentCardHeader';
+import { IsubComments } from '../../../../interfaces/modules/commentsModuleInterfaces';
+import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import { deleteSubCommentAction } from '../../../../redux/actions/commentsActions/deleteComment';
+import { editSubCommentAction } from '../../../../redux/actions/commentsActions/editComment';
+import CommentCardHeader from '../../Comments/CommentCard/CommentCardHeader';
 import styles from './styles.module.scss';
 
 interface ISubCommentCardInterface {
