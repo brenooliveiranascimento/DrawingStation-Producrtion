@@ -96,8 +96,9 @@ export const selectFirstClassroom = (firstSubModule: SubModuleInterface): any =>
     const { name, id } = firstSubModule;
     dispatch(setCurrSubmodule({ name, id }));
     const firstClassroom = firstSubModule.classrooms[0];
+    if(!firstClassroom) return;
     localStorage.setItem(localStorageKeys.lastSubModule, JSON.stringify({id, name}));
-    localStorage.setItem(localStorageKeys.lastClassroom, JSON.stringify({id: firstClassroom.id, name: firstClassroom.name}));
+    localStorage.setItem(localStorageKeys.lastClassroom, JSON.stringify({id: firstClassroom?.id, name: firstClassroom?.name}));
     dispatch(setCurrClass(firstClassroom));
     dispatch(selectClassroomAction(firstClassroom));
   };

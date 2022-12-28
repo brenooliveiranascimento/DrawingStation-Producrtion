@@ -116,7 +116,7 @@ export default function PlayerSideBar({ showSidebar, width }: playerProps) {
                         {
                           classroom.id === currClassroom.id &&
                           <FiPlayCircle color='white' size={30} style={{
-                            zIndex: 99,
+                            zIndex: 20,
                             marginLeft:-10,
                           }}/>
                         }

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import Player from './player';
 import PlayerSideBar from './PlayerSideBar/PlayerSideBar';
 import styles from './styles.module.scss';
@@ -6,6 +8,8 @@ import styles from './styles.module.scss';
 export default function PlayerContainer() {
   const [showSideBar, setShowSideBar] = useState(false);
   const [width, setWidth] = useState(0);
+
+  const { classroomController: { incomplete } } = useSelector((state: globalState) => state);
 
   useEffect((): any => {
     const verifyWidth = setInterval(() => setWidth(window.innerWidth), 100);
@@ -15,6 +19,16 @@ export default function PlayerContainer() {
   useEffect(() => {
     setWidth(window.innerWidth);
   }, [width]);
+
+  // if(incomplete) {
+  //   return (
+  //     <section className={styles.main_player_container}>
+  //       <section className={styles.player_with_side_bar}>
+  //         <h1>Sem aulas no momento</h1>
+  //       </section>
+  //     </section>
+  //   );
+  // }
 
   return (
     <section className={styles.main_player_container}>
