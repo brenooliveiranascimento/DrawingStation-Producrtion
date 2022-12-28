@@ -45,11 +45,20 @@ export default function Player({ showSidebar, width }: playerProps) {
 
   return (
     <section className={styles.player}>
-      { width <= 1590 && <button style={{
-        justifySelf: 'flex-start', backgroundColor: 'rgba(0,0,0,0.0)', border: 'none'
-      }} onClick={showSidebar}>
-        <FiMenu size={20} color='white'/>
-      </button> }
+      { width <= 1590 && <section
+        style={{
+          padding: '1rem',
+          display: 'flex',
+          justifyContent: 'flex-end',
+          marginBottom: '-1rem'
+        }}
+      >
+        <button style={{
+          justifySelf: 'flex-start', backgroundColor: 'rgba(0,0,0,0.0)', border: 'none'
+        }} onClick={showSidebar}>
+          <FiMenu size={25} color='white'/>
+        </button>
+      </section> }
       <Vimeo
         onError={() => toast.error('Erro ao carregar o player')}
         video={classroom.video}
