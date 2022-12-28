@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
-import { nextClassoomAction } from '../../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
+import { nextClassoomAction, prevClassoomAction } from '../../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
 import Comments from '../../Comments/Comments';
 import Colors from './Colors';
 import styles from './styles.module.scss';
@@ -20,6 +20,10 @@ export default function PlayerInf() {
     dispatch(nextClassoomAction());
   };
 
+  const prevClassroom = () => {
+    dispatch(prevClassoomAction());
+  };
+
   return (
     <section className={styles.player_inf_container}>
       <section  className={styles.name_Comment_input}>
@@ -35,7 +39,7 @@ export default function PlayerInf() {
           </p>
         </article>
         <aside>
-          <button>
+          <button onClick={prevClassroom}>
             {'<'} Aula anterior 
           </button>
           <button onClick={nextClassroom}>
