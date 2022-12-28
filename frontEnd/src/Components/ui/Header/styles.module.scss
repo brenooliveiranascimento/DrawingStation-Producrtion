@@ -6,10 +6,10 @@
   // background-color: var(--black-700);
   background-color: var(--black-700);
   position: fixed;
-  z-index: 98;
+  z-index: 21;
   align-items: center;
   justify-content: space-between;
-  padding-right: 1rem;
+  padding-right: 5rem;
   padding-left: 1rem;
 
   aside {
@@ -47,6 +47,7 @@
     position: fixed;
     margin-top: 5rem;
     padding-bottom: 1rem;
+    display: none;
   }
 }
 
