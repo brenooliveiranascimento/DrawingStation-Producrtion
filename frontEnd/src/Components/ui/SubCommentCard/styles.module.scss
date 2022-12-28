@@ -8,10 +8,13 @@
     color: white;
     border: none;
     border-radius: 1rem;
-    font-size: 1.2rem;
+      width: 80%;
+      font-size: 1.2rem;
   }
 }
 
 .comment {
   font-size: 1.2rem;
+      width: 80%;
+      word-break: break-all;
 }
