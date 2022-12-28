@@ -1,6 +1,7 @@
 import Vimeo from '@u-wave/react-vimeo';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FiMenu } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
@@ -9,10 +10,11 @@ import PlayerInf from './PlayerInf/PlayerInf';
 import styles from './styles.module.scss';
 
 interface playerProps {
-  showSidebar: () => void
+  showSidebar: () => void;
+  width: number
 }
 
-export default function Player({ showSidebar }: playerProps) {
+export default function Player({ showSidebar, width }: playerProps) {
   const { buyPremium, classroom } = useSelector(({classroomController}: globalState) => classroomController);
   const dispatch = useDispatch();
 
@@ -43,9 +45,11 @@ export default function Player({ showSidebar }: playerProps) {
 
   return (
     <section className={styles.player}>
-      <button onClick={showSidebar}>
-        Modulos
-      </button>
+      { width <= 1590 && <button style={{
+        justifySelf: 'flex-start', backgroundColor: 'rgba(0,0,0,0.0)', border: 'none'
+      }} onClick={showSidebar}>
+        <FiMenu size={20} color='white'/>
+      </button> }
       <Vimeo
         onError={() => toast.error('Erro ao carregar o player')}
         video={classroom.video}

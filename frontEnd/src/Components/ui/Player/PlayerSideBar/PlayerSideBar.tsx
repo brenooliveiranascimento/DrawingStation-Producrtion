@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { FiPlayCircle } from 'react-icons/fi';
+import { FiMenu, FiPlayCircle, FiX } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { ClassroomInterface } from '../../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
@@ -9,8 +9,12 @@ import { selectClassroomAction, selectSubModuleAction } from '../../../../redux/
 import { selectCurrSubModule } from '../../../../redux/actions/classroomControllerActions/genericActions';
 import { localStorageKeys } from '../../../../redux/Types/localStorageTypes';
 import styles from './styles.module.scss';
+interface playerProps {
+  showSidebar: () => void;
+  width: number
+}
 
-export default function PlayerSideBar() {
+export default function PlayerSideBar({ showSidebar, width }: playerProps) {
   const { subModules, currSubModule, incomplete, loading, classroom, module } = useSelector(({ classroomController }: globalState) => classroomController);
   const { classroomsData } = useSelector(({ classroomsData }: globalState) => classroomsData);
   const [first, setFirst] = useState(true);
@@ -54,7 +58,23 @@ export default function PlayerSideBar() {
     <aside className={styles.side_container}>
       <header>
         <span>{module.name} {'>'} {currSubModule.name} {'>'} {classroom.name}</span>
+        { width <= 1590 && <section
+          style={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'flex-start'
+          }}
+        >
+          <button style={{
+            backgroundColor: 'rgba(0,0,0,0.0)',
+            border: 'none',
+            marginLeft: '95%'
+          }} onClick={showSidebar}>
+            <FiX size={20} color='white'/>
+          </button>
+        </section> }
       </header>
+      
       {
         subModules.map((currModule: SubModuleInterface) => {
           return (

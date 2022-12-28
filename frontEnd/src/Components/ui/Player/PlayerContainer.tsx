@@ -19,16 +19,16 @@ export default function PlayerContainer() {
   return (
     <section className={styles.main_player_container}>
       <section className={styles.player_with_side_bar}>
-        <Player showSidebar={() => setShowSideBar(!showSideBar)}/>
+        <Player showSidebar={() => setShowSideBar(!showSideBar)} width={width}/>
         {
-          width >= 1590 ? <PlayerSideBar/> : (
+          width >= 1590 ? <PlayerSideBar showSidebar={() => setShowSideBar(!showSideBar)} width={width}/> : (
             <section
               style={{
                 display: !showSideBar ? 'none' : 'flex'
               }}
               className={styles.absolute_side_bar}
             >
-              <PlayerSideBar/>
+              <PlayerSideBar showSidebar={() => setShowSideBar(!showSideBar)} width={width}/>
             </section>
           )
         }
