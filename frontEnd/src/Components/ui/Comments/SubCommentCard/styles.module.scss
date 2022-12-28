@@ -1,0 +1,33 @@
+.sub_comment_container {
+  margin-left: 2rem;
+  input {
+    width: 200px;
+    padding: 0.4rem;
+    background-color: var(--dark-light-700);
+    color: white;
+    border: none;
+      width: 80%;
+  }
+
+  article {
+    display: flex;
+    section {
+      display: flex;
+      width: auto;
+      align-items: center;
+      justify-content: center;
+
+    }
+    @media screen and (max-width: 630px) {
+      flex-direction: column;
+    }
+    
+  }
+  
+}
+
+.comment {
+  font-size: 1.2rem;
+  width: 80%;
+  word-break: break-all;
+}

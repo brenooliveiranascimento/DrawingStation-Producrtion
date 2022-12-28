@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IAllSubCommentsUserData, ICommentsWithUserData } from '../../../interfaces/modules/commentsModuleInterfaces';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { requestSubCommentsAction } from '../../../redux/actions/commentsActions/commentsActions';
-import CommentCard from '../CommentCard/CommentCard';
+import CommentCard from './CommentCard/CommentCard';
 import NewCommentForm from './NewCommentForm/NewCommentForm';
 import styles from './styles.module.scss';
 
@@ -30,7 +30,10 @@ export default function Comments() {
 
   if(!comments.length) {
     return (
-      <h1>Nenhum comentário</h1>
+      <section className={styles.main_comment_container}>
+        <NewCommentForm/>
+        <p>Nenhum comentário parra essa aula, seja o primeiro!</p>
+      </section>
     );
   }
   

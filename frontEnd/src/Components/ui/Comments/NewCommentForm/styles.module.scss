@@ -4,12 +4,17 @@
   align-items: center;
   width: 100%;
   padding-top: 0rem;
+  margin-bottom: 1rem;
   label {
     width: 100%;
 
     span {
       margin-left: 1rem;
       font-weight: 600;
+
+      @media screen and (max-width: 475px) {
+        display: none;
+      }
     }
 
   input {
@@ -24,11 +29,13 @@
     border-bottom-right-radius: 0rem;
     font-size: 1rem;
     border-top-right-radius: 0rem;
+    @media screen and (max-width: 475px) {
+      margin-top: 1rem;
+    }
   }
   }
 
   button {
-    margin-top: 0.5rem;
     border-radius: 1rem;
     border-bottom-left-radius: 0rem;
     border-top-left-radius: 0rem;
@@ -39,9 +46,22 @@
     border: none;
     color: white;
     font-size: 1rem;
+    @media screen and (max-width: 475px) {
+      margin-top: 1rem;
+    }
   }
-
+  .new_comment_btn {
+    background-color: var(--dark-light-600);
+    margin-left: -30%;
+    margin-top: 0.5rem;
+  }
   button:hover {
     filter: brightness(70%);
+  }
+}
+.sub_comment_label {
+  .sub_comment_input {
+    background-color: var(--dark-light-600);
+    width: 70%;
   }
 }

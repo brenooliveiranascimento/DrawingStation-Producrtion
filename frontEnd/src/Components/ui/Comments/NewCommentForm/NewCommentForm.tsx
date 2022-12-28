@@ -38,6 +38,7 @@ export default function NewCommentForm() {
         <input
           value={content}
           name="content"
+          placeholder='Adicionar comentário'
           onChange={({target}) => setContent(target.value)}
           type={'text'}
         />

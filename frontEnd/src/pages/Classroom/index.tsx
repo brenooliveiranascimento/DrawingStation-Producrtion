@@ -33,7 +33,6 @@ export default function ClassroomsPage({ userData }: classroomPropTypes) {
       <section className={styles.main_container}>
         <UserHeader/>
         <section className={styles.player_content}>
-          {/* <section className={styles.darkness_bacgdround}/> */}
           <PlayerContainer/>
         </section>
       </section>

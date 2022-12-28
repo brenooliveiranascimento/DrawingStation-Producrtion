@@ -73,6 +73,7 @@
 .name_Comment_input {
   justify-content: space-between;
   display: flex;
+  
   button {
     background-color: rgba(0,0,0,0.0);
     border: none;
@@ -111,6 +112,24 @@
       &:hover {
         filter: brightness(70%);
       }
+    }
+  }
+
+  @media screen and (max-width: 840px) {
+    flex-direction: column;
+
+    button {
+      margin-top: 1rem;
+    }
+    article {
+      width: 100%;
+      h1{
+        width: 100%;
+      }
+    }
+
+    aside {
+      flex-direction: column;
     }
   }
 }

@@ -18,13 +18,19 @@
     margin-top: -2rem;
     justify-content: space-between;
 
+    p {
+      word-break: break-all;
+      width: 80%;
+    }
+
     input {
-      width: 200px;
+      width: 80%;
       padding: 0.4rem;
       background-color: var(--dark-light-700);
       color: white;
       border: none;
       border-radius: 1rem;
+      font-size: 1.2rem;
     }
 
     button {
@@ -34,6 +40,12 @@
       padding: 0.5rem;
       margin-left: 0.5rem;
     }
+
+    @media screen and (max-width: 630px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
   }
 }
 
@@ -44,22 +56,41 @@
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   margin-bottom: 1rem;
+  flex-direction: column;
+  height: auto;
   section {
     display: flex;
     align-items: center;
   }
   span {
     font-size: 1.2rem;
+    font-weight: 800;
     margin-left: 1rem;
+  }
+
+  @media screen and (max-width:450px) {
+      section {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        span {
+          margin-left: -0.0rem;
+          font-weight: 800;
+        }
+      }
   }
 }
 
 .show_sub_comment {
-  margin: 1rem;
   border-radius: 1rem;
   background-color: var(--dark-light-600);
   color: white;
   padding: 0.5rem;
   font-size: 1rem;
   border: none;
+}
+
+.comment {
+  font-size: 1.2rem;
 }

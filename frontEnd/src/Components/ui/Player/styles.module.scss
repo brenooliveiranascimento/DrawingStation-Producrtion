@@ -7,7 +7,7 @@
 }
 
 .player_with_side_bar {
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   width: 100%;
   height: auto;
@@ -25,7 +25,13 @@
   background-color: #1e1c25;
   border-radius: 1rem;
   padding: 1rem;
+  align-items: center;
+  justify-content: center;
   margin-top: 0rem;
+
+  @media screen and (max-width: 490px) {
+    padding: 0rem;
+  }
   iframe {
     border: none;
     border-radius: 2rem;
@@ -47,4 +53,23 @@
 .side_container::-webkit-scrollbar-thumb {
   background-color: rgb(37, 37, 37);  
   border-radius: 20px;     
+}
+
+
+.absolute_side_bar {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 13rem;
+  padding-top: 10rem;
+  
+  @media screen and (max-width: 660px) {
+    padding-right: 5rem;
+    padding-top: 10rem;
+  }
+
 }

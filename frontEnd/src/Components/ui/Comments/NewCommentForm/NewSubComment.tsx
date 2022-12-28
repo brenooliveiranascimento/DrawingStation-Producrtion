@@ -23,13 +23,10 @@ export default function NewSubComment({commentData}: ISubCommentForm) {
   };
 
   return (
-    <form style={{width: 300}} className={styles.new_comemnt_container}>
-      <label htmlFor='content'>
+    <form className={styles.new_comemnt_container}>
+      <label className={styles.sub_comment_label} htmlFor='content'>
         <input
-          style={{
-            width:300,
-            backgroundColor: '#353241'
-          }}
+          className={styles.sub_comment_input}
           placeholder='Reponder comentário'
           value={content}
           name="content"
@@ -38,7 +35,7 @@ export default function NewSubComment({commentData}: ISubCommentForm) {
         />
       </label>
 
-      <button style={{marginTop:8, backgroundColor: '#353241'}} onClick={handleComment}>
+      <button className={styles.new_comment_btn} onClick={handleComment}>
         Enviar
       </button>
     </form>

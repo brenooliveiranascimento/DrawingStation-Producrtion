@@ -1,11 +1,10 @@
 import React, { use, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IAllSubCommentsUserData, ICommentsWithUserData, IsubComments } from '../../../interfaces/modules/commentsModuleInterfaces';
-import { globalState } from '../../../interfaces/modules/globalStateInterface';
-import { deleteCommentAction } from '../../../redux/actions/commentsActions/deleteComment';
-import { editCommentAction } from '../../../redux/actions/commentsActions/editComment';
-import user from '../../../redux/modules/user/user';
-import NewSubComment from '../Comments/NewCommentForm/NewSubComment';
+import { ICommentsWithUserData, IsubComments } from '../../../../interfaces/modules/commentsModuleInterfaces';
+import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import { deleteCommentAction } from '../../../../redux/actions/commentsActions/deleteComment';
+import { editCommentAction } from '../../../../redux/actions/commentsActions/editComment';
+import NewSubComment from '../NewCommentForm/NewSubComment';
 import SubCommentCard from '../SubCommentCard/SubCommentCard';
 import CommentCardHeader from './CommentCardHeader';
 import styles from './styles.module.scss';
@@ -48,7 +47,7 @@ export default function CommentCard({comment}: commentCardProp) {
         {edit ? <input
           onChange={({target}) => setEditedValue(target.value)}
           value={editedValue}
-        /> : <span className={styles.comment}>{comment.content}</span>}
+        /> : <p className={styles.comment}>{comment.content}</p>}
         { comment.userData.id ===  userData.id &&
         <section>
           <button onClick={handleEdit}>
