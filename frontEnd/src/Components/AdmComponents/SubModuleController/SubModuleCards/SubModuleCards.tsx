@@ -31,7 +31,7 @@ function SubModuleCard({ subModule, handleModal, handleModule }: ModuleCardProps
           height={350}
           style={{ objectFit: 'cover', justifyItems:'flex-start' }}
           sizes={'auto'}
-          src={`${subModule.image}`}
+          src={subModule.image}
           alt={`${subModule.name}`}
         />
       </section>

@@ -71,7 +71,6 @@ export default function PlayerSideBar() {
               {currSubModule.id === currModule.id && <section>
                 {
                   currModule.classrooms.map((currClassroom: ClassroomInterface, index: number) => {
-                    console.log(currClassroom);
                     return <button
                       style={{
                         backgroundColor: classroom.id === currClassroom.id ? '#3b3348' : '#1F1C2C',

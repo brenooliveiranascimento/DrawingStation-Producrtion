@@ -13,7 +13,7 @@ export default function CommentCardHeader({userData}: ICommentCardHeader) {
     <header className={styles.header_container}>
       <section>
         <Image
-          src={userData.profilePhoto ? userData.profilePhoto : defaultUser}
+          src={userData.profilePhoto || defaultUser}
           height={50}
           style={{ borderRadius: '50%' }}
           width={50}

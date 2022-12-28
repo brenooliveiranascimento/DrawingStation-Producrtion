@@ -23,7 +23,6 @@ export function canSSRAuth<P extends { [key: string]: any; }>(fn: GetServerSideP
           'Authorization': token
         }
       });
-      console.log(data);
       return await fn(ctx);
     } catch(err){
       console.log(err);
