@@ -15,12 +15,25 @@ interface playerProps {
 }
 
 export default function Player({ showSidebar, width }: playerProps) {
-  const { buyPremium, classroom } = useSelector(({classroomController}: globalState) => classroomController);
+  const { buyPremium, classroom, incomplete } = useSelector(({classroomController}: globalState) => classroomController);
   const dispatch = useDispatch();
 
   const nextClassroom = () => {
     dispatch(nextClassoomAction());
   };
+
+  if(!classroom.conclude || incomplete) {
+    return (
+      <section style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column'
+      }} className={styles.player}>
+        <h1>Sem aulas disponiveis no momento</h1>
+      </section>
+    );
+  }
 
   if(buyPremium) {
     return (

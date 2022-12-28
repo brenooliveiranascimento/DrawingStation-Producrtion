@@ -7,6 +7,7 @@ import styles from './styles.module.scss';
 
 export default function ModulesScreen() {
   const { modules } = useSelector((state: globalState) => state);
+  console.log(modules);
   return (
     <section className={styles.module_container}>
       { modules.modules.map((currModule: ModulesInterface) => (
