@@ -13,6 +13,9 @@ export default function ModulesScreen() {
       { modules.modules.map((currModule: ModulesInterface) => (
         <ModuleCard moduleCard={currModule} key={currModule.id}/>
       )) }
+      { modules.modules.map((currModule: ModulesInterface) => (
+        <ModuleCard moduleCard={currModule} key={currModule.id}/>
+      )) }
     </section>
   );
 }

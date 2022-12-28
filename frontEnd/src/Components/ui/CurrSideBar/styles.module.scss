@@ -3,8 +3,7 @@
   z-index: 99;
   flex-direction: column;
   padding: 1rem;
-  // background-color:var(--black-700);
-  background-color: rgba(0,0,0,0);
+  background-color:var(--black-700);
   height: 100vh;
   left: 0;
   border-right: 2px solid var(--dark-light-700);
@@ -25,8 +24,9 @@
     width: 100%;
     height: auto;
     position: fixed;
+    border-bottom: 3px solid var(--dark-light-600);
+    justify-content: flex-end;
     button {
-      margin-bottom: 0.5rem;
       margin-left: 2rem;
       margin-top: 0rem;
     }
