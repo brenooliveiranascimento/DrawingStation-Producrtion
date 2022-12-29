@@ -30,7 +30,7 @@ export default function Player({ showSidebar, width }: playerProps) {
     </section>;
   }
 
-  if(!classroom.conclude || incomplete) {
+  if(incomplete) {
     return (
       <section style={{
         display: 'flex',
@@ -82,13 +82,26 @@ export default function Player({ showSidebar, width }: playerProps) {
           <FiMenu size={25} color='white'/>
         </button>
       </section> }
-      <Vimeo
-        onError={() => toast.error('Erro ao carregar o player')}
-        video={classroom.video}
-        onLoaded={() => setLoadPlayer(!loadPlayer)}
-        onEnd={nextClassroom}
-        autoplay
-      />
+      {
+        classroom.conclude ? <Vimeo
+          onError={() => toast.error('Erro ao carregar o player')}
+          video={classroom.video}
+          onLoaded={() => setLoadPlayer(!loadPlayer)}
+          onEnd={nextClassroom}
+          autoplay
+        /> : (
+          <section style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            width: '100%',
+            height: 600
+          }} className={styles.player}>
+            <h1>Aula não fonalizada</h1>
+          </section>
+        )
+      }
       <PlayerInf/>
     </section>
   );
