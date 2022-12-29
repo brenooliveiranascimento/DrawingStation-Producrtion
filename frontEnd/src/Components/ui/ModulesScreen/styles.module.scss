@@ -23,6 +23,9 @@
   cursor: pointer;
   article {
     padding: 0.5rem;
+
+    h2 {
+    }
   }
 
   button {
@@ -31,11 +34,10 @@
   outline:none;  
   display: flex;
   font-size: 0.9rem;
-  font-family: Quicksand;
   }
 
   :hover {
-    filter: brightness(80%);
+    filter: brightness(60%);
     transition: all 0.5s;
   }
 
@@ -52,9 +54,9 @@
     font-size: 3rem;
     z-index: 40;
     
-    :hover {
-      filter: brightness(60%);
-    }
+    // :hover {
+    //   filter: brightness(60%);
+    // }
   }
 }
 
@@ -62,11 +64,31 @@
   display: flex;
   flex-direction: column;
   padding: 1rem;
-
   .class_name {
     padding: 1rem;
     font-size: 2rem;
     font-weight: 100;
     color: rgb(121, 120, 120);
+  }
+
+  .class_card_area {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.mySwiper {
+  width: 1600px;
+  display: flex;
+  height: 350px;
+}
+
+.slider_container {
+  .sub_module_name {
+    font-size: 1.2rem;
+    margin: 1rem;
   }
 }

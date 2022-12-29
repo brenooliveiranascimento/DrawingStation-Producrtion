@@ -1,12 +1,19 @@
-import Image from 'next/image';
 import Router from 'next/router';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { ModulesInterface, SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
 import { selectSubModuleAction } from '../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
-import { handleScreen, setCurrClass, setCurrModule, setCurrSubmodule } from '../../../redux/actions/genericActions';
+import { handleScreen } from '../../../redux/actions/genericActions';
 import styles from './styles.module.scss';
+import 'swiper/css';
+import SwiperCore, { Autoplay } from 'swiper';
+SwiperCore.use([Autoplay]);
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+import Image from 'next/image';
 
 interface IModuleCard {
   moduleCard: ModulesInterface;
