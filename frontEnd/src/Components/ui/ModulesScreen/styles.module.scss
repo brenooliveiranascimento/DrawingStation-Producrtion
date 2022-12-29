@@ -16,12 +16,11 @@
 }
 .module_card_container {
   display: flex;
-  width: auto;
-  height: auto;
+  width: 350px;
+  height: 300px;
+  justify-content: center;
   padding-bottom: 0.5rem;
-  border-radius: 1rem;
   flex-direction: column;
-  background-color: var(--dark-light-700);
   margin: 1rem;
   margin-left: 2rem;
   article {
@@ -29,11 +28,10 @@
   }
 
   button {
-  background-color: var(--dark-700);
   border: none;
-  color: white;
   padding: 0.7rem;
   outline:none;  
+  display: flex;
   }
 
 }

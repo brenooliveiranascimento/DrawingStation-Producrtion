@@ -16,20 +16,31 @@ interface IModuleCard {
 export default function ModuleCard({ moduleCard }: IModuleCard) {
   const dispatch = useDispatch();
 
+  const { subModules } = useSelector(({ subModules }: globalState) => subModules);
+  console.log(subModules);
   const selectModule = () => {
     dispatch(selectSubModuleAction(moduleCard));
     dispatch(handleScreen('Classroom'));
     Router.push('/Classroom');
   };
+  const { image, name, id } = moduleCard;
 
-  const { image, name } = moduleCard;
+  console.log();
+
   return (
     <section className={styles.module_card_container}>
-      <Image style={{borderTopLeftRadius: 6, borderTopRightRadius: 6, objectFit: 'cover'}}
-        width={250} height={270} src={image} alt={name} />
+      <section className={styles.image_area}>
+        <Image
+          style={{objectFit: 'cover'}}
+          width={350} height={200} src={image} alt={name} />
+      </section>
       <article>
-        <h2>{name}</h2>
+        <h2>Módulo de {name}</h2>
+        <p>{subModules.find((currSubModule: SubModuleInterface) =>
+          currSubModule.id === id).classrooms.length} aulas</p>
       </article>
+      <section>
+      </section>
       <button onClick={selectModule} type='button'>
         <span>
           Continuar assistindo
