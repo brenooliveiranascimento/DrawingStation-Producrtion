@@ -20,8 +20,8 @@ interface IClassCardProps {
 export default function ClassCard({ subModule }: IClassCardProps) {
   return (
     <Swiper
-      slidesPerView={3}
-      spaceBetween={30}
+      slidesPerView={4}
+      spaceBetween={260}
       pagination={{
         clickable: true
       }}
