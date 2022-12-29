@@ -28,7 +28,14 @@
     padding-top: 30rem;
   }
 }
-
 .main_container::-webkit-scrollbar {
-  display: none;
+  width: 4px; 
+}
+
+.main_container::-webkit-scrollbar-track {
+}
+
+.main_container::-webkit-scrollbar-thumb {
+  background-color: var(--new-dark);   
+  border-radius: 20px;      
 }

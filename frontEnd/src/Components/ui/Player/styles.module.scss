@@ -88,12 +88,12 @@
 }
 
 .side_container::-webkit-scrollbar {
+  background-color: var(--new-dark);  
   width: 8px;             
 }
 
 .side_container::-webkit-scrollbar-thumb {
-  background-color: rgb(37, 37, 37);  
-  border-radius: 20px;     
+  background-color: white;  
 }
 
 
