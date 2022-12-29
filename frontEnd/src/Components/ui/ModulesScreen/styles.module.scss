@@ -22,9 +22,11 @@
   flex-direction: column;
   cursor: pointer;
   article {
-    padding: 0.5rem;
+    padding: 1rem;
+    padding-top: 0rem;
 
     h2 {
+      color: rgb(45, 45, 45);
     }
   }
 
@@ -34,6 +36,10 @@
   outline:none;  
   display: flex;
   font-size: 0.9rem;
+
+  span {
+    margin-left: 0.5rem;
+  }
   }
 
   :hover {
@@ -71,9 +77,10 @@
   flex-direction: column;
   cursor: pointer;
   article {
-    padding: 0.5rem;
-
+    padding: 1rem;
+    padding-top: 0rem;
     h2 {
+      color: rgb(72, 72, 72);
     }
   }
 
@@ -83,6 +90,7 @@
   outline:none;  
   display: flex;
   font-size: 0.9rem;
+  margin-left: 0.5rem;
   }
 
   :hover {
@@ -132,10 +140,11 @@
 .mySwiper {
   width: 1600px;
   display: flex;
-  height: 450px;
+  height: 410px;
 }
 
 .slider_container {
+  margin-bottom: 3rem;
   .sub_module_name {
     font-size: 1.2rem;
     margin: 1rem;
