@@ -60,6 +60,55 @@
   }
 }
 
+.class_card_container {
+  display: flex;
+  width: 450px;
+  height: 350px;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  justify-content: center;
+  padding-bottom: 0.5rem;
+  flex-direction: column;
+  cursor: pointer;
+  article {
+    padding: 0.5rem;
+
+    h2 {
+    }
+  }
+
+  button {
+  border: none;
+  padding: 0.5rem;
+  outline:none;  
+  display: flex;
+  font-size: 0.9rem;
+  }
+
+  :hover {
+    filter: brightness(60%);
+    transition: all 0.5s;
+  }
+
+  .player_area {
+    position: absolute;
+    width: 450px;
+    height: 250px;
+    display: flex;
+    background-color: rgba(0,0,0,0.3);
+    margin-top: -6.4rem;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+    z-index: 40;
+    
+    // :hover {
+    //   filter: brightness(60%);
+    // }
+  }
+}
+
 .cards_container {
   display: flex;
   flex-direction: column;
@@ -83,7 +132,7 @@
 .mySwiper {
   width: 1600px;
   display: flex;
-  height: 350px;
+  height: 450px;
 }
 
 .slider_container {

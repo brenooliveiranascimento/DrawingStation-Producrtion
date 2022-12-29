@@ -20,7 +20,7 @@ interface IClassCardProps {
 export default function ClassCard({ subModule }: IClassCardProps) {
   return (
     <Swiper
-      slidesPerView={4}
+      slidesPerView={3}
       spaceBetween={30}
       pagination={{
         clickable: true
@@ -36,14 +36,14 @@ export default function ClassCard({ subModule }: IClassCardProps) {
       {subModule.classrooms.map((currClassroom: ClassroomInterface, index: number) => (
         <SwiperSlide
           key={index} className="">
-          <section className={styles.module_card_container}>
+          <section className={styles.class_card_container}>
             <section className={styles.player_area}>
               <FaPlayCircle/>
             </section>
             <section className={styles.image_area}>
               <Image
                 style={{objectFit: 'cover',  filter: 'brightness(80%)'}}
-                width={350} height={200} src={currClassroom.image} alt={currClassroom.name} />
+                width={450} height={250} src={currClassroom.image} alt={currClassroom.name} />
             </section>
             <article>
               <h2>{currClassroom.name}</h2>
