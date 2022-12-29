@@ -1,5 +1,6 @@
 .side_bar_container {
   display: flex;
+  width: 15rem;
   z-index: 99;
   flex-direction: column;
   padding: 1rem;
@@ -15,11 +16,9 @@
     h2 {
       margin-top: 0rem;
       margin-right: -0.5rem;
-      font-size: 18px;
     }
 
     button {
-      background-color: rgba(0,0,0,0.0);
       margin-right: -2rem;
       display: flex;
       flex-direction: column;
@@ -45,9 +44,6 @@
         transition: all 0.3s;
         filter: brightness(60%);
         }
-        span {
-          background-color: var(--green-900);
-        }
       }
     }
   }
@@ -59,7 +55,12 @@
     height: 3rem;
     border-radius: 16px;
     margin-top: 2rem;
-    background-color: var(--dark-light-600);
+    background-color: rgba(0,0,0,0.0);
+
+    h2 {
+    background-color: rgba(0,0,0,0.0);
+    color: white;
+    }
   }
 
   @media screen and (max-width: 660px) {
@@ -80,7 +81,6 @@
       justify-content: flex-end;
     }
   }
-
 }
 
 .nav_area {
@@ -91,9 +91,15 @@
   width: 100%;
   flex-direction: column;
   margin-left: -1rem;
-
+  margin-top: 4rem;
+  
   button {
     margin-left: 1rem;
+    margin-top: 1rem;
+    span {
+      font-size: 1.4rem;
+      font-family: Quicksand;
+    }
   }
 
   @media screen and (max-width: 660px) {

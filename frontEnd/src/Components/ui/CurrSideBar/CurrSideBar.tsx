@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import { FiHome, FiMessageCircle, FiPenTool} from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,7 +25,7 @@ export default function CurrSideBar() {
   
   const router = useRouter();
 
-  const currPath = router.pathname;
+  const [currPath, setCurrPath] = useState('');
 
   const cookies = parseCookies();
 
@@ -43,15 +43,27 @@ export default function CurrSideBar() {
     }
   };
 
+  useEffect(() => {
+    dispatch(handleScreen(window.location.href.toString().split('/')[3]));
+  }, []);
+
   return (
     <nav className={styles.side_bar_container}>
       <section className={styles.nav_area}>
         <button onClick={() => changeScreen('/')}>
-          <FiHome size={28} color={currPath === '/HomePage' || !currScreen ? '#5c5c5c' : 'white'}/>
+          <span
+            style={{
+              color: currScreen === 'HomePage' || !currScreen ? '#28CB99' : 'white'
+            }}
+          >Home</span>
         </button>
         <button
           onClick={() => changeScreen('Classroom')}>
-          <FaPencilAlt size={28} color={currPath === '/Classroom' ? '#5c5c5c' : 'white'}/>
+          <span
+            style={{
+              color: currScreen === 'Classroom' || !currScreen ? '#28CB99' : 'white'
+            }}
+          >Aulas</span>
         </button>
       </section>
       <aside>
