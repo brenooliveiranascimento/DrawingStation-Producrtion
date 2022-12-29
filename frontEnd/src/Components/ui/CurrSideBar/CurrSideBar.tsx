@@ -53,7 +53,8 @@ export default function CurrSideBar() {
         <button onClick={() => changeScreen('/')}>
           <span
             style={{
-              color: currScreen === 'HomePage' || !currScreen ? '#28CB99' : 'white'
+              color: currScreen === 'HomePage' || !currScreen ? '#28CB99' : 'white',
+              borderLeft: currScreen === 'HomePage' ? '3px solid #28CB99' : '1px solid white'
             }}
           >Home</span>
         </button>
@@ -61,7 +62,8 @@ export default function CurrSideBar() {
           onClick={() => changeScreen('Classroom')}>
           <span
             style={{
-              color: currScreen === 'Classroom' || !currScreen ? '#28CB99' : 'white'
+              color: currScreen === 'Classroom' || !currScreen ? '#28CB99' : 'white',
+              borderLeft: currScreen === 'Classroom' ? '3px solid #28CB99' : '1px solid white'
             }}
           >Aulas</span>
         </button>
