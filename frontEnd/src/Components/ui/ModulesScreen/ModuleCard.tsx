@@ -42,7 +42,7 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
       </section>
       <button type='button'>
         <span>
-          Continuar assistindo
+          Acessar módulo
         </span>
       </button>
     </section>
