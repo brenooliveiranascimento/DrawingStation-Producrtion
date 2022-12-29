@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { nextClassoomAction, prevClassoomAction } from '../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
+import PlayerHeader from './PlaherHeader/PlayerHeader';
 import PlayerInf from './PlayerInf/PlayerInf';
 import styles from './styles.module.scss';
 
@@ -53,7 +54,6 @@ export default function Player({ showSidebar, width }: playerProps) {
         justifyContent: 'center',
         flexDirection: 'column'
       }} className={styles.player}>
-        
         <Link href={'/Subscription'} style={{fontSize:'1.3rem'}}>Tornar se premium</Link>
         <Image
           style={{objectFit: 'cover'}}
@@ -68,6 +68,7 @@ export default function Player({ showSidebar, width }: playerProps) {
 
   return (
     <section className={styles.player}>
+
       { width <= 1590 && <section
         style={{
           padding: '1rem',
@@ -83,13 +84,18 @@ export default function Player({ showSidebar, width }: playerProps) {
         </button>
       </section> }
       {
-        classroom.conclude ? <Vimeo
-          onError={() => toast.error('Erro ao carregar o player')}
-          video={classroom.video}
-          onLoaded={() => setLoadPlayer(!loadPlayer)}
-          onEnd={nextClassroom}
-          autoplay
-        /> : (
+        classroom.conclude ? (
+          <section>
+            <PlayerHeader/>
+            <Vimeo
+              onError={() => toast.error('Erro ao carregar o player')}
+              video={classroom.video}
+              onLoaded={() => setLoadPlayer(!loadPlayer)}
+              onEnd={nextClassroom}
+              autoplay
+            ></Vimeo>
+          </section>
+        ) : (
           <section style={{
             display: 'flex',
             alignItems: 'center',

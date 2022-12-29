@@ -8,20 +8,22 @@ export default function PlayerHeader() {
   const { classroom, currSubModule, module } = useSelector(({classroomController}: globalState) => classroomController);
   return (
     <header className={styles.header_container}>
-      <article>
-        <h1>{classroom.name}</h1>
-        <span>
-          { `${module.name} > ${currSubModule.name} > ${classroom.name}` }
-        </span>
-      </article>
-      <aside>
-        <button>
-          <FaArrowLeft />
-        </button>
-        <button>
-          <FaArrowRight />
-        </button>
-      </aside>
+      <section>
+        <article>
+          <h1>{classroom.name}</h1>
+          <span>
+            { `${module.name} > ${currSubModule.name} > ${classroom.name}` }
+          </span>
+        </article>
+        <aside>
+          <button>
+            <FaArrowLeft />
+          </button>
+          <button>
+            <FaArrowRight />
+          </button>
+        </aside>
+      </section>
     </header>
   );
 }

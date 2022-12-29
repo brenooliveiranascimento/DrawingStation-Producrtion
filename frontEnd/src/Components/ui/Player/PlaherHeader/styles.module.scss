@@ -1,20 +1,39 @@
 .header_container {
   width: 100%;
-  height: 6rem;
+  height: 5rem;
   display: flex;
-  justify-content: space-between;  
+  justify-content: flex-start;
   align-items: center;
+  background-color: #1e292dcc;
+  position: fixed;
+  z-index: 99;
+  section {
+    width: 78%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   article {
       display: flex;
-      flex-direction: column;
-
+      flex-direction: row;
+      align-items: center;
+      margin-left: 1rem;
+      span {
+        margin-top: 0.4rem;
+        margin-left: 1rem;
+        color: #ddd;
+        font-weight: 40;
+      }
       h1 {
-        font-size: 2.3rem;
-        margin-bottom: 1rem;
+        font-size: 2rem;
       }
   }
 
   aside {
+    border-left: 1px solid #aaa;
+    height: 100%;
+    padding: 1.5rem;
     button {
       font-size: 1rem;
       border: 1px solid white;
