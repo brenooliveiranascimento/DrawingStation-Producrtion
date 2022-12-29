@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
+import PlayerHeader from './PlaherHeader/PlayerHeader';
 import Player from './player';
 import PlayerSideBar from './PlayerSideBar/PlayerSideBar';
 import styles from './styles.module.scss';

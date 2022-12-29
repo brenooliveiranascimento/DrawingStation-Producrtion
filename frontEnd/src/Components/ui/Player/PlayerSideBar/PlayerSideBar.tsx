@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { FiMenu, FiPlayCircle, FiX } from 'react-icons/fi';
+import { FiMenu, FiPause, FiPlayCircle, FiX } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { ClassroomInterface } from '../../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
@@ -81,7 +81,7 @@ export default function PlayerSideBar({ showSidebar, width }: playerProps) {
             <section key={currModule.id}>
               <button 
                 style={{
-                  backgroundColor: currSubModule.id === currModule.id ? '#2c2937' : '#1e1c25'
+                  color: currSubModule.id === currModule.id ? '#28CB99' : 'white'
                 }}
                 className={styles.submodule_btn}
                 onClick={() => selectSubModule({name: currModule.name, id: currModule.id})}
@@ -106,19 +106,18 @@ export default function PlayerSideBar({ showSidebar, width }: playerProps) {
                         <Image
                           style={{objectFit: 'cover'}}
                           alt={currClassroom.name}
-                          height={125}
+                          height={200}
                           width={600}
                           src={currClassroom.image}
                         />
                       </section>
                       <article>
-                        <h1>{currClassroom.name} #{index + 1}</h1>
+                        {/* <h1>{currClassroom.name} #{index + 1}</h1> */}
                         {
-                          classroom.id === currClassroom.id &&
-                          <FiPlayCircle color='white' size={30} style={{
-                            zIndex: 20,
-                            marginLeft:-10,
-                          }}/>
+                          classroom.id === currClassroom.id ?
+                            <FiPause color='white' size={60}/>
+                            :
+                            <FiPlayCircle color='white' size={60}/>
                         }
                       </article>
                     </button>;

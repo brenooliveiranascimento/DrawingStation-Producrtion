@@ -3,7 +3,9 @@
   flex-direction: column;
   width: 100%;
   min-height: 100%;
-  margin-top: 7rem;
+  margin-top: 6rem;
+  background-color: #1E292D;
+  margin-bottom: -5rem;
 
   @media screen and (max-width: 1590px) {
     align-items: center;
@@ -16,7 +18,6 @@
 }
 
 .player_with_side_bar {
-  padding: 1rem;
   display: flex;
   width: 100%;
   height: auto;
@@ -32,18 +33,15 @@
 .player {
   width: 100%;
   min-height: 680px;
-  background-color: #1e1c25;
-  border-radius: 1rem;
+  background-color: #1E292D;
   align-items: flex-start;
   justify-content: center;
-  margin: 1rem;
-  padding: 1rem;
-  margin-top: 0rem;
   iframe {
     border-radius: 0rem;
     width: 100%;
-    height: 680px;
-    
+    height: 850px;
+    margin-left: -0.5rem;
+    position: inherit;
     @media screen and (max-width: 1250px) {
       height: 580px;
       border-radius: 0rem;
@@ -92,12 +90,12 @@
 }
 
 .side_container::-webkit-scrollbar {
+  background-color: var(--new-dark);  
   width: 8px;             
 }
 
 .side_container::-webkit-scrollbar-thumb {
-  background-color: rgb(37, 37, 37);  
-  border-radius: 20px;     
+  background-color: white;  
 }
 
 

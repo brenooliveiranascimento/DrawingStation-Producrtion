@@ -2,10 +2,9 @@
 .dashboard_container {
   display: flex;
   overflow: hidden;
-  color: var(--white);
   // background: url("../../../public/layered-waves-haikei\ \(40\).svg") fixed ;
   // background-size: cover;
-  background-color: rgba(0,0,0,0);
+  // background-color: rgba(0,0,0,0);
   
   @media screen and (max-width: 660px) {
     flex-direction: column;
@@ -29,7 +28,14 @@
     padding-top: 30rem;
   }
 }
-
 .main_container::-webkit-scrollbar {
-  display: none;
+  width: 4px; 
+}
+
+.main_container::-webkit-scrollbar-track {
+}
+
+.main_container::-webkit-scrollbar-thumb {
+  background-color: var(--new-dark);   
+  border-radius: 20px;      
 }
