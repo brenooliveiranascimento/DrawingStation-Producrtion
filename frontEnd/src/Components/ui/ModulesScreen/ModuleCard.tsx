@@ -28,7 +28,7 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
   console.log();
 
   return (
-    <section className={styles.module_card_container}>
+    <section onClick={selectModule} className={styles.module_card_container}>
       <section className={styles.image_area}>
         <Image
           style={{objectFit: 'cover'}}
@@ -41,7 +41,7 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
       </article>
       <section>
       </section>
-      <button onClick={selectModule} type='button'>
+      <button type='button'>
         <span>
           Continuar assistindo
         </span>

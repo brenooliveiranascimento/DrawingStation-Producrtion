@@ -23,6 +23,7 @@
   flex-direction: column;
   margin: 1rem;
   margin-left: 2rem;
+  cursor: pointer;
   article {
     padding: 0.5rem;
   }
@@ -33,5 +34,12 @@
   outline:none;  
   display: flex;
   }
+
+  :hover {
+    filter: brightness(80%);
+    transition: all 0.5s;
+  }
+
+  
 
 }
