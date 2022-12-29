@@ -88,7 +88,7 @@ export default function PlayerSideBar({ showSidebar, width }: playerProps) {
               >
                 {currModule.name}
               </button>
-              {currSubModule.id === currModule.id && <section>
+              <section>
                 {
                   currModule.classrooms.map((currClassroom: ClassroomInterface, index: number) => {
                     return <button
@@ -124,7 +124,7 @@ export default function PlayerSideBar({ showSidebar, width }: playerProps) {
                     </button>;
                   })
                 }
-              </section>}
+              </section>
             </section>
           );
         })

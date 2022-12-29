@@ -29,7 +29,6 @@ export default function ClassroomsPage({ userData }: classroomPropTypes) {
 
   return (
     <section className={styles.dashboard_container}>
-      <CurrSideBar />
       <section className={styles.main_container}>
         <UserHeader/>
         <section className={styles.player_content}>
