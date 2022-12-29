@@ -108,7 +108,6 @@ export default function Player({ showSidebar, width }: playerProps) {
           </section>
         )
       }
-      <PlayerInf/>
     </section>
   );
 }

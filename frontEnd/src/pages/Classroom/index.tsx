@@ -10,6 +10,7 @@ import { requestSubModulesAction } from '../../redux/actions/subModuleActions/su
 import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
 import UserHeader from '../../Components/ui/Header/UserHeader';
 import PlayerContainer from '../../Components/ui/Player/PlayerContainer';
+import PlayerInf from '../../Components/ui/Player/PlayerInf/PlayerInf';
 
 interface classroomPropTypes {
   userData: UserInterface,
@@ -33,6 +34,7 @@ export default function ClassroomsPage({ userData }: classroomPropTypes) {
         <UserHeader/>
         <section className={styles.player_content}>
           <PlayerContainer/>
+          <PlayerInf/>
         </section>
       </section>
     </section>
