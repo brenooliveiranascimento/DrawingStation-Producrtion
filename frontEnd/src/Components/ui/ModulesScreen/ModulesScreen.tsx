@@ -12,10 +12,8 @@ export default function ModulesScreen() {
   console.log(modules);
   return (
     <section className={styles.module_container}>
-      <section style={{
-        display: 'flex', flexDirection: 'column'
-      }}>
-        <h1>Módulos</h1>
+      <section className={styles.cards_container}>
+        <span className={styles.class_name}>Módulos</span>
         <section style={{
           display: 'flex', flexDirection: 'row'
         }}>
@@ -25,10 +23,8 @@ export default function ModulesScreen() {
         </section>
       </section>
 
-      <section style={{
-        display: 'flex', flexDirection: 'column'
-      }}>
-        <h1>Aulas</h1>
+      <section className={styles.cards_container}>
+        <span className={styles.class_name}>Aulas</span>
         <section style={{
           display: 'flex', flexDirection: 'row'
         }}>

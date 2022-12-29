@@ -6,7 +6,6 @@ import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { ModulesInterface, SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
 import { selectSubModuleAction } from '../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
 import { handleScreen, setCurrClass, setCurrModule, setCurrSubmodule } from '../../../redux/actions/genericActions';
-
 import styles from './styles.module.scss';
 
 interface IModuleCard {
