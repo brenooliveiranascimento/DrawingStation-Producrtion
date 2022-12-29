@@ -1,7 +1,7 @@
 
 .side_container {
   width: 27rem;
-  height: 800px;
+  height: 850px;
   overflow-y: scroll;
   background-color: var(--dark-light-700);
   margin-top: 0rem;
@@ -61,17 +61,22 @@
   background-color: var(--black-700);  
   color: white;
   border: none;
+  margin-top: 1rem;
+  height: 200px;
   article {
     display: flex;
-    height: 200;
     margin-left: -100%;
-    align-items: center;
+    width: 27rem;
+    z-index: 99;
+    margin-top: 20%;
+    svg {
+      margin-left: 40%;
+    }
     h1 {
       font-size: 1.3rem;
       z-index: 20;
       margin: 1rem;
       text-align: start;
-      height: 200;
   }
   }
 
