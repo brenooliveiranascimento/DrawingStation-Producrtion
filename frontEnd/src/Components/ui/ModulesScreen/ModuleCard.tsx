@@ -31,8 +31,6 @@ export default function ModuleCard({ moduleCard }: IModuleCard) {
   };
   const { image, name, id } = moduleCard;
 
-  console.log();
-
   return (
     <section onClick={selectModule} className={styles.module_card_container}>
       <section className={styles.image_area}>

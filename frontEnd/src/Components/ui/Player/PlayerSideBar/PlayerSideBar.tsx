@@ -26,7 +26,9 @@ export default function PlayerSideBar({ showSidebar, width }: playerProps) {
       return;
     }
     if(incomplete) return;
-    const lastModule = localStorage.getItem(localStorageKeys.lastModule) as string;
+    const lastModule = localStorage.getItem(localStorageKeys.lastModule) || JSON.stringify({
+      name: 'Pintura', id: 1
+    }) as string;
     dispatch(selectSubModuleAction(JSON.parse(lastModule)));
   };
 
@@ -88,7 +90,7 @@ export default function PlayerSideBar({ showSidebar, width }: playerProps) {
               >
                 {currModule.name}
               </button>
-              {currSubModule.id === currModule.id && <section>
+              <section>
                 {
                   currModule.classrooms.map((currClassroom: ClassroomInterface, index: number) => {
                     return <button
@@ -123,7 +125,7 @@ export default function PlayerSideBar({ showSidebar, width }: playerProps) {
                     </button>;
                   })
                 }
-              </section>}
+              </section>
             </section>
           );
         })

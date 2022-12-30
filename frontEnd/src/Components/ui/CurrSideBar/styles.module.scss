@@ -3,13 +3,25 @@
   width: 15rem;
   z-index: 99;
   flex-direction: column;
-  padding: 1rem;
   background-color:var(--new-dark);
   height: 100vh;
   left: 0;
   // border-right: 2px solid var(--dark-light-600);
   // border-right: 2px solid ;
   padding: 1.5rem;
+
+  nav {
+    margin: 0rem;
+    margin-top: -2rem;
+    width: 15rem;
+    height: 6.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -1.5rem;
+    border-right: 1px solid #263135;
+    border-bottom: 1px solid #263135;
+  }
 
   aside {
     display: none;
@@ -91,7 +103,7 @@
   width: 100%;
   flex-direction: column;
   margin-left: -1rem;
-  margin-top: 4rem;
+  margin-top: 1rem;
   
   button {
     margin-left: 1rem;

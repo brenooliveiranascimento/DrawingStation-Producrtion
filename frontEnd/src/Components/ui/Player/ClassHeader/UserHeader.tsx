@@ -2,19 +2,19 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles.module.scss';
-import profileDefault from '../../../../public/profilePhoto.png';
+import profileDefault from '../../../../../public/profilePhoto.png';
 import { parseCookies } from 'nookies';
 import Router from 'next/router';
-import { handleScreen } from '../../../redux/actions/genericActions';
-import { globalState } from '../../../interfaces/modules/globalStateInterface';
-import { apiConnection } from '../../../services/api.connection';
+import { handleScreen } from '../../../../redux/actions/genericActions';
+import { globalState } from '../../../../interfaces/modules/globalStateInterface';
+import { apiConnection } from '../../../../services/api.connection';
 import { toast } from 'react-toastify';
-import { FaCrown, FaHome, FaSearch } from 'react-icons/fa';
-import { ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
-import { selectSubModuleAction } from '../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
+import { FaCrown, FaHome } from 'react-icons/fa';
+import { ModulesInterface } from '../../../../interfaces/modules/ModulesInterface';
+import { selectSubModuleAction } from '../../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
 import Link from 'next/link';
-import logo from '../../../../public/logo1.png';
-export default function UserHeader() {
+import logo from '../../../../../public/logo1.png';
+export default function ClassHeader() {
   const { userData, currScreen } = useSelector((state: globalState) => state.user);
   const { classroomController: { module }, modules: { modules } } = useSelector((state: globalState) => state);
   const [showHeader, setShowHeader] = useState(true);
@@ -53,7 +53,7 @@ export default function UserHeader() {
   return (
     <header
       style={{
-        marginLeft:'-15rem'
+        marginLeft:'0rem'
       }}
       className={styles.header_container}>
       <aside className={styles.navigation_container}>
@@ -68,12 +68,35 @@ export default function UserHeader() {
               height={100}
               alt={'DrawingStation logo'}
             />
+            {
+              currScreen === 'Classroom' && (
+                <FaHome size={30} color='#aaa'/>
+              )}
           </Link>
         </nav>
-        <section>
-          <input placeholder='Procurar Aula'/>
-          <FaSearch color='#aaa'/>
-        </section>
+        
+        {
+          currScreen === 'Classroom' && (
+            <nav>
+              { showHeader && modules.map((currModule: ModulesInterface) => (
+                <button
+                  onClick={() => changeModule(currModule)}
+                  className={styles.change_mdule_container} key={module.id}>
+                  <h1
+                    style={{
+                      color: module.id === currModule.id ? '#28CB99' : '#aaa',
+                      borderTop: module.id === currModule.id ? '3px solid #28CB99' : 'none',
+                      paddingTop: module.id === currModule.id ? '1.4rem' : 'none',
+                      marginTop: module.id === currModule.id ? '-1.6rem' : 'none'
+                    }}
+                  >
+                    {currModule.name}
+                  </h1>
+                </button>
+              ))}
+            </nav>
+          )
+        }
       </aside>
       <aside  className={styles.user_container}>
         <button className={styles.user_photo}>

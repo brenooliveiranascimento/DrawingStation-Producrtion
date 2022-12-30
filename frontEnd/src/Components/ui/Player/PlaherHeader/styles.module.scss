@@ -31,17 +31,18 @@
   }
 
   aside {
-    border-left: 1px solid #aaa;
+    border-left: 2px solid #48616b;
     height: 100%;
     padding: 1.5rem;
     padding-left: 0rem;
     padding-right: 0rem;
+
     button {
       font-size: 1rem;
-      border: 1px solid #aaa;
+      border: 1px solid #4a6069;
       margin-left: 1rem;
       border-radius: 1rem;
-      color: #aaa;
+      color: #4a6069;
       display: flex;
       width: 2rem;
       height: 2rem;
@@ -49,9 +50,13 @@
       justify-content: center;
       background-color: rgba(0,0,0,0.0);
       :hover {
-        color: white;
+        color: #6a8894;
       }
     }
     display: flex;
+  }
+
+  @media screen and (max-width: 1591px) {
+    display: none;
   }
 }
