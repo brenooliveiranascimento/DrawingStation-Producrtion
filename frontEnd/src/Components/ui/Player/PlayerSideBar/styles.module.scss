@@ -12,6 +12,10 @@
     display: flex;
   }
 
+  @media screen and (max-width: 1590px) {
+    height: 600px;
+  }
+
   header {
     height: 5rem;
     display: flex;
