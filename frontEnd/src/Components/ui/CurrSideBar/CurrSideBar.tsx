@@ -66,13 +66,15 @@ export default function CurrSideBar() {
           >Home</span>
         </button>
         <button
-          onClick={() => changeScreen('Classroom')}>
+          onClick={() => changeScreen('Subscription')}>
           <span
             style={{
-              color: currScreen === 'Classroom' || !currScreen ? '#28CB99' : 'white',
-              borderLeft: currScreen === 'Classroom' ? '3px solid #28CB99' : '1px solid white'
+              color: currScreen === 'Subscription' || !currScreen ? '#28CB99' : 'white',
+              borderLeft: currScreen === 'Subscription' ? '3px solid #28CB99' : '1px solid white'
             }}
-          >Aulas</span>
+          >
+            Planos
+          </span>
         </button>
       </section>
       <aside>
