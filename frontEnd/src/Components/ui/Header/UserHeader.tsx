@@ -14,7 +14,7 @@ import { ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
 
 export default function UserHeader() {
   const { userData } = useSelector((state: globalState) => state.user);
-  const { classroomsData, modules: { modules } } = useSelector((state: globalState) => state);
+  const { classroomController: { module }, modules: { modules } } = useSelector((state: globalState) => state);
 
   const { name, premium, profilePhoto, stripeClientId } = userData;
   const dispatch = useDispatch();
@@ -42,9 +42,16 @@ export default function UserHeader() {
   return (
     <header className={styles.header_container}>
       <aside className={styles.navigation_container}>
-        { modules.map((module: ModulesInterface) => (
-          <button key={module.id}>
-            <h1>{module.name}</h1>
+        { modules.map((currModule: ModulesInterface) => (
+          <button className={styles.change_mdule_container} key={module.id}>
+            <h1
+              style={{
+                color: module.id === currModule.id ? '#28CB99' : 'white',
+                borderTop: module.id === currModule.id ? '3px solid #28CB99' : 'none',
+                paddingTop: module.id === currModule.id ? '1.4rem' : 'none',
+                marginTop: module.id === currModule.id ? '-1.6rem' : 'none'
+              }}
+            >{currModule.name}</h1>
           </button>
         ))}
       </aside>
