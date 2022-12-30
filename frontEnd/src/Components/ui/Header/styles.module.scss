@@ -7,7 +7,7 @@
   position: fixed;
   z-index: 98;
   color: white;
-  margin-left: -15rem;
+  margin-left: -14rem;
 
   aside {
     display: flex;
@@ -47,6 +47,7 @@
     width: 100%;
     position: fixed;
     margin-top: 0rem;
+    margin-left: 0rem;
   }
 }
 
@@ -73,6 +74,12 @@
       color: #aaa;
     }
   }
+  @media screen and (max-width: 450px) {
+    h2 {
+      margin-right: 1rem;
+      text-align: end
+    }
+  }
 }
 
 .navigation_container {
@@ -80,6 +87,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
   width: 100%;
   section {
     width: 100%;
@@ -88,6 +96,9 @@
     justify-content: flex-start;
     padding-left: 2rem;
 
+    @media screen and (max-width: 1044px) {
+      display: none;
+  }
     svg {
       margin-left: -2rem;
     }
@@ -108,9 +119,10 @@
     width: auto;
     width: 18rem;
     height: 6rem;
-    border-right: 1px solid #324247;
-    border-bottom: 1px solid #324247;
     margin-left: 0rem;
+    @media screen and (max-width: 1044px) {
+      display: none;
+    }
   }
 
   nav {
@@ -162,7 +174,9 @@
       margin-top: -1rem;
     }
   }
-  @media screen and (max-width: 660px) {
-  display: none;
+  @media screen and (max-width: 450px) {
+    .user_photo {
+      margin-right: 1rem;
+    }
   }
 }

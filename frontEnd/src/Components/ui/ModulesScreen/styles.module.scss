@@ -7,8 +7,6 @@
   flex-direction: column;
 
   @media screen and (max-width: 595px) {
-    align-items: center;
-    justify-content: center;
   }
 }
 .module_card_container {
@@ -67,7 +65,7 @@
 
 .class_card_container {
   display: flex;
-  width: 450px;
+  width: 400px;
   height: 350px;
   margin-right: 1rem;
   margin-left: 1rem;
@@ -99,7 +97,7 @@
 
   .player_area {
     position: absolute;
-    width: 450px;
+    width: 400px;
     height: 250px;
     display: flex;
     background-color: rgba(0,0,0,0.3);

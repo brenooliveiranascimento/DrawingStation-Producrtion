@@ -52,12 +52,8 @@ export default function UserHeader() {
   };
   return (
     <header
-      style={{
-        marginLeft:'-15rem'
-      }}
       className={styles.header_container}>
       <aside className={styles.navigation_container}>
-        
         <nav className={styles.navigation_screen}>
           <Link
             href={'/HomePage'}

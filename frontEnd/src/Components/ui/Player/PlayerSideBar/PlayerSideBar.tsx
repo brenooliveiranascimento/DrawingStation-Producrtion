@@ -90,42 +90,46 @@ export default function PlayerSideBar({ showSidebar, width }: playerProps) {
               >
                 {currModule.name}
               </button>
-              <section>
-                {
-                  currModule.classrooms.map((currClassroom: ClassroomInterface, index: number) => {
-                    return <button
-                      style={{
-                        backgroundColor: classroom.id === currClassroom.id ? '#3b3348' : '#1F1C2C',
-                      }}
-                      className={styles.classroom_btn}
-                      onClick={() => selectClass(currClassroom)} key={currClassroom.id}>
-                      <section
-                        style={{
-                          filter: classroom.id === currClassroom.id ? 'brightness(80%)' : 'brightness(50%)'
-                        }}
-                        className={styles.image_area}
-                      >
-                        <Image
-                          style={{objectFit: 'cover'}}
-                          alt={currClassroom.name}
-                          height={200}
-                          width={600}
-                          src={currClassroom.image}
-                        />
-                      </section>
-                      <article>
-                        {/* <h1>{currClassroom.name} #{index + 1}</h1> */}
-                        {
-                          classroom.id === currClassroom.id ?
-                            <FiPause color='white' size={60}/>
-                            :
-                            <FiPlayCircle color='white' size={60}/>
-                        }
-                      </article>
-                    </button>;
-                  })
-                }
-              </section>
+              {
+                currSubModule.id === currModule.id && (
+                  <section>
+                    {
+                      currModule.classrooms.map((currClassroom: ClassroomInterface, index: number) => {
+                        return <button
+                          style={{
+                            backgroundColor: classroom.id === currClassroom.id ? '#3b3348' : '#1F1C2C',
+                          }}
+                          className={styles.classroom_btn}
+                          onClick={() => selectClass(currClassroom)} key={currClassroom.id}>
+                          <section
+                            style={{
+                              filter: classroom.id === currClassroom.id ? 'brightness(80%)' : 'brightness(50%)'
+                            }}
+                            className={styles.image_area}
+                          >
+                            <Image
+                              style={{objectFit: 'cover'}}
+                              alt={currClassroom.name}
+                              height={200}
+                              width={600}
+                              src={currClassroom.image}
+                            />
+                          </section>
+                          <article>
+                            {/* <h1>{currClassroom.name} #{index + 1}</h1> */}
+                            {
+                              classroom.id === currClassroom.id ?
+                                <FiPause color='white' size={60}/>
+                                :
+                                <FiPlayCircle color='white' size={60}/>
+                            }
+                          </article>
+                        </button>;
+                      })
+                    }
+                  </section>
+                )
+              }
             </section>
           );
         })
