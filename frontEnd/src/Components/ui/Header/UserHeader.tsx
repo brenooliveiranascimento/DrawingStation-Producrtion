@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles.module.scss';
 import profileDefault from '../../../../public/profilePhoto.png';
@@ -9,13 +9,15 @@ import { handleScreen } from '../../../redux/actions/genericActions';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { apiConnection } from '../../../services/api.connection';
 import { toast } from 'react-toastify';
-import { FaCrown } from 'react-icons/fa';
+import { FaCrown, FaHome } from 'react-icons/fa';
 import { ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
+import { selectSubModuleAction } from '../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
+import Link from 'next/link';
 
 export default function UserHeader() {
   const { userData } = useSelector((state: globalState) => state.user);
   const { classroomController: { module }, modules: { modules } } = useSelector((state: globalState) => state);
-
+  const [showHeader, setShowHeader] = useState(true);
   const { name, premium, profilePhoto, stripeClientId } = userData;
   const dispatch = useDispatch();
   const changeScreen = (screen: string) => {
@@ -23,7 +25,17 @@ export default function UserHeader() {
     dispatch(handleScreen(screen));
   };
 
+  const changeModule = async (moduleInf: ModulesInterface) => {
+    dispatch(selectSubModuleAction(moduleInf));
+    await setShowHeader(!showHeader);
+    setShowHeader(true);
+  };
+
   const cookies = parseCookies();
+
+  useEffect(() => {
+    console.log(modules);
+  }, [modules]);
 
   const accessPortal = async () => {
     if(!stripeClientId) return;
@@ -38,12 +50,21 @@ export default function UserHeader() {
       console.log(e.message);
     }
   };
-
+  console.log(modules);
   return (
     <header className={styles.header_container}>
       <aside className={styles.navigation_container}>
-        { modules.map((currModule: ModulesInterface) => (
-          <button className={styles.change_mdule_container} key={module.id}>
+        <nav>
+          <Link
+            href={'/HomePage'}
+          >
+            <FaHome size={30}/>
+          </Link>
+        </nav>
+        { showHeader && modules.map((currModule: ModulesInterface) => (
+          <button
+            onClick={() => changeModule(currModule)}
+            className={styles.change_mdule_container} key={module.id}>
             <h1
               style={{
                 color: module.id === currModule.id ? '#28CB99' : 'white',
@@ -51,7 +72,9 @@ export default function UserHeader() {
                 paddingTop: module.id === currModule.id ? '1.4rem' : 'none',
                 marginTop: module.id === currModule.id ? '-1.6rem' : 'none'
               }}
-            >{currModule.name}</h1>
+            >
+              {currModule.name}
+            </h1>
           </button>
         ))}
       </aside>

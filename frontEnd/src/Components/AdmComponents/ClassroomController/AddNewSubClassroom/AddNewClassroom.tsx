@@ -17,7 +17,7 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
   const { subModules } = useSelector((state: globalState) => state.subModules);
   const dispatch = useDispatch();
 
-  const [addNewClassroom, setEditingModule] = useState<ClassroomInterface>({
+  const [addNewClassroom, setEditingModule] = useState<any>({
     name: '',
     image: '',
     premium: true,
@@ -27,7 +27,7 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
 
   const [identity, setIdentity] = useState('');
 
-  const [addNewClassroomData, setEditingClassroomData] = useState<ClassroomDataInterface>({
+  const [addNewClassroomData, setEditingClassroomData] = useState<any>({
     description: '',
     image: '',
     drawing: '',
