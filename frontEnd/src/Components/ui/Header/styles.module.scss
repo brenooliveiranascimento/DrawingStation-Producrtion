@@ -79,13 +79,30 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+
+  .navigation_screen {
+    justify-self: flex-end;
+    width: auto;
+  }
 
   nav {
-    width: 25%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-left: 1rem;
+    button {
+      :hover {
+        filter: brightness(50%);
+        transition: all 0.3s;
+      }
+    }
     a {
       justify-self: flex-start;
+      :hover {
+        filter: brightness(50%);
+        transition: all 0.3s;
+      }
     }
   }
 }
