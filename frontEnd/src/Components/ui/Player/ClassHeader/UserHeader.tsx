@@ -75,28 +75,24 @@ export default function ClassHeader() {
           </Link>
         </nav>
         
-        {
-          currScreen === 'Classroom' && (
-            <nav>
-              { showHeader && modules.map((currModule: ModulesInterface) => (
-                <button
-                  onClick={() => changeModule(currModule)}
-                  className={styles.change_mdule_container} key={module.id}>
-                  <h1
-                    style={{
-                      color: module.id === currModule.id ? '#28CB99' : '#aaa',
-                      borderTop: module.id === currModule.id ? '3px solid #28CB99' : 'none',
-                      paddingTop: module.id === currModule.id ? '1.4rem' : 'none',
-                      marginTop: module.id === currModule.id ? '-1.6rem' : 'none'
-                    }}
-                  >
-                    {currModule.name}
-                  </h1>
-                </button>
-              ))}
-            </nav>
-          )
-        }
+        <nav>
+          { showHeader && modules.map((currModule: ModulesInterface) => (
+            <button
+              onClick={() => changeModule(currModule)}
+              className={styles.change_mdule_container} key={module.id}>
+              <h1
+                style={{
+                  color: module.id === currModule.id ? '#28CB99' : '#aaa',
+                  borderTop: module.id === currModule.id ? '3px solid #28CB99' : 'none',
+                  paddingTop: module.id === currModule.id ? '1.4rem' : 'none',
+                  marginTop: module.id === currModule.id ? '-1.6rem' : 'none'
+                }}
+              >
+                {currModule.name}
+              </h1>
+            </button>
+          ))}
+        </nav>
       </aside>
       <aside  className={styles.user_container}>
         <button className={styles.user_photo}>
