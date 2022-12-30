@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { apiConnection } from '../../../services/api.connection';
 import { parseCookies } from 'nookies';
+import logo from '../../../../public/logo1.png';
 import profileDefault from '../../../../public/profilePhoto.png';
 
 export default function CurrSideBar() {
@@ -49,6 +50,18 @@ export default function CurrSideBar() {
 
   return (
     <nav className={styles.side_bar_container}>
+      <nav>
+        {/* {
+          currScreen !== 'Classroom' &&
+          <Image
+            src={logo}
+            width={200}
+            height={100}
+            alt={'DrawingStation logo'}
+          />
+        } */}
+
+      </nav>
       <section className={styles.nav_area}>
         <button onClick={() => changeScreen('/')}>
           <span

@@ -12,6 +12,7 @@ import UserHeader from '../../Components/ui/Header/UserHeader';
 import PlayerContainer from '../../Components/ui/Player/PlayerContainer';
 import PlayerInf from '../../Components/ui/Player/PlayerInf/PlayerInf';
 import { requestModulesAction } from '../../redux/actions/moduleActions/moduleActions';
+import ClassHeader from '../../Components/ui/Player/ClassHeader/UserHeader';
 
 interface classroomPropTypes {
   userData: UserInterface,
@@ -33,7 +34,7 @@ export default function ClassroomsPage({ userData }: classroomPropTypes) {
   return (
     <section className={styles.dashboard_container}>
       <section className={styles.main_container}>
-        <UserHeader/>
+        <ClassHeader/>
         <section className={styles.player_content}>
           <PlayerContainer/>
           <PlayerInf/>

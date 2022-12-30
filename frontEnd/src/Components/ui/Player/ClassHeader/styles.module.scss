@@ -6,6 +6,7 @@
   background-color: var(--new-dark);
   position: fixed;
   z-index: 99;
+  padding-left: 1rem;
   color: white;
   margin-left: -15rem;
 
@@ -79,38 +80,10 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   width: 100%;
-  section {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 2rem;
-
-    svg {
-      margin-left: -2rem;
-    }
-
-    input {
-      width: 500px;
-      border-radius: 1rem;
-      background-color: #324247;
-      border: none;
-      font-size: 1rem;
-      height: 2rem;
-      padding-left: 1rem;
-      color: white;
-    }
-  }
   .navigation_screen {
     justify-self: flex-end;
     width: auto;
-    width: 18rem;
-    height: 6rem;
-    border-right: 1px solid #324247;
-    border-bottom: 1px solid #324247;
-    margin-left: 0rem;
   }
 
   nav {
