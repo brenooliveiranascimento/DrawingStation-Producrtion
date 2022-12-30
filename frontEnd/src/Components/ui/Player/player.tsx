@@ -74,7 +74,7 @@ export default function Player({ showSidebar, width }: playerProps) {
           padding: '1rem',
           display: 'flex',
           justifyContent: 'flex-end',
-          marginBottom: '-1rem'
+          marginBottom: '1rem'
         }}
       >
         <button style={{
@@ -93,7 +93,7 @@ export default function Player({ showSidebar, width }: playerProps) {
               onLoaded={() => setLoadPlayer(!loadPlayer)}
               onEnd={nextClassroom}
               autoplay
-            ></Vimeo>
+            />
           </section>
         ) : (
           <section style={{

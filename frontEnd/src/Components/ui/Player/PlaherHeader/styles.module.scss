@@ -54,4 +54,8 @@
     }
     display: flex;
   }
+
+  @media screen and (max-width: 1591px) {
+    display: none;
+  }
 }
