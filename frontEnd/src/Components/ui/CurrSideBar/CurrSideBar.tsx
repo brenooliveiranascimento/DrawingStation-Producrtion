@@ -51,16 +51,12 @@ export default function CurrSideBar() {
   return (
     <nav className={styles.side_bar_container}>
       <nav>
-        {/* {
-          currScreen !== 'Classroom' &&
-          <Image
-            src={logo}
-            width={200}
-            height={100}
-            alt={'DrawingStation logo'}
-          />
-        } */}
-
+        <Image
+          src={logo}
+          width={200}
+          height={100}
+          alt={'DrawingStation logo'}
+        />
       </nav>
       <section className={styles.nav_area}>
         <button onClick={() => changeScreen('/')}>
