@@ -12,19 +12,16 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-
 export default function ModulesScreen() {
   const { modules, subModules: { subModules } } = useSelector((state: globalState) => state);
   return (
+    
     <section className={styles.module_container}>
       <section className={styles.cards_container}>
         <span className={styles.class_name}>Módulos</span>
-        <section style={{
-          display: 'flex', flexDirection: 'row'
-        }}>
-          { modules.modules.map((currModule: ModulesInterface) => (
-            <ModuleCard moduleCard={currModule} key={currModule.id}/>
-          )) }
+        <span className={styles.class_name}>Aulas</span>
+        <section className={styles.class_card_area} >
+          <ModuleCard/>
         </section>
       </section>
 

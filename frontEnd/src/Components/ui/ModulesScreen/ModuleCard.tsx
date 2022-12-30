@@ -9,48 +9,79 @@ import styles from './styles.module.scss';
 import 'swiper/css';
 import SwiperCore, { Autoplay } from 'swiper';
 SwiperCore.use([Autoplay]);
+import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import 'swiper/css';
+SwiperCore.use([Autoplay]);
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { Pagination, Navigation } from 'swiper';
 
 import Image from 'next/image';
 
-interface IModuleCard {
-  moduleCard: ModulesInterface;
-}
-
-export default function ModuleCard({ moduleCard }: IModuleCard) {
+export default function ModuleCard() {
   const dispatch = useDispatch();
+  const { modules: { modules } } = useSelector((state: globalState) => state);
 
   const { subModules } = useSelector(({ subModules }: globalState) => subModules);
   console.log(subModules);
-  const selectModule = () => {
-    dispatch(selectSubModuleAction(moduleCard));
+  const selectModule = (moduleInfo: ModulesInterface) => {
+    dispatch(selectSubModuleAction(moduleInfo));
     dispatch(handleScreen('Classroom'));
     Router.push('/Classroom');
   };
-  const { image, name, id } = moduleCard;
+
+  const countSubModules = (moduleInfo: ModulesInterface) => {
+    const getAllSubModules = subModules.find((currSubModule: SubModuleInterface) =>
+      currSubModule.id === moduleInfo.id);
+    console.log(getAllSubModules);
+    if(getAllSubModules) return getAllSubModules.classrooms.length;
+    return 0;
+  };
 
   return (
-    <section onClick={selectModule} className={styles.module_card_container}>
-      <section className={styles.image_area}>
-        <Image
-          style={{objectFit: 'cover'}}
-          width={350} height={200} src={image} alt={name} />
-      </section>
-      <article>
-        <h2>Módulo de {name}</h2>
-        <p>{subModules.find((currSubModule: SubModuleInterface) =>
-          currSubModule.id === id).classrooms.length} aulas</p>
-      </article>
-      <section>
-      </section>
-      <button type='button'>
-        <span>
-          Acessar módulo
-        </span>
-      </button>
-    </section>
+    <Swiper
+      slidesPerView={4}
+      spaceBetween={-150}
+      pagination={{
+        clickable: true
+      }}
+      //   autoplay={{
+      //     delay: 6000,
+      //     disableOnInteraction: false
+      // }}
+      navigation={true}
+      modules={[Pagination, Navigation]}
+      className={styles.mySwiper}
+    >
+      {modules.map((currModule: ModulesInterface, index: number) => (
+        <SwiperSlide
+          key={index}>
+          <section onClick={() => selectModule(currModule)} className={styles.module_card_container}>
+            <section className={styles.image_area}>
+              <Image
+                style={{objectFit: 'cover'}}
+                width={350} height={200} src={currModule.image} alt={currModule.name} />
+            </section>
+            <article>
+              <h2>Módulo de {currModule.name}</h2>
+              <p>{countSubModules(currModule)} aulas</p>
+            </article>
+            <section>
+            </section>
+            <button type='button'>
+              <span>
+                Acessar módulo
+              </span>
+            </button>
+          </section>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  
   );
 }
 
