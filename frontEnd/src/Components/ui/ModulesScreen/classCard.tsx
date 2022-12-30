@@ -40,13 +40,12 @@ export default function ClassCard({ subModule }: IClassCardProps) {
   };
 
   const selectSubModule = (classInfos: ClassroomInterface) => {
-    const findCurrModule = subModules.find((currModule: ModulesInterface) => currModule.id === subModule.id);
+    const findCurrModule = subModules.find((currModule: ModulesInterface) => currModule.id === subModule.moduleId);
+    console.log(findCurrModule);
     selectModule(findCurrModule);
     dispatch(selectCurrSubModule({ name: subModule.name, id: subModule.id }));
     selectClass(classInfos);
   };
-
-
 
   return (
     <Swiper
@@ -55,10 +54,6 @@ export default function ClassCard({ subModule }: IClassCardProps) {
       pagination={{
         clickable: true
       }}
-      //   autoplay={{
-      //     delay: 6000,
-      //     disableOnInteraction: false
-      // }}
       navigation={true}
       modules={[Pagination, Navigation]}
       className={styles.mySwiper}
