@@ -85,7 +85,7 @@ export default function ModuleCard() {
             <section className={styles.image_area}>
               <Image
                 style={{objectFit: 'cover'}}
-                width={350} height={200} src={currModule.image} alt={currModule.name} />
+                width={width <= 415 ? 300 : 350} height={200} src={currModule.image} alt={currModule.name} />
             </section>
             <article>
               <h2>Módulo de {currModule.name}</h2>

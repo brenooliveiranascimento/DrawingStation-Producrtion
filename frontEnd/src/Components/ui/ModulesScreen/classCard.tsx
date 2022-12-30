@@ -95,7 +95,7 @@ export default function ClassCard({ subModule }: IClassCardProps) {
             <section className={styles.image_area}>
               <Image
                 style={{objectFit: 'cover',  filter: 'brightness(80%)'}}
-                width={400} height={250} src={currClassroom.image} alt={currClassroom.name} />
+                width={width <= 415 ? 300 : 400 } height={width <= 415 ? 200 : 250 } src={currClassroom.image} alt={currClassroom.name} />
             </section>
             <article>
               <h2>{currClassroom.name}</h2>

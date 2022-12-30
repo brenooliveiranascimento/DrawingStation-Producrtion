@@ -73,6 +73,9 @@
   justify-content: center;
   padding-bottom: 0.5rem;
   flex-direction: column;
+  @media screen and (max-width: 415px) {
+    width: 300px;
+  }
   cursor: pointer;
   article {
     padding: 1rem;
@@ -108,7 +111,10 @@
     color: white;
     font-size: 3rem;
     z-index: 40;
-    
+    @media screen and (max-width: 415px) {
+      width: 300px;
+      height: 200px;
+    }
   }
 }
 
@@ -171,6 +177,9 @@
   }
   @media screen and (max-width: 1280px) {
     width: 380px;
+  }
+  @media screen and (max-width: 415px) {
+    width: 300px;
   }
 }
 
