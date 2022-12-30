@@ -77,6 +77,10 @@ export default function ClassCard({ subModule }: IClassCardProps) {
       pagination={{
         clickable: true
       }}
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: false
+      }}
       navigation={true}
       modules={[Pagination, Navigation]}
       className={styles.mySwiper}

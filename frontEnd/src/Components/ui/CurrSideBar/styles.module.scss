@@ -78,6 +78,10 @@
   @media screen and (max-width: 660px) {
     width: 10rem;
   }
+
+  @media screen and (max-width: 577px) {
+    display: none;
+  }
 }
 
 .nav_area {
