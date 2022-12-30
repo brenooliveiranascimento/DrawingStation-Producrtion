@@ -80,7 +80,7 @@ export default function Player({ showSidebar, width }: playerProps) {
         <button style={{
           justifySelf: 'flex-start', backgroundColor: 'rgba(0,0,0,0.0)', border: 'none'
         }} onClick={showSidebar}>
-          <FiMenu size={25} color='white'/>
+          <FiMenu className={styles.menu} size={25} color='white'/>
         </button>
       </section> }
       {
