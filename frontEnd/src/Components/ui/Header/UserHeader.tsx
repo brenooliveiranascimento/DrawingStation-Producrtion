@@ -13,7 +13,7 @@ import { FaCrown, FaHome } from 'react-icons/fa';
 import { ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
 import { selectSubModuleAction } from '../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
 import Link from 'next/link';
-
+import logo from '../../../../public/logo1.png';
 export default function UserHeader() {
   const { userData } = useSelector((state: globalState) => state.user);
   const { classroomController: { module }, modules: { modules } } = useSelector((state: globalState) => state);
@@ -58,6 +58,12 @@ export default function UserHeader() {
           <Link
             href={'/HomePage'}
           >
+            <Image
+              src={logo}
+              width={200}
+              height={100}
+              alt={'DrawingStation logo'}
+            />
             <FaHome size={30} color='#aaa'/>
           </Link>
         </nav>

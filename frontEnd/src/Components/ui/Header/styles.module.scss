@@ -99,9 +99,16 @@
     }
     a {
       justify-self: flex-start;
+      display: flex;
+      align-items: center;
       :hover {
         filter: brightness(50%);
         transition: all 0.3s;
+      }
+
+      svg {
+        margin-left: 1rem;
+        margin-top: 0.4rem;
       }
     }
   }
