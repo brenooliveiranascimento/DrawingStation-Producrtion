@@ -75,7 +75,7 @@ export default function ClassHeader() {
           </Link>
         </nav>
         
-        <nav>
+        <nav className={styles.modules_are}>
           { showHeader && modules.map((currModule: ModulesInterface) => (
             <button
               onClick={() => changeModule(currModule)}
