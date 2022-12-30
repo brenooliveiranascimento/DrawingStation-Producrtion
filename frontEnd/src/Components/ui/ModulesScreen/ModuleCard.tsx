@@ -70,10 +70,10 @@ export default function ModuleCard() {
       pagination={{
         clickable: true
       }}
-      //   autoplay={{
-      //     delay: 6000,
-      //     disableOnInteraction: false
-      // }}
+      autoplay={{
+        delay: 6000,
+        disableOnInteraction: false
+      }}
       navigation={true}
       modules={[Pagination, Navigation]}
       className={styles.mySwiper}

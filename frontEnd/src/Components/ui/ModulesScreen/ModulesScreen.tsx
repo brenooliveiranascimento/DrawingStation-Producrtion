@@ -18,7 +18,7 @@ export default function ModulesScreen() {
     
     <section className={styles.module_container}>
       <section className={styles.cards_container}>
-        <span className={styles.class_name}>Módulos</span>
+        <span className={styles.moeula_name}>Módulos</span>
         <section className={styles.class_card_area} >
           <section className={styles.slider_container}>
             <ModuleCard/>
