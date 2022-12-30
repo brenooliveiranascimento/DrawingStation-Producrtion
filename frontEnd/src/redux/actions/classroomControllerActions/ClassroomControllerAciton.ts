@@ -106,6 +106,7 @@ export const selectSubModuleAction = (module: ModulesInterface): any => {
       currSubModule.moduleId === id);
     if(!currSubModules.length) {
       localStorage.setItem(localStorageKeys.lastModule, JSON.stringify({id, name}));
+      dispatch(setCurrModule({module: {name, id}, subModules: []}));
       dispatch(incompleteASubModule());
       return;
     }
