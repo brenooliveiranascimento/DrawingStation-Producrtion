@@ -10,13 +10,9 @@ import 'swiper/css';
 import SwiperCore, { Autoplay } from 'swiper';
 SwiperCore.use([Autoplay]);
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import 'swiper/css';
 SwiperCore.use([Autoplay]);
 import 'swiper/css';
-import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper';
 
