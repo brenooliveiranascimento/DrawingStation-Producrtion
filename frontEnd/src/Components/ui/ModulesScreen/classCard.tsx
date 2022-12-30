@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaPlayCircle } from 'react-icons/fa';
 import { ClassroomInterface } from '../../../interfaces/modules/classroomInterface';
 import styles from './styles.module.scss';
@@ -46,11 +46,34 @@ export default function ClassCard({ subModule }: IClassCardProps) {
     dispatch(selectCurrSubModule({ name: subModule.name, id: subModule.id }));
     selectClass(classInfos);
   };
+  const [width, setWidth] = useState(0);
+
+
+  useEffect((): any => {
+    const verifyWidth = setInterval(() => setWidth(window.innerWidth), 100);
+    return () => clearInterval(verifyWidth);
+  }, []);
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+  }, [width]);
+
+  const viewQuantityController = () => {
+    if(width <= 1777 && width >= 1471) return 3;
+    if(width <= 1470  && width >= 1281) return 2;
+    if(width <= 1280) return 1;
+    return 4;
+  };
+
+  const spaceController = () => {
+    if(width <= 1470  && width >= 1281) return -160;
+    return 50;
+  };
 
   return (
     <Swiper
-      slidesPerView={4}
-      spaceBetween={50}
+      slidesPerView={viewQuantityController()}
+      spaceBetween={spaceController()}
       pagination={{
         clickable: true
       }}

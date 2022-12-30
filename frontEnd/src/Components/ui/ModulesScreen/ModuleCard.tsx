@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { ModulesInterface, SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
@@ -33,15 +33,40 @@ export default function ModuleCard() {
   const countSubModules = (moduleInfo: ModulesInterface) => {
     const getAllSubModules = subModules.find((currSubModule: SubModuleInterface) =>
       currSubModule.id === moduleInfo.id);
-    console.log(getAllSubModules);
     if(getAllSubModules) return getAllSubModules.classrooms.length;
     return 0;
   };
 
+  const [width, setWidth] = useState(0);
+
+
+  useEffect((): any => {
+    const verifyWidth = setInterval(() => setWidth(window.innerWidth), 100);
+    return () => clearInterval(verifyWidth);
+  }, []);
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+  }, [width]);
+
+  const viewQuantityController = () => {
+    if(width <= 1777 && width >= 1471) return 3;
+    if(width <= 1470  && width >= 1281) return 2;
+    if(width <= 1280) return 1;
+    return 4;
+  };
+
+  const spaceController = () => {
+    if(width <= 1777 && width >= 1471) return -100;
+    if(width <= 1470  && width >= 1281) return -260;
+    if(width <= 1280) return 1;
+    return -150;
+  };
+
   return (
     <Swiper
-      slidesPerView={4}
-      spaceBetween={-150}
+      slidesPerView={viewQuantityController()}
+      spaceBetween={spaceController()}
       pagination={{
         clickable: true
       }}

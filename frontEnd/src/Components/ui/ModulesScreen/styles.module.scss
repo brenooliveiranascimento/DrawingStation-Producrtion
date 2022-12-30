@@ -137,6 +137,18 @@
   width: 1640px;
   display: flex;
   height: 410px;
+  @media screen and (max-width: 1777px) {
+    width: 1270px;
+  }
+  @media screen and (max-width: 1560px) {
+    width: 1200px;
+  }
+  @media screen and (max-width: 1470px) {
+    width: 1000px;
+  }
+  @media screen and (max-width: 1280px) {
+    width: 380px;
+  }
 }
 
 .slider_container {
