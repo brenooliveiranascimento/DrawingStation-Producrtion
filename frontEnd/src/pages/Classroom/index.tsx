@@ -11,6 +11,7 @@ import CurrSideBar from '../../Components/ui/CurrSideBar/CurrSideBar';
 import UserHeader from '../../Components/ui/Header/UserHeader';
 import PlayerContainer from '../../Components/ui/Player/PlayerContainer';
 import PlayerInf from '../../Components/ui/Player/PlayerInf/PlayerInf';
+import { requestModulesAction } from '../../redux/actions/moduleActions/moduleActions';
 
 interface classroomPropTypes {
   userData: UserInterface,
@@ -22,6 +23,7 @@ export default function ClassroomsPage({ userData }: classroomPropTypes) {
     await dispatch(AutenticationSuccess(userData));
     await dispatch(requestSubModulesAction());
     await dispatch(requestClassroomAction());
+    await dispatch(requestModulesAction());
   };
 
   useEffect(() => {

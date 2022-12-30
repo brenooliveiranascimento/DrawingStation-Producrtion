@@ -83,6 +83,17 @@
   align-items: center;
   .user_photo {
     margin-left: 1rem;
+    transition: all 0.5s;
+    :hover {
+      transition: all 0.5s;
+      filter: brightness(80%);
+    }
+    svg {
+      color: #B8860B;
+      font-size: 1.3rem;
+      margin-top: -1rem;
+    
+    }
   }
   @media screen and (max-width: 660px) {
   display: none;

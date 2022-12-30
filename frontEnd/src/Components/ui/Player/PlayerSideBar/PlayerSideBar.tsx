@@ -26,7 +26,9 @@ export default function PlayerSideBar({ showSidebar, width }: playerProps) {
       return;
     }
     if(incomplete) return;
-    const lastModule = localStorage.getItem(localStorageKeys.lastModule) as string;
+    const lastModule = localStorage.getItem(localStorageKeys.lastModule) || JSON.stringify({
+      name: 'Pintura', id: 1
+    }) as string;
     dispatch(selectSubModuleAction(JSON.parse(lastModule)));
   };
 

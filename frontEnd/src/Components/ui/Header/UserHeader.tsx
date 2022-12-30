@@ -9,9 +9,13 @@ import { handleScreen } from '../../../redux/actions/genericActions';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { apiConnection } from '../../../services/api.connection';
 import { toast } from 'react-toastify';
+import { FaCrown } from 'react-icons/fa';
+import { ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
 
 export default function UserHeader() {
   const { userData } = useSelector((state: globalState) => state.user);
+  const { classroomsData, modules: { modules } } = useSelector((state: globalState) => state);
+
   const { name, premium, profilePhoto, stripeClientId } = userData;
   const dispatch = useDispatch();
   const changeScreen = (screen: string) => {
@@ -38,14 +42,18 @@ export default function UserHeader() {
   return (
     <header className={styles.header_container}>
       <aside className={styles.navigation_container}>
-        <h1>dawdw</h1>
+        { modules.map((module: ModulesInterface) => (
+          <button key={module.id}>
+            <h1>{module.name}</h1>
+          </button>
+        ))}
       </aside>
       <aside  className={styles.user_container}>
         <button className={styles.user_photo}>
+          { premium && <button onClick={() => changeScreen('Subscription')}>
+            <FaCrown/>
+          </button> }
           <Image width={50} alt={name} height={50} src={profilePhoto || profileDefault}/>
-          {/* { premium && <button onClick={() => changeScreen('Subscription')}>
-            <span>Premium!</span>
-          </button> } */}
         </button>
         <section className={styles.premium_area}>
           <h2>{name}</h2>
