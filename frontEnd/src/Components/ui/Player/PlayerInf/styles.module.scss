@@ -34,7 +34,6 @@
   width: 100%;
   padding: 1rem;
   display: flex;
-  width: 100%;
   section {
     margin: 0.5rem;
   }
@@ -83,7 +82,6 @@
 .name_Comment_input {
   justify-content: space-between;
   display: flex;
-  width: 100%;
   padding: 1rem;
   background-color: var(--new-dark);
   @media screen and (max-width: 750px) {
