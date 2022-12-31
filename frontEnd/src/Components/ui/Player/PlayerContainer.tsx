@@ -21,16 +21,6 @@ export default function PlayerContainer() {
     setWidth(window.innerWidth);
   }, [width]);
 
-  // if(incomplete) {
-  //   return (
-  //     <section className={styles.main_player_container}>
-  //       <section className={styles.player_with_side_bar}>
-  //         <h1>Sem aulas no momento</h1>
-  //       </section>
-  //     </section>
-  //   );
-  // }
-
   return (
     <section className={styles.main_player_container}>
       <section className={styles.player_with_side_bar}>

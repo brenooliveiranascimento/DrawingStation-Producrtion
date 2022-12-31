@@ -70,7 +70,8 @@ export default function PlayerSideBar({ showSidebar, width }: playerProps) {
           <button style={{
             backgroundColor: 'rgba(0,0,0,0.0)',
             border: 'none',
-            marginLeft: '95%'
+            marginLeft: '95%',
+            zIndex: '99'
           }} onClick={showSidebar}>
             <FiX size={20} color='white'/>
           </button>
