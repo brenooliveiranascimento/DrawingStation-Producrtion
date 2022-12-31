@@ -14,7 +14,7 @@ import { Pagination, Navigation } from 'swiper';
 import { ModulesInterface, SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectClassroomAction, selectSubModuleAction } from '../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
-import { handleScreen } from '../../../redux/actions/genericActions';
+import { handleScreen, setModuleGenericAtion } from '../../../redux/actions/genericActions';
 import Router from 'next/router';
 import { selectCurrSubModule } from '../../../redux/actions/classroomControllerActions/genericActions';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
@@ -26,7 +26,7 @@ interface IClassCardProps {
 export default function ClassCard({ subModule }: IClassCardProps) {
 
   const dispatch = useDispatch();
-  const { subModules: { subModules } } = useSelector((state: globalState) => state);
+  const { subModules: { subModules }, modules: { modules } } = useSelector((state: globalState) => state);
 
   const selectModule = (moduleInfo: ModulesInterface) => {
     dispatch(selectSubModuleAction(moduleInfo));
@@ -40,7 +40,7 @@ export default function ClassCard({ subModule }: IClassCardProps) {
   };
 
   const selectSubModule = (classInfos: ClassroomInterface) => {
-    const findCurrModule = subModules.find((currModule: ModulesInterface) => currModule.id === subModule.moduleId);
+    const findCurrModule = modules.find((currModule: ModulesInterface) => currModule.id === subModule.moduleId);
     selectModule(findCurrModule);
     dispatch(selectCurrSubModule({ name: subModule.name, id: subModule.id }));
     selectClass(classInfos);

@@ -145,7 +145,6 @@
     }
   }
   @media screen and (max-width: 1000px) {
-    background-color: red;
     width: 0px;
   }
 }
@@ -156,7 +155,6 @@
 
 .modules_are::-webkit-scrollbar-track {
   background: var(--new-dark); 
-  background: red; 
 }
 
 .modules_are::-webkit-scrollbar-thumb {
