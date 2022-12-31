@@ -53,13 +53,6 @@ export function classroomController(
       loading: false,
       incomplete: false,
     };
-  case ClassroomControllerTypes.SELECT_MODULE_GENERIC:
-    return {
-      ...state,
-      module: action.payload.module,
-      loading: false,
-      incomplete: false,
-    };
   case ClassroomControllerTypes.SELECT_SUBMODULE:
     return { ...state, currSubModule: action.payload, loading: false, incomplete: false };
   case ClassroomControllerTypes.SELECT_CLASSROOMS:

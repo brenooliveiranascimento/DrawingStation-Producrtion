@@ -13,6 +13,7 @@ import PlayerContainer from '../../Components/ui/Player/PlayerContainer';
 import PlayerInf from '../../Components/ui/Player/PlayerInf/PlayerInf';
 import { requestModulesAction } from '../../redux/actions/moduleActions/moduleActions';
 import ClassHeader from '../../Components/ui/Player/ClassHeader/UserHeader';
+import Comments from '../../Components/ui/Comments/Comments';
 
 interface classroomPropTypes {
   userData: UserInterface,
