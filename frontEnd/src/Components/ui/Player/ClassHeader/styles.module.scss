@@ -175,16 +175,16 @@
 @media screen and (min-width: 800px) {
   
   .modules_are::-webkit-scrollbar {
-    width: 2px;               /* width of the entire scrollbar */
+    width: 2px;          
   }
   
   .modules_are::-webkit-scrollbar-track {
-    background: var(--new-dark);        /* color of the tracking area */
+    background: var(--new-dark);       
   }
   
   .modules_are::-webkit-scrollbar-thumb {
-    background-color: var(--new-green);    /* color of the scroll thumb */
-    border-radius: 1px;       /* roundness of the scroll thumb */
+    background-color: var(--new-green); 
+    border-radius: 1px;      
   }
   
   }
