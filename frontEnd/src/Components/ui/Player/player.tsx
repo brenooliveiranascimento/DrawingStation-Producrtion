@@ -6,9 +6,8 @@ import { FiMenu } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
-import { nextClassoomAction, prevClassoomAction } from '../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
+import { nextClassoomAction } from '../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
 import PlayerHeader from './PlaherHeader/PlayerHeader';
-import PlayerInf from './PlayerInf/PlayerInf';
 import styles from './styles.module.scss';
 
 interface playerProps {
