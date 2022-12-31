@@ -5,14 +5,17 @@
   width: 100%;
   color: black;
   color: white;
+  height: auto;
   article {
     h1 {
       font-size: 1.7rem;
+      margin-bottom: 1rem;
+      margin-top: -1rem;
     }
 
     p {
       font-size: 1.2rem;
-      margin-top: 1rem;
+      margin-bottom: -4rem;
     }
   }
 }
@@ -33,7 +36,7 @@
 .one_pencil_container {
   background-color: var(--dark-light-600);
   border-radius: 1rem;
-  margin-top: 1rem;
+  margin-top: 5rem;
   padding: 1rem;
   display: flex;
   flex-direction: column;
