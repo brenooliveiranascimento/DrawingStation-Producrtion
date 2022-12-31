@@ -38,7 +38,7 @@ export default function Subscription({ userData }: ISubscriptionProps) {
     <section className={styles.dashboard_container}>
       <CurrSideBar />
       <section className={styles.main_container}>
-        <UserHeader/>
+        {/* <UserHeader/> */}
         <main className={styles.main}>
           {
             plans.map((currPlan: ISubscription, index: number) => {

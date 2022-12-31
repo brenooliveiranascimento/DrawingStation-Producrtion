@@ -5,13 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { handleScreen } from '../../../redux/actions/genericActions';
 import Router, { useRouter } from 'next/router';
-import { FaPencilAlt } from 'react-icons/fa';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { apiConnection } from '../../../services/api.connection';
 import { parseCookies } from 'nookies';
 import logo from '../../../../public/logo1.png';
-import profileDefault from '../../../../public/profilePhoto.png';
 
 export default function CurrSideBar() {
   const { currScreen } = useSelector((state: globalState) => state.user);
@@ -68,13 +66,15 @@ export default function CurrSideBar() {
           >Home</span>
         </button>
         <button
-          onClick={() => changeScreen('Classroom')}>
+          onClick={() => changeScreen('Subscription')}>
           <span
             style={{
-              color: currScreen === 'Classroom' || !currScreen ? '#28CB99' : 'white',
-              borderLeft: currScreen === 'Classroom' ? '3px solid #28CB99' : '1px solid white'
+              color: currScreen === 'Subscription' || !currScreen ? '#28CB99' : 'white',
+              borderLeft: currScreen === 'Subscription' ? '3px solid #28CB99' : '1px solid white'
             }}
-          >Aulas</span>
+          >
+            Planos
+          </span>
         </button>
       </section>
       <aside>
