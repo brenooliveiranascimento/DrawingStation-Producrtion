@@ -10,6 +10,10 @@
   color: white;
   margin-left: -15rem;
 
+  @media screen and (max-width: 478px) {
+    padding-left: 0rem;
+  }
+
   aside {
     display: flex;
     h2 {
