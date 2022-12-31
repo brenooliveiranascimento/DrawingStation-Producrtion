@@ -14,7 +14,7 @@ import { Pagination, Navigation } from 'swiper';
 import { ModulesInterface, SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectClassroomAction, selectSubModuleAction } from '../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
-import { handleScreen, setModuleGenericAtion } from '../../../redux/actions/genericActions';
+import { handleScreen } from '../../../redux/actions/genericActions';
 import Router from 'next/router';
 import { selectCurrSubModule } from '../../../redux/actions/classroomControllerActions/genericActions';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
