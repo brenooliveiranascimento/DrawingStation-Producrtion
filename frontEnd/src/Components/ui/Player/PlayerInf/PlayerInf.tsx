@@ -27,25 +27,28 @@ export default function PlayerInf() {
   return (
     <section className={styles.player_inf_container}>
       <section  className={styles.name_Comment_input}>
-        <article>
-          <h1>
-            {classroom.name}
-            <button>
-              <FaCheckCircle style={{marginBottom: -5, marginLeft: '1rem'}} size={25} color='green'/>
+        <section className={styles.name_Comment_limit}>
+          <article>
+            <h1>
+              {classroom.name}
+              <button>
+                <FaCheckCircle style={{marginBottom: -5, marginLeft: '1rem'}} size={25} color='green'/>
+              </button>
+            </h1>
+            <p>
+              {description}
+            </p>
+          </article>
+          <aside>
+            <button onClick={prevClassroom}>
+              {'<'} Aula anterior 
             </button>
-          </h1>
-          <p>
-            {description}
-          </p>
-        </article>
-        <aside>
-          <button onClick={prevClassroom}>
-            {'<'} Aula anterior 
-          </button>
-          <button onClick={nextClassroom}>
+            <button onClick={nextClassroom}>
             Próxima aula {'>'}
-          </button>
-        </aside>
+            </button>
+          </aside>
+        </section>
+
       </section>
       <section className={styles.one_pencil_container}>
         <button onClick={() => setShowColors(!showColors)} className={styles.show_materials}>

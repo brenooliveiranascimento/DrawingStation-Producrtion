@@ -11,11 +11,18 @@
       font-size: 1.7rem;
       margin-bottom: 1rem;
       margin-top: -1rem;
+      @media screen and (max-height: 774px) {
+        margin-top: 2rem;
+      }
     }
 
     p {
       font-size: 1.2rem;
       margin-bottom: -4rem;
+
+      @media screen and (max-width: 840px) {
+        margin-bottom: 0rem;
+      }
     }
   }
 }
@@ -138,6 +145,15 @@
     }
 
     aside {
+      flex-direction: column;
+    }
+  }
+
+  .name_Comment_limit {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+    @media screen and (max-width: 840px) {
       flex-direction: column;
     }
   }
