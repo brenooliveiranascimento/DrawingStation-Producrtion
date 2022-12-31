@@ -149,6 +149,7 @@
 .modules_are {
   overflow-x: scroll;
   height: 100%;
+  
   @media screen and (max-width: 478px) {
     justify-content: center;
     width: 50%;
@@ -156,3 +157,34 @@
     padding-left: 20rem;
   }
 }
+
+
+@media screen and (max-width: 482px) {
+  
+.modules_are::-webkit-scrollbar {
+}
+
+.modules_are::-webkit-scrollbar-track {
+}
+
+.modules_are::-webkit-scrollbar-thumb {
+}
+
+}
+
+@media screen and (min-width: 800px) {
+  
+  .modules_are::-webkit-scrollbar {
+    width: 2px;               /* width of the entire scrollbar */
+  }
+  
+  .modules_are::-webkit-scrollbar-track {
+    background: var(--new-dark);        /* color of the tracking area */
+  }
+  
+  .modules_are::-webkit-scrollbar-thumb {
+    background-color: var(--new-green);    /* color of the scroll thumb */
+    border-radius: 1px;       /* roundness of the scroll thumb */
+  }
+  
+  }
