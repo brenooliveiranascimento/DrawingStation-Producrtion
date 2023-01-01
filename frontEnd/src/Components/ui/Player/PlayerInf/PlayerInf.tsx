@@ -27,34 +27,50 @@ export default function PlayerInf() {
   return (
     <section className={styles.player_inf_container}>
       <section  className={styles.name_Comment_input}>
-        <article>
-          <h1>
-            {classroom.name}
-            <button>
-              <FaCheckCircle style={{marginBottom: -5, marginLeft: '1rem'}} size={25} color='green'/>
-            </button>
-          </h1>
-          <p>
+        <section className={styles.name_Comment_limit}>
+          <article>
+            <h1>
+              {classroom.name}
+              <button>
+                <FaCheckCircle style={{marginBottom: -5, marginLeft: '1rem'}} size={25} color='green'/>
+              </button>
+            </h1>
+            <p className={styles.description_desk}>
+              {description}
+            </p>
+            <aside className={styles.btn_hidden_area}>
+              <button onClick={prevClassroom}>
+                {'<'} Aula anterior 
+              </button>
+              <button onClick={nextClassroom}>
+            Próxima aula {'>'}
+              </button>
+            </aside>
+          </article>
+          <p className={styles.description_mobile}>
             {description}
           </p>
-        </article>
-        <aside>
-          <button onClick={prevClassroom}>
-            {'<'} Aula anterior 
-          </button>
-          <button onClick={nextClassroom}>
+          <aside  className={styles.btn_desck_area}>
+            <button onClick={prevClassroom}>
+              {'<'} Aula anterior 
+            </button>
+            <button onClick={nextClassroom}>
             Próxima aula {'>'}
-          </button>
-        </aside>
-      </section>
-      <section className={styles.one_pencil_container}>
-        <button onClick={() => setShowColors(!showColors)} className={styles.show_materials}>
-          { showColors ? 'Esconder Materiais' : 'Materiais necessarios' }
-        </button>
-        {showColors && <Colors/>}
+            </button>
+          </aside>
+        </section>
       </section>
 
-      <Comments/>
+      <section className={styles.bellow_area}>
+        <section className={styles.one_pencil_container}>
+          <button onClick={() => setShowColors(!showColors)} className={styles.show_materials}>
+            { showColors ? 'Esconder Materiais' : 'Materiais necessarios' }
+          </button>
+          {showColors && <Colors/>}
+        </section>
+        <Comments/>
+      </section>
+
     </section>
   );
 }

@@ -18,9 +18,16 @@
     margin-top: -2rem;
     justify-content: space-between;
 
-    p {
+    span {
       word-break: break-all;
-      width: 80%;
+      width: 60%;
+        @media screen and (max-width: 1000px) {
+          width: 80%;
+        }
+        @media screen and (max-width: 630px) {
+          width: 100%;
+          margin-bottom: 1rem;
+        }
     }
 
     input {
