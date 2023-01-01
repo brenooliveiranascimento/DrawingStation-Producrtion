@@ -48,15 +48,17 @@ export default function PlayerInf() {
             </button>
           </aside>
         </section>
+      </section>
 
+      <section className={styles.bellow_area}>
+        <section className={styles.one_pencil_container}>
+          <button onClick={() => setShowColors(!showColors)} className={styles.show_materials}>
+            { showColors ? 'Esconder Materiais' : 'Materiais necessarios' }
+          </button>
+          {showColors && <Colors/>}
+        </section>
+        <Comments/>
       </section>
-      <section className={styles.one_pencil_container}>
-        <button onClick={() => setShowColors(!showColors)} className={styles.show_materials}>
-          { showColors ? 'Esconder Materiais' : 'Materiais necessarios' }
-        </button>
-        {showColors && <Colors/>}
-      </section>
-      <Comments/>
 
     </section>
   );
