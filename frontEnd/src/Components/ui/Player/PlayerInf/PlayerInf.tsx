@@ -35,11 +35,22 @@ export default function PlayerInf() {
                 <FaCheckCircle style={{marginBottom: -5, marginLeft: '1rem'}} size={25} color='green'/>
               </button>
             </h1>
-            <p>
+            <p className={styles.description_desk}>
               {description}
             </p>
+            <aside className={styles.btn_hidden_area}>
+              <button onClick={prevClassroom}>
+                {'<'} Aula anterior 
+              </button>
+              <button onClick={nextClassroom}>
+            Próxima aula {'>'}
+              </button>
+            </aside>
           </article>
-          <aside>
+          <p className={styles.description_mobile}>
+            {description}
+          </p>
+          <aside  className={styles.btn_desck_area}>
             <button onClick={prevClassroom}>
               {'<'} Aula anterior 
             </button>

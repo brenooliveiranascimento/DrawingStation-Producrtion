@@ -88,7 +88,6 @@
   background-color: var(--new-dark);
 
   @media screen and (max-width: 840px) {
-    margin-bottom: -3rem;
 }
   @media screen and (max-width: 750px) {
     margin-top: -2rem;
@@ -157,6 +156,43 @@
     display: flex;
     width: 80%;
     justify-content: space-between;
+    .btn_hidden_area {
+      display: none;
+      @media screen and (max-width: 840px) {
+          display: flex;
+          flex-direction: column;
+      }  
+    }
+
+    .btn_desck_area {
+      display: flex;
+      @media screen and (max-width: 840px) {
+          display: none;
+      }  
+    }
+
+
+    @media screen and (max-width: 840px) {
+      width: 100%;
+    }  
+    .description_desk {
+      display: flex;
+      @media screen and (max-width: 840px) {
+        display: none;
+        width: 100%;
+      }  
+    }
+    .description_mobile {
+      display: none;
+      @media screen and (max-width: 840px) {
+        display: flex;
+        padding: 1rem;
+        background-color: var(--dark-light-600);
+        border-radius: 1rem;
+        margin-top: 1rem;
+        width: 100%;
+      }  
+    }
     @media screen and (max-width: 840px) {
       flex-direction: column;
     }
