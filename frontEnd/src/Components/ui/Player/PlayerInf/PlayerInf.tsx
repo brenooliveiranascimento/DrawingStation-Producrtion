@@ -56,8 +56,8 @@ export default function PlayerInf() {
         </button>
         {showColors && <Colors/>}
       </section>
-
       <Comments/>
+
     </section>
   );
 }
