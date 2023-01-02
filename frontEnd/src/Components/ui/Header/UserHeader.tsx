@@ -62,8 +62,12 @@ export default function UserHeader() {
           <FaSearch className={styles.search_input} color='#aaa'/>
         </section>
         <section className={styles.nav_mobile}>
-          <FaHome/>
-          <FaPencilAlt className={styles.pencil}/>
+          <button onClick={() => changeScreen('HomePage')}>
+            <FaHome/>
+          </button>
+          <button onClick={() => changeScreen('Classroom')}>
+            <FaPencilAlt className={styles.pencil}/>
+          </button>
         </section>
       </aside>
       <aside  className={styles.user_container}>
