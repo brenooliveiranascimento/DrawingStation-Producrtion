@@ -54,7 +54,6 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
     const { name, value, type, checked } = target;
     if(type === 'checkbox') {
       setEditClassroom({...editClassroom, [name]: checked});
-      console.log(editClassroom);
       return; 
     }
     setEditClassroom({...editClassroom, [name]: value});
@@ -71,7 +70,6 @@ function EditClassroom({ handleModal, classroomEditing, classroomEditingData }: 
 
   const handleUpdate = () => {
     const jsonColors = JSON.stringify(editClassroomData.colors);
-    console.log(editClassroom);
     dispatch(editingClassroomAction({
       classroom: editClassroom, classroomData: {...editClassroomData, colors: jsonColors} }, identity, handleModal));
   };

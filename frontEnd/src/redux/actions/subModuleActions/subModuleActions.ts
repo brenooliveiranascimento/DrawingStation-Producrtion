@@ -22,7 +22,6 @@ export const requestSubModulesAction = (): any => {
         const classrooms = currSubModule.classrooms;
         return { ...currSubModule, classrooms:classrooms.sort((a: any, b: any) => a.id - b.id) };
       });
-      console.log(reverseClassrooms);
       if(data.message) return dispatch(genericSuccesRequest(SubModulesTypes.REQUEST_SUCCESS, reverseClassrooms));
     } catch(e) {
       toast.error('Erro no servidor, tente novamente');

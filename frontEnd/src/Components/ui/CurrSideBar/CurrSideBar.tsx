@@ -57,7 +57,7 @@ export default function CurrSideBar() {
         />
       </nav>
       <section className={styles.nav_area}>
-        <button onClick={() => changeScreen('/')}>
+        <button onClick={() => changeScreen('HomePage')}>
           <span
             style={{
               color: currScreen === 'HomePage' || !currScreen ? '#28CB99' : 'white',
@@ -74,6 +74,17 @@ export default function CurrSideBar() {
             }}
           >
             Planos
+          </span>
+        </button>
+        <button
+          onClick={() => changeScreen('User')}>
+          <span
+            style={{
+              color: currScreen === 'User' || !currScreen ? '#28CB99' : 'white',
+              borderLeft: currScreen === 'User' ? '3px solid #28CB99' : '1px solid white'
+            }}
+          >
+            User
           </span>
         </button>
       </section>

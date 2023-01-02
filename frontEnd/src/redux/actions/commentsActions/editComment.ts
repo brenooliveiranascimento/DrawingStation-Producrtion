@@ -18,7 +18,6 @@ export const editCommentAction = (commentData: IEditComment): any => {
         { headers: { 'Authorization': token } });
       toast.success(data);
       const { data: newComments } = await apiConnection.get('/comments/all', { headers: { 'Authorization': token } });
-      console.log(newComments);
       dispatch(requestComments(newComments.reverse()));
     } catch(e: any) {
       toast.error(e.response.data.message);
@@ -37,7 +36,6 @@ export const editSubCommentAction = (commentData: IEditComment): any => {
         { headers: { 'Authorization': token } });
       toast.success(data);
       const { data: newComments } = await apiConnection.get('/comments/all', { headers: { 'Authorization': token } });
-      console.log(newComments);
       dispatch(requestComments(newComments.reverse()));
     } catch(e: any) {
       console.log(e);

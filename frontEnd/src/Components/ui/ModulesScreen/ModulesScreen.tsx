@@ -29,10 +29,10 @@ export default function ModulesScreen() {
       <section className={styles.cards_container}>
         <span className={styles.class_name}>Aulas</span>
         <section className={styles.class_card_area} >
-          { subModules.map((currSubModule: SubModuleInterface) => {
+          { subModules.map((currSubModule: SubModuleInterface, index: number) => {
             if(!currSubModule.classrooms.length) return;
             return ( 
-              <section className={styles.slider_container} key={currSubModule.id}>
+              <section className={styles.slider_container} key={index}>
                 <span className={styles.sub_module_name}>{currSubModule.name}</span>
                 <ClassCard subModule={currSubModule}/>
               </section>);

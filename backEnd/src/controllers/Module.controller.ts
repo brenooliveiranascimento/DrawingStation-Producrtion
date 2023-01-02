@@ -30,7 +30,6 @@ class ModuleController{
   public updateSubModule = async (req: Request, res: Response) => {
     const { id } = req.params
     const subModule = req.body
-    console.log(subModule)
     const { error, message }: any = await this.moduleService.updateSubModule(Number(id), subModule);
 
     if(error) return res.status(statusCodes.NOT_FOUND).json({ message, error: error.message })

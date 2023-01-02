@@ -86,8 +86,8 @@ function AddNewSubModule({ handleModal }: EditSubModuleInterface) {
           onChange={({target}: any) => setEditingModule({...editingModule, moduleId: Number(target.value)})}
         >
           {
-            modules.map((currModule: ModulesInterface) => (
-              <option value={currModule.id} key={currModule.id}>
+            modules.map((currModule: ModulesInterface, index: number) => (
+              <option value={currModule.id} key={index}>
                 {currModule.name}
               </option>
             ))

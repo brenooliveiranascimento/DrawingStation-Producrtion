@@ -15,7 +15,7 @@ function SubModulesController() {
 
   const [editing, setEditing] = useState(false);
   const [add, setAdd] = useState(false);
-  const [subModuleEditing, setSubModule] = useState<SubModuleInterface>({
+  const [subModuleEditing, setSubModule] = useState<any>({
     name: '',
     description: '',
     premium: true,
@@ -50,8 +50,8 @@ function SubModulesController() {
         </button>
       </section>
       <section className={styles.sub_modules_area}>
-        {subModules?.map((currModule: SubModuleInterface) => <SubModuleCard
-          key={currModule.id}
+        {subModules?.map((currModule: SubModuleInterface, index: number) => <SubModuleCard
+          key={index}
           subModule={currModule}
           handleModal={handleModal}
           handleModule={(module: SubModuleInterface) => handleModule(module)}

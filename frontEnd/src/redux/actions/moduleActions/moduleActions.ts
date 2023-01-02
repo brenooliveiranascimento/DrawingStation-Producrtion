@@ -57,7 +57,6 @@ export const editModule = (editedModule: EditModule, handleModal:() => void): an
 
 export const addModule = (editedModule: EditModule, handleModal:() => void): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
-    console.log(editedModule);
     const { userData } = state().user;
     const { modules } = state().modules;
     const cookies = parseCookies();

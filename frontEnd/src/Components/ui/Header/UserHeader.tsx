@@ -20,22 +20,13 @@ export default function UserHeader() {
   const [showHeader, setShowHeader] = useState(true);
   const { name, premium, profilePhoto, stripeClientId } = userData;
   const dispatch = useDispatch();
+
   const changeScreen = (screen: string) => {
     Router.push(screen);
     dispatch(handleScreen(screen));
   };
 
-  const changeModule = async (moduleInf: ModulesInterface) => {
-    dispatch(selectSubModuleAction(moduleInf));
-    await setShowHeader(!showHeader);
-    setShowHeader(true);
-  };
-
   const cookies = parseCookies();
-
-  useEffect(() => {
-    console.log(modules);
-  }, [modules]);
 
   const accessPortal = async () => {
     if(!stripeClientId) return;
@@ -72,12 +63,14 @@ export default function UserHeader() {
         </section>
       </aside>
       <aside  className={styles.user_container}>
-        <button className={styles.user_photo}>
+        <section className={styles.user_crown}>
           { premium && <button onClick={() => changeScreen('Subscription')}>
             <FaCrown/>
           </button> }
-          <Image width={50} alt={name} height={50} src={profilePhoto || profileDefault}/>
-        </button>
+          <button onClick={() => changeScreen('User')} className={styles.user_photo}>
+            <Image width={50} alt={name} height={50} src={profilePhoto || profileDefault}/>
+          </button>
+        </section>
         <section className={styles.premium_area}>
           <h2>{name}</h2>
           { premium ? <button onClick={accessPortal}>

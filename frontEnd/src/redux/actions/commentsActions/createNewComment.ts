@@ -15,7 +15,6 @@ export const crateCommentAction = (commentData: INewComment): any => {
       const { data } = await apiConnection.post('/comments/create',
         { classroomId, content, userId, },
         { headers: { 'Authorization': token } });
-      console.log(data);
       toast.success(data);
       const { data: newComments } = await apiConnection.get('/comments/all', { headers: { 'Authorization': token } });
       dispatch(requestComments(newComments.reverse()));
@@ -34,7 +33,6 @@ export const crateSubCommentAction = (commentData: INewSubComment): any => {
       const { data } = await apiConnection.post('/subComments/create',
         { commentId, content, userId, },
         { headers: { 'Authorization': token } });
-      console.log(data);
       toast.success(data);
       const { data: newComments } = await apiConnection.get('/comments/all', { headers: { 'Authorization': token } });
       dispatch(requestComments(newComments.reverse()));

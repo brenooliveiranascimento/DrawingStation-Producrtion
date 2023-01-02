@@ -33,10 +33,6 @@ export default function ClassHeader() {
 
   const cookies = parseCookies();
 
-  useEffect(() => {
-    console.log(modules);
-  }, [modules]);
-
   const accessPortal = async () => {
     if(!stripeClientId) return;
     try {
@@ -76,10 +72,10 @@ export default function ClassHeader() {
         </nav>
         
         <nav className={styles.modules_are}>
-          { showHeader && modules.map((currModule: ModulesInterface) => (
+          { showHeader && modules.map((currModule: ModulesInterface, ) => (
             <button
               onClick={() => changeModule(currModule)}
-              className={styles.change_mdule_container} key={module.id}>
+              className={styles.change_mdule_container} key={currModule.id}>
               <h1
                 style={{
                   color: module.id === currModule.id ? '#28CB99' : '#aaa',
@@ -95,12 +91,14 @@ export default function ClassHeader() {
         </nav>
       </aside>
       <aside  className={styles.user_container}>
-        <button className={styles.user_photo}>
+        <section className={styles.user_crown}>
           { premium && <button onClick={() => changeScreen('Subscription')}>
             <FaCrown/>
           </button> }
-          <Image width={50} alt={name} height={50} src={profilePhoto || profileDefault}/>
-        </button>
+          <button onClick={() => changeScreen('User')} className={styles.user_photo}>
+            <Image width={50} alt={name} height={50} src={profilePhoto || profileDefault}/>
+          </button>
+        </section>
         <section className={styles.premium_area}>
           <h2>{name}</h2>
           { premium ? <button onClick={accessPortal}>

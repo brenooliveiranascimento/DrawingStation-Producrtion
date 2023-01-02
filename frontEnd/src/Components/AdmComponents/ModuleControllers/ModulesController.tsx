@@ -49,8 +49,8 @@ function ModulesController() {
         </button>
       </section>
       <section className={styles.Modules_area}>
-        {modules.map((currModule: ModulesInterface) => <ModuleCard
-          key={currModule.id}
+        {modules.map((currModule: ModulesInterface, index: number) => <ModuleCard
+          key={index}
           module={currModule}
           handleModal={handleModal}
           handleModule={(module: ModulesInterface) => handleModule(module)}
