@@ -95,7 +95,7 @@ export default function ClassHeader() {
           { premium && <button onClick={() => changeScreen('Subscription')}>
             <FaCrown/>
           </button> }
-          <button className={styles.user_photo}>
+          <button onClick={() => changeScreen('User')} className={styles.user_photo}>
             <Image width={50} alt={name} height={50} src={profilePhoto || profileDefault}/>
           </button>
         </section>

@@ -20,15 +20,10 @@ export default function UserHeader() {
   const [showHeader, setShowHeader] = useState(true);
   const { name, premium, profilePhoto, stripeClientId } = userData;
   const dispatch = useDispatch();
+
   const changeScreen = (screen: string) => {
     Router.push(screen);
     dispatch(handleScreen(screen));
-  };
-
-  const changeModule = async (moduleInf: ModulesInterface) => {
-    dispatch(selectSubModuleAction(moduleInf));
-    await setShowHeader(!showHeader);
-    setShowHeader(true);
   };
 
   const cookies = parseCookies();
@@ -72,7 +67,7 @@ export default function UserHeader() {
           { premium && <button onClick={() => changeScreen('Subscription')}>
             <FaCrown/>
           </button> }
-          <button className={styles.user_photo}>
+          <button onClick={() => changeScreen('User')} className={styles.user_photo}>
             <Image width={50} alt={name} height={50} src={profilePhoto || profileDefault}/>
           </button>
         </section>
