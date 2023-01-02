@@ -84,7 +84,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-
   width: 100%;
   section {
     width: 100%;
@@ -94,7 +93,16 @@
     padding-left: 2rem;
 
     @media screen and (max-width: 1044px) {
-      display: none;
+  
+      .navigation_screen {
+        display: none;
+      }
+      input {
+        display: none;
+      }
+      .search_input {
+        display: none;
+      }
   }
     svg {
       margin-left: -2rem;
@@ -188,4 +196,25 @@
     margin-top: -1rem;
     margin-left: 2rem;
   }
+}
+
+.nav_mobile {
+  width: 10%;
+  display: none;
+  margin-left: -90%;
+  padding: 1rem;
+
+  svg {
+    display: flex;
+    font-size: 2rem;
+  }
+
+  .pencil {
+    margin-left: 2rem;
+  }
+
+  @media screen and (max-width: 1044px) {
+    display: flex;
+  }
+
 }
