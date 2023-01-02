@@ -47,9 +47,9 @@ export default function Comments() {
         showComments && (
           <section>
             {
-              comments.filter((currComment: ICommentsWithUserData) =>
-                currComment.classroomId === classroom.id).map((comment: ICommentsWithUserData) => (
-                <CommentCard  comment={comment} key={comment.id}/>
+              comments.filter((currComment: ICommentsWithUserData, index: number) =>
+                currComment.classroomId === classroom.id).map((comment: ICommentsWithUserData, index: number) => (
+                <CommentCard  comment={comment} key={index}/>
               )
               )
             }

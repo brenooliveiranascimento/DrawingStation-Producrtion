@@ -7,7 +7,6 @@ import ModuleService from './Modules.service';
 class ClassroomService extends ModuleService {
   public async addNewClassroomData(classroomData: ClassroomDataInterface) {
     try {
-      console.log(classroomData)
       const add = await ClassRoomDataModel.create({...classroomData});
       if(!add) return { error: { message: errorMapTypes.ERROR_ADD_NEW_CLASSROOM_DATA }, message: add }
     } catch(e) {

@@ -42,7 +42,6 @@ export default function Subscription({ userData }: ISubscriptionProps) {
         <main className={styles.main}>
           {
             plans.map((currPlan: ISubscription, index: number) => {
-              console.log(currPlan);
               return (
                 <section key={index}>
                   <article>

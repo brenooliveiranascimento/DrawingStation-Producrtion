@@ -23,7 +23,6 @@ export default function ModuleCard() {
   const { modules: { modules } } = useSelector((state: globalState) => state);
 
   const { subModules } = useSelector(({ subModules }: globalState) => subModules);
-  console.log(subModules);
   const selectModule = (moduleInfo: ModulesInterface) => {
     dispatch(selectSubModuleAction(moduleInfo));
     dispatch(handleScreen('Classroom'));
