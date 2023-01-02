@@ -9,7 +9,7 @@ import { handleScreen } from '../../../redux/actions/genericActions';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { apiConnection } from '../../../services/api.connection';
 import { toast } from 'react-toastify';
-import { FaCrown, FaHome, FaSearch } from 'react-icons/fa';
+import { FaCrown, FaHome, FaPencilAlt, FaSearch } from 'react-icons/fa';
 import { ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
 import { selectSubModuleAction } from '../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
 import Link from 'next/link';
@@ -57,9 +57,17 @@ export default function UserHeader() {
             />
           </Link>
         </nav>
-        <section>
+        <section className={styles.search}>
           <input placeholder='Procurar Aula'/>
-          <FaSearch color='#aaa'/>
+          <FaSearch className={styles.search_input} color='#aaa'/>
+        </section>
+        <section className={styles.nav_mobile}>
+          <button onClick={() => changeScreen('HomePage')}>
+            <FaHome/>
+          </button>
+          <button onClick={() => changeScreen('Classroom')}>
+            <FaPencilAlt className={styles.pencil}/>
+          </button>
         </section>
       </aside>
       <aside  className={styles.user_container}>

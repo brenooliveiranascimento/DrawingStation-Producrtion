@@ -10,6 +10,7 @@ import { canSSRAuth } from '../../utils/canSSRAuth';
 import { serverSideSetupUser } from '../../services/setupUser';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
+import UserCard from '../../Components/ui/Usercard/UserCard';
 interface DashboardPropTypes {
   userData: UserInterface,
 }
@@ -30,14 +31,7 @@ export default function User({ userData }: DashboardPropTypes) {
       <CurrSideBar />
       <section className={styles.main_container}>
         <UserHeader/>
-        <section>
-          <Image
-            width={150}
-            height={150}
-            src={profilePhoto || defaultUserPhoto}
-            alt={`${name} photo`}
-          />
-        </section>
+        <UserCard />
       </section>
     </main>
   );
