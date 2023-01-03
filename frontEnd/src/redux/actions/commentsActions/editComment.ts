@@ -34,7 +34,7 @@ export const editSubCommentAction = (commentData: IEditComment): any => {
       const { data } = await apiConnection.post(`/subComments/update/${id}`,
         { content, userId, },
         { headers: { 'Authorization': token } });
-      toast.success(data);
+      toast.success('Editado com sucesso!');
       const { data: newComments } = await apiConnection.get('/comments/all', { headers: { 'Authorization': token } });
       dispatch(requestComments(newComments.reverse()));
     } catch(e: any) {
