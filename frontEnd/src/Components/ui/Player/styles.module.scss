@@ -200,4 +200,11 @@
   color: var(--gold-600);
   padding: 1rem;
   border-radius: 2rem;
+
+  @media screen and (max-height: 726px) {
+    margin-top: 5rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
 }
