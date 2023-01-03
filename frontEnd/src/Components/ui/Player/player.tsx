@@ -51,13 +51,16 @@ export default function Player({ showSidebar, width }: playerProps) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        width: '100%',
+        height: 'auto',
+        marginBottom: '-4rem'
       }} className={styles.player}>
         <Link href={'/Subscription'} style={{fontSize:'1.3rem'}}>Tornar se premium</Link>
         <Image
           style={{objectFit: 'cover'}}
-          width={300}
-          height={400}
+          width={200}
+          height={200}
           src={classroom.image}
           alt={classroom.name}
         />
