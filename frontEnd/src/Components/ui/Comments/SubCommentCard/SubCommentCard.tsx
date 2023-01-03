@@ -31,6 +31,10 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
   };
 
   const handleEdit = () => {
+    if(confirmDelete) {
+      setConfirmDelete(false);
+      return;
+    }
     if(!edit) {
       setEdit(true);
       setEditedValue(subComment.content);
@@ -55,7 +59,7 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
         { subComment.userData.id ===  userData.id &&
         <section>
           <button onClick={handleEdit}>
-            { edit ? 'Salvar' : 'Editar' }
+            { confirmDelete ? 'Cancelar' : edit ? 'Salvar' : 'Editar' }
           </button>
           <button onClick={deleteComment}>
             { confirmDelete ? 'Confirmar' : ( edit ? 'Cancelar' : 'deletar') }
