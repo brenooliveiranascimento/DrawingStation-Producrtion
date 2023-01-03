@@ -10,8 +10,6 @@ export default function PlayerContainer() {
   const [showSideBar, setShowSideBar] = useState(false);
   const [width, setWidth] = useState(0);
 
-  const { classroomController: { incomplete } } = useSelector((state: globalState) => state);
-
   useEffect((): any => {
     const verifyWidth = setInterval(() => setWidth(window.innerWidth), 100);
     return () => clearInterval(verifyWidth);
@@ -26,17 +24,15 @@ export default function PlayerContainer() {
       <section className={styles.player_with_side_bar}>
         <Player showSidebar={() => setShowSideBar(!showSideBar)} width={width}/>
         {
-          width >= 1590 ? <PlayerSideBar showSidebar={() => setShowSideBar(!showSideBar)} width={width}/> : (
-            <section
-              style={{
-                display: !showSideBar ? 'none' : 'flex'
-              }}
-              className={styles.absolute_side_bar}
-            >
-              <PlayerSideBar showSidebar={() => setShowSideBar(!showSideBar)} width={width}/>
-            </section>
-          )
-        }
+          width >= 1590 ?
+            <PlayerSideBar
+              showSidebar={() => setShowSideBar(!showSideBar)}
+              width={width}/> : (
+              <section
+                style={{ display: !showSideBar ? 'none' : 'flex' }}
+                className={styles.absolute_side_bar}>
+                <PlayerSideBar showSidebar={() => setShowSideBar(!showSideBar)} width={width}/>
+              </section>)}
       </section>
     </section>
   );

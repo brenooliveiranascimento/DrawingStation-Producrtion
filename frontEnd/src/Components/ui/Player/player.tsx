@@ -81,8 +81,8 @@ export default function Player({ showSidebar, width }: playerProps) {
           <Link className={styles.premium} href={'/Subscription'} style={{fontSize:'1.3rem'}}>Tornar se premium</Link>
           <Image
             style={{objectFit: 'cover'}}
-            width={300}
-            height={300}
+            width={ width >= 1590 ? 500 : 300}
+            height={ width >= 1590 ? 600 : 300 }
             src={classroom.image}
             alt={classroom.name}
           />
