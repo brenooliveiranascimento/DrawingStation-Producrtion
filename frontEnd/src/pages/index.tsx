@@ -7,8 +7,19 @@ import background from '../../public/blueRose.jpg';
 import Image from 'next/image';
 import { canSSRGuest } from '../utils/canSSrguest';
 import LoginForm from '../Components/ui/LoginForm/LoginForm';
+import Lottie, { LottieProps } from 'react-lottie';
+import guyWithPEncil from '../../public/lottie/uoSNVuwVhC.json';
 const Home: NextPage = () => {
 
+  const defaultOptionsLoading: any = {
+    loop: false,
+    autoplay: true,
+    animationData: guyWithPEncil,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+      speed: 2
+    },
+  };
   return (
     <>
       <Head>
@@ -26,6 +37,18 @@ const Home: NextPage = () => {
               }}
               src={Logo}
             />
+            <Lottie
+              style={{
+                alignSelf: 'center',
+                justifyContent: 'center',
+                width: 260,
+                height: 280,
+                position: 'absolute',
+                marginLeft: '-5rem',
+                marginTop: '30rem',
+                zIndex: 99
+              }}
+              options={defaultOptionsLoading}></Lottie>
             <Image
               src={background}
               style={{objectFit: 'cover',  filter: 'brightness(30%)'}}
