@@ -54,6 +54,9 @@
     background-color: var(--dark-light-600);
     margin-left: -30%;
     margin-top: 0.5rem;
+    @media screen and (max-width: 475px) {
+      margin-top: 1rem;
+    }
   }
   button:hover {
     filter: brightness(70%);

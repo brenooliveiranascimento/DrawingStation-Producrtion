@@ -44,16 +44,12 @@ export default function Comments() {
         { showComments ? 'Ocultar comentários' : 'mostrar comentarios' }
       </button>
       {
-        showComments && (
-          <section>
-            {
-              comments.filter((currComment: ICommentsWithUserData, index: number) =>
-                currComment.classroomId === classroom.id).map((comment: ICommentsWithUserData, index: number) => (
-                <CommentCard  comment={comment} key={index}/>
-              )
-              )
-            }
-          </section>
+        showComments && ( <section>
+          {comments.filter((currComment: ICommentsWithUserData, index: number) =>
+            currComment.classroomId === classroom.id).map((comment: ICommentsWithUserData, index: number) => (
+            <CommentCard  comment={comment} key={index}/>
+          ))}
+        </section>
         )
       }
     </section>
