@@ -70,21 +70,6 @@ export default function Player({ showSidebar, width }: playerProps) {
 
   return (
     <section className={styles.player}>
-
-      { width <= 1590 && <section
-        style={{
-          padding: '1rem',
-          display: 'flex',
-          justifyContent: 'flex-end',
-          marginBottom: '1rem'
-        }}
-      >
-        <button style={{
-          justifySelf: 'flex-start', backgroundColor: 'rgba(0,0,0,0.0)', border: 'none'
-        }} onClick={showSidebar}>
-          <FiMenu className={styles.menu} size={25} color='white'/>
-        </button>
-      </section> }
       {
         classroom.conclude ? (
           <section>
@@ -96,6 +81,20 @@ export default function Player({ showSidebar, width }: playerProps) {
               onEnd={nextClassroom}
               autoplay
             />
+            { width <= 1590 && <section
+              style={{
+                padding: '1rem',
+                display: 'flex',
+                justifyContent: 'flex-end',
+                marginBottom: '1rem'
+              }}
+            >
+              <button style={{
+                justifySelf: 'flex-start', backgroundColor: 'rgba(0,0,0,0.0)', border: 'none'
+              }} onClick={showSidebar}>
+                <FiMenu className={styles.menu} size={25} color='white'/>
+              </button>
+            </section> }
           </section>
         ) : (
           <section style={{

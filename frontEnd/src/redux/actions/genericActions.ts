@@ -1,5 +1,5 @@
 import { IClassController } from '../../interfaces/modules/classroomControllerInterfaces';
-import { ICurrClassroomData } from '../../interfaces/modules/classroomInterface';
+import { ClassroomInterface, ICurrClassroomData } from '../../interfaces/modules/classroomInterface';
 import { SubModuleInterface } from '../../interfaces/modules/ModulesInterface';
 import { AuthTypes, ClassroomControllerTypes, ClassroomsTypes, SubModulesTypes } from '../Types/AuthTypes';
 
@@ -39,7 +39,7 @@ export const setCurrClass = (classData: IClassController) => ({
   payload: classData,
 });
 
-export const buyPremium = (classData: {name: string, image: string}) => ({
+export const buyPremium = (classData: ClassroomInterface) => ({
   type: ClassroomControllerTypes.BUY_PREIUM,
   payload:classData
 });
