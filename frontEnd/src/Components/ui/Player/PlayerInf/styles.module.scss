@@ -5,15 +5,18 @@
   width: 100%;
   color: black;
   color: white;
+  margin-top: 1rem;
   height: auto;
+  @media screen and (max-height: 795px) {
+    margin-top: 4rem;
+  }
   article {
     h1 {
       font-size: 1.7rem;
       margin-bottom: 1rem;
-      margin-top: -1rem;
-      @media screen and (max-height: 774px) {
-        margin-top: 2rem;
-      }
+      // @media screen and (max-height: 774px) {
+      //   margin-top: 2rem;
+      // }
     }
 
     p {
@@ -86,11 +89,11 @@
   display: flex;
   padding: 1rem;
   background-color: var(--new-dark);
-
   @media screen and (max-width: 840px) {
 }
+  z-index: 90;
   @media screen and (max-width: 750px) {
-    margin-top: -2rem;
+    margin-top: -5rem;
   }
 
   button {

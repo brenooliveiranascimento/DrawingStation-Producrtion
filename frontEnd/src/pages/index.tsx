@@ -6,7 +6,6 @@ import Logo from '../../public/logo1.png';
 import Image from 'next/image';
 import { canSSRGuest } from '../utils/canSSrguest';
 import LoginForm from '../Components/ui/LoginForm/LoginForm';
-
 const Home: NextPage = () => {
 
   return (
@@ -16,12 +15,17 @@ const Home: NextPage = () => {
       </Head>
       <section className={styles.home_container}>
         <aside className={styles.login}>
-          <Image
-            width={350}
-            alt='logo'
-            src={Logo}
-          />
-          <LoginForm />
+          <aside>
+
+          </aside>
+          <section>
+            <Image
+              width={350}
+              alt='logo'
+              src={Logo}
+            />
+            <LoginForm />
+          </section>
         </aside>
       </section>
     </>

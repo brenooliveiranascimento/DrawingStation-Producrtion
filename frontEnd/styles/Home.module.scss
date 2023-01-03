@@ -36,8 +36,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   padding: 2rem 1.5rem;
+
+  section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  aside {
+    display: flex;
+  }
 
   form {
     width: 90%;

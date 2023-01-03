@@ -14,7 +14,11 @@ export const selectClassroomAction = (currClassroom: ClassroomInterface): any =>
     const userData = state().user.userData;
 
     if(!userData.premium && premium) {
-      dispatch(buyPremium({name, image}));
+      const mountClassData: IClassController  = {
+        video: '',
+        colors: '[]', description:'', id, image, name,premium, conclude, multiExemple: false };
+      dispatch(setCurrClass(mountClassData));
+      dispatch(buyPremium(currClassroom));
     } else {
       const findClassData = classData.find((currClass: ClassroomDataInterface) =>
         currClass.classroomId === id) as ClassroomDataInterface;
@@ -61,7 +65,7 @@ export const prevClassoomAction = (): any => {
     const currSubModuleIndex = subModules.findIndex((curSubM: SubModuleInterface) => curSubM.id === currSubModule.id);
     const prevClassroomId = findClassroomIndex(currSubModuleData.classrooms, classroom.id) - 1;
     const prevClassroom = currSubModuleData.classrooms[prevClassroomId];
-
+    console.log(prevClassroom);
     if(!currSubModuleData.classrooms.length) {
       const prevSubModuleData = subModules[0];
       dispatch(selectCurrSubModule({ name: prevSubModuleData.name, id: prevSubModuleData.id }));
@@ -99,6 +103,7 @@ export const selectFirstClassroom = (firstSubModule: SubModuleInterface): any =>
 };
 
 export const selectSubModuleAction = (module: ModulesInterface): any => {
+  console.log(module);
   const { name, id } = module;
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
     const { subModules } = state().subModules;

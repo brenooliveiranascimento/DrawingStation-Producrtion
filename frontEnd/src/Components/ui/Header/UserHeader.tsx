@@ -63,7 +63,7 @@ export default function UserHeader() {
         </section>
         <section className={styles.nav_mobile}>
           <button onClick={() => changeScreen('HomePage')}>
-            <FaHome/>
+            <FaHome className={styles.home_page}/>
           </button>
           <button onClick={() => changeScreen('Classroom')}>
             <FaPencilAlt className={styles.pencil}/>

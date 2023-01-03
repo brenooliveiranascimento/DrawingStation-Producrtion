@@ -56,6 +56,9 @@
   background-color: #1E292D;
   align-items: flex-start;
   justify-content: center;
+  @media screen and (max-height: 760) {
+    margin-top: 50rem;
+  }
   @media screen and (max-width: 1250px) {
     margin-top: -5rem;
   }
@@ -72,17 +75,34 @@
   }
   @media screen and (max-width: 390px) {
     margin-top: 2rem;
-    z-index: 90;
     svg {
       margin-bottom: -2rem;
     }
   }
   .menu {
-    margin-bottom: -2rem;
-
-    @media screen and (max-width: 390px) {
-      position: absolute;
-      z-index: 10;
+    top: 0rem;
+    padding-top: 1rem;
+    padding-right: 0.5rem;
+    left: 1rem;
+    border: none;
+    align-items: flex-start;
+    height: 4rem;
+    z-index: 99;
+    background-color: #1E292D;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    button {
+      border: none;
+      height: 1rem;
+      width: 2rem;
+      background-color: #1E292D;
+    }
+    .home {
+      margin-top: -3rem;
+    }
+    .class {
+      margin-top: 1rem;
     }
   }
   iframe {
@@ -114,6 +134,7 @@
 
 
     @media screen and (max-width: 550px) {
+      height: 400px;
     }
   }
   @media screen and (max-width: 1590px) {
@@ -162,7 +183,7 @@
   padding-top: 10rem;
   
   @media screen and (max-width: 660px) {
-    padding-top: 12rem;
+    padding-top: 5rem;
     padding-right: 1rem;
     padding-left: 1rem;
   }

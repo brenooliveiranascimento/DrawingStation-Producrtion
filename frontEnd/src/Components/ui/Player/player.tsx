@@ -1,8 +1,9 @@
 import Vimeo from '@u-wave/react-vimeo';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { FiMenu } from 'react-icons/fi';
+import { FiHome, FiMenu } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
@@ -22,6 +23,12 @@ export default function Player({ showSidebar, width }: playerProps) {
 
   const nextClassroom = () => {
     dispatch(nextClassoomAction());
+  };
+
+  const router = useRouter();
+
+  const toHome = () => {
+    router.push('HomePage');
   };
 
   if(loading) {
@@ -51,13 +58,16 @@ export default function Player({ showSidebar, width }: playerProps) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        width: '100%',
+        height: 'auto',
+        marginBottom: '-4rem'
       }} className={styles.player}>
         <Link href={'/Subscription'} style={{fontSize:'1.3rem'}}>Tornar se premium</Link>
         <Image
           style={{objectFit: 'cover'}}
-          width={300}
-          height={400}
+          width={200}
+          height={200}
           src={classroom.image}
           alt={classroom.name}
         />
@@ -67,25 +77,19 @@ export default function Player({ showSidebar, width }: playerProps) {
 
   return (
     <section className={styles.player}>
-
-      { width <= 1590 && <section
-        style={{
-          padding: '1rem',
-          display: 'flex',
-          justifyContent: 'flex-end',
-          marginBottom: '1rem'
-        }}
-      >
-        <button style={{
-          justifySelf: 'flex-start', backgroundColor: 'rgba(0,0,0,0.0)', border: 'none'
-        }} onClick={showSidebar}>
-          <FiMenu className={styles.menu} size={25} color='white'/>
-        </button>
-      </section> }
       {
         classroom.conclude ? (
           <section>
             <PlayerHeader/>
+            { width <= 1590 && <section className={styles.menu}>
+              <button className={styles.class} onClick={showSidebar}>
+                <FiMenu size={25} color='white'/>
+              </button> 
+              <button className={styles.home} onClick={toHome}>
+                <FiHome size={25} color='white'/>
+              </button> 
+            </section>
+            }
             <Vimeo
               onError={() => toast.error('Erro ao carregar o player')}
               video={classroom.video}
