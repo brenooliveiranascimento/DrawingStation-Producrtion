@@ -1,5 +1,7 @@
 .button {
   margin-top: 1rem;
+  border-radius: 2rem;
+  border: none;
   &[disabled] {
     svg {
       animation: animate 1s infinite;

@@ -176,14 +176,14 @@ export default function LoginForm() {
           register && (
             <>
               <Input
-                style={{borderBottomColor: unknowField === 'name' ? 'red' : 'white'}}
+                style={{borderColor: unknowField === 'name' ? 'red' : 'white'}}
                 value={credentials.name}
                 onChange={({target}) => handleUserCredentials(target)}
                 name='name'
                 placeholder='Name'
               />
               <Input
-                style={{borderBottomColor: unknowField === 'PhoneNumber' ? 'red' : 'white'}}
+                style={{borderColor: unknowField === 'PhoneNumber' ? 'red' : 'white'}}
                 value={credentials.phoneNumber}
                 onChange={({target}) => handleUserCredentials(target)}
                 name='phoneNumber'
@@ -193,7 +193,7 @@ export default function LoginForm() {
           )
         }
         <Input
-          style={{borderBottomColor: unknowField === 'email' ? 'red' : 'white'}}
+          style={{borderColor: unknowField === 'email' ? 'red' : 'white'}}
           value={credentials.email}
           onChange={({target}) => handleUserCredentials(target)}
           name='email'
@@ -202,7 +202,7 @@ export default function LoginForm() {
         <Input
           type={'password'}
           value={credentials.password}
-          style={{borderBottomColor: unknowField === 'password' ? 'red' : 'white'}}
+          style={{borderColor: unknowField === 'password' ? 'red' : 'white'}}
           onChange={({target}) => handleUserCredentials(target)}
           name='password'
           placeholder='Password'
