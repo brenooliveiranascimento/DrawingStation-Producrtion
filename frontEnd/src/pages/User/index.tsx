@@ -11,7 +11,6 @@ import { serverSideSetupUser } from '../../services/setupUser';
 import { UserInterface } from '../../interfaces/UserInterfaces';
 import { AutenticationSuccess } from '../../redux/actions/autenticationActions/autenticationGenericActions';
 import UserCard from '../../Components/ui/Usercard/UserCard';
-import nookies, { destroyCookie } from 'nookies';
 import { globalTypes } from '../../utils/globalTypes';
 import Router from 'next/router';
 
@@ -26,10 +25,7 @@ export default function User({ userData }: DashboardPropTypes) {
     await dispatch(AutenticationSuccess(userData));
   };
 
-  const logout = () => {
-    nookies.destroy(null, globalTypes.DRAWING_USER_DATA);
-    Router.push('/');
-  };
+
 
   useEffect(() => {
     initData();
@@ -41,7 +37,6 @@ export default function User({ userData }: DashboardPropTypes) {
       <section className={styles.main_container}>
         <UserHeader/>
         <UserCard />
-        <button>sair</button>
       </section>
     </main>
   );
