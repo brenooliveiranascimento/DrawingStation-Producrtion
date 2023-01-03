@@ -44,4 +44,63 @@
 .confirPassword_area {
   display: flex;
   flex-direction: column;
+  background-color: var(--new-dark);
+  padding: 1rem;
+  height: 500px;
+  width: 500px;
+  align-items: center;
+  justify-content: center;
+  button {
+    width: 70%;
+    height: 2rem;
+    margin-top: 1rem;
+
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+  }
+  .recover_password_area_button_back {
+    align-self: flex-start;
+    margin-bottom: 6rem;
+    width: 200px;
+  }
+  input {
+    width: 100%;
+  }
+}
+
+.recover_password_area {
+  background-color: var(--new-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+  height: 400px;
+
+  button {
+    height: 2rem;
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+  }
+  .recover_password_area_button_back {
+    align-self: flex-start;
+    margin-bottom: 6rem;
+    width: 200px;
+  }
+  input {
+    width: 100%;
+  }
+}
+
+.recover_password_area_button_back {
+  align-self: flex-start;
+  margin-bottom: 6rem;
+  width: 100px;
 }
