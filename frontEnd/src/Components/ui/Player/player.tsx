@@ -1,6 +1,7 @@
 import Vimeo from '@u-wave/react-vimeo';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FiHome, FiMenu } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,6 +23,12 @@ export default function Player({ showSidebar, width }: playerProps) {
 
   const nextClassroom = () => {
     dispatch(nextClassoomAction());
+  };
+
+  const router = useRouter();
+
+  const toHome = () => {
+    router.push('HomePage');
   };
 
   if(loading) {
@@ -78,7 +85,7 @@ export default function Player({ showSidebar, width }: playerProps) {
               <button className={styles.class} onClick={showSidebar}>
                 <FiMenu size={25} color='white'/>
               </button> 
-              <button className={styles.home} onClick={showSidebar}>
+              <button className={styles.home} onClick={toHome}>
                 <FiHome size={25} color='white'/>
               </button> 
             </section>
