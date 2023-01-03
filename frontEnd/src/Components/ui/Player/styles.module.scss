@@ -71,19 +71,39 @@
   @media screen and (max-width: 490px) {
     margin-top: -3rem;
     padding-left: 1rem;
-    z-index: 90;
     padding-right: 1rem;
   }
   @media screen and (max-width: 390px) {
     margin-top: 2rem;
-    z-index: 90;
     svg {
       margin-bottom: -2rem;
     }
   }
   .menu {
-    margin-top: -6rem;
+    top: 0rem;
+    padding-top: 1rem;
+    padding-right: 0.5rem;
+    left: 1rem;
+    border: none;
+    align-items: flex-start;
+    height: 4rem;
     z-index: 99;
+    background-color: #1E292D;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    button {
+      border: none;
+      height: 1rem;
+      width: 2rem;
+      background-color: #1E292D;
+    }
+    .home {
+      margin-top: -3rem;
+    }
+    .class {
+      margin-top: 1rem;
+    }
   }
   iframe {
     @media screen and (max-width: 390px) {

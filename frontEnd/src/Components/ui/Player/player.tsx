@@ -2,7 +2,7 @@ import Vimeo from '@u-wave/react-vimeo';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { FiMenu } from 'react-icons/fi';
+import { FiHome, FiMenu } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
@@ -74,6 +74,15 @@ export default function Player({ showSidebar, width }: playerProps) {
         classroom.conclude ? (
           <section>
             <PlayerHeader/>
+            { width <= 1590 && <section className={styles.menu}>
+              <button className={styles.class} onClick={showSidebar}>
+                <FiMenu size={25} color='white'/>
+              </button> 
+              <button className={styles.home} onClick={showSidebar}>
+                <FiHome size={25} color='white'/>
+              </button> 
+            </section>
+            }
             <Vimeo
               onError={() => toast.error('Erro ao carregar o player')}
               video={classroom.video}
@@ -81,20 +90,6 @@ export default function Player({ showSidebar, width }: playerProps) {
               onEnd={nextClassroom}
               autoplay
             />
-            { width <= 1590 && <section
-              style={{
-                padding: '1rem',
-                display: 'flex',
-                justifyContent: 'flex-end',
-                marginBottom: '1rem'
-              }}
-            >
-              <button style={{
-                justifySelf: 'flex-start', backgroundColor: 'rgba(0,0,0,0.0)', border: 'none'
-              }} onClick={showSidebar}>
-                <FiMenu className={styles.menu} size={25} color='white'/>
-              </button>
-            </section> }
           </section>
         ) : (
           <section style={{
