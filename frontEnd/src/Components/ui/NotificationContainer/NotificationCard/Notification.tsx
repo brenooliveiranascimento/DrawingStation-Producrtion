@@ -1,9 +1,10 @@
 import React from 'react';
 
-export default function Navigationcard() {
+
+
+export default function Notification() {
   return (
     <article>
-      
     </article>
   );
 }
