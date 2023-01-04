@@ -39,6 +39,8 @@
   justify-content: center;
   width: auto;
   box-shadow: 12px 8px 15px rgba(50, 50, 50, 0.77);
+  border-bottom-right-radius: 1rem;
+  border-top-right-radius: 1rem;
   section {
     display: flex;
     flex-direction: column;
@@ -48,6 +50,8 @@
     background-color: #2d3e4469;
     box-shadow: 0px 0px 0px rgba(50, 50, 50, 0.77);
     width: 100%;
+    border-bottom-right-radius: 1rem;
+    border-top-right-radius: 1rem;
     width: 400px;
     padding: 0rem 1rem;
     backdrop-filter: blur(3px);
@@ -56,6 +60,8 @@
   aside {
     box-shadow: 0px 0px 0px rgba(50, 50, 50, 0.77);
     display: flex;
+    border-bottom-left-radius: 2rem;
+    border-top-left-radius: 2rem;
   }
 
   form {

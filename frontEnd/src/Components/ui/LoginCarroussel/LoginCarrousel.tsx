@@ -70,7 +70,10 @@ export default function LoginCarrousel() {
               <Image
                 style={{
                   objectFit: 'cover',
-                  filter: 'brightness(60%)'}}
+                  filter: 'brightness(50%)',
+                  borderTopLeftRadius: '1rem',
+                  borderBottomLeftRadius: '1rem',
+                }}
                 width={500} height={550} src={currItem.photo} alt='slide' />
             </SwiperSlide>
           ))}
@@ -83,7 +86,11 @@ export default function LoginCarrousel() {
       </nav>
       <Image
         src={terry}
-        style={{objectFit: 'cover',  filter: 'brightness(30%)'}}
+        style={{objectFit: 'cover',
+          filter: 'brightness(30%)',
+          borderTopLeftRadius: '1rem',
+          borderBottomLeftRadius: '1rem',
+        }}
         width={500}
         height={550}
         alt='Terry crews'
