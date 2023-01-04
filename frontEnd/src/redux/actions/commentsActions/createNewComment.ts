@@ -26,12 +26,16 @@ export const crateCommentAction = (commentData: INewComment): any => {
 
 export const crateSubCommentAction = (commentData: INewSubComment): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
-    const { commentId, content, userId } = commentData;
+    const { commentId, content, userId, comentTo } = commentData;
+    const { classroomController: { classroom }, user: { userData } } = state();
     const cookies = parseCookies();
     const token = cookies['DRAWING_USER_DATA'];
     try {
       const { data } = await apiConnection.post('/subComments/create',
         { commentId, content, userId, },
+        { headers: { 'Authorization': token } });
+      await apiConnection.post('/notification/create',
+        { commentId, content, userId: comentTo, classroomId: classroom.id, senderId: userData.id, type: 'comentario' },
         { headers: { 'Authorization': token } });
       toast.success(data);
       const { data: newComments } = await apiConnection.get('/comments/all', { headers: { 'Authorization': token } });
