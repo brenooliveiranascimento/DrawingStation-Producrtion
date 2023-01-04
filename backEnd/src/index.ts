@@ -8,6 +8,7 @@ import commentsRouter from './routes/comments.routes';
 import subCommentRouter from './routes/subComments.routes';
 import subscriptionRoutes from './routes/subscription.routes';
 import webhooksRoutes from './routes/WebHook.routes';
+import notificationRoutes from './routes/notifications';
 
 import 'dotenv/config';
 import errorMiddleware from './middlewares/errorMiddleware';
@@ -30,6 +31,7 @@ app.use('/users', userRoutes);
 app.use('/comments', commentsRouter);
 app.use('/subComments', subCommentRouter);
 app.use('/subscription', subscriptionRoutes);
+app.use('/notification', notificationRoutes);
 app.use(errorMiddleware)
 
 app.listen(PORT, () => {

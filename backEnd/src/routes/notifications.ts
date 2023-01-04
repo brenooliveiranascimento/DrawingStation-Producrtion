@@ -5,6 +5,6 @@ const router = Router()
 
 const notificationController = new NotificationController();
 
-router.get('/', (req, res) => notificationController.get(req, res));
+router.get('/get/:id', (req, res) => notificationController.get(req, res));
 
 export default router;
