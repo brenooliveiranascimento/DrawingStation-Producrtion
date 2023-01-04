@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 import { FaBell, FaCrown, FaFonticons, FaHome, FaPencilAlt, FaSearch } from 'react-icons/fa';
 import Link from 'next/link';
 import logo from '../../../../public/logo1.png';
+import { requestNotification } from '../../../redux/actions/notificationActions/requestNotification';
 export default function UserHeader() {
   const { userData } = useSelector((state: globalState) => state.user);
   const { classroomController: { module }, modules: { modules } } = useSelector((state: globalState) => state);
@@ -38,6 +39,11 @@ export default function UserHeader() {
       console.log(e.message);
     }
   };
+
+  useEffect(() => {
+    dispatch(requestNotification());
+  }, [userData]);
+
   return (
     <header
       className={styles.header_container}>

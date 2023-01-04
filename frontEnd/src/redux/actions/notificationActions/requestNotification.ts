@@ -9,11 +9,11 @@ import { genericNotificationAction } from './genericNotificaitonActions';
 export const requestNotification = (): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
     const { userData } = state().user;
-    if(!userData) return;
+    if(!userData.name.length) return;
     const cookies = parseCookies();
     const token = cookies['DRAWING_USER_DATA'];
     try {
-      const { data } = await apiConnection.get(`notification/get/${userData.id}`, {
+      const { data } = await apiConnection.get(`/notification/get/${Number(userData.id)}`, {
         headers: { 'Authorization': token }
       });
       dispatch(genericNotificationAction(
