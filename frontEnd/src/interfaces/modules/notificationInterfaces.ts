@@ -23,5 +23,6 @@ export interface INotification {
 export interface INotificationState {
   data: INotification[],
   error: boolean;
-  errorMessage: string
+  errorMessage: string;
+  createAt: Date;
 }
