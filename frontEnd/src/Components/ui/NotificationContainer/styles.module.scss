@@ -1,0 +1,29 @@
+.notification_container {
+  position: absolute;
+  width: 500px;
+  height: 600px;
+  overflow-y: scroll;
+  background-color: #394f57db;
+  top: 4rem;
+  box-shadow: 12px 8px 15px rgba(50, 50, 50, 0.77);
+  right: 9rem;
+}
+
+.notification_container::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+.notification_container::-webkit-scrollbar-track {
+  background: #282828;
+}
+
+/* Handle */
+.notification_container::-webkit-scrollbar-thumb {
+  background: rgb(77, 77, 77);
+}
+
+/* Handle on hover */
+.notification_container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

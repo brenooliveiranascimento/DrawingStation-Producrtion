@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import { FaBell, FaCrown } from 'react-icons/fa';
 import Link from 'next/link';
 import styles from './styles.module.scss';
@@ -12,12 +12,14 @@ import { handleScreen } from '../../../redux/actions/genericActions';
 import { apiConnection } from '../../../services/api.connection';
 import { toast } from 'react-toastify';
 import { parseCookies } from 'nookies';
+import NotificationContainer from '../NotificationContainer/NotificationContainer';
 export default function UserContent() {
 
   const {
     user: { userData: { name, premium, profilePhoto, stripeClientId, id } },
-    notificationsModule: { data, error, errorMessage }
   } = useSelector((state: globalState) => state);
+
+  const [notifications, setNotifications] = useState(false);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -62,10 +64,11 @@ export default function UserContent() {
       </section>
       <section className={styles.notification_area}>
         <span>a</span>
-        <button>
+        <button onClick={() => setNotifications(!notifications)}>
           <FaBell color='white' size={23}/>
         </button>
       </section>
+      { notifications && <NotificationContainer /> }
     </aside>
   );
 }
