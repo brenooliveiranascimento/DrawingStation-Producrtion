@@ -3,6 +3,7 @@ import CustomError from "../../utils/StatusError";
 import Create from "./Create";
 import Get from "./Get";
 import { ICreateNotificationData } from "./types";
+import Update from "./Update";
 
 export default class NotificationController {
   async get(req: Request, res: Response) {
@@ -24,6 +25,17 @@ export default class NotificationController {
       res.status(201).json();
     } catch(e: any) {
       throw new CustomError(e.message, 500)
+    }
+  }
+
+  async update(req: Request, res: Response) {
+    const { id } = req.params;
+    const update = new Update();
+    try {
+      await update.execute(Number(id));
+      return res.status(203).json();
+    } catch(e: any) {
+      throw new CustomError(e.message, 500);
     }
   }
 }
