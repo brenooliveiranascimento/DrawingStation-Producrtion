@@ -56,7 +56,7 @@ export const CommentsTypes = {
   UPDATE_COMMENT: 'UPDATE_COMMENT',
 };
 
-export const NotificationTyoes = {
+export const NotificationTypes = {
   REQUEST_NOTIFICATIONS: 'REQUEST_NOTIFICATIONS',
   NOTIFICATION_FAIL: 'NOTIFICATION_FAIL'
 };
