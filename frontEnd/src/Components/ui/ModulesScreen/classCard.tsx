@@ -102,11 +102,20 @@ export default function ClassCard({ subModule }: IClassCardProps) {
             </article>
             <section>
             </section>
-            <button type='button'>
-              <span>
-                Continuar assistindo
-              </span>
-            </button>
+            { currClassroom.conclude ? (
+              <button type='button'>
+                <span>
+                    Continuar assistindo
+                </span>
+              </button>
+            ) : (
+              <button type='button'>
+                <span>
+                    Em breve
+                </span>
+              </button>
+            ) }
+
           </section>
         </SwiperSlide>
       ))}
