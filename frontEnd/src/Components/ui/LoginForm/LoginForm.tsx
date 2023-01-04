@@ -217,18 +217,24 @@ export default function LoginForm() {
           placeholder='Confirm password'
           name='confirmPassword'
         />)}
-        <Button
+        <button
+          className={styles.login_btn}
           type='submit'
-          loading={false}
           disabled={disabled}
+          style={{
+            color: disabled ? '#aaa' : '#fff',
+            border: disabled ? '1px solid #aaa' : '1px solid #fff'
+          }}
         >
           {register ? ( 'Registrar' ) : ( 'Entrar' )}
-        </Button>
-        <Button onClick={() => loginGoogle()} type='button' >
+        </button>
+        <button
+          className={styles.login_btn}
+          onClick={() => loginGoogle()} type='button' >
           Entrar com Google <FaGoogle style={{
             position: 'absolute', marginTop:'0.1rem', marginLeft:'0.4rem'
           }}/>
-        </Button>
+        </button>
       </form>
       <a onClick={handleRegister} className={styles.handle_form}>
         { register ? ( 'Já possuo uma conta' ) : ( 'Não possui conta? Registrar-se' ) }
