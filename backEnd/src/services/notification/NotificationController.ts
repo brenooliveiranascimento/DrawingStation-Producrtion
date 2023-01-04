@@ -32,9 +32,10 @@ export default class NotificationController {
 
   async update(req: Request, res: Response) {
     const { userId } = req.body
+    if(!userId) throw new CustomError('Usuário inválido', 404);
     const update = new Update();
     try {
-      await update.execute(Number(userId));
+      await update.executeUpdate(Number(userId));
       return res.status(203).json();
     } catch(e: any) {
       throw new CustomError(e.message, 500);
