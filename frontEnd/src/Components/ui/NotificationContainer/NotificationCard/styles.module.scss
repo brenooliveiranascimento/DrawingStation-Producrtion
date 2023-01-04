@@ -1,0 +1,41 @@
+.notification_card_container {
+  width: 100%;
+  height: auto;
+  background-color: rgba(75, 75, 75, 0.571);
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+
+  .class_side {
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+  }
+
+  .user_side {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    justify-content: center;
+    img {
+      margin-right: 1rem;
+      border-radius: 50%;
+    }
+    section {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 1rem;
+    }
+    p {
+      font-size: 1rem;
+      margin-top: 1rem;
+      width: 100%;
+    }
+  }
+
+}
