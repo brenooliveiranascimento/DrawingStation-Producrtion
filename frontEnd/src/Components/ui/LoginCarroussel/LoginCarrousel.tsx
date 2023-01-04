@@ -17,6 +17,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper';
 import Lottie from 'react-lottie';
+import styles from './styles.module.scss';
 
 export default function LoginCarrousel() {
   const items = [{photo: rosaAzul}, {photo: iron}, {photo: terry}, {photo: overlord}, {photo: petalas}, {photo: rosVermelha}, {photo: rose}];
@@ -71,19 +72,11 @@ export default function LoginCarrousel() {
           ))}
         </Swiper>
       </article>
-    
-      <Lottie
-        style={{
-          alignSelf: 'center',
-          justifyContent: 'center',
-          width: 260,
-          height: 280,
-          position: 'absolute',
-          marginLeft: '-5rem',
-          marginTop: '30rem',
-          zIndex: 99
-        }}
-        options={defaultOptionsLoading}></Lottie>
+      <nav className={styles.lottie} >
+        <Lottie
+          style={{ width: 260, height: 280, }}
+          options={defaultOptionsLoading}></Lottie>
+      </nav>
       <Image
         src={terry}
         style={{objectFit: 'cover',  filter: 'brightness(30%)'}}
