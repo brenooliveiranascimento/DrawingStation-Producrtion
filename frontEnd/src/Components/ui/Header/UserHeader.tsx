@@ -9,15 +9,12 @@ import { handleScreen } from '../../../redux/actions/genericActions';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { apiConnection } from '../../../services/api.connection';
 import { toast } from 'react-toastify';
-import { FaCrown, FaHome, FaPencilAlt, FaSearch } from 'react-icons/fa';
-import { ModulesInterface } from '../../../interfaces/modules/ModulesInterface';
-import { selectSubModuleAction } from '../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
+import { FaBell, FaCrown, FaFonticons, FaHome, FaPencilAlt, FaSearch } from 'react-icons/fa';
 import Link from 'next/link';
 import logo from '../../../../public/logo1.png';
 export default function UserHeader() {
-  const { userData, currScreen } = useSelector((state: globalState) => state.user);
+  const { userData } = useSelector((state: globalState) => state.user);
   const { classroomController: { module }, modules: { modules } } = useSelector((state: globalState) => state);
-  const [showHeader, setShowHeader] = useState(true);
   const { name, premium, profilePhoto, stripeClientId } = userData;
   const dispatch = useDispatch();
 
@@ -86,6 +83,10 @@ export default function UserHeader() {
           </button> : <button onClick={() => changeScreen('Subscription')}>
             <span>{ stripeClientId ? 'Renovar Assinatura' : 'Obter Premium' }</span>
           </button> }
+        </section>
+        <section className={styles.notification_area}>
+          <span>a</span>
+          <FaBell size={23}/>
         </section>
       </aside>
     </header>
