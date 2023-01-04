@@ -6,7 +6,7 @@ export default class Get {
   async execute(id: number) {
     try {
       const notifications = await NotificationsModel
-      .findAll({ where: { id } })
+      .findAll({ where: { userId: id } })
     return notifications;
     } catch (e: any) {
       throw new CustomError(e.message, 500);

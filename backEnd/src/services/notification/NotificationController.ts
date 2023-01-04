@@ -16,12 +16,12 @@ export default class NotificationController {
     }
   }
 
-  async create(req: Request, _res: Response) {
+  async create(req: Request, res: Response) {
     const notificationData: ICreateNotificationData = req.body
-
     const create = new Create();
     try {
       await create.execute(notificationData);
+      res.status(201).json();
     } catch(e: any) {
       throw new CustomError(e.message, 500)
     }

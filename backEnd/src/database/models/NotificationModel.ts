@@ -54,6 +54,7 @@ NotificationsModel.init({
   sequelize: db,
   modelName: 'notifications',
   timestamps: false,
+  underscored: true
 });
 
 UserModel.hasMany(NotificationsModel);
