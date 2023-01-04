@@ -1,10 +1,8 @@
-import { DATE, BOOLEAN } from 'sequelize';
-import { Model, INTEGER, STRING } from 'sequelize';
+import { Model, INTEGER, STRING, BOOLEAN } from 'sequelize';
 import db from '.';
-import SubComment from './SubCommentModel';
 import UserModel from './UserModel'
 
-class Notifications extends Model {
+class NotificationsModel extends Model {
   declare id: number;
   declare userId: number;
   declare type: string;
@@ -15,7 +13,7 @@ class Notifications extends Model {
   declare classroomId: number;
 }
 
-Notifications.init({
+NotificationsModel.init({
   id: {
     type: INTEGER,
     allowNull: false,
@@ -58,7 +56,7 @@ Notifications.init({
   timestamps: false,
 });
 
-UserModel.hasMany(Notifications);
-Notifications.belongsTo(UserModel);
+UserModel.hasMany(NotificationsModel);
+NotificationsModel.belongsTo(UserModel);
 
-export default Notifications;
+export default NotificationsModel;
