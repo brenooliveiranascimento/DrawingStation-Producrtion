@@ -86,7 +86,9 @@ export default function UserHeader() {
         </section>
         <section className={styles.notification_area}>
           <span>a</span>
-          <FaBell size={23}/>
+          <button>
+            <FaBell color='white' size={23}/>
+          </button>
         </section>
       </aside>
     </header>
