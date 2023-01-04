@@ -149,6 +149,7 @@ export default function LoginForm() {
             top: 0,
             left: 0,
             right: 0,
+            zIndex:99,
             bottom: 0,
             backgroundColor: '#00000029'
           },

@@ -49,7 +49,7 @@ export default function LoginCarrousel() {
       <article
         style={{
           position: 'absolute',
-          zIndex:90,
+          zIndex:10,
           width: 500,
           height: 600,
         }}
