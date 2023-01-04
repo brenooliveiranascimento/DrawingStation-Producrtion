@@ -8,7 +8,7 @@ interface INotificationProps {
 }
 
 export default function NotificationContainer({active}: INotificationProps) {
-  
+
   const {
     user: { userData: { name, premium, profilePhoto, stripeClientId, id } },
     notificationsModule: { data, error, errorMessage }
@@ -16,9 +16,7 @@ export default function NotificationContainer({active}: INotificationProps) {
 
   return (
     <section
-      style={{
-        height: active ? '600px' : '0px',
-      }}
+      style={{ height: active ? '600px' : '0px' }}
       className={styles.notification_container}
     >
     </section>
