@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import CustomError from "../../utils/StatusError";
 import Create from "./Create";
 import Get from "./Get";
+import { ICreateNotificationData } from "./types";
 
 export default class Controller {
   async get(req: Request, res: Response) {
@@ -12,6 +13,17 @@ export default class Controller {
       return res.status(200).json({ notifications });
     } catch(e: any) {
       throw new CustomError(e.message, 500);
+    }
+  }
+
+  async create(req: Request, _res: Response) {
+    const notificationData: ICreateNotificationData = req.body
+
+    const create = new Create();
+    try {
+      await create.execute(notificationData);
+    } catch(e: any) {
+      throw new CustomError(e.message, 500)
     }
   }
 }
