@@ -35,10 +35,7 @@ export default function LoginCarrousel() {
       <Image
         width={350}
         alt='logo'
-        style={{
-          position: 'absolute',
-          zIndex:99
-        }}
+        className={styles.logo_position}
         src={Logo}
       />
       <article
@@ -47,12 +44,11 @@ export default function LoginCarrousel() {
           zIndex:90,
           width: 500,
           height: 600,
-        }} 
+        }}
       >
         <Swiper
-          pagination={{
-            clickable: true
-          }}
+          pagination={{ clickable: true }}
+          loop
           autoplay={{
             delay: 5000,
             disableOnInteraction: false
@@ -62,7 +58,7 @@ export default function LoginCarrousel() {
         >
           {items.map((currItem: any, index: number) => (
             <SwiperSlide
-              key={index} className="">
+              key={index}>
               <Image
                 style={{
                   objectFit: 'cover',
@@ -82,7 +78,7 @@ export default function LoginCarrousel() {
         style={{objectFit: 'cover',  filter: 'brightness(30%)'}}
         width={500}
         height={550}
-        alt='blue rose'
+        alt='Terry crews'
       />
     </aside>
   );

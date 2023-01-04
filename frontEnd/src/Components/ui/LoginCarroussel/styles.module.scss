@@ -1,10 +1,21 @@
 .lottie {
   align-self: center;
   justify-content: center;
-  width: 260;
-  height: 280;
   position: absolute;
   margin-left: -5rem;
   margin-top: 30rem;
   z-index: 99
+}
+
+.carrousel_container {
+  position: absolute;
+  z-index:90;
+  width: 500;
+  height: 600;
+}
+
+.logo_position {
+  position: absolute;
+  z-index:99;
+  width: 350
 }
