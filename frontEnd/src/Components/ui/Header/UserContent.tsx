@@ -68,7 +68,7 @@ export default function UserContent() {
           <FaBell color='white' size={23}/>
         </button>
       </section>
-      { notifications && <NotificationContainer /> }
+      <NotificationContainer active={notifications} /> 
     </aside>
   );
 }
