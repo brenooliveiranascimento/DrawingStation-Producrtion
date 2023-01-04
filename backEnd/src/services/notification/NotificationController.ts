@@ -31,10 +31,10 @@ export default class NotificationController {
   }
 
   async update(req: Request, res: Response) {
-    const { id } = req.params;
+    const { userId } = req.body
     const update = new Update();
     try {
-      await update.execute(Number(id));
+      await update.execute(Number(userId));
       return res.status(203).json();
     } catch(e: any) {
       throw new CustomError(e.message, 500);

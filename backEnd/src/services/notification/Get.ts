@@ -31,6 +31,7 @@ export default class Get {
           content: currNotificaiton.content,
           type: currNotificaiton.type,
           active: currNotificaiton.active,
+          id: currNotificaiton.id
         }
         return { senderData, classData, ...data }
         } catch(e: any) {
