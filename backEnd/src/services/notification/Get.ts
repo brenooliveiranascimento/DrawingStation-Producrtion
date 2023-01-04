@@ -18,6 +18,7 @@ export default class Get {
         const senderData = {
           name: getSenderData?.name,
           email: getSenderData?.email,
+          profilePhoto: getSenderData?.profilePhoto
         }
 
         const classData = {

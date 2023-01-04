@@ -11,7 +11,7 @@ export const actionDefaultValue = {
   type: '',
 };
 
-export default function notificationsModel(
+export default function notificationsModule(
   state = notificationDefaultValue, action = actionDefaultValue
 ) {
   switch(action.type) {
