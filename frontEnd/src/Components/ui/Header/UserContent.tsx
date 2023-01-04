@@ -52,12 +52,6 @@ export default function UserContent() {
     return newNotifications;
   };
 
-  const showNotifications = () => {
-    if(notifications) return setNotifications(false);
-    setNotifications(true);
-    dispatch(updateNotification());
-  };
-
   return (
     <aside  className={styles.user_container}>
       <section className={styles.user_crown}>
@@ -78,7 +72,7 @@ export default function UserContent() {
       </section>
       <section className={styles.notification_area}>
         <span>{getNewNotifications().length}</span>
-        <button onClick={() => showNotifications()}>
+        <button onClick={() => setNotifications(!notifications)}>
           <FaBell color='white' size={23}/>
         </button>
       </section>
