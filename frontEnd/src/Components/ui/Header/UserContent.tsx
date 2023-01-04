@@ -73,7 +73,7 @@ export default function UserContent() {
       <section className={styles.notification_area}>
         { getNewNotifications().length > 0 && <span>{getNewNotifications().length}</span> }
         <button onClick={() => setNotifications(!notifications)}>
-          <FaBell color='white' size={23}/>
+          <FaBell color={ getNewNotifications().length ? 'gold' : 'white'} size={23}/>
         </button>
       </section>
       <NotificationContainer active={notifications} /> 

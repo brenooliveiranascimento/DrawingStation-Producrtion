@@ -32,7 +32,11 @@ export default function NotificationCard({ notification }: INotificationCardProp
           <h1>{senderData.name.split(' ')[0]} respondeu seu comenttário</h1>
         </section>
         <p>{content}</p>
-        <span>{active && 'novo!!'}</span>
+        <span style={{
+          color: 'gold',
+          fontWeight: 600,
+          objectFit: 'cover'
+        }}>{active && 'novo!!'}</span>
       </aside>
       <aside className={styles.class_side}>
         <section>
@@ -42,6 +46,9 @@ export default function NotificationCard({ notification }: INotificationCardProp
         <Image
           height={100}
           width={100}
+          style={{
+            objectFit: 'cover'
+          }}
           alt={classData.name}
           src={classData.image}
         />
