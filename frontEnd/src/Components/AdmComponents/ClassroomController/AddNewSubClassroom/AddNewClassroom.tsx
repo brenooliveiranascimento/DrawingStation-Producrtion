@@ -121,7 +121,7 @@ function AddNewClassroom({ handleModal }: EditSubModuleInterface) {
           <Input
             onChange={({target}) => {
               handleChangeData(target);
-              handleChangeData(target);
+              handleChange(target);
             }}
             name='conclude'
             checked={addNewClassroomData.conclude}

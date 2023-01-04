@@ -87,7 +87,9 @@ export default function ClassCard({ subModule }: IClassCardProps) {
           key={index} className="">
           <section onClick={() => selectSubModule(currClassroom)} className={styles.class_card_container}>
             <section className={styles.player_area}>
-              <FaPlayCircle/>
+              <FaPlayCircle style={{
+                marginLeft: width <= 1280 ? '-2rem' : '0rem'
+              }}/>
             </section>
             <section className={styles.image_area}>
               <Image
@@ -100,11 +102,20 @@ export default function ClassCard({ subModule }: IClassCardProps) {
             </article>
             <section>
             </section>
-            <button type='button'>
-              <span>
-                Continuar assistindo
-              </span>
-            </button>
+            { currClassroom.conclude ? (
+              <button type='button'>
+                <span>
+                    Continuar assistindo
+                </span>
+              </button>
+            ) : (
+              <button type='button'>
+                <span>
+                    Em breve
+                </span>
+              </button>
+            ) }
+
           </section>
         </SwiperSlide>
       ))}

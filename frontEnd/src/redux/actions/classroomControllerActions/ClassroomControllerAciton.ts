@@ -50,7 +50,9 @@ export const nextClassoomAction = (): any => {
       if(!subModules[nextSubModuleId]) return;
       if(!subModules[nextSubModuleId].classrooms.length) { nextSubModuleId += 1; }
       const nextSubModuleData = subModules[nextSubModuleId];
+      if(!nextSubModuleData) return;
       dispatch(selectCurrSubModule({ name: nextSubModuleData.name, id: nextSubModuleData.id }));
+      if(!nextSubModuleData.classrooms[0]) return;
       dispatch(selectClassroomAction(nextSubModuleData.classrooms[0]));
       return;
     }
@@ -65,7 +67,6 @@ export const prevClassoomAction = (): any => {
     const currSubModuleIndex = subModules.findIndex((curSubM: SubModuleInterface) => curSubM.id === currSubModule.id);
     const prevClassroomId = findClassroomIndex(currSubModuleData.classrooms, classroom.id) - 1;
     const prevClassroom = currSubModuleData.classrooms[prevClassroomId];
-    console.log(prevClassroom);
     if(!currSubModuleData.classrooms.length) {
       const prevSubModuleData = subModules[0];
       dispatch(selectCurrSubModule({ name: prevSubModuleData.name, id: prevSubModuleData.id }));
@@ -103,7 +104,6 @@ export const selectFirstClassroom = (firstSubModule: SubModuleInterface): any =>
 };
 
 export const selectSubModuleAction = (module: ModulesInterface): any => {
-  console.log(module);
   const { name, id } = module;
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
     const { subModules } = state().subModules;

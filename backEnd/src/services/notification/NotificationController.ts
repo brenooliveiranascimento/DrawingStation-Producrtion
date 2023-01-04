@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
 import CustomError from "../../utils/StatusError";
 import Create from "./Create";
+import Delete from "./Delete";
 import Get from "./Get";
 import { ICreateNotificationData } from "./types";
+import Update from "./Update";
 
 export default class NotificationController {
+
   async get(req: Request, res: Response) {
     const { id } = req.params
     try {
@@ -16,14 +19,50 @@ export default class NotificationController {
     }
   }
 
-  async create(req: Request, _res: Response) {
+  async create(req: Request, res: Response) {
     const notificationData: ICreateNotificationData = req.body
-
     const create = new Create();
     try {
       await create.execute(notificationData);
+      res.status(201).json();
     } catch(e: any) {
       throw new CustomError(e.message, 500)
     }
   }
+
+  async update(req: Request, res: Response) {
+    const { userId } = req.body
+    if(!userId) throw new CustomError('Usuário inválido', 404);
+    const update = new Update();
+    try {
+      await update.executeUpdate(Number(userId));
+      return res.status(203).json();
+    } catch(e: any) {
+      throw new CustomError(e.message, 500);
+    }
+  }
+
+  async deleteOne(req: Request, res: Response) {
+    const { userId, id } = req.body;
+    const deleteOne = new Delete();
+
+    try {
+      await deleteOne.executeOne(userId, id);
+      res.status(205).json();
+    } catch(e: any) {
+      throw new CustomError(e.message, 500);
+    }
+  }
+
+  async deleteAll(req: Request, res: Response) {
+    const { userId } = req.body;
+    const deleteOne = new Delete();
+    try {
+      await deleteOne.executeAll(userId);
+      res.status(205).json();
+    } catch(e: any) {
+      throw new CustomError(e.message, 500);
+    }
+  }
+
 }

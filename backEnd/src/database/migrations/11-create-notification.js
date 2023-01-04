@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('notification', {
+    await queryInterface.createTable('notifications', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,6 +16,7 @@ module.exports = {
           model: 'users',
           key: 'id',
         },
+        field: 'user_id'
       },
       type: {
         allowNull: false,
@@ -46,10 +47,11 @@ module.exports = {
       classroomId: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        field: 'classroom_id',
       },
     });
   },
   down: async (queryInterface) => {
-    await queryInterface.dropTable('notification');
+    await queryInterface.dropTable('notifications');
   },
 };
