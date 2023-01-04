@@ -11,7 +11,7 @@ export default class Delete {
       if(notification?.userId !== userId) {
         throw new CustomError('Sem permição', 401);
       }
-      return true
+      return true;
     } catch(e: any) {
       throw new CustomError(e.message, 500);
     }
@@ -21,8 +21,8 @@ export default class Delete {
     try {
       await this.validateNotification(userId, notificationId);
       await NotificationsModel.destroy({
-        where: { id: userId }
-      })
+        where: { id: notificationId }
+      });
     } catch(e: any) {
       throw new CustomError(e.message, 500);
     }
@@ -32,7 +32,7 @@ export default class Delete {
     try {
       await NotificationsModel.destroy({
         where: { userId }
-      })
+      });
     } catch(e: any) {
       throw new CustomError(e.message, 500);
     }
