@@ -13,23 +13,27 @@ import { apiConnection } from '../../../services/api.connection';
 import { toast } from 'react-toastify';
 import { parseCookies } from 'nookies';
 export default function UserContent() {
-  const { userData } = useSelector((state: globalState) => state.user);
-  const { classroomController: { module }, modules: { modules } } = useSelector((state: globalState) => state);
-  const { name, premium, profilePhoto, stripeClientId } = userData;
+
+  const {
+    user: { userData: { name, premium, profilePhoto, stripeClientId, id } },
+    notificationsModule: { data, error, errorMessage }
+  } = useSelector((state: globalState) => state);
+
   const dispatch = useDispatch();
   const router = useRouter();
+  const cookies = parseCookies();
+
   const changeScreen = (screen: string) => {
     router.push(screen);
     dispatch(handleScreen(screen));
   };
-  const cookies = parseCookies();
 
   const accessPortal = async () => {
     if(!stripeClientId) return;
     try {
       if(!stripeClientId) return;
       const token = cookies['DRAWING_USER_DATA'];
-      const { data } = await apiConnection.post(`/subscription/portal/${userData.id}`,
+      const { data } = await apiConnection.post(`/subscription/portal/${id}`,
         null, { headers: { 'Authorization': token } });
       window.location.href = data.portalUrl;
     } catch(e: any) {
@@ -37,6 +41,7 @@ export default function UserContent() {
       console.log(e.message);
     }
   };
+
   return (
     <aside  className={styles.user_container}>
       <section className={styles.user_crown}>
