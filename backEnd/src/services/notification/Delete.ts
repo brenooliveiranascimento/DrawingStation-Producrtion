@@ -29,6 +29,7 @@ export default class Delete {
   }
 
   async executeAll(userId: number) {
+    console.log(userId)
     try {
       await NotificationsModel.destroy({
         where: { userId }

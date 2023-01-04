@@ -57,7 +57,6 @@ export default class NotificationController {
   async deleteAll(req: Request, res: Response) {
     const { userId } = req.body;
     const deleteOne = new Delete();
-
     try {
       await deleteOne.executeAll(userId);
       res.status(205).json();
