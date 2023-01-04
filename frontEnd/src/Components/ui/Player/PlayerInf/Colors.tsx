@@ -12,7 +12,9 @@ export default function Colors() {
   } = useSelector((state: globalState) => state);
 
   if(!colors) {
-    return <h1>Materiais em breve</h1>;
+    return <aside className={styles.one_pencil_container}>
+      <h1 style={{width: '300px'}}>Materiais em breve</h1>
+    </aside>;
   }
 
   return (
