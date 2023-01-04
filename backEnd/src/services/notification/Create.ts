@@ -30,7 +30,8 @@ export default class Create {
     try {
       await this.validateUser([userId, senderId])
       await NotificationsModel.create({
-        classroomId, commentId, content, type, senderId, userId, active: true
+        classroomId, commentId, content, type, senderId, userId, active: true,
+        createAt: new Date()
       });
     } catch(e: any) {
       throw new CustomError(e.message, 500);

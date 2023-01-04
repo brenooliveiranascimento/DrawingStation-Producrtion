@@ -68,7 +68,8 @@ export interface IDeleteComment {
 export interface INewSubComment {
   content: string;
   userId: number;
-  commentId: number
+  commentId: number;
+  comentTo: number
 }
 
 export interface INewSubComments {

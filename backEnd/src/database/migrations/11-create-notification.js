@@ -49,6 +49,11 @@ module.exports = {
         type: Sequelize.INTEGER,
         field: 'classroom_id',
       },
+      createAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        field: 'create_at',
+      },
     });
   },
   down: async (queryInterface) => {

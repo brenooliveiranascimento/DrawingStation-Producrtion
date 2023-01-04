@@ -18,6 +18,7 @@ export default class Get {
         const senderData = {
           name: getSenderData?.name,
           email: getSenderData?.email,
+          profilePhoto: getSenderData?.profilePhoto
         }
 
         const classData = {
@@ -31,7 +32,8 @@ export default class Get {
           content: currNotificaiton.content,
           type: currNotificaiton.type,
           active: currNotificaiton.active,
-          id: currNotificaiton.id
+          id: currNotificaiton.id,
+          createAt: currNotificaiton.createAt
         }
         return { senderData, classData, ...data }
         } catch(e: any) {

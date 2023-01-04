@@ -43,9 +43,20 @@
   }
 
   @media screen and (max-width: 660px) {
-    margin-left: 0rem;
+    margin-left: -5rem;
   }
 
+  @media screen and (max-width: 577px) {
+    margin-left: 0rem;
+  }
+  .notification_area {
+    span {
+      position: absolute;
+      font-weight: 800;
+      margin-top: -1rem;
+      margin-left: 1rem;
+    }
+  }
 }
 
 .premium_area {
@@ -215,11 +226,6 @@
       color: #B8860B;
       font-size: 1.3rem;
       margin-top: -1rem;
-    }
-  }
-  @media screen and (max-width: 450px) {
-    .user_photo {
-      margin-right: 1rem;
     }
   }
 }

@@ -18,7 +18,7 @@ export default function NewSubComment({commentData}: ISubCommentForm) {
   const handleComment = (e: FormEvent) => {
     e.preventDefault();
     if(!content.length) return toast.error('Comentário sem conteúdo!');
-    dispatch(crateSubCommentAction({content, userId: Number(userData.id), commentId: commentData.id}));
+    dispatch(crateSubCommentAction({content, userId: Number(userData.id), commentId: commentData.id, comentTo: commentData.userData.id}));
     setContent('');
   };
 
