@@ -1,7 +1,10 @@
 import Image from 'next/image';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import { INotification } from '../../../../interfaces/modules/notificationInterfaces';
 import styles from './styles.module.scss';
+import {SubModuleInterface} from '../../../../interfaces/modules/ModulesInterface';
 
 interface INotificationCardProps {
   notification: INotification
@@ -10,6 +13,12 @@ interface INotificationCardProps {
 export default function NotificationCard({ notification }: INotificationCardProps) {
   const { active, classData, content, senderData, type } = notification;
 
+  const { subModules } = useSelector(({subModules}:globalState) => subModules);
+
+  const findSubModule = () => {
+    return subModules.find((currSubmodule: SubModuleInterface) =>
+      currSubmodule.id === classData.subModuleId );
+  };
   return (
     <article className={styles.notification_card_container}>
       <aside className={styles.user_side}>
@@ -20,13 +29,16 @@ export default function NotificationCard({ notification }: INotificationCardProp
             alt={classData.name}
             src={senderData.profilePhoto}
           />
-          <h1>{senderData.name} respondeu seu comenttário</h1>
+          <h1>{senderData.name.split(' ')[0]} respondeu seu comenttário</h1>
         </section>
         <p>{content}</p>
         <span>{active && 'novo!!'}</span>
       </aside>
       <aside className={styles.class_side}>
-        <h2>{classData.name}</h2>
+        <section>
+          <h2 className={styles.class_name}>{classData.name}</h2>
+          <span>{findSubModule().name}</span>
+        </section>
         <Image
           height={100}
           width={100}

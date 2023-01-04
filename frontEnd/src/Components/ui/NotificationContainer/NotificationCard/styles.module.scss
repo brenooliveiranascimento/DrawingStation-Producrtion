@@ -1,7 +1,7 @@
 .notification_card_container {
   width: 100%;
   height: auto;
-  background-color: rgba(75, 75, 75, 0.571);
+  background-color: rgba(121, 121, 121, 0.319);
   margin-bottom: 0.5rem;
   display: flex;
   justify-content: space-between;
@@ -11,12 +11,21 @@
     display: flex;
     width: 50%;
     justify-content: flex-end;
+
+    section {
+      display: flex;
+      flex-direction: column;
+      .class_name {
+        margin-left: 2rem;
+      }
+    }
   }
 
   .user_side {
     display: flex;
     flex-direction: column;
     width: 60%;
+    padding: 1rem;
     justify-content: center;
     img {
       margin-right: 1rem;
