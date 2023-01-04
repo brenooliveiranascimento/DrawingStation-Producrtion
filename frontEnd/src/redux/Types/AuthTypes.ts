@@ -61,3 +61,7 @@ export const NotificationTypes = {
   NOTIFICATION_FAIL: 'NOTIFICATION_FAIL',
   UPDATE_NOTIFICATION: 'UPDATE_NOTIFICATION',
 };
+
+export const ControllInterfaceTyes ={
+  GO_TO_COMMENTS: 'GO_TO_COMMENTS',
+};
