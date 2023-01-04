@@ -1,3 +1,4 @@
+import { DATE } from 'sequelize';
 import { Model, INTEGER, STRING, BOOLEAN } from 'sequelize';
 import db from '.';
 import UserModel from './UserModel'
@@ -11,6 +12,7 @@ class NotificationsModel extends Model {
   declare active: number;
   declare senderId: number;
   declare classroomId: number;
+  declare createAt: Date
 }
 
 NotificationsModel.init({
@@ -31,7 +33,7 @@ NotificationsModel.init({
   },
   content: {
     defaultValue: null,
-    allowNull: true,
+    allowNull: false,
     type: STRING(500),
   },
   commentId: {
@@ -48,8 +50,13 @@ NotificationsModel.init({
   },
   classroomId: {
     type: INTEGER,
-    allowNull: true,
+    allowNull: false,
   },
+  createAt: {
+    defaultValue: null,
+    allowNull: false,
+    type: DATE,
+  }
 }, {
   sequelize: db,
   modelName: 'notifications',

@@ -13,10 +13,12 @@ import { apiConnection } from '../../../services/api.connection';
 import { toast } from 'react-toastify';
 import { parseCookies } from 'nookies';
 import NotificationContainer from '../NotificationContainer/NotificationContainer';
+import { INotification } from '../../../interfaces/modules/notificationInterfaces';
 export default function UserContent() {
 
   const {
     user: { userData: { name, premium, profilePhoto, stripeClientId, id } },
+    notificationsModule: { data, error, errorMessage }
   } = useSelector((state: globalState) => state);
 
   const [notifications, setNotifications] = useState(false);
@@ -44,6 +46,11 @@ export default function UserContent() {
     }
   };
 
+  const getNewNotifications = () => {
+    const newNotifications = data.filter((currNotification: INotification) => currNotification.active);
+    return newNotifications;
+  };
+
   return (
     <aside  className={styles.user_container}>
       <section className={styles.user_crown}>
@@ -63,7 +70,7 @@ export default function UserContent() {
         </button> }
       </section>
       <section className={styles.notification_area}>
-        <span>a</span>
+        <span>{getNewNotifications().length}</span>
         <button onClick={() => setNotifications(!notifications)}>
           <FaBell color='white' size={23}/>
         </button>
