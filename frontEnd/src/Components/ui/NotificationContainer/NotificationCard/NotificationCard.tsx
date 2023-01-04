@@ -20,7 +20,7 @@ export default function NotificationCard({ notification }: INotificationCardProp
       currSubmodule.id === classData.subModuleId );
   };
   return (
-    <article className={styles.notification_card_container}>
+    <article onClick={() => alert('fdnoi')} className={styles.notification_card_container}>
       <aside className={styles.user_side}>
         <section>
           <Image

@@ -1,6 +1,7 @@
 .notification_card_container {
   width: 100%;
   height: auto;
+  cursor: pointer;
   // background-color: rgba(121, 121, 121, 0.319);
   border: 1px solid #394f5765;
   margin-bottom: 0.5rem;
@@ -58,4 +59,10 @@
     }
   }
 
+}
+
+
+.notification_card_container:hover {
+  background-color: rgba(0,0,0,0.1);
+  filter: brightness(50%);
 }
