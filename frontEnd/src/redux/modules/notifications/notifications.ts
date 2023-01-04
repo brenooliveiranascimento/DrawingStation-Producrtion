@@ -19,5 +19,7 @@ export default function notificationsModule(
     return { ...state, data: action.payload, error: false, errorMessage: ''};
   case NotificationTypes.NOTIFICATION_FAIL:
     return { ...state, data: [...state.data], error: false, errorMessage: action.payload};
+  default:
+    return state;
   }
 }
