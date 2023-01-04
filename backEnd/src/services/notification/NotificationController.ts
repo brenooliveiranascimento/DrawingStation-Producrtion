@@ -4,7 +4,7 @@ import Create from "./Create";
 import Get from "./Get";
 import { ICreateNotificationData } from "./types";
 
-export default class Controller {
+export default class NotificationController {
   async get(req: Request, res: Response) {
     const { id } = req.params
     try {
