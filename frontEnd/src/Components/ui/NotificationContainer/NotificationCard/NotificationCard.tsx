@@ -5,6 +5,7 @@ import { globalState } from '../../../../interfaces/modules/globalStateInterface
 import { INotification } from '../../../../interfaces/modules/notificationInterfaces';
 import styles from './styles.module.scss';
 import {SubModuleInterface} from '../../../../interfaces/modules/ModulesInterface';
+import { ClassroomInterface } from '../../../../interfaces/modules/classroomInterface';
 
 interface INotificationCardProps {
   notification: INotification
@@ -13,12 +14,20 @@ interface INotificationCardProps {
 export default function NotificationCard({ notification }: INotificationCardProps) {
   const { active, classData, content, senderData, type } = notification;
 
-  const { subModules } = useSelector(({subModules}:globalState) => subModules);
+  const { subModules: {subModules} } = useSelector((state:globalState) => state);
 
   const findSubModule = () => {
     return subModules.find((currSubmodule: SubModuleInterface) =>
       currSubmodule.id === classData.subModuleId );
   };
+
+  const findClass = () => {
+    return subModules.find((currSubmodule: SubModuleInterface) =>
+      currSubmodule.classrooms.find((currClass: ClassroomInterface) => {
+        return currClass.id === classData.id;
+      }) );
+  };
+
   return (
     <article onClick={() => alert('fdnoi')} className={styles.notification_card_container}>
       <aside className={styles.user_side}>
