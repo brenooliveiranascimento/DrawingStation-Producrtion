@@ -9,7 +9,7 @@ export default class Get {
       .findAll({ where: { id } })
     return notifications;
     } catch (e: any) {
-      throw new CustomError(500, e.message)
+      throw new CustomError(e.message, 500);
     }
   }
 }
