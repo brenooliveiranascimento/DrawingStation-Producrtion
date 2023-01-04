@@ -13,12 +13,12 @@ export const updateNotification = (): any => {
     const cookies = parseCookies();
     const token = cookies['DRAWING_USER_DATA'];
     try {
-      const { data } = await apiConnection.put('/notification/update',
+      await apiConnection.put('/notification/update',
         { userId: userData.id },
         { headers: { 'Authorization': token } });
       dispatch(genericNotificationAction(
-        NotificationTypes.REQUEST_NOTIFICATIONS,
-        data.notifications));
+        NotificationTypes.UPDATE_NOTIFICATION,
+        null));
     } catch(e: any) {
       console.log(e);
       toast.error(e.message);

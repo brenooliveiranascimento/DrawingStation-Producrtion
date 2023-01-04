@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 import { parseCookies } from 'nookies';
 import NotificationContainer from '../NotificationContainer/NotificationContainer';
 import { INotification } from '../../../interfaces/modules/notificationInterfaces';
+import { updateNotification } from '../../../redux/actions/notificationActions/updateNotificationAction';
 export default function UserContent() {
 
   const {
@@ -53,6 +54,8 @@ export default function UserContent() {
 
   const showNotifications = () => {
     if(notifications) return setNotifications(false);
+    setNotifications(true);
+    dispatch(updateNotification());
   };
 
   return (
@@ -75,7 +78,7 @@ export default function UserContent() {
       </section>
       <section className={styles.notification_area}>
         <span>{getNewNotifications().length}</span>
-        <button onClick={() => setNotifications(!notifications)}>
+        <button onClick={() => showNotifications()}>
           <FaBell color='white' size={23}/>
         </button>
       </section>
