@@ -1,28 +1,34 @@
 .notification_card_container {
   width: 100%;
   height: auto;
+  cursor: pointer;
   // background-color: rgba(121, 121, 121, 0.319);
   border: 1px solid #394f5765;
   margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 0.5rem;
 
   .class_side {
     display: flex;
     width: 50%;
     justify-content: flex-end;
-
     section {
       display: flex;
+      padding: 1rem;
       flex-direction: column;
+      width: 40%;
+      align-items: flex-end;
       .class_name {
-        margin-left: 2rem;
-        margin-top: 1rem;
+        text-align: end;
+        margin-right: 0rem;
+        align-self: flex-end;
       }
       span {
+        margin-right: 0rem;
         color: #aaa;
+        margin-left: 00rem;
       }
     }
   }
@@ -30,7 +36,7 @@
   .user_side {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 50%;
     padding: 1rem;
     justify-content: center;
     img {
@@ -53,4 +59,10 @@
     }
   }
 
+}
+
+
+.notification_card_container:hover {
+  background-color: rgba(0,0,0,0.1);
+  filter: brightness(50%);
 }

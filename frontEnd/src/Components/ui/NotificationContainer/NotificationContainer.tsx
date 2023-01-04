@@ -32,7 +32,7 @@ export default function NotificationContainer({active}: INotificationProps) {
       style={{ height: active ? '600px' : '0px' }}
       className={styles.notification_container} >
       {
-        newData.reverse().map((currNotification: INotification) =>
+        newData.map((currNotification: INotification) =>
           <NotificationCard notification={currNotification} key={currNotification.id}/>)
       }
     </section>

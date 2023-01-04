@@ -49,7 +49,7 @@ export default class Get {
       .findAll({ where: { userId: id } })
 
     const notificationsData = await this.mountNotifications(notifications);
-    return notificationsData;
+    return notificationsData.reverse();
     } catch (e: any) {
       throw new CustomError(e.message, 500);
     }

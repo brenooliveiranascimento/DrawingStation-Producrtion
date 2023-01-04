@@ -64,7 +64,7 @@ export default function PlayerInf() {
       <section className={styles.bellow_area}>
         <section className={styles.one_pencil_container}>
           <button onClick={() => setShowColors(!showColors)} className={styles.show_materials}>
-            { showColors ? 'Esconder Materiais' : 'Materiais necessarios' }
+            {showColors ? 'Esconder Materiais' : 'Materiais necessarios' }
           </button>
           {showColors && <Colors/>}
         </section>
