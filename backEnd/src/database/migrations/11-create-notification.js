@@ -10,11 +10,16 @@ module.exports = {
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        field: 'user_id',
+        onDelete: 'cascade',
+        onUpdate: 'cascade',
+        references: {
+          model: 'users',
+          key: 'id',
+        },
       },
       type: {
         allowNull: false,
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING(500),
       },
       content: {
         allowNull: false,
@@ -41,13 +46,6 @@ module.exports = {
       classroomId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        onDelete: 'cascade',
-        onUpdate: 'cascade',
-        references: {
-          model: 'classrooms',
-          key: 'id',
-        },
-        field: 'classroom_id',
       },
     });
   },
