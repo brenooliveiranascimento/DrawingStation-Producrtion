@@ -8,7 +8,7 @@ export default class Create {
 
   async validateUser(ids: number[]) {
     try {
-      const users = await Promise.all(ids
+      await Promise.all(ids
         .map(async (currId: number) => {
           const user = await UserModel.findByPk(currId)
           if(!user) throw new CustomError(errorMapTypes.USER_DONT_EXIST, 500)

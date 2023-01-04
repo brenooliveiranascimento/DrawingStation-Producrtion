@@ -7,26 +7,46 @@ import UserModel from "../../database/models/UserModel";
 export default class Get {
 
   async mountNotifications(notifications: NotificationsModel[]) {
-    const data = Promise.all(notifications
+    const data = await Promise.all(notifications
       .map(async (currNotificaiton: NotificationsModel) => {
-        const senderData = await UserModel
-          .findOne({ where: { id: currNotificaiton.senderId }})
+        try {
+          const getSenderData = await UserModel
+          .findOne({ where: { id: currNotificaiton.senderId }, attributes: {include: ['name', 'profilePhoto']}})
         const classOrigin = await ClassroomModel.findOne({
           where: { id: currNotificaiton.classroomId }
         });
-        return { ...currNotificaiton, senderData, classOrigin }
+        const senderData = {
+          name: getSenderData?.name,
+          email: getSenderData?.email,
+        }
+
+        const classData = {
+          image: classOrigin?.image,
+          name: classOrigin?.name,
+          id: classOrigin?.id,
+          subModuleId: classOrigin?.subModuleId,
+        }
+
+        const data = {
+          content: currNotificaiton.content,
+          type: currNotificaiton.type,
+          active: currNotificaiton.active,
+        }
+        return { senderData, classData, ...data }
+        } catch(e: any) {
+          throw new CustomError(e.message, 500);
+        }
       }))
+      return data
   }
 
   async execute(id: number) {
     try {
-
     const notifications = await NotificationsModel
       .findAll({ where: { userId: id } })
 
-    const notificationsData = this.mountNotifications(notifications);
-
-    return notifications;
+    const notificationsData = await this.mountNotifications(notifications);
+    return notificationsData;
     } catch (e: any) {
       throw new CustomError(e.message, 500);
     }
