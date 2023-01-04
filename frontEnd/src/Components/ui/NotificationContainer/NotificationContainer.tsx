@@ -8,6 +8,7 @@ interface INotificationProps {
 }
 
 export default function NotificationContainer({active}: INotificationProps) {
+  
   const {
     user: { userData: { name, premium, profilePhoto, stripeClientId, id } },
     notificationsModule: { data, error, errorMessage }

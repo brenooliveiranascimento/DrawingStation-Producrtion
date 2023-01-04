@@ -51,6 +51,10 @@ export default function UserContent() {
     return newNotifications;
   };
 
+  const showNotifications = () => {
+    if(notifications) return setNotifications(false);
+  };
+
   return (
     <aside  className={styles.user_container}>
       <section className={styles.user_crown}>
