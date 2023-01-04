@@ -34,17 +34,6 @@ function HomePage({ userData }: DashboardPropTypes) {
     <section className={styles.dashboard_container}>
       <CurrSideBar />
       <section className={styles.main_container}>
-        {/* <section
-          style={{
-            display: 'flex',
-            backgroundColor: 'rgba(0,0,0,0.3)',
-            width: '100%',
-            height: '100vh',
-            position: 'absolute',
-            marginLeft:'-15rem',
-            zIndex: 0
-          }}
-        /> */}
         <UserHeader/>
         <ModulesScreen />
       </section>

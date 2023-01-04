@@ -1,0 +1,41 @@
+.lottie {
+  align-self: center;
+  justify-content: center;
+  position: absolute;
+  margin-left: -5rem;
+  margin-top: 30rem;
+  z-index: 99
+}
+
+.carrousel_container {
+  position: absolute;
+  z-index:90;
+  width: 500;
+  height: 600;
+}
+
+.logo_position {
+  position: absolute;
+  z-index:99;
+  width: 350
+}
+
+.message {
+  position: absolute;
+  z-index: 11;
+  color: white;
+  margin-top: 22rem;
+  margin-left: 3rem;
+  
+  h1 {
+    font-weight: 800;
+    font-size: 1.7rem;
+    color: #ddd;
+  }
+
+  span {
+    font-size: 1.2rem;
+    color: #aaa;
+    font-weight: 500;
+  }
+}

@@ -149,6 +149,7 @@ export default function LoginForm() {
             top: 0,
             left: 0,
             right: 0,
+            zIndex:99,
             bottom: 0,
             backgroundColor: '#00000029'
           },
@@ -159,10 +160,11 @@ export default function LoginForm() {
             right: '40px',
             bottom: '40px',
             border: 'none',
-            background: 'rgba(0,0,0)',
+            background: '#1d292dee',
             overflow: 'auto',
             WebkitOverflowScrolling: 'touch',
             borderRadius: '4px',
+            backdropFilter: 'blur(3px)',
             outline: 'none',
             padding: '20px'
           }
