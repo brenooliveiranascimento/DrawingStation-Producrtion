@@ -95,6 +95,10 @@ export default function LoginCarrousel() {
         height={550}
         alt='Terry crews'
       />
+      <article className={styles.message}>
+        <h1>Te levando ao próximo nível</h1>
+        <span>Desenhos realistas com lápis de cor</span>
+      </article>
     </aside>
   );
 }
