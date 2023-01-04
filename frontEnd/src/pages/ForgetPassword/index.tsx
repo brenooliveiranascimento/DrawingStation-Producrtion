@@ -116,7 +116,7 @@ export default function ForgetPassword() {
             voltar
           </button>
           <label htmlFor='email' className={mainStyles.label_content}>
-            Digite seu email para enviarmos o código de validação
+            Digite seu email para enviarmos o código de recuperação
             <Input
               placeholder='digite seu email'
               name='email'
@@ -124,7 +124,7 @@ export default function ForgetPassword() {
               value={email}
             />
           </label>
-          <button onClick={initRecover}>Enviar código</button>
+          <button className={styles.send_btn} onClick={initRecover}>Enviar código</button>
         </section>
       )}
     </section>

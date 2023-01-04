@@ -47,21 +47,30 @@
   display: flex;
   flex-direction: column;
   background-color: var(--new-dark);
-  padding: 1rem;
   height: 500px;
   width: 500px;
   align-items: center;
   justify-content: center;
+  box-shadow: 0px 0px 0px rgba(50, 50, 50, 0.77);
+  backdrop-filter: blur(2px);
+  background-color: #2d3e44e1;
+  padding: 2rem;
   button {
-    width: 70%;
     height: 2rem;
     margin-top: 1rem;
-
     font-size: 1.4rem;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 1rem;
+    border: 1px solid white;
+    font-size: 1rem;
+    background-color: rgba(0,0,0,0.0);
+    color: white;
+
+    :hover {
+      filter: brightness(50%);
+    }
   }
   .recover_password_area_button_back {
     align-self: flex-start;
@@ -74,14 +83,18 @@
 }
 
 .recover_password_area {
-  background-color: var(--new-dark);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 1rem;
   height: 400px;
-
+  width: 700px;
+  box-shadow: 0px 0px 0px rgba(50, 50, 50, 0.77);
+  padding: 0rem 1rem;
+  background-color: #2d3e44e1;
+  backdrop-filter: blur(2px);
+  padding: 2rem;
+  .send_btn {
+    width: 80%;
+  }
   button {
     height: 2rem;
     margin-top: 1rem;
@@ -90,14 +103,23 @@
     align-items: center;
     justify-content: center;
     border-radius: 1rem;
+    border: 1px solid white;
+    font-size: 1rem;
+    background-color: rgba(0,0,0,0.0);
+    color: white;
+
+    :hover {
+      filter: brightness(50%);
+    }
   }
+
   .recover_password_area_button_back {
     align-self: flex-start;
     margin-bottom: 6rem;
-    width: 200px;
+    width: 100px;
   }
   input {
-    width: 100%;
+    width: 80%;
   }
 }
 
