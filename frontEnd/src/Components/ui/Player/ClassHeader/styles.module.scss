@@ -167,6 +167,10 @@
   overflow-x: scroll;
   height: 100%;
   width: 100%;
+
+  h1 {
+    margin-top: 1rem;
+  }
   @media screen and (max-width: 478px) {
     justify-content: center;
     width: 50%;

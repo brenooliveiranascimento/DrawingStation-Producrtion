@@ -80,8 +80,8 @@ export default function ClassHeader() {
                 style={{
                   color: module.id === currModule.id ? '#28CB99' : '#aaa',
                   borderTop: module.id === currModule.id ? '3px solid #28CB99' : 'none',
-                  paddingTop: module.id === currModule.id ? '1.4rem' : 'none',
-                  marginTop: module.id === currModule.id ? '-1.6rem' : 'none'
+                  paddingTop: module.id === currModule.id ? '2rem' : 'none',
+                  marginTop: module.id === currModule.id ? '-1.2rem' : 'none'
                 }}
               >
                 {currModule.name}
