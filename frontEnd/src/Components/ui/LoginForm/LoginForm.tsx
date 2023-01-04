@@ -212,7 +212,7 @@ export default function LoginForm() {
 
         {register && (<Input
           value={credentials.confirmPassword}
-          style={{borderBottomColor: unknowField === 'confirmPassword' ? 'red' : 'white'}}
+          style={{borderColor: unknowField === 'confirmPassword' ? 'red' : 'white'}}
           onChange={({target}) => handleUserCredentials(target)}
           placeholder='Confirm password'
           name='confirmPassword'
