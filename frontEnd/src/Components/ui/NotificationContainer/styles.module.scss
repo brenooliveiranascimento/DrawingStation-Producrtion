@@ -2,7 +2,7 @@
   position: absolute;
   width: 500px;
   overflow-y: scroll;
-  background-color: #394f57db;
+  background-color: #394f57e6;
   top: 4rem;
   box-shadow: 12px 8px 15px rgba(50, 50, 50, 0.77);
   right: 9rem;
@@ -10,6 +10,7 @@
   z-index: 99;
   flex-direction: column;
   transition: all 0.5s;
+  backdrop-filter: blur(5px);
 }
 
 .notification_container::-webkit-scrollbar {
