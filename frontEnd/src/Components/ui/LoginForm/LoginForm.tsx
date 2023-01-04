@@ -160,10 +160,11 @@ export default function LoginForm() {
             right: '40px',
             bottom: '40px',
             border: 'none',
-            background: '#2d3e44e1',
+            background: '#1d292dee',
             overflow: 'auto',
             WebkitOverflowScrolling: 'touch',
             borderRadius: '4px',
+            backdropFilter: 'blur(3px)',
             outline: 'none',
             padding: '20px'
           }

@@ -4,6 +4,7 @@
   color: white;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 
@@ -14,14 +15,25 @@
   align-items: center;
   justify-content: center;
   height: 720px;
+  border: 1px solid white;
+  border-radius: 1rem;
+
+  h2 {
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+  }
+
+  span {
+    margin-top: 2rem;
+  }
 
   input {
-    width: 50%;
-    margin-top: 2rem;    
+    width: 80%;
+    margin-top: 1rem;    
   }
 
   button {
-    width: 200px;
+    width: 80%;
     margin-bottom: 1rem;
     padding: 0.5rem;
     border-radius: 1rem;
@@ -30,8 +42,5 @@
     background-color: rgba(0,0,0,0.0);
     color: white;
 
-    :hover {
-      background-color: red;
-    }
   }
 }

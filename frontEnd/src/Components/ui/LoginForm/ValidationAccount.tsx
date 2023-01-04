@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { destroyCookie, parseCookies } from 'nookies';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -6,6 +7,7 @@ import { apiConnection } from '../../../services/api.connection';
 import { globalTypes } from '../../../utils/globalTypes';
 import { Input } from '../Inputs/Inputs';
 import styles from './styles.module.scss';
+import logo from '../../../../public/logo1.png';
 
 interface ICredentials {
   credentials: IUserCredentials,
@@ -50,6 +52,12 @@ export default function ValidationAccount({credentials, userRegister, sendCode}:
   return (
     <section className={styles.modal_caontainer}>
       <section className={styles.modal_limit}>
+        <Image
+          alt='logo'
+          width={400}
+          height={200}
+          src={logo}
+        />
         <h2>Digite seu código</h2>
         <Input
           placeholder='Código de validação'
@@ -67,6 +75,7 @@ export default function ValidationAccount({credentials, userRegister, sendCode}:
         >
           Reenviar código
         </button>
+        <span>Verifique seu spam</span>
       </section>
     </section>
   );
