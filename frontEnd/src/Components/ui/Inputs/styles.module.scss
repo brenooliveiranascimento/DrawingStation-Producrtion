@@ -5,8 +5,9 @@
   background-color: var(--black900);
   color: var(--white);
   padding: 1rem;
-  border-bottom: 1px solid var(--white);
+  border: 1px solid var(--white);
   font-size: 1rem;
+  border-radius: 1.4rem;
 }
 
 .input::placeholder {

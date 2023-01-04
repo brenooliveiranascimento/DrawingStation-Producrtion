@@ -57,20 +57,36 @@ export default function Player({ showSidebar, width }: playerProps) {
       <section style={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         flexDirection: 'column',
         width: '100%',
         height: 'auto',
-        marginBottom: '-4rem'
+        marginBottom: '-4rem',
       }} className={styles.player}>
-        <Link href={'/Subscription'} style={{fontSize:'1.3rem'}}>Tornar se premium</Link>
-        <Image
-          style={{objectFit: 'cover'}}
-          width={200}
-          height={200}
-          src={classroom.image}
-          alt={classroom.name}
-        />
+        <header style={{
+          display: 'flex',
+          width: '100%',
+        }}>
+          <PlayerHeader/>
+        </header>
+        <section
+          style={{
+            display: 'flex',
+            width: '100%',
+            height: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column'
+          }}>
+          <Link className={styles.premium} href={'/Subscription'} style={{fontSize:'1.3rem'}}>Tornar se premium</Link>
+          <Image
+            style={{objectFit: 'cover'}}
+            width={ width >= 1590 ? 500 : 300}
+            height={ width >= 1590 ? 600 : 300 }
+            src={classroom.image}
+            alt={classroom.name}
+          />
+        </section>
       </section>
     );
   }

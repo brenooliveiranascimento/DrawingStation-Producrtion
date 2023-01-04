@@ -20,6 +20,7 @@ export default function UserCard() {
     router.push('/');
     localStorage.clear();
   };
+  
   return (
     <section className={styles.card_container}>
       <section>

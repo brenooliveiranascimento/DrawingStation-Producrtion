@@ -21,15 +21,15 @@
   }
 
   @media screen and (max-width: 660px) {
-    min-height: 60%;
+    min-height: 80%;
   }
 
   @media screen and (max-width: 490px) {
-    min-height: 57%;
+    min-height: 70%;
   }
 
   @media screen and (max-width: 390px) {
-    min-height: 45%;
+    margin-top: 3rem;
   }
 }
 
@@ -72,6 +72,9 @@
     margin-top: -3rem;
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+  svg {
+    margin-bottom: -2rem;
   }
   @media screen and (max-width: 390px) {
     margin-top: 2rem;
@@ -186,6 +189,22 @@
     padding-top: 5rem;
     padding-right: 1rem;
     padding-left: 1rem;
+  }
+
+}
+
+.premium {
+  border: 1px solid var(--gold-600);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--gold-600);
+  padding: 1rem;
+  border-radius: 2rem;
+
+  @media screen and (max-height: 726px) {
+    margin-top: 5rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
 }

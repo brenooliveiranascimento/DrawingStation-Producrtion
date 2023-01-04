@@ -5,8 +5,8 @@ import { apiConnection } from '../../services/api.connection';
 import nookies, { destroyCookie, parseCookies } from 'nookies';
 import mainStyles from './styles.module.scss';
 import { globalTypes } from '../../utils/globalTypes';
-import Router from 'next/router';
-
+import Router, { useRouter } from 'next/router';
+import styles from './styles.module.scss';
 export default function ForgetPassword() {
   const [email, setEmail] = useState('');
   const [verify, setVerify] = useState(false);
@@ -21,6 +21,12 @@ export default function ForgetPassword() {
     setTimeout(() => {
       setResendTime(false);
     }, 30000);
+  };
+
+  const router = useRouter();
+
+  const redirect = () => {
+    router.push('/');
   };
 
   const initRecover = async () => {
@@ -67,6 +73,9 @@ export default function ForgetPassword() {
     <section className={mainStyles.home_container}>
       {verify ? (
         <section className={mainStyles.confirPassword_area}>
+          <button onClick={redirect} className={mainStyles.recover_password_area_button_back}>
+            voltar
+          </button>
           <Input
             placeholder='Código'
             name='código'
@@ -102,7 +111,10 @@ export default function ForgetPassword() {
           <button onClick={validatePasswords}>Atualizar senha</button>
         </section>
       ) : (
-        <section>
+        <section className={styles.recover_password_area}>
+          <button onClick={redirect} className={styles.recover_password_area_button_back}>
+            voltar
+          </button>
           <label htmlFor='email' className={mainStyles.label_content}>
             Digite seu email para enviarmos o código de validação
             <Input
