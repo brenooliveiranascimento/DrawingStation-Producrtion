@@ -20,7 +20,15 @@ import Lottie from 'react-lottie';
 import styles from './styles.module.scss';
 
 export default function LoginCarrousel() {
-  const items = [{photo: rosaAzul}, {photo: iron}, {photo: terry}, {photo: overlord}, {photo: petalas}, {photo: rosVermelha}, {photo: rose}];
+  const items = [
+    { photo: rosaAzul },
+    { photo: iron },
+    { photo: terry },
+    { photo: overlord },
+    { photo: petalas },
+    { photo: rosVermelha },
+    { photo: rose }
+  ];
   const defaultOptionsLoading: any = {
     loop: false,
     autoplay: true,
