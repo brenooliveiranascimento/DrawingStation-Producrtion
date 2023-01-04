@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
+import { INotification } from '../../../interfaces/modules/notificationInterfaces';
+import NotificationCard from './NotificationCard/NotificationCard';
 import styles from './styles.module.scss';
 
 interface INotificationProps {
@@ -17,8 +19,11 @@ export default function NotificationContainer({active}: INotificationProps) {
   return (
     <section
       style={{ height: active ? '600px' : '0px' }}
-      className={styles.notification_container}
-    >
+      className={styles.notification_container} >
+      {
+        data.map((currNotification: INotification) =>
+          <NotificationCard notification={currNotification} key={currNotification.id}/>)
+      }
     </section>
   );
 }
