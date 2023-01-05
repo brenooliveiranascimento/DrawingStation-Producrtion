@@ -8,10 +8,11 @@ import NotificationHeader from './NotificationHeader/NotificationHeader';
 import styles from './styles.module.scss';
 
 interface INotificationProps {
-  active: boolean
+  active: boolean,
+  close: () => void
 }
 
-export default function NotificationContainer({active}: INotificationProps) {
+export default function NotificationContainer({active, close}: INotificationProps) {
 
   const {
     user: { userData: { name, premium, profilePhoto, stripeClientId, id } },
@@ -32,7 +33,7 @@ export default function NotificationContainer({active}: INotificationProps) {
     <section
       style={{ height: active ? '600px' : '0px' }}
       className={styles.notification_container} >
-      <NotificationHeader/>
+      <NotificationHeader close={() => close()}/>
       {
         newData.map((currNotification: INotification) =>
           <NotificationCard notification={currNotification} key={currNotification.id}/>)

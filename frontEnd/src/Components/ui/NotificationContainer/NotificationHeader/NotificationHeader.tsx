@@ -4,11 +4,16 @@ import { useDispatch } from 'react-redux';
 import { deleteAllNotification } from '../../../../redux/actions/notificationActions/deleteNotificaionAcito';
 import styles from './styles.module.scss';
 
-export default function NotificationHeader() {
+interface INotificationHeader {
+  close: () => void
+}
+
+export default function NotificationHeader({ close }: INotificationHeader) {
   const dispatch = useDispatch();
 
   const deleteAll = () => {
     dispatch(deleteAllNotification());
+    close();
   };
 
   return (
