@@ -50,11 +50,11 @@ export default function NotificationCard({ notification }: INotificationCardProp
   };
 
   const selectSubModule = () => {
+    dispatch({type: ControllInterfaceTyes.GO_TO_COMMENTS, payload: notification.subCommentId});
     const findCurrModule = modules.find((currModule: ModulesInterface) => currModule.id === findSubModule().moduleId);
     selectModule(findCurrModule);
     dispatch(selectCurrSubModule({ name: findSubModule().name, id: findSubModule().id }));
     selectClass(findClass());
-    dispatch({type: ControllInterfaceTyes.GO_TO_COMMENTS, payload: notification.subCommentId});
   };
 
 

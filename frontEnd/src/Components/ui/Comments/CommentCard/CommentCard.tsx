@@ -55,15 +55,13 @@ export default function CommentCard({comment}: commentCardProp) {
   };
 
   const updateControllInterface = () => {
-    dispatch({type: ControllInterfaceTyes.GO_TO_COMMENTS, payload: null});
+    dispatch({type: ControllInterfaceTyes.GO_TO_COMMENTS_FALSE, payload: null});
   };
 
   useEffect(() => {
     if(toComments) {
       setShowSubComments(true);
       toSubComment();
-    } else {
-      setShowSubComments(false);
     }
 
     return () => updateControllInterface();

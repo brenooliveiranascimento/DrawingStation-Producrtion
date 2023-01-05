@@ -49,7 +49,9 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
   return (
     <section
       style={{
-        border: commentId === subComment.id ? '1px solid gold' : 'none'
+        borderTop: commentId === subComment.id ? '1px solid gold' : 'none',
+        borderRadius: commentId === subComment.id ? '1rem' : 'none',
+        paddingBottom: commentId === subComment.id ? '0rem' : 'none',
       }}
       id={`comment-${subComment.id}`} className={styles.sub_comment_container}>
       <CommentCardHeader userData={subComment.userData} />
