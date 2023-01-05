@@ -8,7 +8,9 @@ import { genericNotificationAction } from './genericNotificaitonActions';
 
 export const deleteAllNotification = (): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
-    const { userData } = state().user;
+    const { user:{ userData }, notificationsModule: { data } } = state();
+
+    if(!data.length) return;
     if(!userData.name.length) return;
     const cookies = parseCookies();
     const token = cookies['DRAWING_USER_DATA'];
