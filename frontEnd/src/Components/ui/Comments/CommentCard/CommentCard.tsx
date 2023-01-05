@@ -62,6 +62,8 @@ export default function CommentCard({comment}: commentCardProp) {
     if(toComments) {
       setShowSubComments(true);
       toSubComment();
+    } else {
+      setShowSubComments(false);
     }
 
     return () => updateControllInterface();
