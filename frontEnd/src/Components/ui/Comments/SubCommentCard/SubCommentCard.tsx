@@ -48,7 +48,7 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
   };
 
   return (
-    <section className={styles.sub_comment_container}>
+    <section id={`comment-${subComment.id}`} className={styles.sub_comment_container}>
       <CommentCardHeader userData={subComment.userData} />
       <article>
         {edit ?

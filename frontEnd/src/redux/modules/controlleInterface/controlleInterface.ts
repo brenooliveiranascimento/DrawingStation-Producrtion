@@ -2,6 +2,7 @@ import { ControllInterfaceTyes } from '../../Types/AuthTypes';
 
 export const controllInterfaceInitialValue = {
   toComments: false,
+  commentId: 0
 };
 
 export const controllInterfaceAction = {
@@ -14,7 +15,7 @@ export default function controlleInterface(
 ) {
   switch(action.type) {
   case ControllInterfaceTyes.GO_TO_COMMENTS:
-    return { ...state, toComments: !state.toComments };
+    return { ...state, toComments: !state.toComments, commentId: action.payload };
   default:
     return state;
   }

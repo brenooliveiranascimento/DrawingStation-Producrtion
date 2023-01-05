@@ -20,7 +20,7 @@ export default function CommentCard({comment}: commentCardProp) {
   const [edit, setEdit] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
 
-  const { user: { userData }, controlleInterface: { toComments } } = useSelector((state: globalState) => state);
+  const { user: { userData }, controlleInterface: { toComments, commentId } } = useSelector((state: globalState) => state);
 
   const dispatch = useDispatch();
 
@@ -47,13 +47,20 @@ export default function CommentCard({comment}: commentCardProp) {
 
 
   const toSubComment = () => {
-    alert();
+    const element = document.getElementById(`comment-${commentId}`);
+    console.log(commentId);
+
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      console.log(element);
+    }
+    setTimeout(() => dispatch({type: ControllInterfaceTyes.GO_TO_COMMENTS, payload: 0}), 4000);
   };
 
   useEffect(() => {
     if(toComments) {
+      setShowSubComments(true);
       toSubComment();
-      dispatch({type: ControllInterfaceTyes.GO_TO_COMMENTS});
     }
   }, []);
 

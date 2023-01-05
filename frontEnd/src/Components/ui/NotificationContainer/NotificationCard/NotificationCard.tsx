@@ -10,6 +10,7 @@ import { selectClassroomAction, selectSubModuleAction } from '../../../../redux/
 import { handleScreen } from '../../../../redux/actions/genericActions';
 import { Router, useRouter } from 'next/router';
 import { selectCurrSubModule } from '../../../../redux/actions/classroomControllerActions/genericActions';
+import { ControllInterfaceTyes } from '../../../../redux/Types/AuthTypes';
 
 interface INotificationCardProps {
   notification: INotification
@@ -53,6 +54,7 @@ export default function NotificationCard({ notification }: INotificationCardProp
     selectModule(findCurrModule);
     dispatch(selectCurrSubModule({ name: findSubModule().name, id: findSubModule().id }));
     selectClass(findClass());
+    dispatch({type: ControllInterfaceTyes.GO_TO_COMMENTS, payload: notification.commentId});
   };
 
 

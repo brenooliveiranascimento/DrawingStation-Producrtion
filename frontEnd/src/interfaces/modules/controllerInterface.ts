@@ -1,3 +1,4 @@
 export  interface IControllerInterfaceState {
-  toComments: boolean
+  toComments: boolean,
+  commentId: number
 }
