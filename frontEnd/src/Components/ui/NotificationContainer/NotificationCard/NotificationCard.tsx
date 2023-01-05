@@ -54,7 +54,7 @@ export default function NotificationCard({ notification }: INotificationCardProp
     selectModule(findCurrModule);
     dispatch(selectCurrSubModule({ name: findSubModule().name, id: findSubModule().id }));
     selectClass(findClass());
-    dispatch({type: ControllInterfaceTyes.GO_TO_COMMENTS, payload: notification.commentId});
+    dispatch({type: ControllInterfaceTyes.GO_TO_COMMENTS, payload: notification.subCommentId});
   };
 
 

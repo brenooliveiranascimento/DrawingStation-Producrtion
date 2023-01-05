@@ -37,15 +37,18 @@ export const crateSubCommentAction = (commentData: INewSubComment): any => {
         { commentId, content, userId, },
         { headers: { 'Authorization': token } });
       const comment = comments.find((currComment: ICommentsWithUserData) => currComment.id === commentId);
-      if(comment?.userData.id !== userId) {
-        await apiConnection.post('/notification/create',
-          { commentId, content, userId: comentTo, classroomId: classroom.id, senderId: userData.id, type: 'comentario' },
-          { headers: { 'Authorization': token } });
-      }
-      toast.success(data);
+
+      toast.success(data.message);
       
       const { data: newComments } = await apiConnection
         .get(`/comments/all/${classroom.id}`, { headers: { 'Authorization': token } });
+      console.log(data.message);
+      if(comment?.userData.id !== userId) {
+        await apiConnection.post('/notification/create',
+          { commentId, content, userId: comentTo, classroomId: classroom.id, senderId: userData.id, type: 'comentario', subCommentId: data.subCommentId },
+          { headers: { 'Authorization': token } });
+      }
+
       dispatch(requestComments(newComments.reverse()));
     } catch(e: any) {
       console.log(e);

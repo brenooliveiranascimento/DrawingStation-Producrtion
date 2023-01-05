@@ -15,7 +15,7 @@ interface commentCardProp {
 }
 
 export default function CommentCard({comment}: commentCardProp) {
-  const [showSubComments, setShowSubComments] = useState(false);
+  const [showSubComments, setShowSubComments] = useState(true);
   const [editedValue, setEditedValue] = useState('');
   const [edit, setEdit] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -48,24 +48,30 @@ export default function CommentCard({comment}: commentCardProp) {
 
   const toSubComment = () => {
     const element = document.getElementById(`comment-${commentId}`);
-    console.log(commentId);
-
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
       console.log(element);
+      element.scrollIntoView({ behavior: 'smooth' });
     }
-    setTimeout(() => dispatch({type: ControllInterfaceTyes.GO_TO_COMMENTS, payload: 0}), 4000);
+  };
+
+  const updateControllInterface = () => {
+    dispatch({type: ControllInterfaceTyes.GO_TO_COMMENTS, payload: null});
   };
 
   useEffect(() => {
     if(toComments) {
       setShowSubComments(true);
       toSubComment();
+    } else {
+      setShowSubComments(false);
     }
+
+    return () => updateControllInterface();
   }, []);
 
   return (
-    <section id={`comment-${comment.id}`} className={styles.card_caontainer}>
+    <section
+      id={`comment-${comment.id}`} className={styles.card_caontainer}>
       <CommentCardHeader userData={comment.userData}  />
       <article>
         {edit ? <input

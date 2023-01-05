@@ -13,6 +13,7 @@ class NotificationsModel extends Model {
   declare senderId: number;
   declare classroomId: number;
   declare createAt: Date
+  declare subCommentId: number
 }
 
 NotificationsModel.init({
@@ -37,6 +38,10 @@ NotificationsModel.init({
     type: STRING(500),
   },
   commentId: {
+    type: INTEGER,
+    allowNull: false,
+  },
+  subCommentId: {
     type: INTEGER,
     allowNull: false,
   },

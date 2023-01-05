@@ -15,7 +15,8 @@ export default class SubCommentControlelr {
   async create(req: Request, res: Response) {
     const subComment: IsubComments = req.body;
     const create = await this.props.create.execute(subComment);
-    res.status(201).json({ message: create });
+    res.status(201).json({ message: 'Comentário adicionado com sucesso!!'
+    , subCommentId: create });
   }
 
   async update(req: Request, res: Response) {

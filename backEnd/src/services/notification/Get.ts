@@ -34,7 +34,8 @@ export default class Get {
           active: currNotificaiton.active,
           id: currNotificaiton.id,
           createAt: currNotificaiton.createAt,
-          commentId: currNotificaiton.commentId
+          commentId: currNotificaiton.commentId,
+          subCommentId: currNotificaiton.subCommentId
         }
         return { senderData, classData, ...data }
         } catch(e: any) {

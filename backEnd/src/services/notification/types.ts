@@ -5,5 +5,6 @@ export interface ICreateNotificationData {
   commentId: number;
   active: boolean;
   senderId: number;
-  classroomId: number
+  classroomId: number;
+  subCommentId: number
 }

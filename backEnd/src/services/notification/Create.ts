@@ -26,11 +26,12 @@ export default class Create {
       type,
       senderId,
       userId,
+      subCommentId
     } = notificationData;
     try {
       await this.validateUser([userId, senderId])
       await NotificationsModel.create({
-        classroomId, commentId, content, type, senderId, userId, active: true,
+        classroomId, commentId, content, type, senderId, userId, active: true, subCommentId,
         createAt: new Date()
       });
     } catch(e: any) {

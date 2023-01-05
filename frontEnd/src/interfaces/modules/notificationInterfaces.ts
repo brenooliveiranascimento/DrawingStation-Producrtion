@@ -18,7 +18,8 @@ export interface INotification {
   type: string;
   active: boolean;
   id: number;
-  commentId:number
+  commentId:number;
+  subCommentId: number
 }
 
 export interface INotificationState {
