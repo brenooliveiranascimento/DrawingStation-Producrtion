@@ -6,6 +6,7 @@ import classroomsData from './classroomsData/classroomsData';
 import { classroomController } from './classController/classcontroller';
 import { commentsModule } from './comments/commentsModules';
 import notificationsModule from './notifications/notifications';
+import controlleInterface from './controlleInterface/controlleInterface';
 
 const rootReducer = combineReducers({
   user,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   classroomsData,
   classroomController,
   commentsModule,
-  notificationsModule
+  notificationsModule,
+  controlleInterface
 });
 
 export default rootReducer;

@@ -4,6 +4,7 @@ import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { INotification } from '../../../interfaces/modules/notificationInterfaces';
 import { updateNotification } from '../../../redux/actions/notificationActions/updateNotificationAction';
 import NotificationCard from './NotificationCard/NotificationCard';
+import NotificationHeader from './NotificationHeader/NotificationHeader';
 import styles from './styles.module.scss';
 
 interface INotificationProps {
@@ -31,6 +32,7 @@ export default function NotificationContainer({active}: INotificationProps) {
     <section
       style={{ height: active ? '600px' : '0px' }}
       className={styles.notification_container} >
+      <NotificationHeader/>
       {
         newData.map((currNotification: INotification) =>
           <NotificationCard notification={currNotification} key={currNotification.id}/>)
