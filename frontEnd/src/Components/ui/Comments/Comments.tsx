@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IAllSubCommentsUserData, ICommentsWithUserData } from '../../../interfaces/modules/commentsModuleInterfaces';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
+import { SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
 import { requestSubCommentsAction } from '../../../redux/actions/commentsActions/commentsActions';
 import CommentCard from './CommentCard/CommentCard';
 import NewCommentForm from './NewCommentForm/NewCommentForm';
@@ -10,7 +11,7 @@ import styles from './styles.module.scss';
 export default function Comments() {
 
   const dispatch = useDispatch();
-  const { classroom } = useSelector(({ classroomController }: globalState) => classroomController);
+  const { classroom, subModules, currSubModule } = useSelector(({ classroomController }: globalState) => classroomController);
   const { comments, error, load } = useSelector(({ commentsModule }: globalState) => commentsModule);
   const [showComments, setShowComments] = useState(false);
 
@@ -43,12 +44,16 @@ export default function Comments() {
       {/* <button className={styles.show_comment_btn} onClick={() => setShowComments(!showComments)}>
         { showComments ? 'Ocultar comentários' : 'mostrar comentarios' }
       </button> */}
-      <section>
-        {comments.filter((currComment: ICommentsWithUserData, index: number) =>
-          currComment.classroomId === classroom.id).map((comment: ICommentsWithUserData, index: number) => (
-          <CommentCard  comment={comment} key={index}/>
-        ))}
-      </section>
+      {
+        subModules.find((subM:SubModuleInterface) =>
+          subM.id === currSubModule.id)?.classrooms.length &&
+          <section>
+            {comments.filter((currComment: ICommentsWithUserData, index: number) =>
+              currComment.classroomId === classroom.id).map((comment: ICommentsWithUserData, index: number) => (
+              <CommentCard  comment={comment} key={index}/>
+            ))}
+          </section>
+      }
     </section>
   );
 }
