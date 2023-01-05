@@ -14,7 +14,7 @@ export default function controlleInterface(
 ) {
   switch(action.type) {
   case ControllInterfaceTyes.GO_TO_COMMENTS:
-    return { ...state, toComments: true };
+    return { ...state, toComments: !state.toComments };
   default:
     return state;
   }

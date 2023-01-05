@@ -1,9 +1,10 @@
-import React, { use, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ICommentsWithUserData, IsubComments } from '../../../../interfaces/modules/commentsModuleInterfaces';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import { deleteCommentAction } from '../../../../redux/actions/commentsActions/deleteComment';
 import { editCommentAction } from '../../../../redux/actions/commentsActions/editComment';
+import { ControllInterfaceTyes } from '../../../../redux/Types/AuthTypes';
 import NewSubComment from '../NewCommentForm/NewSubComment';
 import SubCommentCard from '../SubCommentCard/SubCommentCard';
 import CommentCardHeader from './CommentCardHeader';
@@ -19,7 +20,7 @@ export default function CommentCard({comment}: commentCardProp) {
   const [edit, setEdit] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
 
-  const { userData } = useSelector(({ user }: globalState) => user);
+  const { user: { userData }, controlleInterface: { toComments } } = useSelector((state: globalState) => state);
 
   const dispatch = useDispatch();
 
@@ -44,8 +45,20 @@ export default function CommentCard({comment}: commentCardProp) {
     }
   };
 
+
+  const toSubComment = () => {
+    alert();
+  };
+
+  useEffect(() => {
+    if(toComments) {
+      toSubComment();
+      dispatch({type: ControllInterfaceTyes.GO_TO_COMMENTS});
+    }
+  }, []);
+
   return (
-    <section className={styles.card_caontainer}>
+    <section id={`comment-${comment.id}`} className={styles.card_caontainer}>
       <CommentCardHeader userData={comment.userData}  />
       <article>
         {edit ? <input

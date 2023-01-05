@@ -40,18 +40,15 @@ export default function Comments() {
   return (
     <section className={styles.main_comment_container}>
       <NewCommentForm/>
-      <button className={styles.show_comment_btn} onClick={() => setShowComments(!showComments)}>
+      {/* <button className={styles.show_comment_btn} onClick={() => setShowComments(!showComments)}>
         { showComments ? 'Ocultar comentários' : 'mostrar comentarios' }
-      </button>
-      {
-        showComments && ( <section>
-          {comments.filter((currComment: ICommentsWithUserData, index: number) =>
-            currComment.classroomId === classroom.id).map((comment: ICommentsWithUserData, index: number) => (
-            <CommentCard  comment={comment} key={index}/>
-          ))}
-        </section>
-        )
-      }
+      </button> */}
+      <section>
+        {comments.filter((currComment: ICommentsWithUserData, index: number) =>
+          currComment.classroomId === classroom.id).map((comment: ICommentsWithUserData, index: number) => (
+          <CommentCard  comment={comment} key={index}/>
+        ))}
+      </section>
     </section>
   );
 }
