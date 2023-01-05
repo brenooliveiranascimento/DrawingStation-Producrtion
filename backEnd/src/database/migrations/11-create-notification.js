@@ -35,6 +35,11 @@ module.exports = {
         },
         field: 'comment_id',
       },
+      subCommentId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        field: 'sub_comment_id',
+      },
       active: {
         allowNull: false,
         type: Sequelize.BOOLEAN

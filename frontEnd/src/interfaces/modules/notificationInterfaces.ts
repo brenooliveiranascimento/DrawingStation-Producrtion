@@ -17,7 +17,9 @@ export interface INotification {
   classData: IClassData;
   type: string;
   active: boolean;
-  id: number
+  id: number;
+  commentId:number;
+  subCommentId: number
 }
 
 export interface INotificationState {

@@ -66,4 +66,5 @@ export const NotificationTypes = {
 
 export const ControllInterfaceTyes ={
   GO_TO_COMMENTS: 'GO_TO_COMMENTS',
+  GO_TO_COMMENTS_FALSE: 'GO_TO_COMMENTS_FALSE',
 };

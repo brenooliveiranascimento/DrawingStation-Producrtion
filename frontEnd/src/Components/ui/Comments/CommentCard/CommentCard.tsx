@@ -1,9 +1,10 @@
-import React, { use, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ICommentsWithUserData, IsubComments } from '../../../../interfaces/modules/commentsModuleInterfaces';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import { deleteCommentAction } from '../../../../redux/actions/commentsActions/deleteComment';
 import { editCommentAction } from '../../../../redux/actions/commentsActions/editComment';
+import { ControllInterfaceTyes } from '../../../../redux/Types/AuthTypes';
 import NewSubComment from '../NewCommentForm/NewSubComment';
 import SubCommentCard from '../SubCommentCard/SubCommentCard';
 import CommentCardHeader from './CommentCardHeader';
@@ -14,12 +15,12 @@ interface commentCardProp {
 }
 
 export default function CommentCard({comment}: commentCardProp) {
-  const [showSubComments, setShowSubComments] = useState(false);
+  const [showSubComments, setShowSubComments] = useState(true);
   const [editedValue, setEditedValue] = useState('');
   const [edit, setEdit] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
 
-  const { userData } = useSelector(({ user }: globalState) => user);
+  const { user: { userData }, controlleInterface: { toComments, commentId } } = useSelector((state: globalState) => state);
 
   const dispatch = useDispatch();
 
@@ -44,8 +45,33 @@ export default function CommentCard({comment}: commentCardProp) {
     }
   };
 
+
+  const toSubComment = () => {
+    const element = document.getElementById(`comment-${commentId}`);
+    if (element) {
+      console.log(element);
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
+  const updateControllInterface = () => {
+    dispatch({type: ControllInterfaceTyes.GO_TO_COMMENTS_FALSE, payload: null});
+  };
+
+  useEffect(() => {
+    if(toComments) {
+      setShowSubComments(true);
+      toSubComment();
+    } else {
+      setShowSubComments(false);
+    }
+
+    return () => updateControllInterface();
+  }, []);
+
   return (
-    <section className={styles.card_caontainer}>
+    <section
+      id={`comment-${comment.id}`} className={styles.card_caontainer}>
       <CommentCardHeader userData={comment.userData}  />
       <article>
         {edit ? <input

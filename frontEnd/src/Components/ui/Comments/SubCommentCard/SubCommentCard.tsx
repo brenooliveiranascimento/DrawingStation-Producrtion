@@ -17,7 +17,7 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const dispatch = useDispatch();
 
-  const { userData } = useSelector(({ user }: globalState) => user);
+  const { user: { userData }, controlleInterface: { toComments, commentId } } = useSelector((state: globalState) => state);
 
   const deleteComment = () => {
     if(edit) return setEdit(!edit);
@@ -46,9 +46,14 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
       setEdit(false);
     }
   };
-
   return (
-    <section className={styles.sub_comment_container}>
+    <section
+      style={{
+        borderTop: commentId === subComment.id ? '1px solid gold' : 'none',
+        borderRadius: commentId === subComment.id ? '1rem' : 'none',
+        paddingBottom: commentId === subComment.id ? '0rem' : 'none',
+      }}
+      id={`comment-${subComment.id}`} className={styles.sub_comment_container}>
       <CommentCardHeader userData={subComment.userData} />
       <article>
         {edit ?

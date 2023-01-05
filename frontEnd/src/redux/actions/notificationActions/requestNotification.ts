@@ -16,6 +16,7 @@ export const requestNotification = (): any => {
       const { data } = await apiConnection.get(`/notification/get/${Number(userData.id)}`, {
         headers: { 'Authorization': token }
       });
+      console.log(data);
       dispatch(genericNotificationAction(
         NotificationTypes.REQUEST_NOTIFICATIONS,
         data.notifications));
