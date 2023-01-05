@@ -1,7 +1,7 @@
 import { parseCookies } from 'nookies';
 import { Dispatch } from 'react';
 import { toast } from 'react-toastify';
-import { INewComment, INewSubComment } from '../../../interfaces/modules/commentsModuleInterfaces';
+import { IComments, ICommentsWithUserData, INewComment, INewSubComment } from '../../../interfaces/modules/commentsModuleInterfaces';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { apiConnection } from '../../../services/api.connection';
 import { requestComments } from './genericAtions';
@@ -29,17 +29,21 @@ export const crateCommentAction = (commentData: INewComment): any => {
 export const crateSubCommentAction = (commentData: INewSubComment): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
     const { commentId, content, userId, comentTo } = commentData;
-    const { classroomController: { classroom }, user: { userData } } = state();
+    const { classroomController: { classroom }, user: { userData }, commentsModule: { comments } } = state();
     const cookies = parseCookies();
     const token = cookies['DRAWING_USER_DATA'];
     try {
       const { data } = await apiConnection.post('/subComments/create',
         { commentId, content, userId, },
         { headers: { 'Authorization': token } });
-      await apiConnection.post('/notification/create',
-        { commentId, content, userId: comentTo, classroomId: classroom.id, senderId: userData.id, type: 'comentario' },
-        { headers: { 'Authorization': token } });
+      const comment = comments.find((currComment: ICommentsWithUserData) => currComment.id === commentId);
+      if(comment?.userData.id !== userId) {
+        await apiConnection.post('/notification/create',
+          { commentId, content, userId: comentTo, classroomId: classroom.id, senderId: userData.id, type: 'comentario' },
+          { headers: { 'Authorization': token } });
+      }
       toast.success(data);
+      
       const { data: newComments } = await apiConnection
         .get(`/comments/all/${classroom.id}`, { headers: { 'Authorization': token } });
       dispatch(requestComments(newComments.reverse()));
