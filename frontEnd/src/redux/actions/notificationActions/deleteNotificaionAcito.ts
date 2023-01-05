@@ -13,13 +13,8 @@ export const deleteAllNotification = (): any => {
     const cookies = parseCookies();
     const token = cookies['DRAWING_USER_DATA'];
     try {
-      await apiConnection.get('/notification/delete/all', 
-        {
-          userId: userData.id
-        },
-        {
-          headers: { 'Authorization': token }
-        });
+      await apiConnection.delete('/notification/delete/all', 
+        { data: { userId: userData.id }, headers: { 'Authorization': token } });
       dispatch(genericNotificationAction(
         NotificationTypes.DELETE_NOTIFICATIONS,
         null));
