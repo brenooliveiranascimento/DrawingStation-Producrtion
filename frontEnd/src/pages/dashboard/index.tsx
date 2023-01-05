@@ -76,11 +76,9 @@ export const getServerSideProps = canSSRAdm(async (ctx) => {
 
   const token = cookies['DRAWING_USER_DATA'];
   const decodedEmail: any = jwtDecode(token);
-
   const { data: validateEmail } = await serverSideConnection.post('/auth/adm',
     { 'email': decodedEmail.email },
     { headers: {'Authorization': token }});
-
   if(validateEmail.error) {
     return {
       redirect:{

@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import { parseCookies, destroyCookie } from 'nookies';
-import { apiConnection, serverSideConnection } from '../services/api.connection';
+import { serverSideConnection } from '../services/api.connection';
 
 export function canSSRAuth<P extends { [key: string]: any; }>(fn: GetServerSideProps<P>){
   return async (ctx: GetServerSidePropsContext): Promise<GetServerSidePropsResult<P>> => {
