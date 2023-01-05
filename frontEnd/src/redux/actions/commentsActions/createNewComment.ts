@@ -16,7 +16,7 @@ export const crateCommentAction = (commentData: INewComment): any => {
         { classroomId, content, userId, },
         { headers: { 'Authorization': token } });
       toast.success(data);
-      const { data: newComments } = await apiConnection.get('/comments/all', { headers: { 'Authorization': token } });
+      const { data: newComments } = await apiConnection.get(`/comments/all${classroomId}`, { headers: { 'Authorization': token } });
       dispatch(requestComments(newComments.reverse()));
     } catch(e: any) {
       toast.error(e.response.data.message);
@@ -31,7 +31,7 @@ export const crateSubCommentAction = (commentData: INewSubComment): any => {
     const cookies = parseCookies();
     const token = cookies['DRAWING_USER_DATA'];
     try {
-      const { data } = await apiConnection.post('/subComments/create',
+      const { data } = await apiConnection.post(`/subComments/create${classroom.id}`,
         { commentId, content, userId, },
         { headers: { 'Authorization': token } });
       await apiConnection.post('/notification/create',

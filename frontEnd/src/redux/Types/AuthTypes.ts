@@ -54,6 +54,7 @@ export const CommentsTypes = {
   ADD_NEW_COMMENT: 'ADD_NEW_COMMENT',
   DELETE_COMMENT: 'DELETE_COMMENT',
   UPDATE_COMMENT: 'UPDATE_COMMENT',
+  INIT_REQUEST: 'INIT_REQUEST'
 };
 
 export const NotificationTypes = {
