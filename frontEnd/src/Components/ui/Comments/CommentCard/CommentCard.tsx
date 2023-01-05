@@ -50,7 +50,7 @@ export default function CommentCard({comment}: commentCardProp) {
     const element = document.getElementById(`comment-${commentId}`);
     if (element) {
       console.log(element);
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
 
