@@ -14,6 +14,8 @@ const ACTION_DEFAULT_VALUE: any = {
 
 export function commentsModule(state = COMMENTS_DEFAULT_VALUE, action = ACTION_DEFAULT_VALUE) {
   switch(action.type) {
+  case CommentsTypes.INIT_REQUEST:
+    return { ...state, load: true };
   case CommentsTypes.REQUEST_COMMENTS:
     return { ...state, comments: action.payload, load: false };
   case CommentsTypes.ADD_NEW_COMMENT:

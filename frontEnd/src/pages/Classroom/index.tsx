@@ -14,13 +14,15 @@ import PlayerInf from '../../Components/ui/Player/PlayerInf/PlayerInf';
 import { requestModulesAction } from '../../redux/actions/moduleActions/moduleActions';
 import ClassHeader from '../../Components/ui/Player/ClassHeader/UserHeader';
 import Comments from '../../Components/ui/Comments/Comments';
+import { globalState } from '../../interfaces/modules/globalStateInterface';
+import { requestSubCommentsAction } from '../../redux/actions/commentsActions/commentsActions';
 
 interface classroomPropTypes {
   userData: UserInterface,
 }
 export default function ClassroomsPage({ userData }: classroomPropTypes) {
   const dispatch = useDispatch();
-
+  const { classroomController: { classroom } } = useSelector((state: globalState) => state);
   const initData = async () => {
     await dispatch(AutenticationSuccess(userData));
     await dispatch(requestSubModulesAction());
@@ -31,6 +33,10 @@ export default function ClassroomsPage({ userData }: classroomPropTypes) {
   useEffect(() => {
     initData();
   }, []);
+
+  useEffect(() => {
+    dispatch(requestSubCommentsAction());
+  }, [classroom]);
 
   return (
     <section className={styles.dashboard_container}>

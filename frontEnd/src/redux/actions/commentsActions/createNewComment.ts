@@ -16,7 +16,9 @@ export const crateCommentAction = (commentData: INewComment): any => {
         { classroomId, content, userId, },
         { headers: { 'Authorization': token } });
       toast.success(data);
-      const { data: newComments } = await apiConnection.get('/comments/all', { headers: { 'Authorization': token } });
+      const { data: newComments } = await apiConnection.get(`/comments/all/${classroomId}`,
+        { headers: { 'Authorization': token } });
+      console.log(newComments);
       dispatch(requestComments(newComments.reverse()));
     } catch(e: any) {
       toast.error(e.response.data.message);
@@ -38,7 +40,8 @@ export const crateSubCommentAction = (commentData: INewSubComment): any => {
         { commentId, content, userId: comentTo, classroomId: classroom.id, senderId: userData.id, type: 'comentario' },
         { headers: { 'Authorization': token } });
       toast.success(data);
-      const { data: newComments } = await apiConnection.get('/comments/all', { headers: { 'Authorization': token } });
+      const { data: newComments } = await apiConnection
+        .get(`/comments/all/${classroom.id}`, { headers: { 'Authorization': token } });
       dispatch(requestComments(newComments.reverse()));
     } catch(e: any) {
       console.log(e);

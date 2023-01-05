@@ -9,6 +9,7 @@ class CommentModel extends Model {
   declare commentId: boolean;
   declare active: boolean;
   declare creationDate: Date;
+  declare classroomId: number;
 }
 
 CommentModel.init({

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { IallComments, ICommentGenericReturn, IComments, ICommentUpdate } from "../../interfaces/commentsTypes";
 
 interface ICommentsProps {
-  getAll: { execute: () => Promise<IallComments> };
+  getAll: { execute: (id:number) => Promise<IallComments> };
   create: { execute: (comment: IComments) => Promise<string> };
   update: { execute: (comment: ICommentUpdate) => Promise<string> };
   delete: { execute: (comment: ICommentUpdate) => Promise<string> };
@@ -13,8 +13,9 @@ export default class CommentController {
     this.commentsService = commentsService;
   }
 
-  async getAll(_req: Request, res: Response) {
-    const comments = await this.commentsService.getAll.execute();
+  async getAll(req: Request, res: Response) {
+    const { id } = req.params;
+    const comments = await this.commentsService.getAll.execute(Number(id));
     res.status(200).json(comments)
   }
 

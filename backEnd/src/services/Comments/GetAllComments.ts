@@ -7,11 +7,11 @@ import Users from "../../database/models/UserModel";
 export default class GetAllCommentsServices {
   constructor(private commentModel = CommentModel) {}
 
-  private async getComments() {
+  private async getComments(id:number) {
     const comments = await this.commentModel.findAll(
       {
         include: [{ model: SubCommentModel, as: 'subComments' }],
-        where: { active: true },
+        where: { active: true, classroomId: id },
         attributes: { exclude: ['active'], include: ['id'] }
       });
     return comments
@@ -20,7 +20,8 @@ export default class GetAllCommentsServices {
   private filterActiveComments(comments: any): IallComments[] {
     return comments.map((
       { active, classroomId, content, creationDate, id, userId, subComments}: IallComments) => {
-        const filterSuibComments = subComments.filter((currSubComments: IsubComments) => currSubComments.active);
+        const filterSuibComments = subComments.filter((currSubComments: IsubComments) =>
+          currSubComments.active);
         const items = {
           id, userId, active, classroomId, content, subComments: filterSuibComments, creationDate
         }
@@ -70,9 +71,9 @@ export default class GetAllCommentsServices {
     return addUserInSubComment as any;
   }
 
-  async execute(): Promise<IallComments> {
+  async execute(id:number): Promise<IallComments> {
     try {
-      const comments = await this.getComments();
+      const comments = await this.getComments(id);
 
       const activeComments = this.filterActiveComments(comments);
       const commentsWithUsers = await this.addUserDataInComments(activeComments);
