@@ -19,7 +19,7 @@ const commentControlelr = new CommentController(commentsServices);
 const router = Router();
 router.use(validateToken);
 
-router.get('/all', (req, res) => commentControlelr.getAll(req, res));
+router.get('/all/:id', (req, res) => commentControlelr.getAll(req, res));
 router.post('/create', (req, res) => commentControlelr.create(req, res));
 router.put('/update/:id', (req, res) => commentControlelr.update(req, res));
 router.put('/delete/:id', (req, res) => commentControlelr.delete(req, res));
