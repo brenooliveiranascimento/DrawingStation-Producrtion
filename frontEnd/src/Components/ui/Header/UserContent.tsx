@@ -76,7 +76,7 @@ export default function UserContent() {
           <FaBell color={ getNewNotifications().length ? 'gold' : 'white'} size={23}/>
         </button>
       </section>
-      <NotificationContainer active={notifications} /> 
+      <NotificationContainer close={() => setNotifications(false)} active={notifications} /> 
     </aside>
   );
 }
