@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { ICommentGenericReturn, IsubComments, IsubCommentsEdit } from "../../interfaces/commentsTypes";
 
 interface ISubcommentControllerProps {
-  create: { execute: (subComment: IsubComments) => Promise<string> },
+  create: { execute: (subComment: IsubComments) => Promise<any> },
   update: { execute: (subComment: IsubCommentsEdit) => Promise<string> }
   delete: { execute: (subComment: IsubCommentsEdit) => Promise<string> }
 }

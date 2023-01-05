@@ -17,7 +17,6 @@ export function canSSRAdm<P extends { [key: string]: any; }>(fn: GetServerSidePr
         }
       };
     }
-
     try{
       const { data } = await serverSideConnection.post('/auth/me', null, {
         headers: {
@@ -25,7 +24,8 @@ export function canSSRAdm<P extends { [key: string]: any; }>(fn: GetServerSidePr
         }
       });
       return await fn(ctx);
-    }catch(err){
+    } catch(err){
+      console.log(err);
       destroyCookie(ctx, 'DRAWING_USER_DATA');
 
       return{

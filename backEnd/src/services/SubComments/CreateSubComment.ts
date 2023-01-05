@@ -7,14 +7,13 @@ import statusCodes from "../../statusCode";
 
 export default class CreateSubComment {
   constructor(
-    private subCommentModel = SubCommentModel,
-    private validateSubComment = new ValidateSubComment(),
   ) {}
-  async execute(subComment: IsubComments): Promise<number> {
+  async execute(subComment: IsubComments) {
     try {
+      const validateSubComment = new ValidateSubComment()
       const { commentId, content, userId } = subComment;
-      await this.validateSubComment.checkNewSubComment(subComment);
-      const newSub = await this.subCommentModel.create({ commentId, content, userId, creationDate: new Date(), active: true });
+      await validateSubComment.checkNewSubComment(subComment);
+      const newSub = await SubCommentModel.create({ commentId, content, userId, creationDate: new Date(), active: true });
       return newSub.id
     } catch(e: any) {
       throw new CustomError('Erro ao cirar subcomentario', statusCodes.BAD_REQUEST);
