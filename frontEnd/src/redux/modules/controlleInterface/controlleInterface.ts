@@ -9,7 +9,7 @@ export const controllInterfaceAction = {
   payload: false
 };
 
-export default function controllInterface(
+export default function controlleInterface(
   state = controllInterfaceInitialValue, action = controllInterfaceAction
 ) {
   switch(action.type) {
