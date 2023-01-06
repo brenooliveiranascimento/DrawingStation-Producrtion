@@ -41,6 +41,22 @@
   box-shadow: 12px 8px 15px rgba(50, 50, 50, 0.77);
   border-bottom-right-radius: 1rem;
   border-top-right-radius: 1rem;
+
+  .nav_area {
+    margin-top: 1rem;
+    a {
+      background-color: rgba(0,0,0,0.0);
+      border: none;
+      color: white;
+      margin: 1rem;
+      font-size: 2rem;
+      cursor: pointer;
+      :hover {
+        filter: brightness(80%)
+      }
+    }
+  }
+
   section {
     display: flex;
     flex-direction: column;
