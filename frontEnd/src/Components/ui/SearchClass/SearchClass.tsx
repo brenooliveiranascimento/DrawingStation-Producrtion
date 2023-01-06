@@ -8,7 +8,8 @@ import { SubModuleInterface } from '../../../interfaces/modules/ModulesInterface
 export default function SearchClass() {
 
   const {
-    classroomController: { classroom, subModules },
+    classroomController: { classroom },
+    subModules: { subModules },
   } = useSelector((state: globalState) => state);
 
   const [classrooms, setClassrooms] = useState<ClassroomInterface[]>([]);
@@ -17,8 +18,12 @@ export default function SearchClass() {
   const searchClassrooms = () => {
     const getClass = subModules.reduce((
       acc: ClassroomInterface[], currValue: SubModuleInterface) => {
-      return [...acc, currValue.classrooms];
-    }, []).filter((currClassroom: ClassroomInterface) => currClassroom.name.includes(className));
+      acc = [...acc, ...currValue.classrooms];
+      return acc;
+    }, []).filter((currClass: ClassroomInterface) => {
+      return currClass.name.includes(className);
+    });
+    console.log(getClass);
     setClassrooms(getClass);
   };
 
