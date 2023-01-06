@@ -12,6 +12,7 @@ import { serverSideSetupUser } from '../../services/setupUser';
 import { canSSRAuth } from '../../utils/canSSRAuth';
 import styles from './styles.module.scss';
 import {Adsense} from '@ctrl/react-adsense';
+import HorizontalBanner from '../../Components/Ads/HorizontalBanner/HorizontalBanner';
 
 interface DashboardPropTypes {
   userData: UserInterface,
@@ -36,6 +37,7 @@ function HomePage({ userData }: DashboardPropTypes) {
       <CurrSideBar />
       <section className={styles.main_container}>
         <UserHeader/>
+        <HorizontalBanner/>
         <ModulesScreen />
         <Adsense
           client="ca-pub-2309409107490271"

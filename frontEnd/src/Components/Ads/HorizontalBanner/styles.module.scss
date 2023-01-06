@@ -1,0 +1,14 @@
+.horizontal_banner_container {
+  display: flex;
+  background-color: rgba(92, 92, 92, 0.52);
+  align-self: flex-start;
+  padding: 2rem;
+  margin: 1rem;
+  width: 500px;
+  margin-top: 7rem;
+  margin-bottom: -4rem;
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}

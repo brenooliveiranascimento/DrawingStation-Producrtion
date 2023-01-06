@@ -10,6 +10,7 @@ import Link from 'next/link';
 import logo from '../../../../public/logo1.png';
 import { requestNotification } from '../../../redux/actions/notificationActions/requestNotification';
 import UserContent from './UserContent';
+import SearchClass from '../SearchClass/SearchClass';
 
 export default function UserHeader() {
   const { userData } = useSelector((state: globalState) => state.user);
@@ -41,8 +42,7 @@ export default function UserHeader() {
           </Link>
         </nav>
         <section className={styles.search}>
-          <input placeholder='Procurar Aula'/>
-          <FaSearch className={styles.search_input} color='#aaa'/>
+          <SearchClass/>
         </section>
         <section className={styles.nav_mobile}>
           <button onClick={() => changeScreen('HomePage')}>
