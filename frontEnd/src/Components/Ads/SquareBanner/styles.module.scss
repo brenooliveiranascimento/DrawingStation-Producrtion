@@ -1,0 +1,19 @@
+.square_banner_container {
+  display: flex;
+  background-color: rgba(92, 92, 92, 0.52);
+  padding: 2rem;
+  width: 14rem;
+  height: 10rem;
+  margin-top: 7rem;
+  margin-left: 0rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: -6rem;
+
+  @media screen and (max-width: 660px) {
+    width: 90%;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+}

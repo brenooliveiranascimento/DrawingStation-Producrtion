@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import { apiConnection } from '../../../services/api.connection';
 import { parseCookies } from 'nookies';
 import logo from '../../../../public/logo1.png';
+import SquareBanner from '../../Ads/SquareBanner/SquareBanner';
 
 export default function CurrSideBar() {
   const { currScreen } = useSelector((state: globalState) => state.user);
@@ -87,6 +88,14 @@ export default function CurrSideBar() {
             User
           </span>
         </button>
+        {
+          !userData.premium && (
+            <section>
+              <SquareBanner/>
+              <SquareBanner/>
+            </section>
+          )
+        }
       </section>
       <aside>
         <section className={styles.premium_area}>

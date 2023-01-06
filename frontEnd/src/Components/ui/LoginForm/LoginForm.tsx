@@ -9,13 +9,14 @@ import Router from 'next/router';
 import { useDispatch } from 'react-redux';
 import { creadentialRegisterValidation, creadentialSiginValidation } from '../../../utils/credentialValidation';
 import { Button } from '../buttons/Buttons';
-import { FaGoogle } from 'react-icons/fa';
+import { FaGoogle, FaGooglePay, FaGooglePlay, FaInstagram, FaInstagramSquare, FaLink, FaLinkedin } from 'react-icons/fa';
 import styles from '../../../../styles/Home.module.scss';
 import { IUserCredentials } from '../../../interfaces/userCredentials';
 import nookies from 'nookies';
 import { globalTypes } from '../../../utils/globalTypes';
 import Modal from 'react-modal';
 import ValidationAccount from './ValidationAccount';
+import { FcGoogle } from 'react-icons/fc';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -216,6 +217,7 @@ export default function LoginForm() {
           onChange={({target}) => handleUserCredentials(target)}
           placeholder='Confirm password'
           name='confirmPassword'
+          type='password'
         />)}
         <button
           className={styles.login_btn}
@@ -231,8 +233,8 @@ export default function LoginForm() {
         <button
           className={styles.login_btn}
           onClick={() => loginGoogle()} type='button' >
-          Entrar com Google <FaGoogle style={{
-            position: 'absolute', marginTop:'0.1rem', marginLeft:'0.4rem'
+          Entrar com Google <FcGoogle size={30} style={{
+            position: 'absolute', marginTop:'-0.2rem', marginLeft:'0.4rem'
           }}/>
         </button>
       </form>
@@ -242,6 +244,35 @@ export default function LoginForm() {
       { !register && <a onClick={() => redirect('/ForgetPassword')} className={styles.handle_form}>
         Esqueci minha senha
       </a> }
+      {
+        !register && (
+          <nav className={styles.nav_container}>
+            <a
+              target="_blank"
+              href="https://play.google.com/store/apps/details?id=com.drawingstation"
+              className={styles.app}
+              rel="noreferrer"
+            >
+              <FaGooglePlay/> Baixe o app
+            </a>
+            <nav className={styles.nav_area}>
+              <a
+                target="_blank"
+                href="https://www.instagram.com/drawingstation56/"
+                rel="noreferrer"
+              >
+                <FaInstagram />
+              </a>
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/company/drawingstation/"
+                rel="noreferrer">
+                <FaLinkedin/>
+              </a>
+            </nav>
+          </nav>
+        )
+      }
     </section>
   );
 }
