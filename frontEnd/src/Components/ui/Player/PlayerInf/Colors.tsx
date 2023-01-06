@@ -19,7 +19,9 @@ export default function Colors() {
         <h1>Adquira premium</h1>
       </aside>
     );
-  }  if(!colors) {
+  } 
+  
+  if(!colors) {
     return <aside className={styles.one_pencil_container}>
       <h1 style={{width: '300px'}}>Materiais em breve</h1>
     </aside>;
