@@ -120,7 +120,6 @@ export default function ClassCard({ subModule }: IClassCardProps) {
                   </button>
                 )}
               </section>
-
             </article>
             <section>
             </section>

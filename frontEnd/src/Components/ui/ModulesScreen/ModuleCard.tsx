@@ -30,10 +30,13 @@ export default function ModuleCard() {
   };
 
   const countSubModules = (moduleInfo: ModulesInterface) => {
-    const getAllSubModules = subModules.find((currSubModule: SubModuleInterface) =>
-      currSubModule.id === moduleInfo.id);
-    if(getAllSubModules) return getAllSubModules.classrooms.length;
-    return 0;
+    const allSubModules = subModules.filter((currSubModule: SubModuleInterface) =>
+      currSubModule.moduleId === moduleInfo.id);
+    const countClassrooms = allSubModules.reduce((acc: number, currSubmodule: SubModuleInterface) => {
+      console.log(currSubmodule, acc);
+      return acc += currSubmodule.classrooms.length;
+    }, 0);
+    return countClassrooms;
   };
 
   const [width, setWidth] = useState(0);
