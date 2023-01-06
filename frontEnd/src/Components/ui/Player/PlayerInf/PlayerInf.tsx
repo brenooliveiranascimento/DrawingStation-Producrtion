@@ -10,7 +10,8 @@ import styles from './styles.module.scss';
 export default function PlayerInf() {
   const {
     classroomController: { classroom },
-    classroomsData: { classroomsData }
+    classroomsData: { classroomsData },
+    user: { userData }
   } = useSelector((state: globalState) => state);
   const [showColors, setShowColors] = useState(true);
 
