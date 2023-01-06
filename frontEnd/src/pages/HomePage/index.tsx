@@ -36,9 +36,9 @@ function HomePage({ userData }: DashboardPropTypes) {
       <CurrSideBar />
       <section className={styles.main_container}>
         <Adsense
-          client="cca-pub-2309409107490271"
+          client="ca-pub-2309409107490271"
           slot="7596712003"
-          style={{ width: 500, height: 300 }}
+          style={{ width: 500, height: 300, marginTop: '6rem' }}
           format=""
         />
         <UserHeader/>
