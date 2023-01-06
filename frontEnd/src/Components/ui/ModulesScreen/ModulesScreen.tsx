@@ -30,13 +30,14 @@ export default function ModulesScreen() {
           </section>
         </section>
       </section>
-      <section
-        style={{
-          marginTop:'-3rem'
-        }}
-      >
-        { !userData.premium && <HorizontalBanner/> }
-      </section>
+      { !userData.premium &&  
+        <section
+          style={{
+            marginTop:'-3rem'
+          }}
+        >
+          <HorizontalBanner/>
+        </section>}
       <section className={styles.cards_container}>
         <span style={{
           marginTop: '4rem'
