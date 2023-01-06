@@ -36,9 +36,7 @@ function HomePage({ userData }: DashboardPropTypes) {
       <CurrSideBar />
       <section className={styles.main_container}>
         <UserHeader/>
-
         <ModulesScreen />
-        
         <Adsense
           client="ca-pub-2309409107490271"
           slot="7596712003"

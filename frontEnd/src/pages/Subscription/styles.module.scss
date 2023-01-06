@@ -40,7 +40,10 @@
 .main {
   display: flex;
 
-
+  margin-top: 6rem;
+  @media screen and (max-width:1230px) {
+    flex-direction: column;
+  }
   section {
     margin: 1rem;
     width: 300px;
@@ -51,6 +54,7 @@
     justify-content: center;
     background-color: var(--black-700);
     color: white;
+
     article {
       width: 100%;
       height: 300px;
