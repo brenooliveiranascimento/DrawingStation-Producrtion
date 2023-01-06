@@ -11,9 +11,14 @@ SwiperCore.use([Autoplay]);
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import HorizontalBanner from '../../Ads/HorizontalBanner/HorizontalBanner';
 
 export default function ModulesScreen() {
-  const { modules, subModules: { subModules } } = useSelector((state: globalState) => state);
+  const { 
+    modules,
+    subModules: { subModules },
+    user: { userData }
+  } = useSelector((state: globalState) => state);
   return (
     
     <section className={styles.module_container}>
@@ -25,7 +30,13 @@ export default function ModulesScreen() {
           </section>
         </section>
       </section>
-
+      <section
+        style={{
+          marginTop:'-3rem'
+        }}
+      >
+        { !userData.premium && <HorizontalBanner/> }
+      </section>
       <section className={styles.cards_container}>
         <span style={{
           marginTop: '4rem'
