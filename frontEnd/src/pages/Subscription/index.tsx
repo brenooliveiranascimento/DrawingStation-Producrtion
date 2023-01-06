@@ -49,7 +49,7 @@ export default function Subscription({ userData }: ISubscriptionProps) {
                     <span>{currPlan.description}</span>
                   </article>
                   <button 
-                    disabled={!currPlan.type && !userData.stripeClientId ? !premium : premium}
+                    disabled={!currPlan.type && userData.premium ? !premium : premium}
                     style={{
                       backgroundColor: !currPlan.type ? 'white' : (premium ? 'green' : 'white')
                     }}

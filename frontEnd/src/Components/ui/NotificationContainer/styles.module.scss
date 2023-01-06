@@ -11,6 +11,16 @@
   flex-direction: column;
   transition: all 0.5s;
   backdrop-filter: blur(5px);
+
+  @media screen and (max-width: 1200px) {
+    right: 1rem;
+    width: 400px;
+  }
+
+  @media screen and (max-width: 440px) {
+    right: 1rem;
+    width: 90%;
+  }
 }
 
 .notification_container::-webkit-scrollbar {

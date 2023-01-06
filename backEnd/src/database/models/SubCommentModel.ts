@@ -19,7 +19,7 @@ SubCommentModel.init({
     autoIncrement: true,
   },
   content: {
-    type: STRING(500),
+    type: STRING(1000),
     allowNull: false,
   },
   userId: {
