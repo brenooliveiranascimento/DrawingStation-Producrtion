@@ -9,6 +9,10 @@
   align-items: center;
   justify-content: center;
   margin-bottom: -6rem;
+
+  @media screen and (max-width: 660px) {
+    width: 90%;
+  }
   h1 {
     font-size: 1.5rem;
   }

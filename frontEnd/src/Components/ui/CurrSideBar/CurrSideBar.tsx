@@ -94,7 +94,6 @@ export default function CurrSideBar() {
               <SquareBanner/>
               <SquareBanner/>
               <SquareBanner/>
-
             </section>
           )
         }

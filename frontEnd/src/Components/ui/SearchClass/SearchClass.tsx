@@ -7,7 +7,7 @@ export default function SearchClass() {
       style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}
     >
       <input placeholder='Procurar Aula'/>
-      <FaSearch color='#aaa'/>
+      <FaSearch color='#blue'/>
     </div>
   );
 }
