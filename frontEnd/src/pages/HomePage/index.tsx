@@ -39,6 +39,7 @@ function HomePage({ userData }: DashboardPropTypes) {
         <UserHeader/>
         { !userData.premium && <HorizontalBanner/> }
         <ModulesScreen />
+        { !userData.premium && <HorizontalBanner/> }
         {/* <Adsense
           client="ca-pub-2309409107490271"
           slot="7596712003"
