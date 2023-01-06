@@ -8,6 +8,10 @@
   margin-top: 7rem;
   margin-bottom: -4rem;
 
+  @media screen and (max-width: 530px) {
+    width: 90%;
+  }
+
   h1 {
     font-size: 1.5rem;
   }
