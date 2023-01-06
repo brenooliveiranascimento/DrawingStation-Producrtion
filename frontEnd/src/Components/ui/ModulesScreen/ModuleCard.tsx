@@ -73,6 +73,9 @@ export default function ModuleCard() {
         delay: 6000,
         disableOnInteraction: false
       }}
+      style={{
+        height: '350px'
+      }}
       navigation={true}
       modules={[Pagination, Navigation]}
       className={styles.mySwiper}

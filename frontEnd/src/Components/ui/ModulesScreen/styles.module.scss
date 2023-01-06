@@ -18,6 +18,8 @@
   justify-content: center;
   flex-direction: column;
 
+
+
   cursor: pointer;
   article {
     padding: 1rem;
@@ -57,13 +59,14 @@
     color: white;
     font-size: 3rem;
     z-index: 40;
+
   }
 }
 
 .class_card_container {
   display: flex;
   width: 400px;
-  height: 350px;
+  height: 370px;
   margin-right: 1rem;
   margin-left: 1rem;
   justify-content: center;
@@ -100,7 +103,6 @@
     width: 400px;
     height: 250px;
     display: flex;
-    background-color: rgba(0,0,0,0.3);
     margin-top: -6.4rem;
     align-items: center;
     justify-content: center;
@@ -161,7 +163,7 @@
 .mySwiper {
   width: 1640px;
   display: flex;
-  height: 380px;
+  height: 390px;
   @media screen and (max-width: 1777px) {
     width: 1270px;
   }

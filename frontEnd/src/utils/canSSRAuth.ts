@@ -25,7 +25,6 @@ export function canSSRAuth<P extends { [key: string]: any; }>(fn: GetServerSideP
       });
       return await fn(ctx);
     } catch(err){
-      console.log(err);
       destroyCookie(ctx, 'DRAWING_USER_DATA');
       return{
         redirect:{
