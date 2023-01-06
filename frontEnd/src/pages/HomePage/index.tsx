@@ -37,7 +37,7 @@ function HomePage({ userData }: DashboardPropTypes) {
       <CurrSideBar />
       <section className={styles.main_container}>
         <UserHeader/>
-        <HorizontalBanner/>
+        { !userData.premium && <HorizontalBanner/> }
         <ModulesScreen />
         <Adsense
           client="ca-pub-2309409107490271"
