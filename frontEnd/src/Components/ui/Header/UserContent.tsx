@@ -63,7 +63,7 @@ export default function UserContent() {
         </button>
       </section>
       <section className={styles.premium_area}>
-        <h2>{name}</h2>
+        <h2>{`${name.split(' ')[0]} ${name.split(' ')[1]}`}</h2> 
         { premium ? <button onClick={accessPortal}>
           <span>Gerenciar planos</span>
         </button> : <button onClick={() => changeScreen('Subscription')}>
