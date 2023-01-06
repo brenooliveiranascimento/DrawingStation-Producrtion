@@ -244,17 +244,35 @@ export default function LoginForm() {
       { !register && <a onClick={() => redirect('/ForgetPassword')} className={styles.handle_form}>
         Esqueci minha senha
       </a> }
-      <nav className={styles.nav_area}>
-        <a>
-          <FaInstagram />
-        </a>
-        <a>
-          <FaGooglePlay/>
-        </a>
-        <a>
-          <FaLinkedin/>
-        </a>
-      </nav>
+      {
+        !register && (
+          <nav className={styles.nav_container}>
+            <a
+              target="_blank"
+              href="https://play.google.com/store/apps/details?id=com.drawingstation"
+              className={styles.app}
+              rel="noreferrer"
+            >
+              <FaGooglePlay/> Baixe o app
+            </a>
+            <nav className={styles.nav_area}>
+              <a
+                target="_blank"
+                href="https://www.instagram.com/drawingstation56/"
+                rel="noreferrer"
+              >
+                <FaInstagram />
+              </a>
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/company/drawingstation/"
+                rel="noreferrer">
+                <FaLinkedin/>
+              </a>
+            </nav>
+          </nav>
+        )
+      }
     </section>
   );
 }
