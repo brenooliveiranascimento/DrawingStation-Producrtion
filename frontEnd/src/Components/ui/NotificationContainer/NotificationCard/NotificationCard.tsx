@@ -70,18 +70,15 @@ export default function NotificationCard({ notification }: INotificationCardProp
           />
           <h1>{senderData.name.split(' ')[0]} respondeu seu comenttário</h1>
         </section>
-        <p>{content}</p>
         <span style={{
           color: 'gold',
           fontWeight: 600,
           objectFit: 'cover'
         }}>{active && 'novo!!'}</span>
+        <p>{content}</p>
+
       </aside>
       <aside className={styles.class_side}>
-        <section>
-          <h2 className={styles.class_name}>{classData.name}</h2>
-          <span>{findSubModule().name}</span>
-        </section>
         <Image
           height={100}
           width={100}
@@ -91,6 +88,8 @@ export default function NotificationCard({ notification }: INotificationCardProp
           alt={classData.name}
           src={classData.image}
         />
+        <h2 className={styles.class_name}>{classData.name}</h2>
+        <span>{findSubModule().name}</span>
       </aside>
     </article>
   );

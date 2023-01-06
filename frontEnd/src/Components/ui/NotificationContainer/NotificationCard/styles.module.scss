@@ -13,24 +13,15 @@
   .class_side {
     display: flex;
     width: 50%;
-    justify-content: flex-end;
-    section {
-      display: flex;
-      padding: 1rem;
-      flex-direction: column;
-      width: 40%;
-      align-items: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+
       .class_name {
-        text-align: end;
-        margin-right: 0rem;
-        align-self: flex-end;
+        text-align: start;
       }
       span {
-        margin-right: 0rem;
         color: #aaa;
-        margin-left: 00rem;
       }
-    }
   }
 
   .user_side {
@@ -39,6 +30,8 @@
     width: 50%;
     padding: 1rem;
     justify-content: center;
+    height: 200px;
+    overflow-y: scroll;
     img {
       margin-right: 1rem;
       border-radius: 50%;
@@ -55,8 +48,25 @@
     p {
       font-size: 1rem;
       margin-top: 1rem;
+      word-break: break-all;
       width: 100%;
     }
+  }
+
+  .user_side::-webkit-scrollbar {
+    width: 1px;
+  }
+  
+  .user_side::-webkit-scrollbar-track {
+    background: #282828;
+  }
+  
+  .user_side::-webkit-scrollbar-thumb {
+    background: rgb(77, 77, 77);
+  }
+  
+  .user_side::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 
 }

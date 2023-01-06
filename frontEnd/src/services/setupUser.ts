@@ -5,6 +5,7 @@ import axios from 'axios';
 export const setupUser = (ctx: any) => {
   const cookies = parseCookies(ctx);
   const api = axios.create({
+    // baseURL: 'http://localhost:3001',
     baseURL: 'https://drawingstation-backend-production-5574.up.railway.app/',
     headers: {
       Authorization: `${cookies['DRAWING_USER_DATA']}`
@@ -16,6 +17,7 @@ export const setupUser = (ctx: any) => {
 export const serverSideSetupUser = (ctx: any) => {
   const cookies = parseCookies(ctx);
   const api = axios.create({
+    // baseURL: 'http://localhost:3001',
     baseURL: 'https://drawingstation-backend-production-5574.up.railway.app/',
     headers: {
       Authorization: `${cookies['DRAWING_USER_DATA']}`
