@@ -35,14 +35,16 @@ function HomePage({ userData }: DashboardPropTypes) {
     <section className={styles.dashboard_container}>
       <CurrSideBar />
       <section className={styles.main_container}>
+        <UserHeader/>
 
+        <ModulesScreen />
+        
         <Adsense
           client="ca-pub-2309409107490271"
           slot="7596712003"
-          style={{ width: 500, height: 300 }}
+          style={{ width: 500, height: 300, marginTop: '6rem' }}
           format="auto"
         />
-        <ModulesScreen />
       </section>
     </section>
   );
