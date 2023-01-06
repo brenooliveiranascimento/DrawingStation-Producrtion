@@ -102,8 +102,25 @@ export default function ClassCard({ subModule }: IClassCardProps) {
             </section>
             <article>
               <h2>{currClassroom.name}</h2>
-              <p>{subModule.name}</p>
-              <p className={styles.premium_viwer}>premium</p>
+              <section
+                style={{
+                  display: 'flex'
+                }}
+              >
+                <p>{subModule.name}</p>
+                { currClassroom.premium && !userData.premium && (
+                  <button
+                    style={{
+                      backgroundColor: 'gold',
+                      padding: '0.1rem',
+                      marginLeft: '0.5rem',
+                      filter: 'brightness(90%)'
+                    }}>
+                    Conteúdo premium
+                  </button>
+                )}
+              </section>
+
             </article>
             <section>
             </section>
