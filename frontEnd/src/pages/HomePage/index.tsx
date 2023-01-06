@@ -11,6 +11,7 @@ import { requestSubModulesAction } from '../../redux/actions/subModuleActions/su
 import { serverSideSetupUser } from '../../services/setupUser';
 import { canSSRAuth } from '../../utils/canSSRAuth';
 import styles from './styles.module.scss';
+import {Adsense} from '@ctrl/react-adsense';
 
 interface DashboardPropTypes {
   userData: UserInterface,
@@ -34,6 +35,12 @@ function HomePage({ userData }: DashboardPropTypes) {
     <section className={styles.dashboard_container}>
       <CurrSideBar />
       <section className={styles.main_container}>
+        <Adsense
+          client="cca-pub-2309409107490271"
+          slot="7596712003"
+          style={{ width: 500, height: 300 }}
+          format=""
+        />
         <UserHeader/>
         <ModulesScreen />
       </section>

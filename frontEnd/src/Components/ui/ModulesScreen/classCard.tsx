@@ -24,7 +24,11 @@ interface IClassCardProps {
 export default function ClassCard({ subModule }: IClassCardProps) {
 
   const dispatch = useDispatch();
-  const { subModules: { subModules }, modules: { modules } } = useSelector((state: globalState) => state);
+  const {
+    subModules: { subModules },
+    modules: { modules },
+    user: { userData }
+  } = useSelector((state: globalState) => state);
 
   const selectModule = (moduleInfo: ModulesInterface) => {
     dispatch(selectSubModuleAction(moduleInfo));
@@ -93,12 +97,29 @@ export default function ClassCard({ subModule }: IClassCardProps) {
             </section>
             <section className={styles.image_area}>
               <Image
-                style={{objectFit: 'cover',  filter: 'brightness(80%)'}}
+                style={{objectFit: 'cover',  filter: 'brightness(50%)'}}
                 width={width <= 415 ? 300 : 400 } height={width <= 415 ? 200 : 250 } src={currClassroom.image} alt={currClassroom.name} />
             </section>
             <article>
               <h2>{currClassroom.name}</h2>
-              <p>{subModule.name}</p>
+              <section
+                style={{
+                  display: 'flex'
+                }}
+              >
+                <p>{subModule.name}</p>
+                { currClassroom.premium && !userData.premium && (
+                  <button
+                    style={{
+                      backgroundColor: 'gold',
+                      padding: '0.1rem',
+                      marginLeft: '0.5rem',
+                      filter: 'brightness(90%)'
+                    }}>
+                    Conteúdo premium
+                  </button>
+                )}
+              </section>
             </article>
             <section>
             </section>

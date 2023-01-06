@@ -8,14 +8,25 @@ export default function Colors() {
 
 
   const {
-    classroomController: { classroom: { multiExemple, colors } },
+    classroomController: { classroom: { multiExemple, colors, premium } },
+    user: { userData }
   } = useSelector((state: globalState) => state);
 
+
+  if(!userData.premium && premium) {
+    return (
+      <aside className={styles.one_pencil_container}>
+        <h1>Adquira premium</h1>
+      </aside>
+    );
+  } 
+  
   if(!colors) {
     return <aside className={styles.one_pencil_container}>
       <h1 style={{width: '300px'}}>Materiais em breve</h1>
     </aside>;
   }
+
 
   return (
     <aside className={styles.one_pencil_container}>

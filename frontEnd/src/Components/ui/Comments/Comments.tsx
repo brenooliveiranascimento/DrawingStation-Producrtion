@@ -13,6 +13,7 @@ export default function Comments() {
   const dispatch = useDispatch();
   const { classroom, subModules, currSubModule } = useSelector(({ classroomController }: globalState) => classroomController);
   const { comments, error, load } = useSelector(({ commentsModule }: globalState) => commentsModule);
+  const { userData } = useSelector(({ user }: globalState) => user);
   const [showComments, setShowComments] = useState(false);
 
   const initData = () => {
@@ -22,6 +23,15 @@ export default function Comments() {
   useEffect(() => {
     initData();
   }, [showComments]);
+
+
+  if(!userData.premium && classroom.premium) {
+    return (
+      <aside className={styles.one_pencil_container}>
+        <h1>Adquira premium</h1>
+      </aside>
+    );
+  } 
 
   if(load) {
     return (

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ctrl/react-adsense": "^1.6.1",
     "@react-oauth/google": "^0.4.0",
     "@stripe/stripe-js": "^1.46.0",
     "@types/axios": "^0.14.0",

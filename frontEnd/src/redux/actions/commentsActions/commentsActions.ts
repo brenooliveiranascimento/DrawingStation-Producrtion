@@ -8,8 +8,13 @@ import { requestComments } from './genericAtions';
 
 export const requestSubCommentsAction = (): any => {
   return async (dispatch: Dispatch<any>, state: () => globalState) => {
-    const { classroomController: { classroom, subModules, currSubModule } } = state();
+    const {
+      classroomController: { classroom, subModules, currSubModule },
+      user: { userData }
+    } = state();
     
+    if(!userData.premium && classroom.premium) return;
+
     if(!subModules.find((subM:SubModuleInterface) =>
       subM.id === currSubModule.id)?.classrooms.length) return;
     

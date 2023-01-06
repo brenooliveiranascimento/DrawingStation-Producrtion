@@ -27,7 +27,9 @@ export default function ModulesScreen() {
       </section>
 
       <section className={styles.cards_container}>
-        <span className={styles.class_name}>Aulas</span>
+        <span style={{
+          marginTop: '4rem'
+        }} className={styles.class_name}>Aulas</span>
         <section className={styles.class_card_area} >
           { subModules.map((currSubModule: SubModuleInterface, index: number) => {
             if(!currSubModule.classrooms.length) return;
