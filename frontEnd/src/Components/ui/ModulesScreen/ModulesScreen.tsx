@@ -33,14 +33,15 @@ export default function ModulesScreen() {
       { !userData.premium &&  
         <section
           style={{
-            marginTop:'-3rem'
+            marginTop:'-3rem',
+            marginBlock:'-1rem'
           }}
         >
           <HorizontalBanner/>
         </section>}
       <section className={styles.cards_container}>
         <span style={{
-          marginTop: '4rem'
+          marginTop: '6rem'
         }} className={styles.class_name}>Aulas</span>
         <section className={styles.class_card_area} >
           { subModules.map((currSubModule: SubModuleInterface, index: number) => {
