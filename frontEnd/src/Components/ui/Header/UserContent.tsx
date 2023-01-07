@@ -18,7 +18,7 @@ import { updateNotification } from '../../../redux/actions/notificationActions/u
 export default function UserContent() {
 
   const {
-    user: { userData: { name, premium, profilePhoto, stripeClientId, id } },
+    user: { userData: { name, premium, profilePhoto, stripeClientId, id }, oldAss },
     notificationsModule: { data, error, errorMessage }
   } = useSelector((state: globalState) => state);
 
@@ -67,7 +67,7 @@ export default function UserContent() {
         { premium ? <button onClick={accessPortal}>
           <span>Gerenciar planos</span>
         </button> : <button onClick={() => changeScreen('Subscription')}>
-          <span>{ stripeClientId ? 'Renovar Assinatura' : 'Obter Premium' }</span>
+          <span>{ oldAss ? 'Renovar Assinatura' : 'Obter Premium' }</span>
         </button> }
       </section>
       <section className={styles.notification_area}>
