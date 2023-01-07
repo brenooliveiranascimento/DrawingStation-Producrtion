@@ -38,6 +38,7 @@ function HomePage({ userData, oldAss }: DashboardPropTypes) {
   return (
     <section className={styles.dashboard_container}>
       <CurrSideBar />
+
       <section className={styles.main_container}>
         <UserHeader/>
         { !userData.premium && <HorizontalBanner/> }

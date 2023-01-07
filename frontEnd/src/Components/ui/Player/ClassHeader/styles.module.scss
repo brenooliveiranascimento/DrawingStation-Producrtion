@@ -205,3 +205,17 @@
     }
   }
   
+
+  .notification_area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      margin-left: -15rem;
+    }
+
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
+  }
