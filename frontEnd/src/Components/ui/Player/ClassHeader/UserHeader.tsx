@@ -9,11 +9,14 @@ import { handleScreen } from '../../../../redux/actions/genericActions';
 import { globalState } from '../../../../interfaces/modules/globalStateInterface';
 import { apiConnection } from '../../../../services/api.connection';
 import { toast } from 'react-toastify';
-import { FaCrown, FaHome } from 'react-icons/fa';
+import { FaBell, FaCrown, FaHome } from 'react-icons/fa';
 import { ModulesInterface } from '../../../../interfaces/modules/ModulesInterface';
 import { selectSubModuleAction } from '../../../../redux/actions/classroomControllerActions/ClassroomControllerAciton';
 import Link from 'next/link';
 import logo from '../../../../../public/logo1.png';
+import NotificationContainer from '../../NotificationContainer/NotificationContainer';
+import { INotification } from '../../../../interfaces/modules/notificationInterfaces';
+
 export default function ClassHeader() {
   const { userData, currScreen } = useSelector((state: globalState) => state.user);
   const { classroomController: { module }, modules: { modules } } = useSelector((state: globalState) => state);
@@ -23,6 +26,18 @@ export default function ClassHeader() {
   const changeScreen = (screen: string) => {
     Router.push(screen);
     dispatch(handleScreen(screen));
+  };
+
+  const {
+    notificationsModule: { data, error, errorMessage }
+  } = useSelector((state: globalState) => state);
+
+  const [notifications, setNotifications] = useState(false);
+
+
+  const getNewNotifications = () => {
+    const newNotifications = data.filter((currNotification: INotification) => currNotification.active);
+    return newNotifications;
   };
 
   const changeModule = async (moduleInf: ModulesInterface) => {
@@ -108,6 +123,13 @@ export default function ClassHeader() {
           </button> }
         </section>
       </aside>
+      <section className={styles.notification_area}>
+        { getNewNotifications().length > 0 && <span>{getNewNotifications().length}</span> }
+        <button onClick={() => setNotifications(!notifications)}>
+          <FaBell color={ getNewNotifications().length ? 'gold' : 'white'} size={23}/>
+        </button>
+      </section>
+      <NotificationContainer close={() => setNotifications(false)} active={notifications} /> 
     </header>
   );
 }

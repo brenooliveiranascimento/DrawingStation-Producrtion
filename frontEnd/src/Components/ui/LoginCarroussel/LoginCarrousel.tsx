@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import iron from '../../../../public/slides/IMG_20220206_150724_464.jpg';
 import terry from '../../../../public/slides/IMG_20220206_140140_972.jpg';
 import rose from '../../../../public/slides/IMG_20220206_141936_387.jpg';
@@ -20,6 +20,7 @@ import Lottie from 'react-lottie';
 import styles from './styles.module.scss';
 
 export default function LoginCarrousel() {
+
   const items = [
     { photo: rosaAzul },
     { photo: iron },
@@ -38,6 +39,7 @@ export default function LoginCarrousel() {
       speed: 2
     },
   };
+
   return (
     <aside>
       <Image
@@ -59,7 +61,7 @@ export default function LoginCarrousel() {
           loop
           autoplay={{
             delay: 5000,
-            disableOnInteraction: false
+            disableOnInteraction: false,
           }}
           navigation={true}
           modules={[Pagination, Navigation]}
@@ -70,7 +72,7 @@ export default function LoginCarrousel() {
               <Image
                 style={{
                   objectFit: 'cover',
-                  filter: 'brightness(50%)',
+                  filter: 'brightness(70%)',
                   borderTopLeftRadius: '1rem',
                   borderBottomLeftRadius: '1rem',
                 }}

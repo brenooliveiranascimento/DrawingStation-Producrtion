@@ -17,7 +17,11 @@
 .logo_position {
   position: absolute;
   z-index:99;
-  width: 350
+  width: 350;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -3rem;
 }
 
 .message {
@@ -35,7 +39,7 @@
 
   span {
     font-size: 1.2rem;
-    color: #aaa;
-    font-weight: 500;
+    color: #ddd;
+    font-weight: 600;
   }
 }

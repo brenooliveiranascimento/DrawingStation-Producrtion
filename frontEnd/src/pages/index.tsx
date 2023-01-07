@@ -12,9 +12,11 @@ import Lottie from 'react-lottie';
 const Home: NextPage = () => {
 
   const [load, setLoad] = useState(true);
+  const [drop, setDrop] = useState(false);
 
   useEffect(() => {
     setTimeout(() => setLoad(false), 2000);
+    setTimeout(() => setDrop(true), 2100);
   }, []);
   const defaultOptionsLoading: any = {
     loop: false,
@@ -48,6 +50,16 @@ const Home: NextPage = () => {
       <section className={styles.home_container}>
         <aside className={styles.login}>
           <LoginCarrousel/>
+          <div
+            style={{
+              position: 'absolute',
+              width: '100%',
+              height:'100vh',
+              backgroundColor:drop ?  'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.0)',
+              backdropFilter: drop ? 'blur(20px)' : 'blur(0px)',
+              transition: 'all 0.6s'
+            }}
+          />
           <section>
             <LoginForm />
           </section>
