@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import { FaPlayCircle } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { ClassroomInterface } from '../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
@@ -27,11 +28,20 @@ export default function SearchCard({ classroom }: ISearchCard) {
         <Image
           src={image}
           width={100}
-          style={{objectFit: 'cover',  filter: 'brightness(80%)'}}
+          style={{objectFit: 'cover',  filter: 'brightness(90%)'}}
           height={100}
           alt={name}
         />
+        <div
+          className={styles.player}
+        >
+          <FaPlayCircle
+            color='color'
+            size={30}
+          />
+        </div>
         <article>
+
           <h1>{name}</h1>
           <span>
             {findSubModule().name}

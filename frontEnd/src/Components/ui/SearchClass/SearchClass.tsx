@@ -45,7 +45,8 @@ export default function SearchClass() {
       {
         <article
           style={{
-            height: className.length ? 400 : 0,
+            height: className.length ? 'auto' : 0,
+            border: className.length && classrooms.length ? '1px solid #425d67' : 'none'
           }}
           className={styles.card_container}
         > 
