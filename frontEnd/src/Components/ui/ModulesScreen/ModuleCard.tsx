@@ -33,7 +33,6 @@ export default function ModuleCard() {
     const allSubModules = subModules.filter((currSubModule: SubModuleInterface) =>
       currSubModule.moduleId === moduleInfo.id);
     const countClassrooms = allSubModules.reduce((acc: number, currSubmodule: SubModuleInterface) => {
-      console.log(currSubmodule, acc);
       return acc += currSubmodule.classrooms.length;
     }, 0);
     return countClassrooms;

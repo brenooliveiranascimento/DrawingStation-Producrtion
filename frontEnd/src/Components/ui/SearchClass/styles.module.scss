@@ -1,0 +1,64 @@
+.card_container {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  top: 4rem;
+  width: 450px;
+  margin-left: 1rem;
+  background-color: #27393ff1;
+  transition: all 0.3s;
+  overflow-y: scroll;
+  border: 1px solid #425d67;
+  max-height: 500px;
+  backdrop-filter: blur(5px);
+  :hover {
+    filter: brightness(90%);
+  }
+
+  section {
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid #425d67;
+    justify-content: space-between;
+    padding: 1rem;
+    cursor: pointer;
+    .inf_area {
+      article {
+        margin-left: 1rem;
+
+        h1 {
+          font-size: 1.2rem;
+        }
+
+        p {
+          color: gold;
+          font-weight: 600;
+        }
+      }
+
+      .player {
+        position: absolute;
+        z-index: 99;
+        margin-left: 4rem;
+        margin-top: 2.4rem;
+      }
+    }
+  }
+}
+
+.card_container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.card_container::-webkit-scrollbar-track {
+  background: rgb(77, 77, 77);
+}
+
+.card_container::-webkit-scrollbar-thumb {
+  background: #282828;
+}
+
+.card_container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
