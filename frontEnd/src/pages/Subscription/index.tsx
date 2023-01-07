@@ -19,7 +19,7 @@ interface ISubscriptionProps {
 }
 
 export default function Subscription({ userData, oldAss }: ISubscriptionProps) {
-  const { premium } = useSelector(({ user }: globalState) => user.userData);
+  const { userData: { premium } } = useSelector(({ user }: globalState) => user);
 
   const dispatch = useDispatch();
 
@@ -52,7 +52,7 @@ export default function Subscription({ userData, oldAss }: ISubscriptionProps) {
                     <span>{currPlan.description}</span>
                   </article>
                   <button 
-                    disabled={!currPlan.type && userData.premium ? !premium : premium}
+                    disabled={!currPlan.type ? !oldAss : premium}
                     style={{
                       backgroundColor: !currPlan.type ? 'white' : (premium ? 'green' : 'white')
                     }}
