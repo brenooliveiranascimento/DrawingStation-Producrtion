@@ -1,0 +1,11 @@
+.card_container {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  top: 4rem;
+  width: 450px;
+  margin-left: 1rem;
+  background-color: #1e292dd3;
+  transition: all 0.3s;
+}

@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import { ClassroomInterface } from '../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
-
+import SearchCard from './SearchCard';
+import styles from './styles.module.scss';
 export default function SearchClass() {
 
   const {
@@ -21,7 +22,7 @@ export default function SearchClass() {
       acc = [...acc, ...currValue.classrooms];
       return acc;
     }, []).filter((currClass: ClassroomInterface) => {
-      return currClass.name.includes(className);
+      return currClass.name.toLowerCase().includes(className);
     });
     console.log(getClass);
     setClassrooms(getClass);
@@ -37,10 +38,23 @@ export default function SearchClass() {
     >
       <input
         value={className}
-        onChange={({target}) => setClassName(target.value)}
+        onChange={({target}) => setClassName(target.value.toLowerCase())}
         placeholder='Procurar Aula'
       />
       <FaSearch color='#blue'/>
+      {
+        <article
+          style={{
+            height: className.length ? 400 : 0,
+          }}
+          className={styles.card_container}
+        > 
+          {
+            className.length && classrooms.length ? classrooms.map((currClass: ClassroomInterface) =>
+              <SearchCard classroom={currClass} key={currClass.id} />) : <h1></h1>
+          }
+        </article>
+      }
     </div>
   );
 }
