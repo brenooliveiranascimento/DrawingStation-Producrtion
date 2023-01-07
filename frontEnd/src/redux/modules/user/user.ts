@@ -17,6 +17,7 @@ const INITIAL_VALUE: InitialValueState = {
   error: false,
   loginInit: false,
   currScreen: '',
+  oldAss: false
 };
 
 const ACTION_VALUE: any = {
@@ -26,6 +27,8 @@ const ACTION_VALUE: any = {
 
 function user(state = INITIAL_VALUE, action = ACTION_VALUE) {
   switch(action.type) {
+  case AuthTypes.OLD_ASS:
+    return { ...state, oldAss: action.payload ? true : false };    
   case AuthTypes.HANDLE_SCREEN:
     return { ...state, currScreen: action.payload };
   case AuthTypes.INIT_LOGIN:

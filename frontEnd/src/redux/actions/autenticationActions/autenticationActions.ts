@@ -6,6 +6,7 @@ import { globalTypes } from '../../../utils/globalTypes';
 import { AutenticationFailure, AutenticationSuccess, initAutentication, Sigout } from './autenticationGenericActions';
 import { toast } from 'react-toastify';
 import nookies, { destroyCookie } from 'nookies';
+import { genericCommentAciton } from '../commentsActions/genericAtions';
 
 export const siginUser = (userCredentials: UserCredentials, redirect: any, path: string): any => {
   return  async (dispatch: Dispatch<any>) => {
@@ -16,7 +17,7 @@ export const siginUser = (userCredentials: UserCredentials, redirect: any, path:
         email,
         password
       });
-      const { name, id, token, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data;
+      const { name, id, token, profilePhoto, birthday, phoneNumber, premium, stripeClientId, oldAss } = data;
       const userData = {name, email, id, profilePhoto, birthday, phoneNumber, premium, stripeClientId};
 
       dispatch(AutenticationSuccess(userData));
@@ -26,6 +27,8 @@ export const siginUser = (userCredentials: UserCredentials, redirect: any, path:
         path: '/',
       });
 
+      dispatch(genericCommentAciton('OLD_ASS', oldAss || false));
+      console.log(data);
       redirect(path);
     } catch(e: any) {
       if(e) {
@@ -78,12 +81,16 @@ export const loginWithGoogle = (userCredentials: any, redirect: any, path: strin
   return  async (dispatch: Dispatch<any>) => {
     dispatch(initAutentication());
     try {
-      const { name, id, token, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = userCredentials;
-      const userData = {name, email, id, profilePhoto, birthday, phoneNumber, premium: premium === undefined ? false : premium, stripeClientId};
+      const { name, id, token, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId, oldAss } = userCredentials;
+
+      const userData = {
+        name, email, id, profilePhoto, birthday, phoneNumber, premium: premium === undefined ? false : premium, stripeClientId};
       nookies.set(null, globalTypes.DRAWING_USER_DATA, token, {
         maxAge: 30 * 24 * 60 * 60,
         path: '/',
       });
+      console.log(userCredentials);
+      dispatch(genericCommentAciton('OLD_ASS', oldAss || false));
       dispatch(AutenticationSuccess(userData));
       redirect(path);
       toast.success(`Seja bem vindo ${name}`);

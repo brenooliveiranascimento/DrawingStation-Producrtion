@@ -5,6 +5,7 @@ import statusCodes from '../statusCode';
 import createToken from '../utils/jwt.utils';
 import jwt from 'jsonwebtoken'
 import UserService from '../services/User.services';
+import SignatureModel from '../database/models/SignatureModel';
 
 class UserController {
   declare userData: Function
@@ -63,7 +64,7 @@ class UserController {
 
   public loginByGoogle = async (req: Request, res: Response) => {
     const user: UserGoogleCredentials = req.body;
-    const { error, message, type } = await this.authService.authByGoogle(user)
+    const { error, message, type, oldAss } = await this.authService.authByGoogle(user)
     if(error) return res.status(statusCodes.NOT_FOUND)
       .json({message: error.message, token: null, error: true});
     
@@ -92,20 +93,34 @@ class UserController {
       profilePhoto: message.profilePhoto,
       birthday: message.birthday,
       phoneNumber: message.phoneNumber,
-      premium: message.premium
+      premium: message.premium,
+      oldAss
     });
   }
 
   public getUserData = async (req: Request, res: Response) => {
-    const token = req.header('Authorization') as string;
-    const user: any = await jwt.verify(token, this.key);
-
-    const { error: userErr, message: userMess } = await this.userService
-      .findUserById(user.id);
-
-      if(userErr) return res.status(statusCodes.BAD_REQUEST)
-      .json({ message: userErr.message, error: userMess });
-    return res.status(statusCodes.OK).json({ message: userMess });
+      try {
+        const token = req.header('Authorization') as string;
+        const user: any = await jwt.verify(token, this.key);
+    
+        const { error: userErr, message: userMess } = await this.userService
+          .findUserById(user.id);
+    
+        const oldAss = await SignatureModel.findOne({
+          where: { userId: userMess.id }
+        })
+        const {
+          id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId
+        } = userMess
+        const data = {
+          id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId, oldAss
+        }
+        if(userErr) return res.status(statusCodes.BAD_REQUEST)
+          .json({ message: userErr.message, error: userErr.message });
+        return res.status(statusCodes.OK).json({ message: data });
+      } catch(e) {
+        return res.status(401).json({ message: 'errror' });
+      }
   }
 
   public getAdm = async (req: Request, res: Response) => {

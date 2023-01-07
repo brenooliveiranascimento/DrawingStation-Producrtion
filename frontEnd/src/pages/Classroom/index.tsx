@@ -16,11 +16,13 @@ import ClassHeader from '../../Components/ui/Player/ClassHeader/UserHeader';
 import Comments from '../../Components/ui/Comments/Comments';
 import { globalState } from '../../interfaces/modules/globalStateInterface';
 import { requestSubCommentsAction } from '../../redux/actions/commentsActions/commentsActions';
+import { genericCommentAciton } from '../../redux/actions/commentsActions/genericAtions';
 
 interface classroomPropTypes {
   userData: UserInterface,
+  oldAss: any
 }
-export default function ClassroomsPage({ userData }: classroomPropTypes) {
+export default function ClassroomsPage({ userData, oldAss }: classroomPropTypes) {
   const dispatch = useDispatch();
   const { classroomController: { classroom } } = useSelector((state: globalState) => state);
   const initData = async () => {
@@ -28,6 +30,7 @@ export default function ClassroomsPage({ userData }: classroomPropTypes) {
     await dispatch(requestSubModulesAction());
     await dispatch(requestClassroomAction());
     await dispatch(requestModulesAction());
+    dispatch(genericCommentAciton('OLD_ASS', oldAss || false));
   };
 
   useEffect(() => {
@@ -55,10 +58,11 @@ export const getServerSideProps = canSSRAuth(async (ctx) => {
   const userConncetion = serverSideSetupUser(ctx);
 
   const { data } = await userConncetion.post('/auth/me');
-  const { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
+  const { id, name,oldAss , email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
   return {
     props: {
       userData: { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId },
+      oldAss: oldAss || null
     }
   };
 

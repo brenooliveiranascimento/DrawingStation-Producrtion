@@ -4,7 +4,7 @@ import db from '.';
 import UsersModel from './UserModel';
 
 class SignatureModel extends Model {
-  declare id: number;
+  declare id: string;
   declare status: string;
   declare userId: number;
   declare priceId: string;
