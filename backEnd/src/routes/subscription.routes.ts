@@ -12,5 +12,6 @@ router.use(validateToken);
 router.post('/mensal', (req, res) => subscriptionController.initMensalSubscription(req, res));
 router.post('/anual', (req, res) => subscriptionController.initAnualSubscription(req, res));
 router.post('/portal/:userId', (req, res) => subscriptionController.initPortal(req, res));
+router.post('/client/:id', (req, res) => subscriptionController.get(req, res));
 
 export default router;

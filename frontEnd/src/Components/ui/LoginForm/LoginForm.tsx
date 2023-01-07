@@ -100,6 +100,7 @@ export default function LoginForm() {
           picture: userData.picture,
           name: userData.name
         });
+        console.log(data);
         dispatch(loginWithGoogle(data, redirect, '/HomePage'));
       } catch(e: any) {
         toast.dismiss('Algo de errado! :(');

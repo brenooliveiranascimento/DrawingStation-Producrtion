@@ -24,7 +24,8 @@ export interface UserGoogleCredentials {
 export interface LoginResponse {
   error: null | { message: string };
   message: any;
-  type?: string
+  type?: string;
+  oldAss?: any
 }
 
 export interface GetUserInterface {

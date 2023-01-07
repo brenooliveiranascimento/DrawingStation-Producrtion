@@ -11,13 +11,15 @@ import { ISubscription } from '../../interfaces/ISubscription';
 import { plans } from '../../utils/subscriptionsData';
 import UserHeader from '../../Components/ui/Header/UserHeader';
 import { accessPortal, initCheckout } from '../../services/Subscription';
+import { genericCommentAciton } from '../../redux/actions/commentsActions/genericAtions';
 
 interface ISubscriptionProps {
   userData: UserInterface,
+  oldAss: any
 }
 
-export default function Subscription({ userData }: ISubscriptionProps) {
-  const { premium } = useSelector(({ user }: globalState) => user.userData);
+export default function Subscription({ userData, oldAss }: ISubscriptionProps) {
+  const { userData: { premium } } = useSelector(({ user }: globalState) => user);
 
   const dispatch = useDispatch();
 
@@ -28,6 +30,7 @@ export default function Subscription({ userData }: ISubscriptionProps) {
 
   const initScreen = () => {
     dispatch(AutenticationSuccess(userData));
+    dispatch(genericCommentAciton('OLD_ASS', oldAss || false));
   };
 
   useEffect(() => {
@@ -49,7 +52,7 @@ export default function Subscription({ userData }: ISubscriptionProps) {
                     <span>{currPlan.description}</span>
                   </article>
                   <button 
-                    disabled={!currPlan.type && userData.premium ? !premium : premium}
+                    disabled={!currPlan.type ? !oldAss : premium}
                     style={{
                       backgroundColor: !currPlan.type ? 'white' : (premium ? 'green' : 'white')
                     }}
@@ -70,10 +73,11 @@ export const getServerSideProps = canSSRAuth(async (ctx) => {
   const userConncetion = serverSideSetupUser(ctx);
 
   const { data } = await userConncetion.post('/auth/me');
-  const { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
+  const { id, name,oldAss , email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
   return {
     props: {
       userData: { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId },
+      oldAss: oldAss || null
     }
   };
 

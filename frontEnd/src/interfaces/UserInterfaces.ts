@@ -9,7 +9,8 @@ export interface UserInterface {
   profilePhoto?: string;
   loginType?: string;
   phoneNumber: any;
-  stripeClientId?: null | string
+  stripeClientId?: null | string;
+  oldAss?: any
 }
 
 export interface UserCredentials {
@@ -77,5 +78,6 @@ export interface InitialValueState {
   logged: boolean
   error: boolean;
   loginInit: boolean;
-  currScreen: string
+  currScreen: string;
+  oldAss: boolean
 }

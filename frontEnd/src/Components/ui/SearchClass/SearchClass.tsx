@@ -9,7 +9,6 @@ import styles from './styles.module.scss';
 export default function SearchClass() {
 
   const {
-    classroomController: { classroom },
     subModules: { subModules },
   } = useSelector((state: globalState) => state);
 

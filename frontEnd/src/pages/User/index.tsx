@@ -13,16 +13,19 @@ import { AutenticationSuccess } from '../../redux/actions/autenticationActions/a
 import UserCard from '../../Components/ui/Usercard/UserCard';
 import { globalTypes } from '../../utils/globalTypes';
 import Router from 'next/router';
+import { genericCommentAciton } from '../../redux/actions/commentsActions/genericAtions';
 
 interface DashboardPropTypes {
   userData: UserInterface,
+  oldAss: any
 }
-export default function User({ userData }: DashboardPropTypes) {
+export default function User({ userData, oldAss }: DashboardPropTypes) {
   // const { name, profilePhoto, premium, phoneNumber, email, birthday } = userData;
   const dispatch = useDispatch();
 
   const initData = async () => {
     await dispatch(AutenticationSuccess(userData));
+    dispatch(genericCommentAciton('OLD_ASS', oldAss || false));
   };
 
 
@@ -46,10 +49,11 @@ export const getServerSideProps = canSSRAuth(async (ctx) => {
   const userConncetion = serverSideSetupUser(ctx);
 
   const { data } = await userConncetion.post('/auth/me');
-  const { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
+  const { id, name,oldAss , email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
   return {
     props: {
       userData: { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId },
+      oldAss: oldAss || null
     }
   };
 

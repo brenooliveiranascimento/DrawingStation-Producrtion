@@ -2,6 +2,7 @@ import UserModel from '../database/models/UserModel';
 import { LoginResponse, UserCredentials, UserGoogleCredentials, UserInterface, UserVerifyInterface } from '../interfaces/userTypes';
 import { hash, compare } from 'bcryptjs'
 import { errorMapTypes } from '../utils/errorMap';
+import SignatureModel from '../database/models/SignatureModel';
 class AutenticationServices {
 
   async findAUser(email: string) {
@@ -50,7 +51,14 @@ class AutenticationServices {
     if(!checkPassword) {
       return {error: { message: errorMapTypes.INCORRECT_PASSWORD },  message: null};
     }
-    return { error: null, message: userData, type: 'Login' }
+    try {
+      const oldAss = await SignatureModel.findOne({
+        where: { userId: userData.id }
+      })
+      return { error: null, message: userData, type: 'Login', oldAss: !!oldAss }
+    } catch(e) {
+      return {error: { message: 'Error in login with google' },  message: null};
+    }
   }
 
   public async registerByGoogle(user: UserGoogleCredentials): Promise<LoginResponse> {
@@ -90,7 +98,14 @@ class AutenticationServices {
   if(!checkPassword) {
     return {error: { message: errorMapTypes.INCORRECT_PASSWORD },  message: null};
   }
-  return { error: null, message: userData, type: 'Login' }
+  try {
+    const oldAss = await SignatureModel.findOne({
+      where: { userId: userData.id }
+    })
+    return { error: null, message: userData, type: 'Login', oldAss: !!oldAss }
+  } catch(e) {
+    return {error: { message: 'Error in login with google' },  message: null};
+  }
   }
 };
 

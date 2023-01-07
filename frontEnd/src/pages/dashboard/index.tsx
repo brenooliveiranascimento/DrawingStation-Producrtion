@@ -15,17 +15,20 @@ import { apiConnection, serverSideConnection } from '../../services/api.connecti
 import SubModuleController from '../../Components/AdmComponents/SubModuleController/SubModuleController';
 import ClassroomController from '../../Components/AdmComponents/ClassroomController/ClassroomController';
 import UserController from '../../Components/AdmComponents/UserController/UserController';
+import { genericCommentAciton } from '../../redux/actions/commentsActions/genericAtions';
 
 interface DashboardPropTypes {
   userData: UserInterface,
+  oldAss: any
 }
 
-function Dashboad({ userData }: DashboardPropTypes) {
+function Dashboad({ userData, oldAss }: DashboardPropTypes) {
   const dispatch = useDispatch();
   const [currScreen, setCurrScreen] = useState('Modules');
 
   const setUser = () => {
     dispatch(AutenticationSuccess(userData));
+    dispatch(genericCommentAciton('OLD_ASS', oldAss || false));
   };
 
   useEffect(() => {
@@ -89,10 +92,11 @@ export const getServerSideProps = canSSRAdm(async (ctx) => {
   }
 
   const {data} = await userConncetion.post('/auth/me');
-  const { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
+  const { id, name, oldAss , email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
   return {
     props: {
       userData: { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId },
+      oldAss: oldAss || null
     }
   };
 

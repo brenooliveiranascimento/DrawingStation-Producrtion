@@ -13,12 +13,14 @@ import { canSSRAuth } from '../../utils/canSSRAuth';
 import styles from './styles.module.scss';
 import {Adsense} from '@ctrl/react-adsense';
 import HorizontalBanner from '../../Components/Ads/HorizontalBanner/HorizontalBanner';
+import { genericCommentAciton } from '../../redux/actions/commentsActions/genericAtions';
 
 interface DashboardPropTypes {
   userData: UserInterface,
+  oldAss: any
 }
 
-function HomePage({ userData }: DashboardPropTypes) {
+function HomePage({ userData, oldAss }: DashboardPropTypes) {
   const dispatch = useDispatch();
 
   const initHome = async () => {
@@ -26,6 +28,7 @@ function HomePage({ userData }: DashboardPropTypes) {
     await dispatch(requestSubModulesAction());
     await dispatch(requestClassroomAction());
     await dispatch(requestModulesAction());
+    dispatch(genericCommentAciton('OLD_ASS', oldAss || false));
   };
 
   useEffect(() => {
@@ -57,10 +60,14 @@ export const getServerSideProps = canSSRAuth(async (ctx) => {
   const userConncetion = serverSideSetupUser(ctx);
 
   const { data } = await userConncetion.post('/auth/me');
-  const { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
+  const { id, name,oldAss , email, profilePhoto, birthday, phoneNumber, premium, stripeClientId } = data.message;
+
+  console.log(data);
+  
   return {
     props: {
       userData: { id, name, email, profilePhoto, birthday, phoneNumber, premium, stripeClientId },
+      oldAss: oldAss || null
     }
   };
 

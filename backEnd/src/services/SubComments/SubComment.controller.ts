@@ -32,4 +32,5 @@ export default class SubCommentControlelr {
     const edit = await this.props.delete.execute(editCommentData);
     res.status(200).json({ message: edit });
   }
+
 }
