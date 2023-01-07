@@ -46,8 +46,7 @@ export default function SearchCard({ classroom }: ISearchCard) {
           <span>
             {findSubModule().name}
           </span>
-          { premium && !userData.premium && ( <button> Conteúdo premium! </button> )}        
-
+          { premium && !userData.premium && ( <p> Conteúdo premium! </p> )}        
         </article>
       </aside>
       <aside
