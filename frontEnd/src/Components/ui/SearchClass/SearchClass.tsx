@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import { FaClosedCaptioning, FaSearch } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { ClassroomInterface } from '../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
@@ -41,7 +41,15 @@ export default function SearchClass() {
         onChange={({target}) => setClassName(target.value.toLowerCase())}
         placeholder='Procurar Aula'
       />
-      <FaSearch color='#blue'/>
+      {
+        className.length ? <button
+          style={{
+            marginLeft: '-1.5rem',
+            color: 'white',
+            fontWeight: 600
+          }}
+          onClick={() => setClassName('')}>X</button> : <FaSearch />
+      }
       {
         <article
           style={{
