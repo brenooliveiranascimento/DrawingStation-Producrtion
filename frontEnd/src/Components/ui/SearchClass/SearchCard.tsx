@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { ClassroomInterface } from '../../../interfaces/modules/classroomInterface';
 import { globalState } from '../../../interfaces/modules/globalStateInterface';
 import { SubModuleInterface } from '../../../interfaces/modules/ModulesInterface';
+import styles from './styles.module.scss';
 
 interface ISearchCard {
   classroom: ClassroomInterface;
@@ -22,10 +23,11 @@ export default function SearchCard({ classroom }: ISearchCard) {
 
   return (
     <section>
-      <aside>
+      <aside className={styles.inf_area}>
         <Image
           src={image}
           width={100}
+          style={{objectFit: 'cover',  filter: 'brightness(80%)'}}
           height={100}
           alt={name}
         />
@@ -34,10 +36,12 @@ export default function SearchCard({ classroom }: ISearchCard) {
           <span>
             {findSubModule().name}
           </span>
+          { premium && !userData.premium && ( <button> Conteúdo premium! </button> )}        
+
         </article>
       </aside>
-      <aside>
-        { premium && !userData.premium && ( <button> Conteúdo premium! </button> )}        
+      <aside
+      >
       </aside>
     </section>
   );

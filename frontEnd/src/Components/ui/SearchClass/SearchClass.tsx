@@ -50,8 +50,9 @@ export default function SearchClass() {
           className={styles.card_container}
         > 
           {
-            className.length && classrooms.length ? classrooms.map((currClass: ClassroomInterface) =>
-              <SearchCard classroom={currClass} key={currClass.id} />) : <h1></h1>
+            className.length && classrooms.length ? classrooms
+              .map((currClass: ClassroomInterface) =>
+                <SearchCard classroom={currClass} key={currClass.id} />) : <h1></h1>
           }
         </article>
       }

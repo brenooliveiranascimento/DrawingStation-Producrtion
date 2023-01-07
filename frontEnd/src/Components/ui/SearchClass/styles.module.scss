@@ -6,6 +6,25 @@
   top: 4rem;
   width: 450px;
   margin-left: 1rem;
-  background-color: #1e292dd3;
+  background-color: #27393fe7;
   transition: all 0.3s;
+  overflow-y: scroll;
+  border: 1px solid #425d67;
+
+  section {
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid #425d67;
+    justify-content: space-between;
+    padding: 1rem;
+    .inf_area {
+      article {
+        margin-left: 1rem;
+
+        h1 {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
 }
