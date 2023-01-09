@@ -1,6 +1,8 @@
 # DrawingStation
 Seja bem vendo a DrawingStation! Minha plataforma EAD!
 
+<img src="https://user-images.githubusercontent.com/94801880/155900358-e86ee9b7-960d-4861-80fd-aa44d264d24e.png" width=300, align="center"/>
+
 Este projeto se trata da refatoração da minha antiga plataforma, esta nova versão possui um BackEnd mais robusto construido com foco em NodeJs e o Front utilizando todo o poder da SSR do NextJs.
 
 ## Contextualizando
@@ -29,3 +31,7 @@ Acesse a antiga plataforma e confira o conteúdo gratuito que disponibilizei par
 <img src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/>
 <img src="https://img.shields.io/badge/git%20-%23F05033.svg?&style=for-the-badge&logo=git&logoColor=white"/> 
 </div>
+
+<img src="https://user-images.githubusercontent.com/94801880/211364251-f7b8b57a-b7d3-4cbf-ac6a-33599d91ad3f.png" width=800>
+<img src="https://user-images.githubusercontent.com/94801880/211363938-0f902129-3068-4120-b445-d7f1a6d3c511.png" width=800>
+<img src="https://user-images.githubusercontent.com/94801880/211364119-38d235cc-b2d9-43f6-ad73-fc3e2c1c594e.png" width=800>
