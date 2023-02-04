@@ -40,8 +40,20 @@ export default function LoginCarrousel() {
     },
   };
 
+  const [screenWidth, setScreenWidth] = useState(0);
+
+  const updateWidth = setInterval(() => setScreenWidth(Number(window.innerWidth)), 100);
+
+  useEffect(() => {
+    updateWidth;
+    setInterval(() => console.log(window.innerWidth), 100);
+    return () => clearInterval(updateWidth);
+  }, []);
+
   return (
-    <aside>
+    <aside style={{
+      display: screenWidth > 950 ? 'flex' : 'none'
+    }}>
       <Image
         width={350}
         alt='logo'

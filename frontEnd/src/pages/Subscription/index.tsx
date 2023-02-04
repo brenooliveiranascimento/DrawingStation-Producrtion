@@ -42,7 +42,15 @@ export default function Subscription({ userData, oldAss }: ISubscriptionProps) {
       <CurrSideBar />
       <section className={styles.main_container}>
         <UserHeader/>
+        <section
+          style={{
+            marginTop: '7rem',
+
+          }}>
+          <h1>Atenção, toda parte de transação está apenas em modo de teste</h1>
+        </section>
         <main className={styles.main}>
+
           {
             plans.map((currPlan: ISubscription, index: number) => {
               return (

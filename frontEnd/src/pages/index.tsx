@@ -55,6 +55,7 @@ const Home: NextPage = () => {
               position: 'absolute',
               width: '100%',
               height:'100vh',
+
               backgroundColor:drop ?  'rgba(0,0,0,0.3)' : 'rgba(0,0,0,0.0)',
               backdropFilter: drop ? 'blur(20px)' : 'blur(0px)',
               transition: 'all 0.6s'

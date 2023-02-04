@@ -140,9 +140,23 @@ export default function LoginForm() {
   useEffect(() => {
     checkUserCredentials();
   }, [credentials]);
+  const [screenWidth, setScreenWidth] = useState(0);
+
+  const updateWidth = setInterval(() => setScreenWidth(Number(window.innerWidth)), 100);
+
+  useEffect(() => {
+    updateWidth;
+    setInterval(() => console.log(window.innerWidth), 100);
+    return () => clearInterval(updateWidth);
+  }, []);
 
   return (
-    <section className={styles.login}>
+    <section
+      style={{
+        borderTopLeftRadius: screenWidth < 950 ? '1rem' : '0rem',
+        borderBottomLeftRadius: screenWidth < 950 ? '1rem' : '0rem',
+      }}
+      className={styles.login}>
       <Modal
         isOpen={codeMode}
         style={{
