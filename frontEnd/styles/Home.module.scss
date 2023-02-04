@@ -41,6 +41,11 @@
   box-shadow: 12px 8px 15px rgba(50, 50, 50, 0.77);
   border-bottom-right-radius: 1rem;
   border-top-right-radius: 1rem;
+
+  @media screen and (max-width: 950px) {
+    border-bottom-right-radius: 0rem;
+    border-top-right-radius: 0rem;
+  }
   .nav_container {
     display: flex;
     flex-direction: column;
@@ -126,3 +131,5 @@
   }
 
 }
+
+

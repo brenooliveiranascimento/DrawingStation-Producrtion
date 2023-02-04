@@ -31,7 +31,7 @@ services:
         condition: service_healthy
     environment:
       - MYSQLHOST=drawingstation_db
-      - MYSQLPASSWORD=password
+      - MYSQLPASSWORD=senhaDoDB
       - MYSQLUSER=root
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3001"] 
@@ -46,7 +46,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=senhaDoDB
     restart: 'always'
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
