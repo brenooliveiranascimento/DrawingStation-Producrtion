@@ -1,7 +1,7 @@
 export interface IsubComments {
   id?: number;
   content: string;
-  userId: string;
+  userId: string | number;
   userData: userData;
   commentId: boolean;
   creationDate: Date;
