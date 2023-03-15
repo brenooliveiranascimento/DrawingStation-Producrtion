@@ -6,10 +6,11 @@ import { apiConnection } from '../../../services/api.connection';
 import { CommentsTypes } from '../../Types/AuthTypes';
 import { genericCommentAciton, requestComments } from './genericAtions';
 
+const cookies = parseCookies();
+
 export const deleteCommentAction = (commentData: IDeleteComment, comentData: ICommentsWithUserData): any => {
   return async (dispatch: Dispatch<any>) => {
     const { userId, id } = commentData;
-    const cookies = parseCookies();
 
     const token = cookies['DRAWING_USER_DATA'];
 
@@ -26,10 +27,9 @@ export const deleteCommentAction = (commentData: IDeleteComment, comentData: ICo
   };
 };
 
-export const deleteSubCommentAction = (commentData: IDeleteComment, subComment: IsubComments): any => {
+export const deleteSubCommentAction = (subComment: IDeleteComment): any => {
   return async (dispatch: Dispatch<any>) => {
-    const { userId, id } = commentData;
-    const cookies = parseCookies();
+    const { userId, id } = subComment;
 
     const token = cookies['DRAWING_USER_DATA'];
 

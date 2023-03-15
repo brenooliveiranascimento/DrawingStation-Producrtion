@@ -5,10 +5,12 @@ import { IEditComment } from '../../../interfaces/modules/commentsModuleInterfac
 import { apiConnection } from '../../../services/api.connection';
 import { requestComments } from './genericAtions';
 
+const cookies = parseCookies();
+
+
 export const editCommentAction = (commentData: IEditComment): any => {
   return async (dispatch: Dispatch<any>) => {
     const { id, content, userId } = commentData;
-    const cookies = parseCookies();
 
     const token = cookies['DRAWING_USER_DATA'];
 
@@ -28,10 +30,9 @@ export const editCommentAction = (commentData: IEditComment): any => {
 export const editSubCommentAction = (commentData: IEditComment): any => {
   return async (dispatch: Dispatch<any>) => {
     const { id, content, userId } = commentData;
-    const cookies = parseCookies();
     const token = cookies['DRAWING_USER_DATA'];
     try {
-      const { data } = await apiConnection.post(`/subComments/update/${id}`,
+      await apiConnection.post(`/subComments/update/${id}`,
         { content, userId, },
         { headers: { 'Authorization': token } });
       toast.success('Editado com sucesso!');

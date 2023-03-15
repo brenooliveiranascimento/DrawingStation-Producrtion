@@ -25,9 +25,7 @@ export default function SubCommentCard({subComment}: ISubCommentCardInterface) {
     dispatch(deleteSubCommentAction({
       id: Number(subComment.id),
       userId: Number(userData.id)},
-    subComment
     ));
-    setConfirmDelete(false);
   };
 
   const handleEdit = () => {
