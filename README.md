@@ -1,3 +1,4 @@
+### PROJETO DESCONTINUADO, Nova versão em breve
 # DrawingStation
 Seja bem vendo a DrawingStation! Minha plataforma EAD!
 
